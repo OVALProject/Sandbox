@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:tpm-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#tpm" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#tpm" elementFormDefault="qualified" version="5.10">
+     <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
+     <xsd:annotation>
+          <xsd:documentation>The following is a description of the elements, types, and attributes that compose the TPM specific system characteristic items found in Open Vulnerability and Assessment Language (OVAL). Each item is an extension of the standard item element defined in the Core System Characteristic Schema. Through extension, each item inherits a set of elements and attributes that are shared amongst all OVAL Items. Each item is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core System Characteristic Schema is not outlined here.</xsd:documentation>
+          <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+          <xsd:appinfo>
+               <schema>TPM System Characteristics</schema>
+               <version>5.10 Release Candidate 1</version>
+               <date>7/19/2011 10:15:37 PM</date>
+               <terms_of_use>Copyright (c) 2002-2011, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+               <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
+               <sch:ns prefix="tpm-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#tpm"/>
+               <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
+          </xsd:appinfo>
+     </xsd:annotation>
+     <!-- =============================================================================== -->
+     <!-- ==========================  QUOTE REPORT ITEM  ================================ -->
+     <!-- =============================================================================== -->
+     <xsd:element name="quotereport_item" substitutionGroup="oval-sc:item">
+          <xsd:annotation>
+               <xsd:documentation>The quote report item holds information about specific entries that support a TPM quote. It extends the standard ItemType as defined in the oval-system-characteristics schema and one should refer to the ItemType description for more information.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-sc:ItemType">
+                         <xsd:sequence>
+                              <xsd:element name="mask" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="unbounded">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The mask values actually used in the generation of the quote report. There is no significance to the order in which multiple mask elements appear.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="aikblob" type="oval-sc:EntityItemBinaryType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Contains the AIK blob used to sign the actual TPM Quote.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="nonce" type="oval-sc:EntityItemBinaryType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The nonce value used to create the quote.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="quotetype" type="tpm-sc:EntityItemQuotetypeType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The type of quote (Quote or Quote2).</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="signature" type="oval-sc:EntityItemBinaryType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The signature over the quote structure.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="pcr" type="oval-sc:EntityItemRecordType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Holds a record containing the collected PCRs with the name field equal to the PCR index.</xsd:documentation>
+                                        <xsd:appinfo>
+                                             <sch:pattern id="tmp-sc_quotereport_itempcr">
+                                                  <sch:rule context="tmp-sc:quotereport_item/tmp-sc:pcr">
+                                                       <sch:assert test="@datatype='record'"><sch:value-of select="../@id"/> - datatype attribute for the pcr entity of a quotereport_item must be 'record'</sch:assert>
+                                                  </sch:rule>
+                                             </sch:pattern>
+                                        </xsd:appinfo>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="pcrcomposite" type="oval-sc:EntityItemBinaryType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The pcrcomposite element is the pcrcomposite in the quote.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="locality" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The locality element contains the locality information of the Quote. It is only used if the type is Quote2.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <!-- =============================================================================== -->
+     <!-- ==============================  TPM INFO ITEM  ================================ -->
+     <!-- =============================================================================== -->
+     <xsd:element name="tpminfo_item" substitutionGroup="oval-sc:item">
+          <xsd:annotation>
+               <xsd:documentation>This item stores tpm info.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-sc:ItemType">
+                         <xsd:sequence>
+                              <xsd:element name="version" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>This reflects the version of the TCG specification that this TPM implements.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="revision" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>This is the revision of the TCG specification that this TPM implements.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="errata_number" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>This is the errata number of the TCG specification that this TPM implements.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="manufacturer" type="oval-sc:EntityItemBinaryType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>This is the vendor ID of the manufacturer who created this TPM.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="manufacturer_info" type="oval-sc:EntityItemBinaryType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>This is the manufacturer-specific information string associated with this TPM</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="command_support_level" type="oval-sc:EntityItemBinaryType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>This indicates the level of commands supported by this TPM</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="pcr_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>This is the total number of PCRs in this TPM</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="pcr_attributes" type="oval-sc:EntityItemBinaryType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>This is the attributes associated with PCRs in this TPM</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="buffer_size" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>This is the maximum size of the TPM's I/O buffer</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <!-- =============================================================================== -->
+     <!-- ==========================  ADDITION DATA TYPES  ============================== -->
+     <!-- =============================================================================== -->
+     <xsd:complexType name="EntityItemQuotetypeType">
+          <xsd:annotation>
+               <xsd:documentation>The EntityStateQuotetypeType complex type restricts a string value to a either QUOTE or QUOTE2</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleContent>
+               <xsd:restriction base="oval-sc:EntityItemStringType">
+                    <xsd:enumeration value="QUOTE">
+                         <xsd:annotation>
+                              <xsd:documentation>This is a Quote type quote.</xsd:documentation>
+                         </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="QUOTE2">
+                         <xsd:annotation>
+                              <xsd:documentation>This is a Quote2 type quote.</xsd:documentation>
+                         </xsd:annotation>
+                    </xsd:enumeration>
+               </xsd:restriction>
+          </xsd:simpleContent>
+     </xsd:complexType>
+</xsd:schema>

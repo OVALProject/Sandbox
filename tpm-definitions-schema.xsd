@@ -1,0 +1,320 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:tpm-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#tpm" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#tpm" elementFormDefault="qualified" version="5.10">
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
+      <xsd:annotation>
+            <xsd:documentation>The following is a description of the elements, types, and attributes that compose the tests found in Open Vulnerability and Assessment Language (OVAL) that are used to interact with the Trusted Computing Group's (TCG) Trusted Platform Module (TPM). These structures are operating-system independent. Each test is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core Definition Schema is not outlined here.</xsd:documentation>
+            <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+            <xsd:appinfo>
+                  <schema>TPM Definition</schema>
+                  <version>5.10 Release Candidate 1</version>
+                  <date>7/19/2011 10:15:37 PM</date>
+                  <terms_of_use>Copyright (c) 2002-2011, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+                  <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
+                  <sch:ns prefix="tpm-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#tpm"/>
+                  <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
+            </xsd:appinfo>
+      </xsd:annotation>
+      <!-- =============================================================================== -->
+      <!-- ============================  QUOTE REPORT TEST  ============================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="quotereport_test" substitutionGroup="oval-def:test">
+            <xsd:annotation>
+                  <xsd:documentation>The quote report test is used to check a TPM Quote and associated information (such as individual PCR values). It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a quotereport_object and the optional quotereport_state element specifies the different information to check. As any platform should only have a single TPM, the check attribute that is inherited from the TestType is not relevant and should be ignored.</xsd:documentation>
+                  <xsd:documentation>If the TPM is disabled or deactivated, attempts to use this test will result in an error.</xsd:documentation>
+                  <xsd:appinfo>
+                        <sch:pattern id="tpm-def_quotereporttst">
+                              <sch:rule context="tpm-def:quotereport_test/tpm-def:object">
+                                    <sch:assert test="@object_ref=/oval-def:oval_definitions/oval-def:objects/tpm-def:quotereport_object/@id"><sch:value-of select="../@id"/> - the object child element of a quotereport_test must reference a quotereport_object</sch:assert>
+                              </sch:rule>
+                              <sch:rule context="tpm-def:quotereport_test/tpm-def:state">
+                                    <sch:assert test="@state_ref=/oval-def:oval_definitions/oval-def:states/tpm-def:quotereport_state/@id"><sch:value-of select="../@id"/> - the state child element of a quotereport_test must reference a quotereport_state</sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:TestType">
+                              <xsd:sequence>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType" minOccurs="1" maxOccurs="1"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="quotereport_object" substitutionGroup="oval-def:object">
+            <xsd:annotation>
+                  <xsd:documentation>The quotereport_object element is used by a quote report test to define those objects to evaluated based on a specified state. Each request for a quote must include a PCR mask to identify what PCRs it should cover. </xsd:documentation>
+                  <xsd:documentation>Each request for a quote must also include an AIK blob. The AIK blob consists of a binary encoding of a public key and an encrypted private key. It is this key pair that the TPM will use to sign the Quote. Each AIK is associated with a single TPM. As such, the value of this field will be different for every machine assessed. The TPM will only provide a quote if it is able to unlock the encrypted private key in the blob. For this reason, the aikblob is optional in the schema. However, the field must exist and be filled in before the probe is able to collect system information. It is recommended that, at some level of the assessment infrastructure, this field is filled in using a database associating each targeted platform with an AIK its TPM can decrypt.</xsd:documentation>
+                  <xsd:documentation>Each request for a quote must also include a nonce value. However, it is extremely important that the same nonce is never used more than once. For this reason, the nonce field is optional in the quotereport_object. However, all tools must provide a value for this field before the probe is able to collect system information. It is strongly recommended that the entity responsible for verifying the TPM Quote also be the one responsible for filling in a missing nonce field as this is the only way to prevent replay attacks.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:ObjectType">
+                              <xsd:sequence>
+                                    <xsd:element name="mask" type="oval-def:EntityObjectIntType" minOccurs="1" maxOccurs="unbounded">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The mask element(s) identify one or more PCR registers to include in the TPM Quote. Each mask element identifies a single register. Since most uses will want to have multiple PCRs in a Quote, there will usually be multiple instances of the mask field. The order of values in the mask field is not significant. Not all TPM have the same number of registers so it is possible that fewer registers will be returned than identified in the mask fields. (I.e. there will be no entry in the output for a non-existent PCR even if the mask requested that PCR.) Empty mask entries and multiple mask entries with the same value are ignored.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="quotetype" type="tpm-def:EntityObjectQuotetypeType" minOccurs="1" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The quotetype element specifies the type of quote record being requested for evaluation.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="aikblob" type="oval-def:EntityObjectBinaryType" minOccurs="1" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Holds the AIK blob including the encrypted private AIK that will be used to sign the Quote. Since each AIK is associated with a single TPM, this field will be different for every machine assessed. Authors may wish to use an external variable in order to support this, although this is not required.</xsd:documentation>
+                                                <xsd:documentation>An external variable could, in theory, provide multiple aikblobs. If this occurs, tools should select the first aikblob that the TPM on the assessed machine is able to extract, ignoring all others. (For this reason, if an external variable is used, we require the var_check field to be "at least one".) Authors might wish to send multiple aikblobs to a target to preserve some level of privacy regarding the associations between a particular aikblob and a TPM.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="nonce" type="oval-def:EntityObjectBinaryType" minOccurs="1" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The nonce element specifies the nonce used to create the quote. This consists of a single binary value. It is strongly recommended that no two requests for a quote report use the same value in their nonce field as this can lead to replay of TPM information. For this reason, the nonce element requires the use of a @var_ref to an external value. The actual nonce value can be added dynamically by assessment tools prior to collecting the actual quote report, preferably by the same entity that will be evaluating the returned quote report. It is an error for the external variable to provide more than one nonce value.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <sch:pattern id="tpm-def_quotereportobjnonce">
+                                                            <sch:rule context="tpm-def:quotereport_object/tpm-def:nonce">
+                                                                  <sch:assert test="@var_ref">The nonce entity of a quotereport_object must utilize a reference to an external variable.</sch:assert>
+                                                                  <sch:let name="var_ref" value="@var_ref"/>
+                                                                  <sch:assert test="ancestor::oval-def:oval_definitions/oval-def:variables/oval-def:external_variable[@id=$var_ref]">The nonce entity of a quotereport_object must utilize a reference to an external variable.</sch:assert>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="quotereport_state" substitutionGroup="oval-def:state">
+            <xsd:annotation>
+                  <xsd:documentation>The quotereport_state element contains entities that are used to check the validity of a TPM Quote as well as the values of specific information contained in a quote report.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:StateType">
+                              <xsd:sequence>
+                                    <xsd:element name="mask" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="unbounded">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The mask values actually used in the generation of the quote report. This field exists for consistency with the associated Object only. It should NOT actually appear in a State and should not be used to evaluate an Item. To test whether desired PCRs were returned, us the pcr field.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <sch:pattern id="tpm-def_quotereportstemask">
+                                                            <sch:rule context="tpm-def:quotereport_state">
+                                                                  <sch:assert test="not(tpm-def:mask)">The mask field must not appear in a quotereport_state. It exists for consistency with the object only. To test the list of PCRs returned, us the pcr field.</sch:assert>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="aikblob" type="oval-def:EntityStateBinaryType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Compares against the AIK use to sign the quote. Note that, the process of validating the signature should discover any detectable anomalies in this field. As such, in most cases, there is no need to measure this field in the State. It is present here only to preserve consistency with the corresponding Object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="nonce" type="oval-def:EntityStateBinaryType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Compares nonce value reported in the quote. Note that, the process of validating the signature should discover any detectable anomalies in this field. As such, in most cases, there is no need to measure this field in the State. It is present here only to preserve consistency with the corresponding Object.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <sch:pattern id="tpm-def_quotereportstenonce">
+                                                            <sch:rule context="tpm-def:quotereport_state/tpm-def:nonce">
+                                                                  <sch:assert test="@var_ref">The nonce entity of a quotereport_state must utilize a reference to an external variable.</sch:assert>
+                                                                  <sch:let name="var_ref" value="@var_ref"/>
+                                                                  <sch:assert test="ancestor::oval-def:oval_definitions/oval-def:variables/oval-def:external_variable[@id=$var_ref]">The nonce entity of a quotereport_state must utilize a reference to an external variable.</sch:assert>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="quotetype" type="tpm-def:EntityStateQuotetypeType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Compares type of quote (Quote or Quote2) reported. Note that, the process of validating the signature should discover any detectable anomalies in this field. As such, in most cases, there is no need to measure this field in the State. It is present here only to preserve consistency with the corresponding Object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="signature" type="oval-def:EntityStateBinaryType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Compares against the signature over the quote structure. There should be no way to know the correct value of this field ahead of time so this field should never be included. It is present here only to preserve consistency with the corresponding Item.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="pcr" type="oval-def:EntityStateRecordType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A record containing the PCR fields with their index number as their name. Used to compare against the reported PCRs</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <sch:pattern id="tpm-def_quotereportstepcr">
+                                                            <sch:rule context="tpm-def:quotereport_state/tpm-def:pcr">
+                                                                  <sch:assert test="@datatype='record'"><sch:value-of select="../@id"/> - datatype attribute for the pcr entity of a quotereport_state must be 'record'</sch:assert>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
+                                          </xsd:annotation>
+                                          <xsd:unique name="UniqueQuoteReportFieldName">
+                                                <xsd:selector xpath="./oval-def:field"/>
+                                                <xsd:field xpath="@name"/>
+                                          </xsd:unique>
+                                    </xsd:element>
+                                    <xsd:element name="pcrcomposite" type="oval-def:EntityStateBinaryType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Compares against the pcrcomposite in the quote. This field exists to provide consistency with the corresponding Item. In most cases, attempting to evaluate this field in a State will be impractical due to the range of acceptable values. As such, this field should be absent in most States.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="locality" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The locality element compares against the locality information of the quote. It is only relevant if the type is Quote2.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- ================================  TPM INFO TEST  ============================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="tpminfo_test" substitutionGroup="oval-def:test">
+            <xsd:annotation>
+                  <xsd:documentation>The tpm info test is used to test the permanent, inherent characteristics of a TPM. These include the chip's version, manufacturer, and some of the inherent processing capabilities. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a tpminfo_object and the optional state element specifies the data to check.</xsd:documentation>
+                  <xsd:documentation>Unlike most other TPM tests, this test should be usable even if the TPM is disabled or deactivated.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:element_mapping>
+                              <oval:test>tpminfo_test</oval:test>
+                              <oval:object>tpminfo_object</oval:object>
+                              <oval:state>tpminfo_state</oval:state>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#tpm">tpminfo_item</oval:item>
+                        </oval:element_mapping>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
+                        <sch:pattern id="tpm-def_tpminfo_test">
+                              <sch:rule context="tpm-def:tpminfo_test/tpm-def:object">
+                                    <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/tpm-def:tpminfo_object/@id"><sch:value-of select="../@id"/> - the object child element of an tpminfo_test must reference an tpminfo_object</sch:assert>
+                              </sch:rule>
+                              <sch:rule context="tpm-def:tpminfo_test/tpm-def:state">
+                                    <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/tpm-def:tpminfo_state/@id"><sch:value-of select="../@id"/> - the state child element of an tpminfo_test must reference an tpminfo_state</sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:TestType">
+                              <xsd:sequence>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="tpminfo_object" substitutionGroup="oval-def:object">
+            <xsd:annotation>
+                  <xsd:documentation>The tpminfo_object element is used by a tpm info test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  <xsd:documentation>A tpminfo_object contains no fields, reflecting the fact that there is only one TPM on a system and that the tpminfo_object only collects generic information about the TPM.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:ObjectType"/>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="tpminfo_state" substitutionGroup="oval-def:state">
+            <xsd:annotation>
+                  <xsd:documentation>The tpminfo_state element defines the different information that can be used to evaluate the TPM. This includes the manufacturer, some inherent capabilities, and version numbers. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:StateType">
+                              <xsd:sequence>
+                                    <!-- From VERSION_VAL structure -->
+                                    <xsd:element name="version" type="oval-def:EntityStateVersionType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This reflects the version of the TCG specification that this TPM implements.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="revision" type="oval-def:EntityStateVersionType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This is the manufacturer's revision of the TPM used in the current TPM chip. It's meaning is manufacturer dependant.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="errata_number" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This is the errata number of the TCG specification that this TPM implements.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="manufacturer" type="oval-def:EntityStateBinaryType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This is the vendor ID of the manufacturer who created this TPM.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="manufacturer_info" type="oval-def:EntityStateBinaryType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This is the manufacturer-specific information blob associated with this TPM</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="command_support_level" type="oval-def:EntityStateBinaryType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This indicates the level of commands supported by this TPM</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="pcr_count" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This is the total number of PCRs in this TPM</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="pcr_attributes" type="oval-def:EntityStateBinaryType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This is the attributes associated with PCRs in this TPM</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="buffer_size" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This is the maximum size of the TPM's I/O buffer</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- ======================== Additional Datatypes ================================= -->
+      <!-- =============================================================================== -->
+      <xsd:complexType name="EntityObjectQuotetypeType">
+            <xsd:annotation>
+                  <xsd:documentation>The EntityObjectQuotetypeType complex type restricts a string value to a either QUOTE or QUOTE2</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-def:EntityObjectStringType">
+                        <xsd:enumeration value="QUOTE">
+                              <xsd:annotation>
+                                    <xsd:documentation>This is a Quote type quote.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="QUOTE2">
+                              <xsd:annotation>
+                                    <xsd:documentation>This is a Quote2 type quote.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>
+      <xsd:complexType name="EntityStateQuotetypeType">
+            <xsd:annotation>
+                  <xsd:documentation>The EntityStateQuotetypeType complex type restricts a string value to a either QUOTE or QUOTE2</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-def:EntityStateStringType">
+                        <xsd:enumeration value="QUOTE">
+                              <xsd:annotation>
+                                    <xsd:documentation>This is a Quote type quote.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="QUOTE2">
+                              <xsd:annotation>
+                                    <xsd:documentation>This is a Quote2 type quote.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>
+</xsd:schema>
