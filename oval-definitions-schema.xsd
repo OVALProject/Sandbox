@@ -952,7 +952,7 @@
             </xsd:enumeration>
             <xsd:enumeration value="seconds_since_epoch">
                 <xsd:annotation>
-                    <xsd:documentation>The seconds_since_epoch value specifies date-time values that represent the time in seconds since the UNIX epoch.  The Unix epoch is the time 00:00:00 UTC on January 1, 1970.</xsd:documentation>
+                    <xsd:documentation>The seconds_since_epoch value specifies date-time values that represent the time in seconds since the UNIX epoch.  The UNIX epoch is the time 00:00:00 UTC on January 1, 1970.</xsd:documentation>
                 </xsd:annotation>
             </xsd:enumeration>
         </xsd:restriction>

@@ -275,17 +275,17 @@
                                     </xsd:element>
                                     <xsd:element name="a_time" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>This is the time that the file was last accessed, in seconds since the Unix epoch. The Unix epoch is the time 00:00:00 UTC on January 1, 1970.</xsd:documentation>
+                                                <xsd:documentation>This is the time that the file was last accessed, in seconds since the UNIX epoch. The UNIX epoch is the time 00:00:00 UTC on January 1, 1970.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="c_time" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>This is the time of the last change to the file's inode, in seconds since the Unix epoch. The Unix epoch is the time 00:00:00 UTC on January 1, 1970. An inode is a Unix data structure that stores all of the information about a particular file.</xsd:documentation>
+                                                <xsd:documentation>This is the time of the last change to the file's inode, in seconds since the UNIX epoch. The UNIX epoch is the time 00:00:00 UTC on January 1, 1970. An inode is a UNIX data structure that stores all of the information about a particular file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="m_time" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>This is the time of the last change to the file's contents, in seconds since the Unix epoch. The Unix epoch is the time 00:00:00 UTC on January 1, 1970.</xsd:documentation>
+                                                <xsd:documentation>This is the time of the last change to the file's contents, in seconds since the UNIX epoch. The UNIX epoch is the time 00:00:00 UTC on January 1, 1970.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="size" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
@@ -749,7 +749,7 @@
                                     </xsd:element>
                                     <xsd:element name="mod_time" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The time the preference key was last modified in seconds since the Unix epoch. The Unix epoch is the time 00:00:00 UTC on January 1, 1970.</xsd:documentation>
+                                                <xsd:documentation>The time the preference key was last modified in seconds since the UNIX epoch. The UNIX epoch is the time 00:00:00 UTC on January 1, 1970.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="is_default" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
@@ -970,7 +970,7 @@
       </xsd:element>
       <xsd:element name="interface_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
-                  <xsd:documentation>The interface_state element enumerates the different properties associate with a Unix interface. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:documentation>The interface_state element enumerates the different properties associate with a UNIX interface. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -2011,7 +2011,7 @@
                                     </xsd:element>
                                     <xsd:element name="exp_inact" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The exp_inact entity describes how many days of account inactivity the system will wait after a password expires before locking the account. Unix systems are generally configured to only allow a given password to last for a fixed period of time. When this time, the chg_req parameter, is near running out, the system begins warning the user at each login. How soon before the expiration the user receives these warnings is specified in exp_warn. The only hiccup in this design is that a user may not login in time to ever receive a warning before account expiration. The exp_inact parameter gives the sysadmin flexibility so that a user who reaches the end of their expiration time gains exp_inact more days to login and change their password manually.</xsd:documentation>
+                                                <xsd:documentation>The exp_inact entity describes how many days of account inactivity the system will wait after a password expires before locking the account. UNIX systems are generally configured to only allow a given password to last for a fixed period of time. When this time, the chg_req parameter, is near running out, the system begins warning the user at each login. How soon before the expiration the user receives these warnings is specified in exp_warn. The only hiccup in this design is that a user may not login in time to ever receive a warning before account expiration. The exp_inact parameter gives the sysadmin flexibility so that a user who reaches the end of their expiration time gains exp_inact more days to login and change their password manually.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="exp_date" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
