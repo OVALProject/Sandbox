@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:tpm-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#tpm" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#tpm" elementFormDefault="qualified" version="5.10">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:x-tpm-definitions="http://oval.mitre.org/XMLSchema/x-tpm-definitions" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/x-tpm-definitions" elementFormDefault="qualified" version="5.10">
       <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
       <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
       <xsd:annotation>
@@ -11,7 +11,7 @@
                   <date>7/19/2011 10:15:37 PM</date>
                   <terms_of_use>Copyright (c) 2002-2011, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                   <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
-                  <sch:ns prefix="tpm-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#tpm"/>
+                  <sch:ns prefix="x-tpm-definitions" uri="http://oval.mitre.org/XMLSchema/x-tpm-definitions"/>
                   <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
             </xsd:appinfo>
       </xsd:annotation>
@@ -23,12 +23,12 @@
                   <xsd:documentation>The quote report test is used to check a TPM Quote and associated information (such as individual PCR values). It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a quotereport_object and the optional quotereport_state element specifies the different information to check. As any platform should only have a single TPM, the check attribute that is inherited from the TestType is not relevant and should be ignored.</xsd:documentation>
                   <xsd:documentation>If the TPM is disabled or deactivated, attempts to use this test will result in an error.</xsd:documentation>
                   <xsd:appinfo>
-                        <sch:pattern id="tpm-def_quotereporttst">
-                              <sch:rule context="tpm-def:quotereport_test/tpm-def:object">
-                                    <sch:assert test="@object_ref=/oval-def:oval_definitions/oval-def:objects/tpm-def:quotereport_object/@id"><sch:value-of select="../@id"/> - the object child element of a quotereport_test must reference a quotereport_object</sch:assert>
+                        <sch:pattern id="x-tpm-definitions_quotereporttst">
+                              <sch:rule context="x-tpm-definitions:quotereport_test/x-tpm-definitions:object">
+                                    <sch:assert test="@object_ref=/oval-def:oval_definitions/oval-def:objects/x-tpm-definitions:quotereport_object/@id"><sch:value-of select="../@id"/> - the object child element of a quotereport_test must reference a quotereport_object</sch:assert>
                               </sch:rule>
-                              <sch:rule context="tpm-def:quotereport_test/tpm-def:state">
-                                    <sch:assert test="@state_ref=/oval-def:oval_definitions/oval-def:states/tpm-def:quotereport_state/@id"><sch:value-of select="../@id"/> - the state child element of a quotereport_test must reference a quotereport_state</sch:assert>
+                              <sch:rule context="x-tpm-definitions:quotereport_test/x-tpm-definitions:state">
+                                    <sch:assert test="@state_ref=/oval-def:oval_definitions/oval-def:states/x-tpm-definitions:quotereport_state/@id"><sch:value-of select="../@id"/> - the state child element of a quotereport_test must reference a quotereport_state</sch:assert>
                               </sch:rule>
                         </sch:pattern>
                   </xsd:appinfo>
@@ -59,7 +59,7 @@
                                                 <xsd:documentation>The mask element(s) identify one or more PCR registers to include in the TPM Quote. Each mask element identifies a single register. Since most uses will want to have multiple PCRs in a Quote, there will usually be multiple instances of the mask field. The order of values in the mask field is not significant. Not all TPM have the same number of registers so it is possible that fewer registers will be returned than identified in the mask fields. (I.e. there will be no entry in the output for a non-existent PCR even if the mask requested that PCR.) Empty mask entries and multiple mask entries with the same value are ignored.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="quotetype" type="tpm-def:EntityObjectQuotetypeType" minOccurs="1" maxOccurs="1">
+                                    <xsd:element name="quotetype" type="x-tpm-definitions:EntityObjectQuotetypeType" minOccurs="1" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The quotetype element specifies the type of quote record being requested for evaluation.</xsd:documentation>
                                           </xsd:annotation>
@@ -74,8 +74,8 @@
                                           <xsd:annotation>
                                                 <xsd:documentation>The nonce element specifies the nonce used to create the quote. This consists of a single binary value. It is strongly recommended that no two requests for a quote report use the same value in their nonce field as this can lead to replay of TPM information. For this reason, the nonce element requires the use of a @var_ref to an external value. The actual nonce value can be added dynamically by assessment tools prior to collecting the actual quote report, preferably by the same entity that will be evaluating the returned quote report. It is an error for the external variable to provide more than one nonce value.</xsd:documentation>
                                                 <xsd:appinfo>
-                                                      <sch:pattern id="tpm-def_quotereportobjnonce">
-                                                            <sch:rule context="tpm-def:quotereport_object/tpm-def:nonce">
+                                                      <sch:pattern id="x-tpm-definitions_quotereportobjnonce">
+                                                            <sch:rule context="x-tpm-definitions:quotereport_object/x-tpm-definitions:nonce">
                                                                   <sch:assert test="@var_ref">The nonce entity of a quotereport_object must utilize a reference to an external variable.</sch:assert>
                                                                   <sch:let name="var_ref" value="@var_ref"/>
                                                                   <sch:assert test="ancestor::oval-def:oval_definitions/oval-def:variables/oval-def:external_variable[@id=$var_ref]">The nonce entity of a quotereport_object must utilize a reference to an external variable.</sch:assert>
@@ -101,9 +101,9 @@
                                           <xsd:annotation>
                                                 <xsd:documentation>The mask values actually used in the generation of the quote report. This field exists for consistency with the associated Object only. It should NOT actually appear in a State and should not be used to evaluate an Item. To test whether desired PCRs were returned, us the pcr field.</xsd:documentation>
                                                 <xsd:appinfo>
-                                                      <sch:pattern id="tpm-def_quotereportstemask">
-                                                            <sch:rule context="tpm-def:quotereport_state">
-                                                                  <sch:assert test="not(tpm-def:mask)">The mask field must not appear in a quotereport_state. It exists for consistency with the object only. To test the list of PCRs returned, us the pcr field.</sch:assert>
+                                                      <sch:pattern id="x-tpm-definitions_quotereportstemask">
+                                                            <sch:rule context="x-tpm-definitions:quotereport_state">
+                                                                  <sch:assert test="not(x-tpm-definitions:mask)">The mask field must not appear in a quotereport_state. It exists for consistency with the object only. To test the list of PCRs returned, us the pcr field.</sch:assert>
                                                             </sch:rule>
                                                       </sch:pattern>
                                                 </xsd:appinfo>
@@ -118,8 +118,8 @@
                                           <xsd:annotation>
                                                 <xsd:documentation>Compares nonce value reported in the quote. Note that, the process of validating the signature should discover any detectable anomalies in this field. As such, in most cases, there is no need to measure this field in the State. It is present here only to preserve consistency with the corresponding Object.</xsd:documentation>
                                                 <xsd:appinfo>
-                                                      <sch:pattern id="tpm-def_quotereportstenonce">
-                                                            <sch:rule context="tpm-def:quotereport_state/tpm-def:nonce">
+                                                      <sch:pattern id="x-tpm-definitions_quotereportstenonce">
+                                                            <sch:rule context="x-tpm-definitions:quotereport_state/x-tpm-definitions:nonce">
                                                                   <sch:assert test="@var_ref">The nonce entity of a quotereport_state must utilize a reference to an external variable.</sch:assert>
                                                                   <sch:let name="var_ref" value="@var_ref"/>
                                                                   <sch:assert test="ancestor::oval-def:oval_definitions/oval-def:variables/oval-def:external_variable[@id=$var_ref]">The nonce entity of a quotereport_state must utilize a reference to an external variable.</sch:assert>
@@ -128,7 +128,7 @@
                                                 </xsd:appinfo>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="quotetype" type="tpm-def:EntityStateQuotetypeType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="quotetype" type="x-tpm-definitions:EntityStateQuotetypeType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Compares type of quote (Quote or Quote2) reported. Note that, the process of validating the signature should discover any detectable anomalies in this field. As such, in most cases, there is no need to measure this field in the State. It is present here only to preserve consistency with the corresponding Object.</xsd:documentation>
                                           </xsd:annotation>
@@ -142,8 +142,8 @@
                                           <xsd:annotation>
                                                 <xsd:documentation>A record containing the PCR fields with their index number as their name. Used to compare against the reported PCRs</xsd:documentation>
                                                 <xsd:appinfo>
-                                                      <sch:pattern id="tpm-def_quotereportstepcr">
-                                                            <sch:rule context="tpm-def:quotereport_state/tpm-def:pcr">
+                                                      <sch:pattern id="x-tpm-definitions_quotereportstepcr">
+                                                            <sch:rule context="x-tpm-definitions:quotereport_state/x-tpm-definitions:pcr">
                                                                   <sch:assert test="@datatype='record'"><sch:value-of select="../@id"/> - datatype attribute for the pcr entity of a quotereport_state must be 'record'</sch:assert>
                                                             </sch:rule>
                                                       </sch:pattern>
@@ -185,12 +185,12 @@
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
-                        <sch:pattern id="tpm-def_tpminfo_test">
-                              <sch:rule context="tpm-def:tpminfo_test/tpm-def:object">
-                                    <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/tpm-def:tpminfo_object/@id"><sch:value-of select="../@id"/> - the object child element of an tpminfo_test must reference an tpminfo_object</sch:assert>
+                        <sch:pattern id="x-tpm-definitions_tpminfo_test">
+                              <sch:rule context="x-tpm-definitions:tpminfo_test/x-tpm-definitions:object">
+                                    <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/x-tpm-definitions:tpminfo_object/@id"><sch:value-of select="../@id"/> - the object child element of an tpminfo_test must reference an tpminfo_object</sch:assert>
                               </sch:rule>
-                              <sch:rule context="tpm-def:tpminfo_test/tpm-def:state">
-                                    <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/tpm-def:tpminfo_state/@id"><sch:value-of select="../@id"/> - the state child element of an tpminfo_test must reference an tpminfo_state</sch:assert>
+                              <sch:rule context="x-tpm-definitions:tpminfo_test/x-tpm-definitions:state">
+                                    <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/x-tpm-definitions:tpminfo_state/@id"><sch:value-of select="../@id"/> - the state child element of an tpminfo_test must reference an tpminfo_state</sch:assert>
                               </sch:rule>
                         </sch:pattern>
                   </xsd:appinfo>
