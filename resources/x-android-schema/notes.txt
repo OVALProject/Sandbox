@@ -1,0 +1,34 @@
+No.	Probe Name				Description
+==============================================================================
+1.	android-def:media_probe			Camera enabled/disabled...	
+
+2.	android-def:policy_test			Password information
+
+3.	android-def:security_test		Encryption setting...
+
+4.	android-def:device_access_test		Screen locking, unlock password, SMS preview...
+
+5.	android-def:location_service_test	GPS, WiFi
+
+6.	android-def:wifi-test			WiFI network availability, notification, open networks
+
+7.	android-def:bluetooth-test		Bluetooth discoverable, on/off
+
+8.	android-def:app_manager			Application details
+
+9.	android-wifi-security-test		WiFi security protocol information
+
+10.	android-def:browser_security_test	Browser security information
+	
+11.	unix-def:file_test			Existing, file meta data
+
+12.	linux-def:partition_test		Existing, partition table info
+
+13.	ind-def:environmentvariable_test	Existing, Envrionment variable values
+	
+14.	ind-def:filehash58_test			Existing, File hash
+
+15.	ind-def:textfilecontent54_test		Existing, File hash
+
+16.	unix-def:uname_test			Existing, Android OS, machine details
+
