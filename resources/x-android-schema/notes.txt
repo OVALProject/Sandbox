@@ -32,3 +32,8 @@ No.	Probe Name				Description
 
 16.	unix-def:uname_test			Existing, Android OS, machine details
 
+17. android-def:apk_test        Check metadata associated with Android packages
+
+18. android-def:flashboot_test  Check the flashboot version
+
+19. android-def:adb_test        Check system properties set by the adb utility    
