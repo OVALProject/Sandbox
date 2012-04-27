@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/x-macos-pkgutil x-macos-pkgutil.xsd" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <generator>
+    <oval:product_name>The OVAL Repository</oval:product_name>
+    <oval:schema_version>5.10</oval:schema_version>
+    <oval:timestamp>2012-01-04T13:10:44.199-05:00</oval:timestamp>
+  </generator>
+  <definitions>
+    <definition id="oval:sample:def:1" version="3" class="inventory">
+      <metadata>
+        <title>Apple Security Update 2010-006 is Installed</title>
+        <affected family="macos">
+          <platform>Apple Mac OS X</platform>
+        </affected>
+        <description>Apple Security Update 2010-006 has been installed on the system</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Check if Apple Security Update 2010-006 is installed." test_ref="oval:sample:tst:1"/>
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <pkgutil_test id="oval:sample:tst:1" version="1" check="all" check_existence="at_least_one_exists" comment="Check if Apple Security Update 2010-006 is installed." xmlns="http://oval.mitre.org/XMLSchema/x-macos-pkgutil">
+      <object object_ref="oval:sample:obj:1"/>
+    </pkgutil_test>
+  </tests>
+  <objects>
+    <pkgutil_object id="oval:sample:obj:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/x-macos-pkgutil">
+      <pkg_id>com.apple.pkg.update.security.2010.006.snowleopard</pkg_id>
+    </pkgutil_object>
+  </objects>
+</oval_definitions>

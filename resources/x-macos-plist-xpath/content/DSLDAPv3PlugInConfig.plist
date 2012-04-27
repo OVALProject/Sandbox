@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>LDAP PlugIn Version</key>
+	<string>DSLDAPv3PlugIn Version 1.5</string>
+	<key>LDAP Server Configs</key>
+	<array>
+		<dict>
+			<key>Configuration UUID</key>
+			<string>066D8079-F7AE-4019-9A47-79C83AFD6C6A</string>
+			<key>Delay Rebind Try in seconds</key>
+			<integer>120</integer>
+			<key>Denied SASL Methods</key>
+			<array>
+				<string>DIGEST-MD5</string>
+			</array>
+			<key>Enable Use</key>
+			<true/>
+			<key>Idle Timeout in minutes</key>
+			<integer>2</integer>
+			<key>OpenClose Timeout in seconds</key>
+			<integer>15</integer>
+			<key>Port Number</key>
+			<integer>389</integer>
+			<key>SSL</key>
+			<true/>
+			<key>Search Timeout in seconds</key>
+			<integer>120</integer>
+			<key>Server</key>
+			<string>10.51.1.1</string>
+			<key>Server Mappings</key>
+			<true/>
+			<key>UI Name</key>
+			<string>Untitled 0</string>
+			<key>Use DNS replicas</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Configuration UUID</key>
+			<string>066D8079-F7AE-4019-9A47-79C83AFD6C6A</string>
+			<key>Delay Rebind Try in seconds</key>
+			<integer>120</integer>
+			<key>Denied SASL Methods</key>
+			<array>
+				<string>DIGEST-MD5</string>
+			</array>
+			<key>Enable Use</key>
+			<true/>
+			<key>Idle Timeout in minutes</key>
+			<integer>2</integer>
+			<key>OpenClose Timeout in seconds</key>
+			<integer>15</integer>
+			<key>Port Number</key>
+			<integer>389</integer>
+			<key>SSL</key>
+			<false/>
+			<key>Search Timeout in seconds</key>
+			<integer>120</integer>
+			<key>Server</key>
+			<string>10.51.1.1</string>
+			<key>Server Mappings</key>
+			<true/>
+			<key>UI Name</key>
+			<string>Untitled 0 copy</string>
+			<key>Use DNS replicas</key>
+			<false/>
+		</dict>
+	</array>
+	<key>Service Principals to Create</key>
+	<string>host,afpserver,cifs,vnc</string>
+</dict>
+</plist>

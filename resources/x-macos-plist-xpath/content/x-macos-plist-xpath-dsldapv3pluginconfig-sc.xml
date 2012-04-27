@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/x-macos-pkgutil x-macos-plist-xpath.xsd">
+
+  <generator>
+    <oval:product_name>OVAL Definition Interpreter</oval:product_name>
+    <oval:product_version>5.9 Build: 2</oval:product_version>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2011-12-16T15:01:24</oval:timestamp>
+    <vendor>The MITRE Corporation</vendor>
+  </generator>
+
+  <system_info>
+    <os_name>Darwin</os_name>
+    <os_version>Darwin Kernel Version 10.8.0: Tue Jun  7 16:33:36 PDT 2011; root:xnu-1504.15.3~1/RELEASE_I386</os_version>
+    <architecture>i386</architecture>
+    <primary_host_name>mm142148-mac.mitre.org</primary_host_name>
+    <interfaces>
+      <interface>
+        <interface_name>en0</interface_name>
+        <ip_address>129.83.160.25</ip_address>
+        <mac_address>00-16-CB-92-20-6E</mac_address>
+      </interface>
+    </interfaces>
+  </system_info>
+
+  <collected_objects>
+    <object flag="complete" id="oval:sample:obj:1" version="1">
+      <reference item_ref="1"/>
+    </object>
+    <object flag="complete" id="oval:sample:obj:2" version="1">
+      <reference item_ref="2"/>
+    </object>
+  </collected_objects>
+
+  <system_data>
+    <plist_item id="1" xmlns="http://oval.mitre.org/XMLSchema/x-macos-plist-xpath">
+      <filepath>/Library/Preferences/DirectoryService/DSLDAPv3PlugInConfig.plist</filepath>
+      <xpath>/plist/dict/key[text()="LDAP PlugIn Version"]/following-sibling::*[1]/text()</xpath>
+      <type>CFString</type>
+      <value>DSLDAPv3PlugIn Version 1.5</value>
+    </plist_item>
+      <plist_item id="2" xmlns="http://oval.mitre.org/XMLSchema/x-macos-plist-xpath">
+        <filepath>/Library/Preferences/DirectoryService/DSLDAPv3PlugInConfig.plist</filepath>
+        <xpath>/plist/dict/key[text()="LDAP Server Configs"]/following-sibling::*[1]/dict[2]/key[text()="Configuration UUID"]/following-sibling::*[1]/text()</xpath>
+        <type>CFString</type>
+        <value>066D8079-F7AE-4019-9A47-79C83AFD6C6A</value>
+      </plist_item>
+  </system_data>
+
+</oval_system_characteristics>
