@@ -10,27 +10,37 @@ No.	Probe Name				Description
 
 5.	android-def:location_service_test	GPS, WiFi
 
-6.	android-def:wifi-test			WiFI network availability, notification, open networks
+6.	android-def:wifi_test			WiFI network availability, notification, open networks
 
-7.	android-def:bluetooth-test		Bluetooth discoverable, on/off
+7.	android-def:bluetooth_test		Bluetooth discoverable, on/off
 
 8.	android-def:app_manager_test		Application details
 
-9.	android-wifi-security-test		WiFi security protocol information
+9.	android-def:wifi_security_test		WiFi security protocol information
 
-10.	android-def:browser_security_test	Browser security information
+10.     android-def:system_details_test		System details equivalent of uname test
 
-11.	android-def:net_test			Get preferred network
+11.	android-def:network_preference_test	Get preferred network
 
-12.	unix-def:file_test			Existing, file meta data
 
-13.	linux-def:partition_test		Existing, partition table info
+To be inherited from other schemas:
 
-14.	ind-def:environmentvariable_test	Existing, Envrionment variable values
+1.	unix-def:file_test			Existing, file meta data
+
+2.	linux-def:partition_test		Existing, partition table info
+
+3.	ind-def:environmentvariable_test	Existing, Envrionment variable values
 	
-15.	ind-def:filehash58_test			Existing, File hash
+4.	ind-def:filehash58_test			Existing, File hash
 
-16.	ind-def:textfilecontent54_test		Existing, File hash
+5.	ind-def:textfilecontent54_test		Existing, File hash
 
-17.	unix-def:uname_test			Existing, Android OS, machine details
+
+On-hold for technical reasons:
+
+1.	android-def:browser_security_test	Browser security information
+
+2.      flashboot_version_test			
+
+3.      adb_system_test
 
