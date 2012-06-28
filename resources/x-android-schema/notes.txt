@@ -18,7 +18,7 @@ No.	Probe Name				Description
 
 9.	android-def:wifi_security_test		WiFi security protocol information
 
-10. android-def:system_details_test		System details equivalent of uname test
+10.       android-def:system_details_test		System details equivalent of uname test
 
 11.	android-def:network_preference_test	Get preferred network
 
@@ -40,7 +40,7 @@ On-hold for technical reasons:
 
 1.	android-def:browser_security_test	Browser security information
 
-2.  flashboot_version_test			
+2.       flashboot_version_test			
 
-3.  adb_system_test
+3.       adb_system_test
 
