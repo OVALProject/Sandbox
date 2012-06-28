@@ -9,7 +9,7 @@
             <schema>NETCONF Definition</schema>
             <version>5.10.1</version>
             <date>6/21/2012 12:08:32 PM</date>
-            <terms_of_use>Copyright (c) 2012, jOVAL.org. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+            <terms_of_use>Copyright (c) 2002-2012, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
             <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
             <sch:ns prefix="netconf-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#netconf"/>
             <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -32,10 +32,10 @@
             <xsd:appinfo>
                 <sch:pattern id="netconf-def_configtst">
                     <sch:rule context="netconf-def:config_test/netconf-def:object">
-                        <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/netconf-def:line_object/@id"><sch:value-of select="../@id"/> - the object child element of a config_test must reference a config_object</sch:assert>
+                        <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/netconf-def:config_object/@id"><sch:value-of select="../@id"/> - the object child element of a config_test must reference a config_object</sch:assert>
                     </sch:rule>
                     <sch:rule context="netconf-def:config_test/netconf-def:state">
-                        <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/netconf-def:line_state/@id"><sch:value-of select="../@id"/> - the state child element of a config_test must reference a config_state</sch:assert>
+                        <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/netconf-def:config_state/@id"><sch:value-of select="../@id"/> - the state child element of a config_test must reference a config_state</sch:assert>
                     </sch:rule>
                 </sch:pattern>
             </xsd:appinfo>
