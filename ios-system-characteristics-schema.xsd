@@ -102,6 +102,42 @@
                </xsd:complexContent>
           </xsd:complexType>
      </xsd:element>
+
+     <!-- =============================================================================== -->
+     <!-- =========================  IOS SECTION ITEM   ================================= -->
+     <!-- =============================================================================== -->
+     <xsd:element name="section_item" substitutionGroup="oval-sc:item">
+          <xsd:annotation>
+               <xsd:documentation>Stores command that are part of a IOS configuration section. For example all configuration lines under an interface. It should not store configurations for configs that already have a seperate item. For example BGP has a router item and should not also be stored in a section_item. </xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-sc:ItemType">
+                         <xsd:sequence>
+                              <xsd:element name="section_command" type="oval-sc:EntityItemStringType" minOccurs="1" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation/>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="section_config_lines" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Element with all config lines of the section</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="config_line" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Element with one config line of the section at a time</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <!-- =============================================================================== -->
+     <!-- =====================  END OF IOS SECTION ITEM   ============================== -->
+     <!-- =============================================================================== -->
+
      <!-- =============================================================================== -->
      <!-- ==========================  IOS SNMP ITEM   =================================== -->
      <!-- =============================================================================== -->
