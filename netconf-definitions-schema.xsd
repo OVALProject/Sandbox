@@ -15,9 +15,9 @@
             <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
         </xsd:appinfo>
     </xsd:annotation>
-     <!-- =============================================================================== -->
+    <!-- ============================================================================ -->
     <!-- =================================  CONFIG TEST  ================================= -->
-     <!-- =============================================================================== -->
+    <!-- ============================================================================ -->
     <xsd:element name="config_test" substitutionGroup="oval-def:test">
         <xsd:annotation>
             <xsd:documentation>The config_test is used to check the properties of the XML output from a GET-CONFIG command, for the running configuration. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a config_object and the optional state element specifies the data to check.</xsd:documentation>
