@@ -30,6 +30,18 @@
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>The Cisco Private Internet eXchange operating system (PixOS) has reached its end-of-life and has been replaced by ASA.  As a result, this test has been deprecated.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="pixos-def_linetst_dep">
+                              <sch:rule context="pixos-def:line_test">
+                                    <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
                         <sch:pattern id="pixos-def_linetst">
                               <sch:rule context="pixos-def:line_test/pixos-def:object">
                                     <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/pixos-def:line_object/@id"><sch:value-of select="../@id"/> - the object child element of a line_test must reference a line_object</sch:assert>
@@ -55,6 +67,18 @@
             <xsd:annotation>
                   <xsd:documentation>The line_object element is used by a line_test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:documentation>A line object consists of a show_subcommand entity that is the name of a SHOW sub-command to be tested.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>The Cisco Private Internet eXchange operating system (PixOS) has reached its end-of-life and has been replaced by ASA.  As a result, this object has been deprecated.</oval:reason>
+                              <oval:comment>This object has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="pixos-def_lineobj_dep">
+                              <sch:rule context="pixos-def:line_object">
+                                    <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>                        
+                  </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="pixos-def_line_object_verify_filter_state">
                               <sch:rule context="pixos-def:line_object//oval-def:filter">
@@ -92,6 +116,18 @@
       <xsd:element name="line_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
                   <xsd:documentation>The line_state element defines the different information that can be used to evaluate the result of a specific SHOW sub-command. This includes the name of ths sub-command and the corresponding config line. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>The Cisco Private Internet eXchange operating system (PixOS) has reached its end-of-life and has been replaced by ASA.  As a result, this state has been deprecated.</oval:reason>
+                              <oval:comment>This state has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="pixos-def_lineste_dep">
+                              <sch:rule context="pixos-def:line_state">
+                                    <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>                        
+                  </xsd:appinfo>  
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -127,6 +163,18 @@
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>The Cisco Private Internet eXchange operating system (PixOS) has reached its end-of-life and has been replaced by ASA.  As a result, this test has been deprecated.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="pixos-def_versiontst_dep">
+                              <sch:rule context="pixos-def:version_test">
+                                    <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
                         <sch:pattern id="pixos-def_vertst">
                               <sch:rule context="pixos-def:version_test/pixos-def:object">
                                     <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/pixos-def:version_object/@id"><sch:value-of select="../@id"/> - the object child element of a version_test must reference a version_object</sch:assert>
@@ -151,6 +199,18 @@
       <xsd:element name="version_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
                   <xsd:documentation>The version_object element is used by a version test to define the different version information associated with a PIX system. There is actually only one object relating to version and this is the system as a whole. Therefore, there are no child entities defined. Any OVAL Test written to check version will reference the same version_object which is basically an empty object element.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>The Cisco Private Internet eXchange operating system (PixOS) has reached its end-of-life and has been replaced by ASA.  As a result, this object has been deprecated.</oval:reason>
+                              <oval:comment>This object has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="pixos-def_versionobj_dep">
+                              <sch:rule context="pixos-def:version_object">
+                                    <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>                        
+                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -161,6 +221,18 @@
       <xsd:element name="version_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
                 <xsd:documentation>The version_state element defines the version information held within a Cisco PIX software release. The pix_release element specifies the whole PIX version information.  The pix_major_release, pix_minor_release and pix_build elements specify seperated parts of PIX software version information. For instance, if the PIX version is 7.1(2.3)49, then pix_release is 7.1(2.3)49, pix_major_release is 7.1, pix_minor_release is 2.3 and pix_build is 49.  See the SHOW VERSION command within PIX for more information.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>The Cisco Private Internet eXchange operating system (PixOS) has reached its end-of-life and has been replaced by ASA.  As a result, this state has been deprecated.</oval:reason>
+                              <oval:comment>This state has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="pixos-def_versionste_dep">
+                              <sch:rule context="pixos-def:version_state">
+                                    <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>                        
+                  </xsd:appinfo>  
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
