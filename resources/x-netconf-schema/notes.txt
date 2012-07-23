@@ -1,0 +1,6 @@
+Demonstration code can be downloaded from: http://joval.org/download/mitre
+
+Works with Cisco IOS and Juniper JunOS NETCONF-enabled hardware.
+
+(The URL is only accessible after "logging on" with a verified email address at
+http://joval.org/download).
