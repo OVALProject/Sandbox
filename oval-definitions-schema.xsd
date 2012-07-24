@@ -679,6 +679,11 @@
             <xsd:element name="regex_capture" type="oval-def:RegexCaptureFunctionType"/>
             <xsd:element name="unique" type="oval-def:UniqueFunctionType"/>
             <xsd:element name="count" type="oval-def:CountFunctionType"/>
+
+            <xsd:element name="regex_capture_all" type="oval-def:RegexCaptureAllFunctionType"/>
+            <xsd:element name="trim" type="oval-def:TrimFunctionType"/>
+            <xsd:element name="split_get" type="oval-def:SplitGetFunctionType"/>
+            <xsd:element name="get_cisco_cli_section" type="oval-def:GetCiscoCLISectionFunctionType"/>
         </xsd:choice>
     </xsd:group>
     <xsd:complexType name="ArithmeticFunctionType">
@@ -895,6 +900,91 @@
         <xsd:sequence maxOccurs="unbounded">
             <xsd:group ref="oval-def:ComponentGroup"/>
         </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="RegexCaptureAllFunctionType">
+        <xsd:annotation>
+            <xsd:documentation>The regex_capture_all function captures ALL substrings from a string component. The 'pattern' attribute provides 
+a regular expression that must contain a single subexpression (using parentheses). The substringes are returned 
+in different values. For example, the pattern ^abc(.*)xyz$ would capture a substring from each of the string component's values if the value starts with abc and ends with xyz. In this case the subexpression would be all the characters that exist in between the abc and the xyz. If more than one subexpression is supplied only the first match is considered. If more than one match is identified by a single subexpression all the matches are returned as different values. If no matches are found or a subexpression is not supplied the function will evaluate to an empty string. Note that subexpressions match the longest possible substrings.Lastly, if the basic component element used by the regex_capture_all function returns multiple values, then the regex_capture_all function is performed multiple times, and all of the results, from each of the regex_capture_all functions, are returned.</xsd:documentation>
+            <xsd:documentation>Note that when using regular expressions, OVAL supports a common subset of the regular expression character classes, operations, expressions and other lexical tokens defined within Perl 5's regular expression specification. For more information on the supported regular expression syntax in OVAL see: http://oval.mitre.org/language/about/re_support_5.6.html.</xsd:documentation>
+            <xsd:appinfo>
+                <sch:pattern id="oval-def_regexcaptureAllfunctionrules">
+                    <sch:rule context="oval-def:regex_capture_all/oval-def:literal_component">
+                        <sch:assert test="not(@datatype) or @datatype='string'">A literal_component used by the regex_capture function must have a datatype of string.</sch:assert>
+                    </sch:rule>
+                    <sch:rule context="oval-def:regex_capture_all/oval-def:variable_component">
+                        <sch:let name="var_ref" value="@var_ref"/>
+                        <sch:assert test="ancestor::oval-def:oval_definitions/oval-def:variables/*[@id=$var_ref]/@datatype = 'string'">The variable referenced by the regex_capture function must have a datatype of string.</sch:assert>
+                    </sch:rule>
+                </sch:pattern>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:group ref="oval-def:ComponentGroup"/>
+        </xsd:sequence>
+        <xsd:attribute name="pattern" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="TrimFunctionType">
+        <xsd:annotation>
+            <xsd:documentation>The trim function takes a string component and trims the character (string). The 'character' attribute provides the string to be trimmed. Lastly, if the basic component element used by the trim function returns multiple values, then the trim function is performed multiple times, and all of the results, from each of the trim functions, are returned. </xsd:documentation>
+            <xsd:appinfo>
+                <sch:pattern id="oval-def_trimfunctionrules">
+                    <sch:rule context="oval-def:trim/oval-def:literal_component">
+                        <sch:assert test="not(@datatype) or @datatype='string'">A literal_component used by the trim function must have a datatype of string.</sch:assert>
+                    </sch:rule>
+                    <sch:rule context="oval-def:trim/oval-def:variable_component">
+                        <sch:let name="var_ref" value="@var_ref"/>
+                        <sch:assert test="ancestor::oval-def:oval_definitions/oval-def:variables/*[@id=$var_ref]/@datatype = 'string'">The variable referenced by the trim function must have a datatype of string.</sch:assert>
+                    </sch:rule>
+                </sch:pattern>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:group ref="oval-def:ComponentGroup"/>
+        </xsd:sequence>
+        <xsd:attribute name="character" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="SplitGetFunctionType">
+        <xsd:annotation>
+            <xsd:documentation>The split_get function takes a single string component and turns it into multiple values based on a delimiter string. Then it returns the n-th value of all these values, where n is provided in the 'occurrence' element. For example, assume that a basic component element returns the value "a-b-c-d" to the split function with the delimiter set to "-" and occurrence set to "2". The local_variable element would be evaluated to have four value "b". If the basic component returns a value that begins, or ends, with a delimiter, the local_variable element would contain empty string values at the beginning, or end, of the set of values returned for that string component. For example, if the delimiter is "-", and the basic component element returns the value "-a-a-" with occurence being "1" or "4", the local_variable element would be evaluated to have value "". Likewise, if the basic component element returns a value that contains adjacent delimiters such as "---", the local_variable element would be evaluated to have value "" regardless of the occurrence used. Lastly, if the basic component element used by the split_get function returns multiple values, then the split function is performed multiple times, and all of the results, from each of the split_get functions, are returned.</xsd:documentation>
+            <xsd:appinfo>
+                <sch:pattern id="oval-def_split_getfunctionrules">
+                    <sch:rule context="oval-def:split_get/oval-def:literal_component">
+                        <sch:assert test="not(@datatype) or @datatype='string'">A literal_component used by the split_get function must have a datatype of string.</sch:assert>
+                    </sch:rule>
+                    <sch:rule context="oval-def:split_get/oval-def:variable_component">
+                        <sch:let name="var_ref" value="@var_ref"/>
+                        <sch:assert test="ancestor::oval-def:oval_definitions/oval-def:variables/*[@id=$var_ref]/@datatype = 'string'">The variable referenced by the split_get function must have a datatype of string.</sch:assert>
+                    </sch:rule>
+                </sch:pattern>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:group ref="oval-def:ComponentGroup"/>
+        </xsd:sequence>
+        <xsd:attribute name="delimiter" type="xsd:string" use="required"/>
+        <xsd:attribute name="occurrence" type="xsd:string" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="GetCiscoCLISectionFunctionType">
+        <xsd:annotation>
+            <xsd:documentation>The get_cisco_cli_section returns the parent line that includes a CLI command that is provided in the 'pattern' attribute. The 'pattern' can be a regex of the text that needs to be in the cli_section. For example if the config has an access-list applied to interface Ethernet0 and the pattern matches on "access-list.*" then the function will return "interface Ethernet0". If no matches are found the function will evaluate to an empty string. Lastly, if the basic component element used by the get_cisco_cli_section function returns multiple values, then the get_cisco_cli_section function is performed multiple times, and all of the results, from each of the get_cisco_cli_section functions, are returned. </xsd:documentation>
+            <xsd:appinfo>
+                <sch:pattern id="oval-def_get_cisco_cli_sectionfunctionrules">
+                    <sch:rule context="oval-def:get_cisco_cli_section/oval-def:literal_component">
+                        <sch:assert test="not(@datatype) or @datatype='string'">A literal_component used by the get_cisco_cli_section function must have a datatype of string.</sch:assert>
+                    </sch:rule>
+                    <sch:rule context="oval-def:split_get/oval-def:variable_component">
+                        <sch:let name="var_ref" value="@var_ref"/>
+                        <sch:assert test="ancestor::oval-def:oval_definitions/oval-def:variables/*[@id=$var_ref]/@datatype = 'string'">The variable referenced by the get_cisco_cli_section function must have a datatype of string.</sch:assert>
+                    </sch:rule>
+                </sch:pattern>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:group ref="oval-def:ComponentGroup"/>
+        </xsd:sequence>
+        <xsd:attribute name="pattern" type="xsd:string" use="required"/>
     </xsd:complexType>
     <!-- =============================================================================== -->
     <!-- =================================  SIGNATURE  ================================= -->
