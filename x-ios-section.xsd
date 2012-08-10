@@ -81,7 +81,7 @@
                                           <xsd:sequence>
                                                 <xsd:element name="section_command" type="oval-def:EntityObjectStringType">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>The name of a section command. If the section command includes more than one section, for example ospf instances, different objects should be created for each.</xsd:documentation>
+                                                            <xsd:documentation>The name of a section command.</xsd:documentation>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
