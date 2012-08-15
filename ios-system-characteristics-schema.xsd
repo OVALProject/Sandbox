@@ -41,6 +41,18 @@
      <xsd:element name="interface_item" substitutionGroup="oval-sc:item">
           <xsd:annotation>
                <xsd:documentation/>
+              <xsd:appinfo>
+                  <oval:deprecated_info>
+                      <oval:version>5.11</oval:version>
+                      <oval:reason>The interface test, object, state, and item have been deprecated because some of the desired improvements for this test would break backwards compatibility with existing content. As a result, this item has been deprecated in favor of the interface511_item. Please see the interface511_item for more information.</oval:reason>
+                      <oval:comment>This item has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                  </oval:deprecated_info>
+                  <sch:pattern id="ios-sc_snmp_item_dep">
+                      <sch:rule context="ios-sc:snmp_item">
+                          <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                      </sch:rule>
+                  </sch:pattern>
+              </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
                <xsd:complexContent>
