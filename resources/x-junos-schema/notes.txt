@@ -2,3 +2,5 @@ Demonstration code can be downloaded from: http://joval.org/download/mitre
 
 (The URL is only accessible after "logging on" with a verified email address at
 http://joval.org/download).
+
+Sample OVAL content can be downloaded from SCAPrepo (http://www.scaprepo.com/) by searching for "junos definitions".
