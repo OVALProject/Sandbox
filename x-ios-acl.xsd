@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:ios-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" xmlns:ios-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios" xmlns:x-ios-acl="http://oval.mitre.org/XMLSchema/x-ios-acl" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/x-ios-acl" elementFormDefault="qualified" version="5.11">
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
+      <xsd:annotation>
+            <xsd:documentation>The following is a proposal for the experimental ios-def:acl_test and ios-sc:acl_item that will support checking the output lines of access control list (ACL) configurations on Cisco IOS devices.</xsd:documentation>
+            <xsd:documentation>Thanks to Omar Santos and Panos Kampanakis of Cisco for providing this test.</xsd:documentation>
+            <xsd:appinfo>
+                  <schema>Experimental Schema for the Cisco IOS ACL Test</schema>
+                  <version>5.11</version>
+                  <date>7/31/2012 10:00:00 AM</date>
+                  <terms_of_use>Copyright (c) 2002-2012, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+                  <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
+                  <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
+                  <sch:ns prefix="ios-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios"/>
+                  <sch:ns prefix="ios-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios"/>
+                  <sch:ns prefix="x-ios-acl" uri="http://oval.mitre.org/XMLSchema/x-ios-acl"/>
+                  <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
+            </xsd:appinfo>
+      </xsd:annotation>
+      <!-- =============================================================================== -->
+      <!-- ================================ IOS ACL TEST  ================================ -->
+      <!-- =============================================================================== -->
+      <xsd:element name="acl_test" substitutionGroup="oval-def:test">
+            <xsd:annotation>
+                  <xsd:documentation>The acl test is used to check the properties of specific output lines from an ACL configuration.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:element_mapping>
+                              <oval:test>acl_test</oval:test>
+                              <oval:object>acl_object</oval:object>
+                              <oval:state>acl_state</oval:state>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-ios-acl">acl_item</oval:item>
+                        </oval:element_mapping>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
+                        <sch:pattern id="x-ios-acl_acltst">
+                              <sch:rule context="x-ios-acl:acl_test/x-ios-acl:object">
+                                    <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/x-ios-acl:acl_object/@id"><sch:value-of select="../@id"/> - the object child element of a acl_test must reference a acl_object</sch:assert>
+                              </sch:rule>
+                              <sch:rule context="x-ios-acl:acl_test/x-ios-acl:state">
+                                    <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/x-ios-acl:acl_state/@id"><sch:value-of select="../@id"/> - the state child element of a acl_test must reference a acl_state</sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:TestType">
+                              <xsd:sequence>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="acl_object" substitutionGroup="oval-def:object">
+            <xsd:annotation>
+                  <xsd:documentation>The acl_object element is used by an acl_test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  <xsd:documentation>An acl object consists of a an acl name and an IP version entity that is the name and the IP protocol version of the access-list to be tested.</xsd:documentation>
+                  <xsd:appinfo>
+                        <sch:pattern id="x-ios-acl_acl_object_verify_filter_state">
+                              <sch:rule context="x-ios-acl:acl_object//oval-def:filter">
+                                    <sch:let name="parent_object" value="ancestor::x-ios-acl:acl_object"/>
+                                    <sch:let name="parent_object_id" value="$parent_object/@id"/>
+                                    <sch:let name="state_ref" value="."/>
+                                    <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+                                    <sch:let name="state_name" value="local-name($reffed_state)"/>
+                                    <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+                                    <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#x-ios-acl') and ($state_name='acl_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type.</sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:ObjectType">
+                              <xsd:sequence>
+                                    <xsd:choice>
+                                          <xsd:element ref="oval-def:set"/>
+                                          <xsd:sequence>
+                                                <xsd:element name="name" type="oval-def:EntityObjectStringType">
+                                                      <xsd:annotation>
+                                                            <xsd:documentation>The name of the ACL.</xsd:documentation>
+                                                      </xsd:annotation>
+                                                </xsd:element>
+                                                <xsd:element name="ip_version" type="x-ios-acl:EntityObjectAccessListIPVersionType">
+                                                      <xsd:annotation>
+                                                            <xsd:documentation>The IP version of the ACL.</xsd:documentation>
+                                                      </xsd:annotation>
+                                                </xsd:element>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                          </xsd:sequence>
+                                    </xsd:choice>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="acl_state" substitutionGroup="oval-def:state">
+            <xsd:annotation>
+                  <xsd:documentation>The acl_state element defines the different information that can be used to evaluate the result of a specific ACL configuration. This includes the name of ths ACL and the corresponding config lines. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:StateType">
+                              <xsd:sequence>
+                                    <xsd:element name="name" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The name of the ACL.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ip_version" type="x-ios-acl:EntityStateAccessListIPVersionType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The IP version of the ACL.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="use" type="x-ios-acl:EntityStateAccessListUseType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The feature where the ACL is used.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="used_in" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The name of where the ACL is used. For example if use is 'INTERFACE', use_in will be the name of the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="interface_direction" type="x-ios-acl:EntityStateAccessListInterfaceDirectionType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The direction the ACL is applied on an interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="acl_config_lines" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The value returned with all config lines of the ACL.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="config_line" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The value returned with one ACL config line at a time.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+
+      <!-- =============================================================================== -->
+      <!-- ============================  ACL OBJECT TYPES  =============================== -->
+      <!-- =============================================================================== -->
+     <xsd:complexType name="EntityObjectAccessListIPVersionType">
+          <xsd:annotation>
+               <xsd:documentation>The EntityObjectRoutingProtocolType complex type restricts a string value to a specific set of values: IPV4, IPV6. These values describe if an ACL is for IPv4 or IPv6 in a Cisco IOS configuration.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleContent>
+               <xsd:restriction base="oval-def:EntityObjectStringType">
+                    <xsd:enumeration value="IPV4"/>
+                    <xsd:enumeration value="IPV6"/>
+               </xsd:restriction>
+          </xsd:simpleContent>
+     </xsd:complexType>
+
+      <!-- =============================================================================== -->
+      <!-- =============================  ACL STATE TYPES  =============================== -->
+      <!-- =============================================================================== -->
+     <xsd:complexType name="EntityStateAccessListIPVersionType">
+          <xsd:annotation>
+               <xsd:documentation>The EntityStateRoutingProtocolType complex type restricts a string value to a specific set of values: IPV4, IPV6. These values describe if an ACL is for IPv4 or IPv6 in a Cisco IOS configuration.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleContent>
+               <xsd:restriction base="oval-def:EntityStateStringType">
+                    <xsd:enumeration value="IPV4"/>
+                    <xsd:enumeration value="IPV6"/>
+               </xsd:restriction>
+          </xsd:simpleContent>
+     </xsd:complexType>
+     <xsd:complexType name="EntityStateAccessListUseType">
+          <xsd:annotation>
+               <xsd:documentation>The EntityStateAccessListUseType complex type restricts a string value to a specific set of values: INTERFACE, CRYPTO_MAP_MATCH, CLASS_MAP_MATCH, ROUTE_MAP_MATCH, IGMP_FILTER, NONE. These values describe the ACL use in a Cisco IOS configuration.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleContent>
+               <xsd:restriction base="oval-def:EntityStateStringType">
+                    <xsd:enumeration value="INTERFACE"/>
+                    <xsd:enumeration value="CRYPTO_MAP_MATCH"/>
+                    <xsd:enumeration value="CLASS_MAP_MATCH"/>
+                    <xsd:enumeration value="ROUTE_MAP_MATCH"/>
+                    <xsd:enumeration value="IGMP_FILTER"/>
+                    <xsd:enumeration value="NONE"/>
+               </xsd:restriction>
+          </xsd:simpleContent>
+     </xsd:complexType>
+     <xsd:complexType name="EntityStateAccessListInterfaceDirectionType">
+          <xsd:annotation>
+               <xsd:documentation>The EntityStateAccessListInterfaceDirectionType complex type restricts a string value to a specific set of values: IN, OUT. These values describe the inbound or outbound ACL direction on an interface in a Cisco IOS configuration.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleContent>
+               <xsd:restriction base="oval-def:EntityStateStringType">
+                    <xsd:enumeration value="IN"/>
+                    <xsd:enumeration value="OUT"/>
+               </xsd:restriction>
+          </xsd:simpleContent>
+     </xsd:complexType>
+
+      <!-- =============================================================================== -->
+      <!-- =========================  IOS ACL ITEM   ================================= -->
+      <!-- =============================================================================== -->
+      <xsd:element name="acl_item" substitutionGroup="oval-sc:item">
+            <xsd:annotation>
+                  <xsd:documentation>Stores command that are part of a IOS configuration section. For example all configuration lines under an interface. It should not store configurations for configs that already have a separate item. For example BGP has a router item and should not also be stored in a acl_item. </xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-sc:ItemType">
+                              <xsd:sequence>
+                                    <xsd:element name="name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the name of the ACL.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ip_version" type="x-ios-acl:EntityItemAccessListIPVersionType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the IP version of the ACL.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="use" type="x-ios-acl:EntityItemAccessListUseType" minOccurs="0" maxOccurs="unbounded">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the feature where the ACL is used. If the same ACL is applied in more than one feature (i.e interface and crypto map), multiple items needs to be created.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="used_in" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the name of where the ACL is used. For example if use is 'INTERFACE', use_in will be the name of the interface. If the same ACL is applied in more than one feature (i.e interface and crypto map), multiple items needs to be created.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="interface_direction" type="x-ios-acl:EntityItemAccessListInterfaceDirectionType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the direction the ACL is applied on an interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="acl_config_lines" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the value returned with all config lines of the ACL.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="config_line" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the value returned with one ACL config line at a time.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+
+      <!-- =============================================================================== -->
+      <!-- ===============================  ACL ITEM TYPES  ============================== -->
+      <!-- =============================================================================== -->
+     <xsd:complexType name="EntityItemAccessListIPVersionType">
+          <xsd:annotation>
+               <xsd:documentation>The EntityItemRoutingProtocolType complex type restricts a string value to a specific set of values: IPV4, IPV6. These values describe if an ACL is for IPv4 or IPv6 in a Cisco IOS configuration.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleContent>
+               <xsd:restriction base="oval-sc:EntityItemStringType">
+                    <xsd:enumeration value="IPV4"/>
+                    <xsd:enumeration value="IPV6"/>
+               </xsd:restriction>
+          </xsd:simpleContent>
+     </xsd:complexType>
+     <xsd:complexType name="EntityItemAccessListUseType">
+          <xsd:annotation>
+               <xsd:documentation>The EntityItemAccessListUseType complex type restricts a string value to a specific set of values: INTERFACE, CRYPTO_MAP_MATCH, CLASS_MAP_MATCH, ROUTE_MAP_MATCH, IGMP_FILTER, NONE. These values describe the ACL use in a Cisco IOS configuration.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleContent>
+               <xsd:restriction base="oval-sc:EntityItemStringType">
+                    <xsd:enumeration value="INTERFACE"/>
+                    <xsd:enumeration value="CRYPTO_MAP_MATCH"/>
+                    <xsd:enumeration value="CLASS_MAP_MATCH"/>
+                    <xsd:enumeration value="ROUTE_MAP_MATCH"/>
+                    <xsd:enumeration value="IGMP_FILTER"/>
+                    <xsd:enumeration value="NONE"/>
+               </xsd:restriction>
+          </xsd:simpleContent>
+     </xsd:complexType>
+     <xsd:complexType name="EntityItemAccessListInterfaceDirectionType">
+          <xsd:annotation>
+               <xsd:documentation>The EntityItemAccessListInterfaceDirectionType complex type restricts a string value to a specific set of values: IN, OUT. These values describe the inbound or outbound ACL direction on an interface in a Cisco IOS configuration.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleContent>
+               <xsd:restriction base="oval-sc:EntityItemStringType">
+                    <xsd:enumeration value="IN"/>
+                    <xsd:enumeration value="OUT"/>
+               </xsd:restriction>
+          </xsd:simpleContent>
+     </xsd:complexType>
+</xsd:schema>
+
+
