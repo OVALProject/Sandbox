@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ios-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" elementFormDefault="qualified" version="5.8">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ios-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" elementFormDefault="qualified" version="5.10.1">
       <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
       <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
       <xsd:annotation>
@@ -7,9 +7,9 @@
             <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
             <xsd:appinfo>
                   <schema>IOS Definition</schema>
-                  <version>5.8</version>
-                  <date>9/15/2010 1:55:33 PM</date>
-                  <terms_of_use>Copyright (c) 2002-2010, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+                  <version>5.10.1</version>
+                  <date>1/27/2012 1:22:32 PM</date>
+                  <terms_of_use>Copyright (c) 2002-2012, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                    <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
                   <sch:ns prefix="ios-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios"/>
                   <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -20,7 +20,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="global_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>The global test is used to check for the existence of a particular line in the ios config file under the global context. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a global_object and the optional state element specifies the data to check. The evaluation of the test is guided by the check attribute that is inherited from the TestType.</xsd:documentation>
+                  <xsd:documentation>The global test is used to check for the existence of a particular line in the ios config file under the global context. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a global_object and the optional state element specifies the data to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>global_test</oval:test>
@@ -54,6 +54,19 @@
       <xsd:element name="global_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
                   <xsd:documentation>The global_object element is used by a global test to define the object to be evaluated. For the most part this object checks for existence and is used without a state comparision. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  <xsd:appinfo>
+                        <sch:pattern id="ios-def_global_object_verify_filter_state">
+                              <sch:rule context="ios-def:global_object//oval-def:filter">
+                                    <sch:let name="parent_object" value="ancestor::ios-def:global_object"/>
+                                    <sch:let name="parent_object_id" value="$parent_object/@id"/>
+                                    <sch:let name="state_ref" value="."/>
+                                    <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+                                    <sch:let name="state_name" value="local-name($reffed_state)"/>
+                                    <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+                                    <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#ios') and ($state_name='global_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -108,6 +121,18 @@
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>The interface test, object, state, and item have been deprecated because some of the desired improvements for this test would break backwards compatibility with existing content. As a result, this test has been deprecated in favor of the interface511_test. Please see the interface511_test for more information.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="ios-def_interfacetst_dep">
+                              <sch:rule context="ios-def:interface_test">
+                                    <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
                         <sch:pattern id="ios-def_interfacetst">
                               <sch:rule context="ios-def:interface_test/ios-def:object">
                                     <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/ios-def:interface_object/@id"><sch:value-of select="../@id"/> - the object child element of an interface_test must reference an interface_object</sch:assert>
@@ -132,6 +157,31 @@
       <xsd:element name="interface_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
                   <xsd:documentation/>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>The interface test, object, state, and item have been deprecated because some of the desired improvements for this test would break backwards compatibility with existing content. As a result, this object has been deprecated in favor of the interface511_object. Please see the interface511_object for more information.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="ios-def_interfaceobj_dep">
+                              <sch:rule context="ios-def:interface_object">
+                                    <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>                        
+                  </xsd:appinfo>
+                  <xsd:appinfo>
+                        <sch:pattern id="ios-def_interface_object_verify_filter_state">
+                              <sch:rule context="ios-def:interface_object//oval-def:filter">
+                                    <sch:let name="parent_object" value="ancestor::ios-def:interface_object"/>
+                                    <sch:let name="parent_object_id" value="$parent_object/@id"/>
+                                    <sch:let name="state_ref" value="."/>
+                                    <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+                                    <sch:let name="state_name" value="local-name($reffed_state)"/>
+                                    <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+                                    <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#ios') and ($state_name='interface_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -156,6 +206,18 @@
       <xsd:element name="interface_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
                   <xsd:documentation/>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>The interface test, object, state, and item have been deprecated because some of the desired improvements for this test would break backwards compatibility with existing content. As a result, this state has been deprecated in favor of the interface511_state. Please see the interface511_state for more information.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="ios-def_interfaceste_dep">
+                              <sch:rule context="ios-def:interface_state">
+                                    <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>                        
+                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -163,57 +225,27 @@
                               <xsd:sequence>
                                     <xsd:element name="name" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The interface name</xsd:documentation>
+                                                <xsd:documentation/>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="ip_directed_broadcast" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="ip_directed_broadcast_command" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>Directed broadcast command enabled on the interface. The default is false</xsd:documentation>
+                                                <xsd:documentation/>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="proxy_arp" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="no_ip_directed_broadcast_command" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>Proxy arp enabled on the interface. The default is true</xsd:documentation>
+                                                <xsd:documentation/>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="shutdown" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="proxy_arp_command" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>Interface is shut down</xsd:documentation>
+                                                <xsd:documentation/>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="hardware_addr" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="shutdown_command" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The interface hardware (MAC) address</xsd:documentation>
-                                          </xsd:annotation>
-                                    </xsd:element>
-                                    <xsd:element name="ip_address" type="oval-def:EntityStateIPAddressStringType" minOccurs="0" maxOccurs="1">
-                                          <xsd:annotation>
-                                                <xsd:documentation>The interface IPv4 address and mask. This elemnt should only allow 'ipv4' of the oval:SimpleDatatypeEnumeratio.</xsd:documentation>
-                                          </xsd:annotation>
-                                    </xsd:element>
-                                    <xsd:element name="ipv6_address" type="oval-def:EntityStateIPAddressStringType" minOccurs="0" maxOccurs="unbounded">
-                                          <xsd:annotation>
-                                                <xsd:documentation>The interface IPv6 address and mask. This elemnt should only allow 'ipv4' of the oval:SimpleDatatypeEnumeratio.</xsd:documentation>
-                                          </xsd:annotation>
-                                    </xsd:element>
-                                    <xsd:element name="ipv4_access_list" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="2">
-                                          <xsd:annotation>
-                                                <xsd:documentation>The ingress or egress IPv4 ACL name applied on the interface.</xsd:documentation>
-                                          </xsd:annotation>
-                                    </xsd:element>
-                                    <xsd:element name="ipv6_access_list" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="2">
-                                          <xsd:annotation>
-                                                <xsd:documentation>The ingress or egress IPv4 ACL name applied on the interface.</xsd:documentation>
-                                          </xsd:annotation>
-                                    </xsd:element>
-                                    <xsd:element name="crypto_map" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
-                                          <xsd:annotation>
-                                                <xsd:documentation>The crypto map name applied to the interface</xsd:documentation>
-                                          </xsd:annotation>
-                                    </xsd:element>
-                                    <xsd:element name="uRPF_command" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
-                                          <xsd:annotation>
-                                                <xsd:documentation>The uRPF command under the interface</xsd:documentation>
+                                                <xsd:documentation/>
                                           </xsd:annotation>
                                     </xsd:element>
                               </xsd:sequence>
@@ -226,7 +258,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="line_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>The line test is used to check the properties of specific output lines from a SHOW command, such as show running-config. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a line_object and the optional state element specifies the data to check. The evaluation of the test is guided by the check attribute that is inherited from the TestType.</xsd:documentation>
+                  <xsd:documentation>The line test is used to check the properties of specific output lines from a SHOW command, such as show running-config. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a line_object and the optional state element specifies the data to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>line_test</oval:test>
@@ -261,6 +293,19 @@
             <xsd:annotation>
                   <xsd:documentation>The line_object element is used by a line test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:documentation>A line object consists of a show_subcommand entity that is the name of a SHOW sub-command to be tested.</xsd:documentation>
+                  <xsd:appinfo>
+                        <sch:pattern id="ios-def_line_object_verify_filter_state">
+                              <sch:rule context="ios-def:line_object//oval-def:filter">
+                                    <sch:let name="parent_object" value="ancestor::ios-def:line_object"/>
+                                    <sch:let name="parent_object_id" value="$parent_object/@id"/>
+                                    <sch:let name="state_ref" value="."/>
+                                    <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+                                    <sch:let name="state_name" value="local-name($reffed_state)"/>
+                                    <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+                                    <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#ios') and ($state_name='line_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -305,116 +350,8 @@
                   </xsd:complexContent>
             </xsd:complexType>
       </xsd:element>
-
       <!-- =============================================================================== -->
-      <!-- ===============================  SECTION TEST  ================================ -->
-      <!-- =============================================================================== -->
-      <xsd:element name="section_test" substitutionGroup="oval-def:test">
-            <xsd:annotation>
-                  <xsd:documentation>The section test is used to check the properties of specific output lines from a configuration section. </xsd:documentation>
-                  <xsd:appinfo>
-                        <oval:element_mapping>
-                              <oval:test>line_test</oval:test>
-                              <oval:object>line_object</oval:object>
-                              <oval:state>line_state</oval:state>
-                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios">line_item</oval:item>
-                        </oval:element_mapping>
-                  </xsd:appinfo>
-                  <xsd:appinfo>
-                        <sch:pattern id="ios-def_sectiontst">
-                              <sch:rule context="ios-def:section_test/ios-def:object">
-                                    <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/ios-def:section_object/@id"><sch:value-of select="../@id"/> - the object child element of a section_test must reference a section_object</sch:assert>
-                              </sch:rule>
-                              <sch:rule context="ios-def:section_test/ios-def:state">
-                                    <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/ios-def:section_state/@id"><sch:value-of select="../@id"/> - the state child element of a section_test must reference a section_state</sch:assert>
-                              </sch:rule>
-                        </sch:pattern>
-                  </xsd:appinfo>
-            </xsd:annotation>
-            <xsd:complexType>
-                  <xsd:complexContent>
-                        <xsd:extension base="oval-def:TestType">
-                              <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
-                              </xsd:sequence>
-                        </xsd:extension>
-                  </xsd:complexContent>
-            </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="section_object" substitutionGroup="oval-def:object">
-            <xsd:annotation>
-                  <xsd:documentation>The section_object element is used by a section test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
-                  <xsd:documentation>A section object consists of a section_command entity that is the name of a section command to be tested.</xsd:documentation>
-                  <xsd:appinfo>
-                        <sch:pattern id="ios-def_section_object_verify_filter_state">
-                              <sch:rule context="ios-def:line_object//oval-def:filter">
-                                    <sch:let name="parent_object" value="ancestor::ios-def:section_object"/>
-                                    <sch:let name="parent_object_id" value="$parent_object/@id"/>
-                                    <sch:let name="state_ref" value="."/>
-                                    <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
-                                    <sch:let name="state_name" value="local-name($reffed_state)"/>
-                                    <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
-                                    <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#ios') and ($state_name='section_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
-                              </sch:rule>
-                        </sch:pattern>
-                  </xsd:appinfo>
-            </xsd:annotation>
-            <xsd:complexType>
-                  <xsd:complexContent>
-                        <xsd:extension base="oval-def:ObjectType">
-                              <xsd:sequence>
-                                    <xsd:choice>
-                                          <xsd:element ref="oval-def:set"/>
-                                          <xsd:sequence>
-                                                <xsd:element name="section_command" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The name of a section command. If the section command includes more than one sections, for example ospf instances, different objects should be create for each.</xsd:documentation>
-                                                      </xsd:annotation>
-                                                </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
-                                          </xsd:sequence>
-                                    </xsd:choice>
-                              </xsd:sequence>
-                        </xsd:extension>
-                  </xsd:complexContent>
-            </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="section_state" substitutionGroup="oval-def:state">
-            <xsd:annotation>
-                  <xsd:documentation>The line_state element defines the different information that can be used to evaluate the result of a specific section command. This includes the name of ths section_command and the corresponding config lines. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
-            </xsd:annotation>
-            <xsd:complexType>
-                  <xsd:complexContent>
-                        <xsd:extension base="oval-def:StateType">
-                              <xsd:sequence>
-                                    <xsd:element name="section_command" type="oval-def:EntityStateStringType" minOccurs="1" maxOccurs="1">
-                                          <xsd:annotation>
-                                                <xsd:documentation>The name of the section command.</xsd:documentation>
-                                          </xsd:annotation>
-                                    </xsd:element>
-                                    <xsd:element name="section_config_lines" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
-                                          <xsd:annotation>
-                                                <xsd:documentation>The value returned with all config lines of the section.</xsd:documentation>
-                                          </xsd:annotation>
-                                    </xsd:element>
-                                    <xsd:element name="config_line" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="unbounded">
-                                          <xsd:annotation>
-                                                <xsd:documentation>The value returned with one config line of the section at a time.</xsd:documentation>
-                                          </xsd:annotation>
-                                    </xsd:element>
-                              </xsd:sequence>
-                        </xsd:extension>
-                  </xsd:complexContent>
-            </xsd:complexType>
-      </xsd:element>
-      <!-- =============================================================================== -->
-      <!-- ===========================  END OF SECTION TEST  ============================= -->
-      <!-- =============================================================================== -->
-
-
-      <!-- =============================================================================== -->
-      <!-- ==========================  SNMP TEST (deprecated)  =========================== -->
+      <!-- =================================  SNMP TEST  ================================= -->
       <!-- =============================================================================== -->
       <xsd:element name="snmp_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
@@ -464,7 +401,7 @@
       <xsd:element name="snmp_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
                   <xsd:documentation>The snmp_object element is used by a snmp test to define those objects to evaluated based on a specified state. There is actually only one object relating to snmp and this is the system as a whole. Therefore, there are no child entities defined. Any OVAL Test written to check snmp will reference the same snmp_object which is basically an empty object element.</xsd:documentation>
-                  <xsd:appinfo>
+            <xsd:appinfo>
                       <oval:deprecated_info>
                           <oval:version>5.11</oval:version>
                           <oval:reason>The SNMP test, object/state/item are too generic to include the Cisco IOS SNMP feature. As a result, this object has been deprecated. New SNMP test/object/state/items will be created for Cisco IOS.</oval:reason>
@@ -486,7 +423,7 @@
       <xsd:element name="snmp_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
                   <xsd:documentation/>
-                  <xsd:appinfo>
+            <xsd:appinfo>
                       <oval:deprecated_info>
                           <oval:version>5.11</oval:version>
                           <oval:reason>The SNMP test, object/state/item are too generic to include the Cisco IOS SNMP feature. As a result, this state has been deprecated. New SNMP test/object/state/items will be created for Cisco IOS.</oval:reason>
@@ -523,7 +460,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="tclsh_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>The tclsh test is used to check tclsh information of the IOS operating system. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a tclsh_object and the optional state element specifies the data to check. The evaluation of the test is guided by the check attribute that is inherited from the TestType.</xsd:documentation>
+                  <xsd:documentation>The tclsh test is used to check tclsh information of the IOS operating system. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a tclsh_object and the optional state element specifies the data to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>tclsh_test</oval:test>
@@ -587,7 +524,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="version55_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>The version55_test is used to check the version of the IOS operating system. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a version_object and the optional state element specifies the data to check. The evaluation of the test is guided by the check attribute that is inherited from the TestType.</xsd:documentation>
+                  <xsd:documentation>The version55_test is used to check the version of the IOS operating system. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a version_object and the optional state element specifies the data to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>version55_test</oval:test>
@@ -686,7 +623,7 @@
     <!-- =============================================================================== -->
     <xsd:element name="version_test" substitutionGroup="oval-def:test">
         <xsd:annotation>
-            <xsd:documentation>The version test is used to check the version of the IOS operating system. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a version_object and the optional state element specifies the data to check. The evaluation of the test is guided by the check attribute that is inherited from the TestType.</xsd:documentation>
+            <xsd:documentation>The version test is used to check the version of the IOS operating system. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a version_object and the optional state element specifies the data to check.</xsd:documentation>
               <xsd:appinfo>
                     <oval:element_mapping>
                           <oval:test>version_test</oval:test>
@@ -703,9 +640,7 @@
                     </oval:deprecated_info>
                     <sch:pattern id="ios-def_vertst_dep">
                           <sch:rule context="ios-def:version_test">
-                                <sch:report test="true()">
-                                      DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/>
-                                </sch:report>
+                                <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                           </sch:rule>
                     </sch:pattern>                        
               </xsd:appinfo>
@@ -742,9 +677,7 @@
                   </oval:deprecated_info>
                   <sch:pattern id="ios-def_verobj_dep">
                         <sch:rule context="ios-def:version_object">
-                              <sch:report test="true()">
-                                    DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/>
-                              </sch:report>
+                              <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                         </sch:rule>
                   </sch:pattern>                        
             </xsd:appinfo>
@@ -766,9 +699,7 @@
                   </oval:deprecated_info>
                   <sch:pattern id="ios-def_verste_dep">
                         <sch:rule context="ios-def:version_state">
-                              <sch:report test="true()">
-                                    DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/>
-                              </sch:report>
+                              <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                         </sch:rule>
                   </sch:pattern>                        
             </xsd:appinfo>
