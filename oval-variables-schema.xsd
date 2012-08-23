@@ -59,7 +59,17 @@
                <xsd:documentation>Each variable element contains the associated datatype and value which will be substituted into the OVAL Definition that is referencing this specific variable.</xsd:documentation>
           </xsd:annotation>
           <xsd:sequence>
-               <xsd:element name="value" type="xsd:anySimpleType" minOccurs="1" maxOccurs="unbounded"/>
+             <xsd:element name="user_friendly_description" type="xsd:string" minOccurs="0" maxOccurs="1">
+                 <xsd:annotation>
+                    <xsd:documentation>Note that the user_friendly_description is used by OVAL evaluation visual tools to provide a visual text to the user to ensure that he undestands what the variable describes. Then he will be able to provide the external variable value that will be used by the tool to evaluate the definition.</xsd:documentation>
+                 </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="value_restriction" type="xsd:string" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                   <xsd:documentation>Note that the value_restriction can be one of the oval-def:SimpleDatatypeEnumeration Values (binary, int, ipv4_address  etc). It is used by the OVAL evaluation tool to ensure the right value has been provided in the external variable.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="value" type="xsd:anySimpleType" minOccurs="1" maxOccurs="unbounded"/>
           </xsd:sequence>
           <xsd:attribute name="id" type="oval:VariableIDPattern" use="required"/>
           <xsd:attribute name="datatype" use="required" type="oval:SimpleDatatypeEnumeration">
