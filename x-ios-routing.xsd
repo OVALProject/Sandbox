@@ -3,7 +3,11 @@
       <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
       <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
       <xsd:annotation>
+<<<<<<< HEAD
+            <xsd:documentation>The following is a proposal for the experimental ios-def:router_test, ios-def:routint_protocol_test, ios-def:bgp_neighbor_test, ios-sc:router_item, ios-sc:bgp_neighnor_item and ios-sc:routing_protocol_item that will support checking the output lines of routing protocol configurations on Cisco IOS devices.</xsd:documentation>
+=======
             <xsd:documentation>The following is a proposal for the experimental ios-def:router_test, ios-def:routing_protocol_auth_intf_test, ios-def:bgp_neighbor_test, ios-sc:router_item, ios-sc:bgp_neighnor_item and ios-sc:routing_protocol_auth_intf_item that will support checking the output lines of routing protocol configurations on Cisco IOS devices.</xsd:documentation>
+>>>>>>> upstream/master
             <xsd:documentation>Thanks to Omar Santos and Panos Kampanakis of Cisco for providing this test.</xsd:documentation>
             <xsd:appinfo>
                   <schema>Experimental Schema for the Cisco IOS Routing Tests</schema>
@@ -57,7 +61,11 @@
       <xsd:element name="router_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
                   <xsd:documentation>The router_object element is used by a router test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+<<<<<<< HEAD
+                  <xsd:documentation>A router object consists of a router protocol and an instance entity.</xsd:documentation>
+=======
                   <xsd:documentation>A router object consists of a router protocol and router identifier entity.</xsd:documentation>
+>>>>>>> upstream/master
                   <xsd:appinfo>
                         <sch:pattern id="x-ios-routing_router_object_verify_filter_state">
                               <sch:rule context="x-ios-routing:router_object//oval-def:filter">
@@ -115,17 +123,29 @@
                                                 <xsd:documentation>The IOS router id</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
+<<<<<<< HEAD
+                                    <xsd:element name="network" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="unbounded">
+=======
                                     <xsd:element name="network" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+>>>>>>> upstream/master
                                           <xsd:annotation>
                                                 <xsd:documentation>The subnet in the network command of the router instance. The area can be included in the string for OSPF.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
+<<<<<<< HEAD
+                                    <xsd:element name="bgp_neighbor" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="unbounded">
+=======
                                     <xsd:element name="bgp_neighbor" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+>>>>>>> upstream/master
                                           <xsd:annotation>
                                                 <xsd:documentation>The BGP neighbors, if applicable.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
+<<<<<<< HEAD
+                                    <xsd:element name="ospf_authentication_area" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="unbounded">
+=======
                                     <xsd:element name="ospf_authentication_area" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+>>>>>>> upstream/master
                                           <xsd:annotation>
                                                 <xsd:documentation>The OSPF area that is authenticated, if applicable.</xsd:documentation>
                                           </xsd:annotation>
@@ -232,7 +252,11 @@
                                     </xsd:element>
                                     <xsd:element name="password" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
+<<<<<<< HEAD
+                                                <xsd:documentation>The bgp authentication password, if configured. if Encryption type is configured it should be included in the password string. For example '0 cisco123'. </xsd:documentation>
+=======
                                                 <xsd:documentation>The bgp authentication password, if configured. If Encryption type is configured it should be included in the password string. For example '0 cisco123'. </xsd:documentation>
+>>>>>>> upstream/master
                                           </xsd:annotation>
                                     </xsd:element>
                               </xsd:sequence>
@@ -248,7 +272,11 @@
       <!-- =============================================================================== -->
       <xsd:element name="routing_protocol_auth_intf_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
+<<<<<<< HEAD
+                  <xsd:documentation>The routing protocol autnentication interface test is used to check the properties of routing protocol authentication configured under interfaces in IOS.</xsd:documentation>
+=======
                   <xsd:documentation>The routing protocol authentication interface test is used to check the properties of routing protocol authentication configured under interfaces in IOS.</xsd:documentation>
+>>>>>>> upstream/master
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>routing_protocol_auth_intf_test</oval:test>
@@ -306,12 +334,20 @@
                                           <xsd:sequence>
                                                 <xsd:element name="interface" type="oval-def:EntityObjectStringType">
                                                       <xsd:annotation>
+<<<<<<< HEAD
+                                                            <xsd:documentation>The interface</xsd:documentation>
+=======
                                                             <xsd:documentation>The interface name.</xsd:documentation>
+>>>>>>> upstream/master
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element name="protocol" type="x-ios-routing:EntityObjectRoutingProtocolType">
                                                       <xsd:annotation>
+<<<<<<< HEAD
+                                                            <xsd:documentation>The routing protocol</xsd:documentation>
+=======
                                                             <xsd:documentation>The routing protocol.</xsd:documentation>
+>>>>>>> upstream/master
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
@@ -332,17 +368,30 @@
                               <xsd:sequence>
                                     <xsd:element name="interface" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
+<<<<<<< HEAD
+                                                <xsd:documentation>The interface</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="protocol" type="x-ios-routing:EntityStateRoutingProtocolType" minOccurs="0" maxOccurs="unbounded">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The routing protocol</xsd:documentation>
+=======
                                                 <xsd:documentation>The interface name.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="protocol" type="x-ios-routing:EntityStateRoutingProtocolType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The routing protocol.</xsd:documentation>
+>>>>>>> upstream/master
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="id" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
+<<<<<<< HEAD
+                                                <xsd:documentation>The routing protocol id, if applicable</xsd:documentation>
+=======
                                                 <xsd:documentation>The routing protocol id, if applicable.</xsd:documentation>
+>>>>>>> upstream/master
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="auth_type" type="x-ios-routing:EntityStateRoutingAuthTypeStringType" minOccurs="0" maxOccurs="1">
@@ -439,12 +488,20 @@
                               <xsd:sequence>
                                     <xsd:element name="protocol" type="x-ios-routing:EntityItemRoutingProtocolType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
+<<<<<<< HEAD
+                                                <xsd:documentation>Element with the routing protocol</xsd:documentation>
+=======
                                                 <xsd:documentation>Element with the routing protocol.</xsd:documentation>
+>>>>>>> upstream/master
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="id" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
+<<<<<<< HEAD
+                                                <xsd:documentation>Element with the IOS router id</xsd:documentation>
+=======
                                                 <xsd:documentation>Element with the IOS router id.</xsd:documentation>
+>>>>>>> upstream/master
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="network" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
@@ -493,7 +550,11 @@
                                     </xsd:element>
                                     <xsd:element name="password" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
+<<<<<<< HEAD
+                                                <xsd:documentation>Element with the bgp authentication password, if configured. IF Encryption type is configured it should be included in the password string. For example '0 cisco123'. </xsd:documentation>
+=======
                                                 <xsd:documentation>Element with the bgp authentication password, if configured. If Encryption type is configured it should be included in the password string. For example '0 cisco123'. </xsd:documentation>
+>>>>>>> upstream/master
                                           </xsd:annotation>
                                     </xsd:element>
                               </xsd:sequence>
