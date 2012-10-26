@@ -6,11 +6,7 @@
             <xsd:documentation>The following is a proposal for the experimental ios-def:acl_test and ios-sc:acl_item that will support checking the output lines of access control list (ACL) configurations on Cisco IOS devices.</xsd:documentation>
             <xsd:documentation>Thanks to Omar Santos and Panos Kampanakis of Cisco for providing this test.</xsd:documentation>
             <xsd:appinfo>
-<<<<<<< HEAD
-                  <schema>Experimental Schema for the Cisco IOS Section Test</schema>
-=======
                   <schema>Experimental Schema for the Cisco IOS ACL Test</schema>
->>>>>>> upstream/master
                   <version>5.11</version>
                   <date>7/31/2012 10:00:00 AM</date>
                   <terms_of_use>Copyright (c) 2002-2012, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
@@ -60,11 +56,7 @@
       </xsd:element>
       <xsd:element name="acl_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
-<<<<<<< HEAD
                   <xsd:documentation>The acl_object element is used by an acl test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
-=======
-                  <xsd:documentation>The acl_object element is used by an acl_test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
->>>>>>> upstream/master
                   <xsd:documentation>An acl object consists of a an acl name and an IP version entity that is the name and the IP protocol version of the access-list to be tested.</xsd:documentation>
                   <xsd:appinfo>
                         <sch:pattern id="x-ios-acl_acl_object_verify_filter_state">
@@ -89,20 +81,12 @@
                                           <xsd:sequence>
                                                 <xsd:element name="name" type="oval-def:EntityObjectStringType">
                                                       <xsd:annotation>
-<<<<<<< HEAD
-                                                            <xsd:documentation>The name of the ACL</xsd:documentation>
-=======
                                                             <xsd:documentation>The name of the ACL.</xsd:documentation>
->>>>>>> upstream/master
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element name="ip_version" type="x-ios-acl:EntityObjectAccessListIPVersionType">
                                                       <xsd:annotation>
-<<<<<<< HEAD
-                                                            <xsd:documentation>The IP version of the ACL</xsd:documentation>
-=======
                                                             <xsd:documentation>The IP version of the ACL.</xsd:documentation>
->>>>>>> upstream/master
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
@@ -138,11 +122,7 @@
                                     </xsd:element>
                                     <xsd:element name="used_in" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-<<<<<<< HEAD
-                                                <xsd:documentation>The name of where the ACL is used. For example if use is 'INTERFACE', use_in will be the name of the interface..</xsd:documentation>
-=======
                                                 <xsd:documentation>The name of where the ACL is used. For example if use is 'INTERFACE', use_in will be the name of the interface.</xsd:documentation>
->>>>>>> upstream/master
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="interface_direction" type="x-ios-acl:EntityStateAccessListInterfaceDirectionType" minOccurs="0" maxOccurs="1">
@@ -171,7 +151,7 @@
       <!-- =============================================================================== -->
      <xsd:complexType name="EntityObjectAccessListIPVersionType">
           <xsd:annotation>
-               <xsd:documentation>The EntityObjectRoutingProtocolType complex type restricts a string value to a specific set of values: IPV4, IPV6. These values describe if an ACL is for IPv4 or IPv6 in a Cisco IOS configuration.</xsd:documentation>
+               <xsd:documentation>The EntityObjectAccessListIPVersionType complex type restricts a string value to a specific set of values: IPV4, IPV6. These values describe if an ACL is for IPv4 or IPv6 in a Cisco IOS configuration.</xsd:documentation>
           </xsd:annotation>
           <xsd:simpleContent>
                <xsd:restriction base="oval-def:EntityObjectStringType">
@@ -202,11 +182,7 @@
           <xsd:simpleContent>
                <xsd:restriction base="oval-def:EntityStateStringType">
                     <xsd:enumeration value="INTERFACE"/>
-<<<<<<< HEAD
-                    <xsd:enumeration value="CRYPTO_MAP_MATC"/>
-=======
                     <xsd:enumeration value="CRYPTO_MAP_MATCH"/>
->>>>>>> upstream/master
                     <xsd:enumeration value="CLASS_MAP_MATCH"/>
                     <xsd:enumeration value="ROUTE_MAP_MATCH"/>
                     <xsd:enumeration value="IGMP_FILTER"/>
@@ -220,17 +196,8 @@
           </xsd:annotation>
           <xsd:simpleContent>
                <xsd:restriction base="oval-def:EntityStateStringType">
-<<<<<<< HEAD
-                    <xsd:enumeration value="EIGRP"/>
-                    <xsd:enumeration value="OSPF"/>
-                    <xsd:enumeration value="BGP"/>
-                    <xsd:enumeration value="RIP"/>
-                    <xsd:enumeration value="RIPV2"/>
-                    <xsd:enumeration value="ISIS"/>
-=======
                     <xsd:enumeration value="IN"/>
                     <xsd:enumeration value="OUT"/>
->>>>>>> upstream/master
                </xsd:restriction>
           </xsd:simpleContent>
      </xsd:complexType>
@@ -256,24 +223,14 @@
                                                 <xsd:documentation>Element with the IP version of the ACL.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-<<<<<<< HEAD
                                     <xsd:element name="use" type="x-ios-acl:EntityItemAccessListUseType" minOccurs="0" maxOccurs="1">
-=======
-                                    <xsd:element name="use" type="x-ios-acl:EntityItemAccessListUseType" minOccurs="0" maxOccurs="unbounded">
->>>>>>> upstream/master
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the feature where the ACL is used. If the same ACL is applied in more than one feature (i.e interface and crypto map), multiple items needs to be created.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-<<<<<<< HEAD
                                     <xsd:element name="used_in" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>Element with the name of where the ACL is used. For example if use is 'INTERFACE', use_in will be the name of the interface. If the same ACL is applied in more than one feature (i.e interface and crypto map), multiple items needs to be created..</xsd:documentation>
-=======
-                                    <xsd:element name="used_in" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
-                                          <xsd:annotation>
                                                 <xsd:documentation>Element with the name of where the ACL is used. For example if use is 'INTERFACE', use_in will be the name of the interface. If the same ACL is applied in more than one feature (i.e interface and crypto map), multiple items needs to be created.</xsd:documentation>
->>>>>>> upstream/master
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="interface_direction" type="x-ios-acl:EntityItemAccessListInterfaceDirectionType" minOccurs="0" maxOccurs="1">
@@ -286,11 +243,7 @@
                                                 <xsd:documentation>Element with the value returned with all config lines of the ACL.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-<<<<<<< HEAD
                                     <xsd:element name="config_line" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
-=======
-                                    <xsd:element name="config_line" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
->>>>>>> upstream/master
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the value returned with one ACL config line at a time.</xsd:documentation>
                                           </xsd:annotation>
@@ -323,11 +276,6 @@
           <xsd:simpleContent>
                <xsd:restriction base="oval-sc:EntityItemStringType">
                     <xsd:enumeration value="INTERFACE"/>
-<<<<<<< HEAD
-                    <xsd:enumeration value="CRYPTO_MAP_MATC"/>
-=======
-                    <xsd:enumeration value="CRYPTO_MAP_MATCH"/>
->>>>>>> upstream/master
                     <xsd:enumeration value="CLASS_MAP_MATCH"/>
                     <xsd:enumeration value="ROUTE_MAP_MATCH"/>
                     <xsd:enumeration value="IGMP_FILTER"/>
@@ -341,17 +289,8 @@
           </xsd:annotation>
           <xsd:simpleContent>
                <xsd:restriction base="oval-sc:EntityItemStringType">
-<<<<<<< HEAD
-                    <xsd:enumeration value="EIGRP"/>
-                    <xsd:enumeration value="OSPF"/>
-                    <xsd:enumeration value="BGP"/>
-                    <xsd:enumeration value="RIP"/>
-                    <xsd:enumeration value="RIPV2"/>
-                    <xsd:enumeration value="ISIS"/>
-=======
                     <xsd:enumeration value="IN"/>
                     <xsd:enumeration value="OUT"/>
->>>>>>> upstream/master
                </xsd:restriction>
           </xsd:simpleContent>
      </xsd:complexType>
