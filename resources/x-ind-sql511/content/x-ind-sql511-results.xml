@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<oval_results xmlns="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-res="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:x-ind-def="http://oval.mitre.org/XMLSchema/x-ind-def-sql57" xmlns:x-ind-sc="http://oval.mitre.org/XMLSchema/x-ind-sc-sql57" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-results-5 oval-results-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-ind-def-sql57 x-ind-def-sql57.xsd http://oval.mitre.org/XMLSchema/x-ind-sc-sql57 x-ind-sc-sql57.xsd">
+<oval_results xmlns="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-res="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-results-5 oval-results-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-ind-sql511 x-ind-sql511.xsd">
 
   <generator>
     <oval:product_name>cpe:/a:mitre:ovaldi:5.10.1.3</oval:product_name>
     <oval:product_version>5.10.1 Build: 3</oval:product_version>
     <oval:schema_version>5.10.1</oval:schema_version>
-    <oval:timestamp>2012-11-07T20:20:49</oval:timestamp>
+    <oval:timestamp>2012-11-09T18:44:32</oval:timestamp>
     <vendor>The MITRE Corporation</vendor>
   </generator>
 
@@ -35,66 +35,66 @@
           <criterion comment="4.5: Make sure there is no 'root' account" test_ref="oval:nist.validation:tst:3"/>
           <criterion comment="4.7: All password hashes should be 41 bytes or longer" test_ref="oval:nist.validation:tst:4"/>
           <criterion comment="4.9: User hosts should not be wildcards" test_ref="oval:nist.validation:tst:5"/>
-      </criteria>
+      </criteria> 
     </definition>
   </definitions>
     <tests>
-      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/x-ind-def-sql57" check="all" comment="4.1: Test whether the mysql version is >= 4.1" id="oval:nist.validation:tst:1" version="1">
-        <object object_ref="oval:nist.validation:obj:1"/>
-        <state state_ref="oval:nist.validation:ste:1"/>
-    </sql57_test>
-      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/x-ind-def-sql57" check="all" check_existence="none_exist" comment="4.4: Make sure test database does not exist" id="oval:nist.validation:tst:2" version="1">
-        <object object_ref="oval:nist.validation:obj:2"/>
-    </sql57_test>
-      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/x-ind-def-sql57" check="all" check_existence="none_exist" comment="4.5: Make sure there is no 'root' account" id="oval:nist.validation:tst:3" version="1">
-        <object object_ref="oval:nist.validation:obj:3"/>
-    </sql57_test>
-      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/x-ind-def-sql57" check="all" check_existence="none_exist" comment="4.7: All password hashes should be 41 bytes or longer" id="oval:nist.validation:tst:4" version="1">
-        <object object_ref="oval:nist.validation:obj:4"/>
-    </sql57_test>
-      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/x-ind-def-sql57" check="all" check_existence="none_exist" comment="4.9: User hosts should not be wildcards" id="oval:nist.validation:tst:5" version="1">
-        <object object_ref="oval:nist.validation:obj:5"/>
-    </sql57_test>
+      <ind-def:sql511_test xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" check="all" comment="4.1: Test whether the mysql version is >= 4.1" id="oval:nist.validation:tst:1" version="1">
+        <ind-def:object object_ref="oval:nist.validation:obj:1"/>
+        <ind-def:state state_ref="oval:nist.validation:ste:1"/>
+    </ind-def:sql511_test>
+      <ind-def:sql511_test xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" check="all" check_existence="none_exist" comment="4.4: Make sure test database does not exist" id="oval:nist.validation:tst:2" version="1">
+        <ind-def:object object_ref="oval:nist.validation:obj:2"/>
+    </ind-def:sql511_test>
+      <ind-def:sql511_test xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" check="all" check_existence="none_exist" comment="4.5: Make sure there is no 'root' account" id="oval:nist.validation:tst:3" version="1">
+        <ind-def:object object_ref="oval:nist.validation:obj:3"/>
+    </ind-def:sql511_test>
+      <ind-def:sql511_test xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" check="all" check_existence="none_exist" comment="4.7: All password hashes should be 41 bytes or longer" id="oval:nist.validation:tst:4" version="1">
+        <ind-def:object object_ref="oval:nist.validation:obj:4"/>
+    </ind-def:sql511_test>
+      <ind-def:sql511_test xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" check="all" check_existence="none_exist" comment="4.9: User hosts should not be wildcards" id="oval:nist.validation:tst:5" version="1">
+        <ind-def:object object_ref="oval:nist.validation:obj:5"/>
+    </ind-def:sql511_test>
   </tests>
     <objects>
-      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/x-ind-def-sql57" comment="Get mysql version" id="oval:nist.validation:obj:1" version="1">
-        <engine>odbc</engine>
-        <version>1.2.3</version>
-        <connection_string>dsn=mysqltest</connection_string>
-        <sql>show variables like 'version';</sql>
-    </sql57_object>
-      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/x-ind-def-sql57" comment="Get 'test' database" id="oval:nist.validation:obj:2" version="1">
-        <engine>odbc</engine>
-        <version>1.2.3</version>
-        <connection_string>dsn=mysqltest</connection_string>
-        <sql>show databases like 'test';</sql>
-    </sql57_object>
-      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/x-ind-def-sql57" comment="Get 'root' user" id="oval:nist.validation:obj:3" version="1">
-        <engine>odbc</engine>
-        <version>1.2.3</version>
-        <connection_string>dsn=mysqltest</connection_string>
-        <sql>select user from mysql.user where user = 'root' limit 1;</sql>
-    </sql57_object>
-      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/x-ind-def-sql57" comment="Get password hashes that are too short" id="oval:nist.validation:obj:4" version="1">
-        <engine>odbc</engine>
-        <version>1.2.3</version>
-        <connection_string>dsn=mysqltest</connection_string>
-        <sql>select password from mysql.user where length(password) &lt; 41 limit 1;</sql>
-    </sql57_object>
-      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/x-ind-def-sql57" comment="Get users with wildcard hosts" id="oval:nist.validation:obj:5" version="1">
-        <engine>odbc</engine>
-        <version>1.2.3</version>
-        <connection_string>dsn=mysqltest</connection_string>
-        <sql>select host from mysql.user where host = '%' limit 1;</sql>
-    </sql57_object>
+      <ind-def:sql511_object xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" comment="Get mysql version" id="oval:nist.validation:obj:1" version="1">
+        <ind-def:engine>odbc</ind-def:engine>
+        <ind-def:version>1.2.3</ind-def:version>
+        <ind-def:connection_string>dsn=mysqltest</ind-def:connection_string>
+        <ind-def:sql>show variables like 'version';</ind-def:sql>
+    </ind-def:sql511_object>
+      <ind-def:sql511_object xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" comment="Get 'test' database" id="oval:nist.validation:obj:2" version="1">
+        <ind-def:engine>odbc</ind-def:engine>
+        <ind-def:version>1.2.3</ind-def:version>
+        <ind-def:connection_string>dsn=mysqltest</ind-def:connection_string>
+        <ind-def:sql>show databases like 'test';</ind-def:sql>
+    </ind-def:sql511_object>
+      <ind-def:sql511_object xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" comment="Get 'root' user" id="oval:nist.validation:obj:3" version="1">
+        <ind-def:engine>odbc</ind-def:engine>
+        <ind-def:version>1.2.3</ind-def:version>
+        <ind-def:connection_string>dsn=mysqltest</ind-def:connection_string>
+        <ind-def:sql>select user from mysql.user where user = 'root' limit 1;</ind-def:sql>
+    </ind-def:sql511_object>
+      <ind-def:sql511_object xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" comment="Get password hashes that are too short" id="oval:nist.validation:obj:4" version="1">
+        <ind-def:engine>odbc</ind-def:engine>
+        <ind-def:version>1.2.3</ind-def:version>
+        <ind-def:connection_string>dsn=mysqltest</ind-def:connection_string>
+        <ind-def:sql>select password from mysql.user where length(password) &lt; 41 limit 1;</ind-def:sql>
+    </ind-def:sql511_object>
+      <ind-def:sql511_object xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" comment="Get users with wildcard hosts" id="oval:nist.validation:obj:5" version="1">
+        <ind-def:engine>odbc</ind-def:engine>
+        <ind-def:version>1.2.3</ind-def:version>
+        <ind-def:connection_string>dsn=mysqltest</ind-def:connection_string>
+        <ind-def:sql>select host from mysql.user where host = '%' limit 1;</ind-def:sql>
+    </ind-def:sql511_object>
   </objects>
     <states>
-      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/x-ind-def-sql57" comment="version is >= 4.1" id="oval:nist.validation:ste:1" version="1">
-        <result datatype="record">
-          <oval-def:field name="variable_name">version</oval-def:field>
-          <oval-def:field datatype="version" name="value" operation="greater than or equal">4.1</oval-def:field>
-      </result>
-    </sql57_state>
+      <ind-def:sql511_state xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" comment="version is >= 4.1" id="oval:nist.validation:ste:1" version="1">
+        <ind-def:result datatype="record">
+          <field name="variable_name">version</field>
+          <field datatype="version" name="value" operation="greater than or equal">4.1</field>
+      </ind-def:result>
+    </ind-def:sql511_state>
   </states>
 </oval_definitions>  <results>
     <system>
@@ -131,7 +131,7 @@
           <oval:product_name>cpe:/a:mitre:ovaldi:5.10.1.3</oval:product_name>
           <oval:product_version>5.10.1 Build: 3</oval:product_version>
           <oval:schema_version>5.10.1</oval:schema_version>
-          <oval:timestamp>2012-11-07T20:20:35</oval:timestamp>
+          <oval:timestamp>2012-11-09T18:44:32</oval:timestamp>
           <vendor>The MITRE Corporation</vendor>
         </generator>
         <system_info>
@@ -141,19 +141,14 @@
           <primary_host_name>MM188773-PC.MITRE.ORG</primary_host_name>
           <interfaces>
             <interface>
+              <interface_name>Intel(R) 82579LM Gigabit Network Connection</interface_name>
+              <ip_address>10.146.15.53</ip_address>
+              <mac_address>5C-26-0A-67-4C-92</mac_address>
+            </interface>
+            <interface>
               <interface_name>VirtualBox Host-Only Ethernet Adapter</interface_name>
               <ip_address>192.168.56.1</ip_address>
               <mac_address>08-00-27-00-6C-82</mac_address>
-            </interface>
-            <interface>
-              <interface_name>Cisco AnyConnect Secure Mobility Client Virtual Miniport Adapter for Windows x64</interface_name>
-              <ip_address>172.31.39.77</ip_address>
-              <mac_address>00-05-9A-3C-7A-00</mac_address>
-            </interface>
-            <interface>
-              <interface_name>Intel(R) Centrino(R) Ultimate-N 6300 AGN</interface_name>
-              <ip_address>192.168.0.116</ip_address>
-              <mac_address>00-24-D7-D8-E0-C4</mac_address>
             </interface>
           </interfaces>
         </system_info>
@@ -175,7 +170,7 @@
           </object>
         </collected_objects>
         <system_data>
-          <sql57_item id="1" xmlns="http://oval.mitre.org/XMLSchema/x-ind-sc-sql57">
+          <sql511_item id="1" xmlns="http://oval.mitre.org/XMLSchema/x-ind-sql511">
             <engine>odbc</engine>
             <version>1.2.3</version>
             <connection_string>dsn=mysqltest</connection_string>
@@ -184,8 +179,8 @@
               <oval-sc:field name="variable_name">version</oval-sc:field>
               <oval-sc:field name="value">5.5.28</oval-sc:field>
             </result>
-          </sql57_item>
-          <sql57_item id="2" xmlns="http://oval.mitre.org/XMLSchema/x-ind-sc-sql57">
+          </sql511_item>
+          <sql511_item id="2" xmlns="http://oval.mitre.org/XMLSchema/x-ind-sql511">
             <engine>odbc</engine>
             <version>1.2.3</version>
             <connection_string>dsn=mysqltest</connection_string>
@@ -193,8 +188,8 @@
             <result datatype="record">
               <oval-sc:field name="database (test)">test</oval-sc:field>
             </result>
-          </sql57_item>
-          <sql57_item id="3" xmlns="http://oval.mitre.org/XMLSchema/x-ind-sc-sql57">
+          </sql511_item>
+          <sql511_item id="3" xmlns="http://oval.mitre.org/XMLSchema/x-ind-sql511">
             <engine>odbc</engine>
             <version>1.2.3</version>
             <connection_string>dsn=mysqltest</connection_string>
@@ -202,8 +197,8 @@
             <result datatype="record">
               <oval-sc:field name="user">root</oval-sc:field>
             </result>
-          </sql57_item>
-          <sql57_item id="4" xmlns="http://oval.mitre.org/XMLSchema/x-ind-sc-sql57">
+          </sql511_item>
+          <sql511_item id="4" xmlns="http://oval.mitre.org/XMLSchema/x-ind-sql511">
             <engine>odbc</engine>
             <version>1.2.3</version>
             <connection_string>dsn=mysqltest</connection_string>
@@ -211,8 +206,8 @@
             <result datatype="record">
               <oval-sc:field name="password"></oval-sc:field>
             </result>
-          </sql57_item>
-          <sql57_item id="5" xmlns="http://oval.mitre.org/XMLSchema/x-ind-sc-sql57">
+          </sql511_item>
+          <sql511_item id="5" xmlns="http://oval.mitre.org/XMLSchema/x-ind-sql511">
             <engine>odbc</engine>
             <version>1.2.3</version>
             <connection_string>dsn=mysqltest</connection_string>
@@ -220,7 +215,7 @@
             <result datatype="record">
               <oval-sc:field name="host">%</oval-sc:field>
             </result>
-          </sql57_item>
+          </sql511_item>
         </system_data>
       </oval_system_characteristics>
     </system>
