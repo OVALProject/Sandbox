@@ -460,6 +460,11 @@
                                 <xsd:documentation>The SNMP version of the group.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
+                        <xsd:element name="snmpv3_sec_level" type="x-ios-snmp:EntityStateSNMPSecLevelStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The SNMPv3 security configured for the group.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
                         <xsd:element name="ipv4_acl" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
                                 <xsd:documentation>The IPv4 ACL name applied to the group.</xsd:documentation>
@@ -674,7 +679,7 @@
                         </xsd:element>
                         <xsd:element name="community_or_user" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>Element with the community sting or SNMPv3 user configure for the host.</xsd:documentation>
+                                <xsd:documentation>Element with the community string or SNMPv3 user configured for the host.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="version" type="x-ios-snmp:EntityItemSNMPVersionStringType" minOccurs="0" maxOccurs="1">
@@ -811,6 +816,11 @@
                         <xsd:element name="version" type="x-ios-snmp:EntityItemSNMPVersionStringType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
                                 <xsd:documentation>Element with the SNMP version of the group.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="snmpv3_sec_level" type="x-ios-snmp:EntityItemSNMPSecLevelStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Element with the SNMPv3 security configure for the group.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="ipv4_acl" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">

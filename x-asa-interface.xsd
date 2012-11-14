@@ -1,44 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:ios-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" xmlns:ios-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios" xmlns:x-ios-interface511="http://oval.mitre.org/XMLSchema/x-ios-interface511" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/x-ios-interface511" elementFormDefault="qualified" version="5.11">
-      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
-      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
-      <xsd:annotation>
-            <xsd:documentation>The following is a proposal for the experimental ios-def:interface511_test and ios-sc:interface511_item that will support checking the output lines of configuration sections on Cisco IOS devices.</xsd:documentation>
-            <xsd:documentation>Thanks to Omar Santos and Panos Kampanakis of Cisco for providing this test.</xsd:documentation>
-            <xsd:appinfo>
-                  <schema>Experimental Schema for the Cisco IOS Section Test</schema>
-                  <version>5.11</version>
-                  <date>7/19/2012 4:03:00 PM</date>
-                  <terms_of_use>Copyright (c) 2002-2012, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
-                  <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
-                  <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
-                  <sch:ns prefix="ios-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios"/>
-                  <sch:ns prefix="ios-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios"/>
-                  <sch:ns prefix="x-ios-interface511" uri="http://oval.mitre.org/XMLSchema/x-ios-interface511"/>
-                  <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
-            </xsd:appinfo>
-      </xsd:annotation>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:asa-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#asa" xmlns:asa-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#asa" xmlns:x-asa-acl="http://oval.mitre.org/XMLSchema/x-asa-acl" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/x-asa-acl" elementFormDefault="qualified" version="5.11">
+  <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd" />
+  <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd" />
+  <xsd:annotation>
+    <xsd:documentation>The following is a proposal for the experimental asa-def:interface_test and asa-sc:interface_item that will support checking the output lines of interface configurations on Cisco ASA 5500 Series Adaptive Security Appliances</xsd:documentation>
+    <xsd:appinfo>
+      <schema>Experimental Schema for Cisco ASA 5500 Series Security Appliances interface Tests</schema>
+      <version>5.11</version>
+      <date>10/30/2012 10:00:00 AM</date>
+      <terms_of_use>Copyright (c) 2002-2012, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+      <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5" />
+      <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+      <sch:ns prefix="asa-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#asa" />
+      <sch:ns prefix="asa-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#asa" />
+      <sch:ns prefix="x-asa-interface" uri="http://oval.mitre.org/XMLSchema/x-asa-interface" />
+      <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance" />
+    </xsd:appinfo>
+  </xsd:annotation>
       <!-- =============================================================================== -->
-      <!-- ===========================  INTERFACE TEST (511)  ============================ -->
+      <!-- ===============================  INTERFACE TEST  ============================== -->
       <!-- =============================================================================== -->
-      <xsd:element name="interface511_test" substitutionGroup="oval-def:test">
+      <xsd:element name="interface_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
                   <xsd:documentation/>
                   <xsd:appinfo>
                         <oval:element_mapping>
-                              <oval:test>interface511_test</oval:test>
-                              <oval:object>interface511_object</oval:object>
-                              <oval:state>interface511_state</oval:state>
-                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios">interface511_item</oval:item>
+                              <oval:test>interface_test</oval:test>
+                              <oval:object>interface_object</oval:object>
+                              <oval:state>interface_state</oval:state>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#asa">interface_item</oval:item>
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
-                        <sch:pattern id="ios-def_interfacetst">
-                              <sch:rule context="ios-def:interface511_test/ios-def:object">
-                                    <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/ios-def:interface511_object/@id"><sch:value-of select="../@id"/> - the object child element of an interface511_test must reference an interface511_object</sch:assert>
+                        <sch:pattern id="asa-def_interfacetst">
+                              <sch:rule context="asa-def:interface_test/asa-def:object">
+                                    <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/asa-def:interface_object/@id"><sch:value-of select="../@id"/> - the object child element of an interface_test must reference an interface_object</sch:assert>
                               </sch:rule>
-                              <sch:rule context="ios-def:interface511_test/ios-def:state">
-                                    <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/ios-def:interface511_state/@id"><sch:value-of select="../@id"/> - the state child element of an interface511_test must reference an interface511_state</sch:assert>
+                              <sch:rule context="asa-def:interface_test/asa-def:state">
+                                    <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/asa-def:interface_state/@id"><sch:value-of select="../@id"/> - the state child element of an interface_test must reference an interface_state</sch:assert>
                               </sch:rule>
                         </sch:pattern>
                   </xsd:appinfo>
@@ -54,7 +53,7 @@
                   </xsd:complexContent>
             </xsd:complexType>
       </xsd:element>
-      <xsd:element name="interface511_object" substitutionGroup="oval-def:object">
+      <xsd:element name="interface_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
                   <xsd:documentation/>
             </xsd:annotation>
@@ -78,7 +77,7 @@
                   </xsd:complexContent>
             </xsd:complexType>
       </xsd:element>
-      <xsd:element name="interface511_state" substitutionGroup="oval-def:state">
+      <xsd:element name="interface_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
                   <xsd:documentation/>
             </xsd:annotation>
@@ -89,11 +88,6 @@
                                     <xsd:element name="name" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The interface name.</xsd:documentation>
-                                          </xsd:annotation>
-                                    </xsd:element>
-                                    <xsd:element name="ip_directed_broadcast" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
-                                          <xsd:annotation>
-                                                <xsd:documentation>Directed broadcast command enabled on the interface. The default is false.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="proxy_arp" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
@@ -131,6 +125,11 @@
                                                 <xsd:documentation>The ingress or egress IPv6 ACL name applied on the interface.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
+                                    <xsd:element name="ipv4_v6_access_list" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The ingress or egress UACL name applied on the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
                                     <xsd:element name="crypto_map" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The crypto map name applied to the interface.</xsd:documentation>
@@ -147,9 +146,9 @@
             </xsd:complexType>
       </xsd:element>
       <!-- =============================================================================== -->
-      <!-- ===========================  INTERFACE ITEM (511)  ============================ -->
+      <!-- =============================  INTERFACE ITEM  ================================ -->
       <!-- =============================================================================== -->
-      <xsd:element name="interface511_item" substitutionGroup="oval-sc:item">
+      <xsd:element name="interface_item" substitutionGroup="oval-sc:item">
             <xsd:annotation>
                   <xsd:documentation/>
             </xsd:annotation>
@@ -160,11 +159,6 @@
                                     <xsd:element name="name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the interface name.</xsd:documentation>
-                                          </xsd:annotation>
-                                    </xsd:element>
-                                    <xsd:element name="ip_directed_broadcast" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
-                                          <xsd:annotation>
-                                                <xsd:documentation>Element that is true if the directed broadcast command is enabled on the interface. The default is false.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="proxy_arp" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
@@ -202,6 +196,11 @@
                                                 <xsd:documentation>Element with the ingress or egress IPv6 ACL name applied on the interface.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
+                                    <xsd:element name="ipv4_v6_access_list" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="2">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the ingress or egress UACL name applied on the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
                                     <xsd:element name="crypto_map" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the crypto map name applied to the interface.</xsd:documentation>
@@ -218,3 +217,4 @@
             </xsd:complexType>
       </xsd:element>
 </xsd:schema>
+
