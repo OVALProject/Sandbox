@@ -11,7 +11,7 @@
     <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
     <xsd:element name="sql511_test" substitutionGroup="oval-def:test">
         <xsd:annotation>
-            <xsd:documentation>The sql test is used to check information stored in a database. It is often the case that applications store configuration settings in a database as opposed to a file. This test has been designed to enable those settings to be tested. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a wmi_object and the optional state element specifies the metadata to check.</xsd:documentation>
+            <xsd:documentation>The sql test is used to check information stored in a database. It is often the case that applications store configuration settings in a database as opposed to a file. This test has been designed to enable those settings to be tested. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a sql_object and the optional state element specifies the metadata to check.</xsd:documentation>
             <xsd:appinfo>
                 <oval:element_mapping>
                     <oval:test>sql511_test</oval:test>
@@ -147,7 +147,7 @@
                         </xsd:element>
                         <xsd:element name="sql" type="oval-def:EntityStateStringType" minOccurs="0">
                             <xsd:annotation>
-                                <xsd:documentation>the sql entity defines a query used to identify the object(s) to test against.</xsd:documentation>
+                                <xsd:documentation>The sql entity defines a query used to identify the object(s) to test against.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="result" type="oval-def:EntityStateRecordType" minOccurs="0">
