@@ -1,5 +1,5 @@
-sql57 Test Support
-==================
+sql511 Test Support
+===================
 
 Experimental code implementing this test may be found in the ovaldi Subversion
 source repository branch:
@@ -19,7 +19,7 @@ drivers are available at:
 
 http://dev.mysql.com/downloads/connector/odbc/
 
-The Windows sql57 probe implementation selects a data provider based on the
+The Windows sql511 probe implementation selects a data provider based on the
 <engine> object entity, and rather than add MySQL as a legal enumerator for
 that entity, a generic "odbc" enumerator was added which specifically instructs
 the probe to use the ODBC provider.  This enables interoperability with any
