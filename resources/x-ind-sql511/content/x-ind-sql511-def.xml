@@ -13,9 +13,41 @@
       </metadata>
       <criteria>
         <criterion test_ref="oval:nist.validation:tst:1" comment="4.1: Test whether the mysql version is >= 4.1"/>
+      </criteria> 
+    </definition>
+    <definition id="oval:nist.validation:def:2" version="1" class="compliance">
+      <metadata>
+        <title>MySQL security check</title>
+        <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+      <criteria>
         <criterion test_ref="oval:nist.validation:tst:2" comment="4.4: Make sure test database does not exist"/>
+      </criteria> 
+    </definition>
+    <definition id="oval:nist.validation:def:3" version="1" class="compliance">
+      <metadata>
+        <title>MySQL security check</title>
+        <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+      <criteria>
         <criterion test_ref="oval:nist.validation:tst:3" comment="4.5: Make sure there is no 'root' account"/>
+      </criteria> 
+    </definition>
+    <definition id="oval:nist.validation:def:4" version="1" class="compliance">
+      <metadata>
+        <title>MySQL security check</title>
+        <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+      <criteria>
         <criterion test_ref="oval:nist.validation:tst:4" comment="4.7: All password hashes should be 41 bytes or longer"/>
+      </criteria> 
+    </definition>
+    <definition id="oval:nist.validation:def:5" version="1" class="compliance">
+      <metadata>
+        <title>MySQL security check</title>
+        <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+      <criteria>
         <criterion test_ref="oval:nist.validation:tst:5" comment="4.9: User hosts should not be wildcards"/>
       </criteria> 
     </definition>

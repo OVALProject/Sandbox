@@ -5,7 +5,7 @@
     <oval:product_name>cpe:/a:mitre:ovaldi:5.10.1.3</oval:product_name>
     <oval:product_version>5.10.1 Build: 3</oval:product_version>
     <oval:schema_version>5.10.1</oval:schema_version>
-    <oval:timestamp>2012-11-09T18:44:32</oval:timestamp>
+    <oval:timestamp>2012-11-15T14:37:25</oval:timestamp>
     <vendor>The MITRE Corporation</vendor>
   </generator>
 
@@ -31,9 +31,41 @@
       </metadata>
         <criteria>
           <criterion comment="4.1: Test whether the mysql version is >= 4.1" test_ref="oval:nist.validation:tst:1"/>
+      </criteria> 
+    </definition>
+      <definition class="compliance" id="oval:nist.validation:def:2" version="1">
+        <metadata>
+          <title>MySQL security check</title>
+          <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+        <criteria>
           <criterion comment="4.4: Make sure test database does not exist" test_ref="oval:nist.validation:tst:2"/>
+      </criteria> 
+    </definition>
+      <definition class="compliance" id="oval:nist.validation:def:3" version="1">
+        <metadata>
+          <title>MySQL security check</title>
+          <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+        <criteria>
           <criterion comment="4.5: Make sure there is no 'root' account" test_ref="oval:nist.validation:tst:3"/>
+      </criteria> 
+    </definition>
+      <definition class="compliance" id="oval:nist.validation:def:4" version="1">
+        <metadata>
+          <title>MySQL security check</title>
+          <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+        <criteria>
           <criterion comment="4.7: All password hashes should be 41 bytes or longer" test_ref="oval:nist.validation:tst:4"/>
+      </criteria> 
+    </definition>
+      <definition class="compliance" id="oval:nist.validation:def:5" version="1">
+        <metadata>
+          <title>MySQL security check</title>
+          <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+        <criteria>
           <criterion comment="4.9: User hosts should not be wildcards" test_ref="oval:nist.validation:tst:5"/>
       </criteria> 
     </definition>
@@ -99,12 +131,28 @@
 </oval_definitions>  <results>
     <system>
       <definitions>
-        <definition definition_id="oval:nist.validation:def:1" result="false" version="1">
-          <criteria operator="AND" result="false">
+        <definition definition_id="oval:nist.validation:def:1" result="true" version="1">
+          <criteria operator="AND" result="true">
             <criterion result="true" test_ref="oval:nist.validation:tst:1" version="1"/>
+          </criteria>
+        </definition>
+        <definition definition_id="oval:nist.validation:def:2" result="false" version="1">
+          <criteria operator="AND" result="false">
             <criterion result="false" test_ref="oval:nist.validation:tst:2" version="1"/>
+          </criteria>
+        </definition>
+        <definition definition_id="oval:nist.validation:def:3" result="false" version="1">
+          <criteria operator="AND" result="false">
             <criterion result="false" test_ref="oval:nist.validation:tst:3" version="1"/>
+          </criteria>
+        </definition>
+        <definition definition_id="oval:nist.validation:def:4" result="false" version="1">
+          <criteria operator="AND" result="false">
             <criterion result="false" test_ref="oval:nist.validation:tst:4" version="1"/>
+          </criteria>
+        </definition>
+        <definition definition_id="oval:nist.validation:def:5" result="false" version="1">
+          <criteria operator="AND" result="false">
             <criterion result="false" test_ref="oval:nist.validation:tst:5" version="1"/>
           </criteria>
         </definition>
@@ -131,7 +179,7 @@
           <oval:product_name>cpe:/a:mitre:ovaldi:5.10.1.3</oval:product_name>
           <oval:product_version>5.10.1 Build: 3</oval:product_version>
           <oval:schema_version>5.10.1</oval:schema_version>
-          <oval:timestamp>2012-11-09T18:44:32</oval:timestamp>
+          <oval:timestamp>2012-11-15T14:37:23</oval:timestamp>
           <vendor>The MITRE Corporation</vendor>
         </generator>
         <system_info>
@@ -142,7 +190,7 @@
           <interfaces>
             <interface>
               <interface_name>Intel(R) 82579LM Gigabit Network Connection</interface_name>
-              <ip_address>10.146.15.53</ip_address>
+              <ip_address>10.146.15.23</ip_address>
               <mac_address>5C-26-0A-67-4C-92</mac_address>
             </interface>
             <interface>
