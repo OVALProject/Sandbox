@@ -141,11 +141,75 @@
                                                 <xsd:documentation>The uRPF command under the interface.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
+                                    <xsd:element name="switchport_trunk_encapsulation" type="x-ios-interface511:EntityStateTrunkEncapType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The switchport trunk encapsulation option configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_mode" type="x-ios-interface511:EntityStateSwitchportModeType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The switchport mode option configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_native_vlan" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The trunk native vlan configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_access_vlan" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The access vlan configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_trunked_vlans" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The vlans that are trunked configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_pruned_vlans" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The vlans that are pruned from the trunk (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_port_security" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The switchport port-security commands configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
             </xsd:complexType>
       </xsd:element>
+  <!-- =============================================================================== -->
+  <!-- ============================= IOS STATE TYPES  ================================= -->
+  <!-- =============================================================================== -->
+  <xsd:complexType name="EntityStateTrunkEncapType">
+    <xsd:annotation>
+      <xsd:documentation>The EntityStateTrunkEncapType complex type restricts a string value to a specific set of values: DOT1Q, ISL, NEGOTIATE. These values describe the interface trunk encapsulation types on an interfaces in IOS.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="oval-def:EntityStateStringType">
+        <xsd:enumeration value="DOT1Q" />
+        <xsd:enumeration value="ISL" />
+        <xsd:enumeration value="NEGOTIATE" />
+      </xsd:restriction>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="EntityStateSwitchportModeType">
+    <xsd:annotation>
+      <xsd:documentation>The EntityObjectRoutingProtocolType complex type restricts a string value to a specific set of values: DYNAMIC, TRUNK, ACCESS. These values describe the interface switchport mode types in IOS.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="oval-def:EntityStateStringType">
+        <xsd:enumeration value="DYNAMIC" />
+        <xsd:enumeration value="TRUNK" />
+        <xsd:enumeration value="ACCESS" />
+      </xsd:restriction>
+    </xsd:simpleContent>
+  </xsd:complexType>  
+
+
       <!-- =============================================================================== -->
       <!-- ===========================  INTERFACE ITEM (511)  ============================ -->
       <!-- =============================================================================== -->
@@ -212,9 +276,72 @@
                                                 <xsd:documentation>Element with the uRPF command under the interface.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
+                                    <xsd:element name="switchport_trunk_encapsulation" type="x-ios-interface511:EntityItemTrunkEncapType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the switchport trunk encapsulation option configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_mode" type="x-ios-interface511:EntityItemSwitchportModeType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the switchport mode option configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_native_vlan" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the trunk native vlan configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_access_vlan" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the access vlan configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_trunked_vlans" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the vlans that are trunked configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_pruned_vlans" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the vlans that are pruned from the trunk (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_port_security" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the switchport port-security commands configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
             </xsd:complexType>
       </xsd:element>
-</xsd:schema>
+
+  <!-- =============================================================================== -->
+  <!-- ============================= IOS ITEM TYPES  ================================= -->
+  <!-- =============================================================================== -->
+  <xsd:complexType name="EntityItemTrunkEncapType">
+    <xsd:annotation>
+      <xsd:documentation>The EntityItemTrunkEncapType complex type restricts a string value to a specific set of values: DOT1Q, ISL, NEGOTIATE. These values describe the interface trunk encapsulation types on an interfaces in IOS.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="oval-sc:EntityItemStringType">
+        <xsd:enumeration value="DOT1Q" />
+        <xsd:enumeration value="ISL" />
+        <xsd:enumeration value="NEGOTIATE" />
+      </xsd:restriction>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="EntityItemSwitchportModeType">
+    <xsd:annotation>
+      <xsd:documentation>The EntityObjectRoutingProtocolType complex type restricts a string value to a specific set of values: DYNAMIC, TRUNK, ACCESS. These values describe the interface switchport mode types in IOS.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="oval-sc:EntityItemStringType">
+        <xsd:enumeration value="DYNAMIC" />
+        <xsd:enumeration value="TRUNK" />
+        <xsd:enumeration value="ACCESS" />
+      </xsd:restriction>
+    </xsd:simpleContent>
+  </xsd:complexType>
+</xsd:schema>	  
