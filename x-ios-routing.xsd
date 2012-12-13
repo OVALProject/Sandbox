@@ -414,7 +414,7 @@
                <xsd:documentation>The EntityStateRoutingAuthTypeStringType complex type restricts a string value to a specific set of values: CLEARTEXT, MESSAGE_DIGEST, NULL. These values describe the routing protocol authentication types used in a Cisco IOS configuration.</xsd:documentation>
           </xsd:annotation>
           <xsd:simpleContent>
-               <xsd:restriction base="oval-sc:EntityItemStringType">
+               <xsd:restriction base="oval-def:EntityStateStringType">
                     <xsd:enumeration value="CLEARTEXT"/>
                     <xsd:enumeration value="MESSAGE_DIGEST"/>
                     <xsd:enumeration value="NULL"/>
