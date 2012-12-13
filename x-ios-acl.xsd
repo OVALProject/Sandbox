@@ -56,7 +56,7 @@
       </xsd:element>
       <xsd:element name="acl_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
-                  <xsd:documentation>The acl_object element is used by an acl_test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  <xsd:documentation>The acl_object element is used by an acl test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:documentation>An acl object consists of a an acl name and an IP version entity that is the name and the IP protocol version of the access-list to be tested.</xsd:documentation>
                   <xsd:appinfo>
                         <sch:pattern id="x-ios-acl_acl_object_verify_filter_state">
@@ -151,7 +151,7 @@
       <!-- =============================================================================== -->
      <xsd:complexType name="EntityObjectAccessListIPVersionType">
           <xsd:annotation>
-               <xsd:documentation>The EntityObjectRoutingProtocolType complex type restricts a string value to a specific set of values: IPV4, IPV6. These values describe if an ACL is for IPv4 or IPv6 in a Cisco IOS configuration.</xsd:documentation>
+               <xsd:documentation>The EntityObjectAccessListIPVersionType complex type restricts a string value to a specific set of values: IPV4, IPV6. These values describe if an ACL is for IPv4 or IPv6 in a Cisco IOS configuration.</xsd:documentation>
           </xsd:annotation>
           <xsd:simpleContent>
                <xsd:restriction base="oval-def:EntityObjectStringType">
@@ -223,12 +223,12 @@
                                                 <xsd:documentation>Element with the IP version of the ACL.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="use" type="x-ios-acl:EntityItemAccessListUseType" minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element name="use" type="x-ios-acl:EntityItemAccessListUseType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the feature where the ACL is used. If the same ACL is applied in more than one feature (i.e interface and crypto map), multiple items needs to be created.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="used_in" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element name="used_in" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the name of where the ACL is used. For example if use is 'INTERFACE', use_in will be the name of the interface. If the same ACL is applied in more than one feature (i.e interface and crypto map), multiple items needs to be created.</xsd:documentation>
                                           </xsd:annotation>
@@ -243,7 +243,7 @@
                                                 <xsd:documentation>Element with the value returned with all config lines of the ACL.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="config_line" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element name="config_line" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the value returned with one ACL config line at a time.</xsd:documentation>
                                           </xsd:annotation>
@@ -276,7 +276,6 @@
           <xsd:simpleContent>
                <xsd:restriction base="oval-sc:EntityItemStringType">
                     <xsd:enumeration value="INTERFACE"/>
-                    <xsd:enumeration value="CRYPTO_MAP_MATCH"/>
                     <xsd:enumeration value="CLASS_MAP_MATCH"/>
                     <xsd:enumeration value="ROUTE_MAP_MATCH"/>
                     <xsd:enumeration value="IGMP_FILTER"/>

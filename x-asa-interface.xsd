@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:asa-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#asa" xmlns:asa-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#asa" xmlns:x-asa-acl="http://oval.mitre.org/XMLSchema/x-asa-acl" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/x-asa-acl" elementFormDefault="qualified" version="5.11">
+  <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd" />
+  <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd" />
+  <xsd:annotation>
+    <xsd:documentation>The following is a proposal for the experimental asa-def:interface_test and asa-sc:interface_item that will support checking the output lines of interface configurations on Cisco ASA 5500 Series Adaptive Security Appliances</xsd:documentation>
+    <xsd:appinfo>
+      <schema>Experimental Schema for Cisco ASA 5500 Series Security Appliances interface Tests</schema>
+      <version>5.11</version>
+      <date>10/30/2012 10:00:00 AM</date>
+      <terms_of_use>Copyright (c) 2002-2012, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+      <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5" />
+      <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+      <sch:ns prefix="asa-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#asa" />
+      <sch:ns prefix="asa-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#asa" />
+      <sch:ns prefix="x-asa-interface" uri="http://oval.mitre.org/XMLSchema/x-asa-interface" />
+      <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance" />
+    </xsd:appinfo>
+  </xsd:annotation>
+      <!-- =============================================================================== -->
+      <!-- ===============================  INTERFACE TEST  ============================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="interface_test" substitutionGroup="oval-def:test">
+            <xsd:annotation>
+                  <xsd:documentation/>
+                  <xsd:appinfo>
+                        <oval:element_mapping>
+                              <oval:test>interface_test</oval:test>
+                              <oval:object>interface_object</oval:object>
+                              <oval:state>interface_state</oval:state>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#asa">interface_item</oval:item>
+                        </oval:element_mapping>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
+                        <sch:pattern id="asa-def_interfacetst">
+                              <sch:rule context="asa-def:interface_test/asa-def:object">
+                                    <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/asa-def:interface_object/@id"><sch:value-of select="../@id"/> - the object child element of an interface_test must reference an interface_object</sch:assert>
+                              </sch:rule>
+                              <sch:rule context="asa-def:interface_test/asa-def:state">
+                                    <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/asa-def:interface_state/@id"><sch:value-of select="../@id"/> - the state child element of an interface_test must reference an interface_state</sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:TestType">
+                              <xsd:sequence>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
+                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="interface_object" substitutionGroup="oval-def:object">
+            <xsd:annotation>
+                  <xsd:documentation/>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:ObjectType">
+                              <xsd:sequence>
+                                    <xsd:choice>
+                                          <xsd:element ref="oval-def:set"/>
+                                          <xsd:sequence>
+                                                <xsd:element name="name" type="oval-def:EntityObjectStringType">
+                                                      <xsd:annotation>
+                                                            <xsd:documentation>The interface name.</xsd:documentation>
+                                                      </xsd:annotation>
+                                                </xsd:element>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                          </xsd:sequence>
+                                    </xsd:choice>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="interface_state" substitutionGroup="oval-def:state">
+            <xsd:annotation>
+                  <xsd:documentation/>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:StateType">
+                              <xsd:sequence>
+                                    <xsd:element name="name" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The interface name.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="proxy_arp" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Proxy arp enabled on the interface. The default is true.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="shutdown" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Interface is shut down.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="hardware_addr" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The interface hardware (MAC) address.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ipv4_address" type="oval-def:EntityStateIPAddressStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The interface IPv4 address and mask. This element should only allow 'ipv4_address' of the oval:SimpleDatatypeEnumeration.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ipv6_address" type="oval-def:EntityStateIPAddressStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The interface IPv6 address and mask. This element should only allow 'ipv6_address' of the oval:SimpleDatatypeEnumeration.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ipv4_access_list" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The ingress or egress IPv4 ACL name applied on the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ipv6_access_list" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The ingress or egress IPv6 ACL name applied on the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ipv4_v6_access_list" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The ingress or egress UACL name applied on the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="crypto_map" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The crypto map name applied to the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="urpf_command" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The uRPF command under the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- =============================  INTERFACE ITEM  ================================ -->
+      <!-- =============================================================================== -->
+      <xsd:element name="interface_item" substitutionGroup="oval-sc:item">
+            <xsd:annotation>
+                  <xsd:documentation/>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-sc:ItemType">
+                              <xsd:sequence>
+                                    <xsd:element name="name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the interface name.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="proxy_arp" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element that is true if the proxy_arp command is enabled on the interface. The default is true.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="shutdown" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element that is true if the interface is shut down. The default is false.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="hardware_addr" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the interface hardware (MAC) address.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ipv4_address" type="oval-sc:EntityItemIPAddressStringType" minOccurs="0" maxOccurs="unbounded">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the interface IPv4 address and mask. This element should only allow 'ipv4_address' of the oval:SimpleDatatypeEnumeration.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ipv6_address" type="oval-sc:EntityItemIPAddressStringType" minOccurs="0" maxOccurs="unbounded">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the interface IPv6 address and mask. This element should only allow 'ipv6_address' of the oval:SimpleDatatypeEnumeration.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ipv4_access_list" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="2">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the ingress or egress IPv4 ACL name applied on the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ipv6_access_list" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="2">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the ingress or egress IPv6 ACL name applied on the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ipv4_v6_access_list" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="2">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the ingress or egress UACL name applied on the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="crypto_map" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the crypto map name applied to the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="urpf_command" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the uRPF command under the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+</xsd:schema>
+

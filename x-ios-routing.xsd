@@ -3,7 +3,7 @@
       <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
       <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
       <xsd:annotation>
-            <xsd:documentation>The following is a proposal for the experimental ios-def:router_test, ios-def:routing_protocol_auth_intf_test, ios-def:bgp_neighbor_test, ios-sc:router_item, ios-sc:bgp_neighnor_item and ios-sc:routing_protocol_auth_intf_item that will support checking the output lines of routing protocol configurations on Cisco IOS devices.</xsd:documentation>
+            <xsd:documentation>The following is a proposal for the experimental ios-def:router_test, ios-def:routing_protocol_test, ios-def:bgp_neighbor_test, ios-def:routing_protocol_auth_intf_test, ios-sc:router_item, ios-sc:bgp_neighbor_item and ios-sc:routing_protocol_item that will support checking the output lines of routing protocol configurations on Cisco IOS devices.</xsd:documentation>
             <xsd:documentation>Thanks to Omar Santos and Panos Kampanakis of Cisco for providing this test.</xsd:documentation>
             <xsd:appinfo>
                   <schema>Experimental Schema for the Cisco IOS Routing Tests</schema>
@@ -414,7 +414,7 @@
                <xsd:documentation>The EntityStateRoutingAuthTypeStringType complex type restricts a string value to a specific set of values: CLEARTEXT, MESSAGE_DIGEST, NULL. These values describe the routing protocol authentication types used in a Cisco IOS configuration.</xsd:documentation>
           </xsd:annotation>
           <xsd:simpleContent>
-               <xsd:restriction base="oval-sc:EntityItemStringType">
+               <xsd:restriction base="oval-def:EntityStateStringType">
                     <xsd:enumeration value="CLEARTEXT"/>
                     <xsd:enumeration value="MESSAGE_DIGEST"/>
                     <xsd:enumeration value="NULL"/>
@@ -587,6 +587,5 @@
       <!-- =============================================================================== -->
       <!-- ========================  END OF ROUTING ITEM TYPES  ========================== -->
       <!-- =============================================================================== -->
-
 
 </xsd:schema>
