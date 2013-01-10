@@ -155,7 +155,7 @@
       <!-- ============================================================================== -->
       <xsd:element name="interface_item" substitutionGroup="oval-sc:item">
             <xsd:annotation>
-                  <xsd:documentation/>
+                <xsd:documentation>The interface_item represents an IOS-XE interface and its configuration options.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
