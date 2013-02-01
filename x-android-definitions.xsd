@@ -863,12 +863,12 @@
                                                   <xsd:documentation>Name of the application.</xsd:documentation>
                                              </xsd:annotation>
                                         </xsd:element>
-                                        <xsd:element name="process_name" type="oval-def:EntityObjectStringType" minOccurs="0" maxOccurs="1">
+                                        <xsd:element name="process_name" type="oval-def:EntityObjectStringType">
                                              <xsd:annotation>
                                                   <xsd:documentation>Name of the process that the application launches.</xsd:documentation>
                                              </xsd:annotation>
                                         </xsd:element>
-                                        <xsd:element name="package_name" type="oval-def:EntityObjectStringType" minOccurs="0" maxOccurs="1">
+                                        <xsd:element name="package_name" type="oval-def:EntityObjectStringType">
                                              <xsd:annotation>
                                                   <xsd:documentation>Name of the package.</xsd:documentation>
                                              </xsd:annotation>

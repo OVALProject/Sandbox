@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://oval.mitre.org/XMLSchema/x-ind-sql511"
+    xmlns:x-ind-sql511="http://oval.mitre.org/XMLSchema/x-ind-sql511"
+    xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+    xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+    xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"
+    targetNamespace="http://oval.mitre.org/XMLSchema/x-ind-sql511" elementFormDefault="qualified">
+    <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
+    <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
+    <xsd:element name="sql511_test" substitutionGroup="oval-def:test">
+        <xsd:annotation>
+            <xsd:documentation>The sql test is used to check information stored in a database. It is often the case that applications store configuration settings in a database as opposed to a file. This test has been designed to enable those settings to be tested. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a sql_object and the optional state element specifies the metadata to check.</xsd:documentation>
+            <xsd:appinfo>
+                <oval:element_mapping>
+                    <oval:test>sql511_test</oval:test>
+                    <oval:object>sql511_object</oval:object>
+                    <oval:state>sql511_state</oval:state>
+                    <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">sql511_item</oval:item>
+                </oval:element_mapping>
+            </xsd:appinfo>
+            <xsd:appinfo>
+                <sch:pattern id="ind-def_sql511_test">
+                    <sch:rule context="x-ind-sql511:sql511_test/x-ind-sql511:object">
+                        <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/x-ind-sql511:sql511_object/@id"><sch:value-of select="../@id"/> - the object child element of a sql511_test must reference a sql511_object</sch:assert>
+                    </sch:rule>
+                    <sch:rule context="x-ind-sql511:sql511_test/x-ind-sql511:state">
+                        <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/x-ind-sql511:sql511_state/@id"><sch:value-of select="../@id"/> - the state child element of a sql511_test must reference a sql511_state</sch:assert>
+                    </sch:rule>
+                </sch:pattern>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="oval-def:TestType">
+                    <xsd:sequence>
+                        <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                        <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="sql511_object" substitutionGroup="oval-def:object">
+        <xsd:annotation>
+            <xsd:documentation>The sql511_object element is used by a sql test to define the specific database and query to be evaluated. Connection information is supplied allowing the tool to connect to the desired database and a query is supplied to call out the desired setting. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+            <xsd:appinfo>
+                <sch:pattern id="ind-def_sql511_object_verify_filter_state">
+                    <sch:rule context="x-ind-sql511:sql511_object//oval-def:filter">
+                        <sch:let name="parent_object" value="ancestor::x-ind-sql511:sql511_object"/>
+                        <sch:let name="parent_object_id" value="$parent_object/@id"/>
+                        <sch:let name="state_ref" value="."/>
+                        <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+                        <sch:let name="state_name" value="local-name($reffed_state)"/>
+                        <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+                        <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/x-ind-sql511-sql511') and ($state_name='sql511_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+                    </sch:rule>
+                </sch:pattern>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="oval-def:ObjectType">
+                    <xsd:sequence>
+                        <xsd:choice>
+                            <xsd:element ref="oval-def:set"/>
+                            <xsd:sequence>
+                                <xsd:element name="engine" type="EntityObjectEngineType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>The engine entity defines the specific database engine to use. Any tool looking to collect information about this object will need to know the engine in order to use the appropriate drivers to establish a connection.</xsd:documentation>
+                                        <xsd:appinfo>
+                                            <sch:pattern id="ind-def_sql511_object_dengine">
+                                                <sch:rule context="x-ind-sql511:sql511_object/x-ind-sql511:engine">
+                                                    <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the engine entity of an sql511_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
+                                                </sch:rule>
+                                            </sch:pattern>
+                                        </xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="version" type="oval-def:EntityObjectStringType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>The version entity defines the specific version of the database engine to use. This is also important in determining the correct driver to use for establishing a connection.</xsd:documentation>
+                                        <xsd:appinfo>
+                                            <sch:pattern id="x-ind-sql511_sql511_object_version">
+                                                <sch:rule context="x-ind-sql511:sql511_object/x-ind-sql511:version">
+                                                    <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the version entity of an sql511_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
+                                                </sch:rule>
+                                            </sch:pattern>
+                                        </xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="connection_string" type="oval-def:EntityObjectStringType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>The connection_string entity defines specific connection parameters to be used in connecting to the database. This will help a tool connect to the correct database.</xsd:documentation>
+                                        <xsd:appinfo>
+                                            <sch:pattern id="ind-def_sql511_object_connection_string">
+                                                <sch:rule context="x-ind-sql511:sql511_object/x-ind-sql511:connection_string">
+                                                    <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the connection_string entity of an sql511_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
+                                                </sch:rule>
+                                            </sch:pattern>
+                                        </xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="sql" type="oval-def:EntityObjectStringType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>The sql entity defines a query used to identify the object(s) to test against. Any valid SQL query is usable with one exception, all fields must be named in the SELECT portion of the query. For example, SELECT name, number FROM ... is valid. However, SELECT * FROM ... is not valid. This is because the record element in the state and item require a unique field name value to ensure that any query results can be evaluated consistently.</xsd:documentation>
+                                        <xsd:appinfo>
+                                            <sch:pattern id="ind-def_sql511_object_sql">
+                                                <sch:rule context="x-ind-sql511:sql511_object/x-ind-sql511:sql">
+                                                    <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the sql entity of an sql511_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
+                                                </sch:rule>
+                                            </sch:pattern>
+                                        </xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                            </xsd:sequence>
+                        </xsd:choice>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="sql511_state" substitutionGroup="oval-def:state">
+        <xsd:annotation>
+            <xsd:documentation>The sql511_state element contains two entities that are used to check the name of the specified field and the value associated with it.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="oval-def:StateType">
+                    <xsd:sequence>
+                        <xsd:element name="engine" type="EntityStateEngineType" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The engine entity defines a specific database engine.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="version" type="oval-def:EntityStateStringType" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The version entity defines a specific version of a given database engine.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="connection_string" type="oval-def:EntityStateStringType" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The connection_string entity defines a set of parameters that help identify the connection to the database.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="sql" type="oval-def:EntityStateStringType" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The sql entity defines a query used to identify the object(s) to test against.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="result" type="oval-def:EntityStateRecordType" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The result entity specifies how to test objects in the result set of the specified SQL statement.</xsd:documentation>
+                                <xsd:appinfo>
+                                    <sch:pattern id="ind-def_sql511steresult">
+                                        <sch:rule context="x-ind-sql511:sql511_state/x-ind-sql511:result">
+                                            <sch:assert test="@datatype='record'"><sch:value-of select="../@id"/> - datatype attribute for the result entity of a sql511_state must be 'record'</sch:assert>
+                                        </sch:rule>
+                                    </sch:pattern>
+                                </xsd:appinfo>
+                            </xsd:annotation>
+                            <xsd:unique name="UniqueSqlResultFieldName">
+                                <xsd:selector xpath="./oval-def:field"/>
+                                <xsd:field xpath="@name"/>
+                            </xsd:unique>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="EntityObjectEngineType">
+        <xsd:annotation>
+            <xsd:documentation>The EntityObjectEngineType complex type defines a string entity value that is restricted to a set of enumerations. Each valid enumeration is a valid database engine. The empty string is also allowed to support empty elements associated with variable references.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:restriction base="oval-def:EntityStateStringType">
+                <xsd:enumeration value="access">
+                    <xsd:annotation>
+                        <xsd:documentation>The access value describes the Microsoft Access database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="db2">
+                    <xsd:annotation>
+                        <xsd:documentation>The db2 value describes the IBM DB2 database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="cache">
+                    <xsd:annotation>
+                        <xsd:documentation>The cache value describes the InterSystems Cache database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="firebird">
+                    <xsd:annotation>
+                        <xsd:documentation>The firebird value describes the Firebird database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="firstsql">
+                    <xsd:annotation>
+                        <xsd:documentation>The firstsql value describes the FirstSQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="foxpro">
+                    <xsd:annotation>
+                        <xsd:documentation>The foxpro value describes the Microsoft FoxPro database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="informix">
+                    <xsd:annotation>
+                        <xsd:documentation>The informix value describes the IBM Informix database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="ingres">
+                    <xsd:annotation>
+                        <xsd:documentation>The ingres value describes the Ingres database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="interbase">
+                    <xsd:annotation>
+                        <xsd:documentation>The interbase value describes the Embarcadero Technologies InterBase database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="lightbase">
+                    <xsd:annotation>
+                        <xsd:documentation>The lightbase value describes the Light Infocon LightBase database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="maxdb">
+                    <xsd:annotation>
+                        <xsd:documentation>The maxdb value describes the SAP MaxDB database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="monetdb">
+                    <xsd:annotation>
+                        <xsd:documentation>The monetdb value describes the MonetDB SQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="mimer">
+                    <xsd:annotation>
+                        <xsd:documentation>The mimer value describes the Mimer SQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="mysql">
+                    <xsd:annotation>
+                        <xsd:documentation>The mysql value describes the MySQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="oracle">
+                    <xsd:annotation>
+                        <xsd:documentation>The oracle value describes the Oracle database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="paradox">
+                    <xsd:annotation>
+                        <xsd:documentation>The paradox value describes the Paradox database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="pervasive">
+                    <xsd:annotation>
+                        <xsd:documentation>The pervasive value describes the Pervasive PSQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="postgre">
+                    <xsd:annotation>
+                        <xsd:documentation>The postgre value describes the PostgreSQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="sqlbase">
+                    <xsd:annotation>
+                        <xsd:documentation>The sqlbase value describes the Unify SQLBase database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="sqlite">
+                    <xsd:annotation>
+                        <xsd:documentation>The sqlite value describes the SQLite database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="sqlserver">
+                    <xsd:annotation>
+                        <xsd:documentation>The sqlserver value describes the Microsoft SQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="sybase">
+                    <xsd:annotation>
+                        <xsd:documentation>The sybase value describes the Sybase database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="odbc">
+                    <xsd:annotation>
+                        <xsd:documentation>Temporary, to support connecting to any database via ODBC</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="">
+                    <xsd:annotation>
+                        <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>      
+            </xsd:restriction>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityStateEngineType">
+        <xsd:annotation>
+            <xsd:documentation>The EntityStateEngineType complex type defines a string entity value that is restricted to a set of enumerations. Each valid enumeration is a valid database engine. The empty string is also allowed to support empty elements associated with variable references.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:restriction base="oval-def:EntityStateStringType">
+                <xsd:enumeration value="access">
+                    <xsd:annotation>
+                        <xsd:documentation>The access value describes the Microsoft Access database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="db2">
+                    <xsd:annotation>
+                        <xsd:documentation>The db2 value describes the IBM DB2 database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="cache">
+                    <xsd:annotation>
+                        <xsd:documentation>The cache value describes the InterSystems Cache database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="firebird">
+                    <xsd:annotation>
+                        <xsd:documentation>The firebird value describes the Firebird database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="firstsql">
+                    <xsd:annotation>
+                        <xsd:documentation>The firstsql value describes the FirstSQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="foxpro">
+                    <xsd:annotation>
+                        <xsd:documentation>The foxpro value describes the Microsoft FoxPro database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="informix">
+                    <xsd:annotation>
+                        <xsd:documentation>The informix value describes the IBM Informix database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="ingres">
+                    <xsd:annotation>
+                        <xsd:documentation>The ingres value describes the Ingres database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="interbase">
+                    <xsd:annotation>
+                        <xsd:documentation>The interbase value describes the Embarcadero Technologies InterBase database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="lightbase">
+                    <xsd:annotation>
+                        <xsd:documentation>The lightbase value describes the Light Infocon LightBase database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="maxdb">
+                    <xsd:annotation>
+                        <xsd:documentation>The maxdb value describes the SAP MaxDB database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="monetdb">
+                    <xsd:annotation>
+                        <xsd:documentation>The monetdb value describes the MonetDB SQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="mimer">
+                    <xsd:annotation>
+                        <xsd:documentation>The mimer value describes the Mimer SQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="oracle">
+                    <xsd:annotation>
+                        <xsd:documentation>The oracle value describes the Oracle database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="paradox">
+                    <xsd:annotation>
+                        <xsd:documentation>The paradox value describes the Paradox database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="pervasive">
+                    <xsd:annotation>
+                        <xsd:documentation>The pervasive value describes the Pervasive PSQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="postgre">
+                    <xsd:annotation>
+                        <xsd:documentation>The postgre value describes the PostgreSQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="sqlbase">
+                    <xsd:annotation>
+                        <xsd:documentation>The sqlbase value describes the Unify SQLBase database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="sqlite">
+                    <xsd:annotation>
+                        <xsd:documentation>The sqlite value describes the SQLite database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="sqlserver">
+                    <xsd:annotation>
+                        <xsd:documentation>The sqlserver value describes the Microsoft SQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="sybase">
+                    <xsd:annotation>
+                        <xsd:documentation>The sybase value describes the Sybase database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="">
+                    <xsd:annotation>
+                        <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+            </xsd:restriction>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:element name="sql511_item" substitutionGroup="oval-sc:item">
+        <xsd:annotation>
+            <xsd:documentation>The sql511_item outlines information collected from a database via an SQL query.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="oval-sc:ItemType">
+                    <xsd:sequence>
+                        <xsd:element name="engine" type="EntityItemEngineType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The engine entity identifies the specific database engine used to connect to the database.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="version" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The version entity identifies the version of the database engine used to connect to the database.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="connection_string" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The connection_string entity defines connection parameters used to connect to the specific database.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="sql" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The sql entity holds the specific query used to identify the object(s) in the database.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="result" type="oval-sc:EntityItemRecordType" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>The result entity holds the results of the specified SQL statement.</xsd:documentation>
+                                <xsd:appinfo>
+                                    <sch:pattern id="ind-sc_sql511_itemresult">
+                                        <sch:rule context="x-ind-sc:sql511_item/x-ind-sc:result">
+                                            <sch:assert test="@datatype='record'"><sch:value-of select="../@id"/> - datatype attribute for the result entity of a sql511_item must be 'record'</sch:assert>
+                                        </sch:rule>
+                                    </sch:pattern>
+                                </xsd:appinfo>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="EntityItemEngineType">
+        <xsd:annotation>
+            <xsd:documentation>The EntityItemEngineType complex type defines a string entity value that is restricted to an enumeration. Each valid entry in the enumeration is a valid database engine.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:restriction base="oval-sc:EntityItemStringType">
+                <xsd:enumeration value="access">
+                    <xsd:annotation>
+                        <xsd:documentation>The access value describes the Microsoft Access database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="db2">
+                    <xsd:annotation>
+                        <xsd:documentation>The db2 value describes the IBM DB2 database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="cache">
+                    <xsd:annotation>
+                        <xsd:documentation>The cache value describes the InterSystems Cache database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="firebird">
+                    <xsd:annotation>
+                        <xsd:documentation>The firebird value describes the Firebird database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="firstsql">
+                    <xsd:annotation>
+                        <xsd:documentation>The firstsql value describes the FirstSQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="foxpro">
+                    <xsd:annotation>
+                        <xsd:documentation>The foxpro value describes the Microsoft FoxPro database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="informix">
+                    <xsd:annotation>
+                        <xsd:documentation>The informix value describes the IBM Informix database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="ingres">
+                    <xsd:annotation>
+                        <xsd:documentation>The ingres value describes the Ingres database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="interbase">
+                    <xsd:annotation>
+                        <xsd:documentation>The interbase value describes the Embarcadero Technologies InterBase database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="lightbase">
+                    <xsd:annotation>
+                        <xsd:documentation>The lightbase value describes the Light Infocon LightBase database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="maxdb">
+                    <xsd:annotation>
+                        <xsd:documentation>The maxdb value describes the SAP MaxDB database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="monetdb">
+                    <xsd:annotation>
+                        <xsd:documentation>The monetdb value describes the MonetDB SQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="mimer">
+                    <xsd:annotation>
+                        <xsd:documentation>The mimer value describes the Mimer SQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="mysql">
+                    <xsd:annotation>
+                        <xsd:documentation>The mysql value describes the MySQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>                    
+                <xsd:enumeration value="oracle">
+                    <xsd:annotation>
+                        <xsd:documentation>The oracle value describes the Oracle database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="paradox">
+                    <xsd:annotation>
+                        <xsd:documentation>The paradox value describes the Paradox database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="pervasive">
+                    <xsd:annotation>
+                        <xsd:documentation>The pervasive value describes the Pervasive PSQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="postgre">
+                    <xsd:annotation>
+                        <xsd:documentation>The postgre value describes the PostgreSQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="sqlbase">
+                    <xsd:annotation>
+                        <xsd:documentation>The sqlbase value describes the Unify SQLBase database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="sqlite">
+                    <xsd:annotation>
+                        <xsd:documentation>The sqlite value describes the SQLite database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="sqlserver">
+                    <xsd:annotation>
+                        <xsd:documentation>The sqlserver value describes the Microsoft SQL database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="sybase">
+                    <xsd:annotation>
+                        <xsd:documentation>The sybase value describes the Sybase database engine.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="odbc">
+                    <xsd:annotation>
+                        <xsd:documentation>Temporary, to support connecting to any database via ODBC</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="">
+                    <xsd:annotation>
+                        <xsd:documentation>The empty string value is permitted here to allow for detailed error reporting.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+            </xsd:restriction>
+        </xsd:simpleContent>
+    </xsd:complexType>
+</xsd:schema>

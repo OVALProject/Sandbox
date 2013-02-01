@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<oval_results xmlns="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-res="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-results-5 oval-results-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-ind-sql511 x-ind-sql511.xsd">
+
+  <generator>
+    <oval:product_name>cpe:/a:mitre:ovaldi:5.10.1.3</oval:product_name>
+    <oval:product_version>5.10.1 Build: 3</oval:product_version>
+    <oval:schema_version>5.10.1</oval:schema_version>
+    <oval:timestamp>2012-11-15T14:37:25</oval:timestamp>
+    <vendor>The MITRE Corporation</vendor>
+  </generator>
+
+  <directives include_source_definitions="true">
+    <definition_true content="full" reported="true"/>
+    <definition_false content="full" reported="true"/>
+    <definition_unknown content="full" reported="true"/>
+    <definition_error content="full" reported="true"/>
+    <definition_not_evaluated content="full" reported="true"/>
+    <definition_not_applicable content="full" reported="true"/>
+  </directives>
+
+  <oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+    <generator>
+      <oval:schema_version xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">5.7</oval:schema_version>
+      <oval:timestamp xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">2012-11-05T18:18:56-05:00</oval:timestamp>
+  </generator>
+    <definitions>
+      <definition class="compliance" id="oval:nist.validation:def:1" version="1">
+        <metadata>
+          <title>MySQL security check</title>
+          <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+        <criteria>
+          <criterion comment="4.1: Test whether the mysql version is >= 4.1" test_ref="oval:nist.validation:tst:1"/>
+      </criteria> 
+    </definition>
+      <definition class="compliance" id="oval:nist.validation:def:2" version="1">
+        <metadata>
+          <title>MySQL security check</title>
+          <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+        <criteria>
+          <criterion comment="4.4: Make sure test database does not exist" test_ref="oval:nist.validation:tst:2"/>
+      </criteria> 
+    </definition>
+      <definition class="compliance" id="oval:nist.validation:def:3" version="1">
+        <metadata>
+          <title>MySQL security check</title>
+          <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+        <criteria>
+          <criterion comment="4.5: Make sure there is no 'root' account" test_ref="oval:nist.validation:tst:3"/>
+      </criteria> 
+    </definition>
+      <definition class="compliance" id="oval:nist.validation:def:4" version="1">
+        <metadata>
+          <title>MySQL security check</title>
+          <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+        <criteria>
+          <criterion comment="4.7: All password hashes should be 41 bytes or longer" test_ref="oval:nist.validation:tst:4"/>
+      </criteria> 
+    </definition>
+      <definition class="compliance" id="oval:nist.validation:def:5" version="1">
+        <metadata>
+          <title>MySQL security check</title>
+          <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+        <criteria>
+          <criterion comment="4.9: User hosts should not be wildcards" test_ref="oval:nist.validation:tst:5"/>
+      </criteria> 
+    </definition>
+  </definitions>
+    <tests>
+      <ind-def:sql511_test xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" check="all" comment="4.1: Test whether the mysql version is >= 4.1" id="oval:nist.validation:tst:1" version="1">
+        <ind-def:object object_ref="oval:nist.validation:obj:1"/>
+        <ind-def:state state_ref="oval:nist.validation:ste:1"/>
+    </ind-def:sql511_test>
+      <ind-def:sql511_test xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" check="all" check_existence="none_exist" comment="4.4: Make sure test database does not exist" id="oval:nist.validation:tst:2" version="1">
+        <ind-def:object object_ref="oval:nist.validation:obj:2"/>
+    </ind-def:sql511_test>
+      <ind-def:sql511_test xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" check="all" check_existence="none_exist" comment="4.5: Make sure there is no 'root' account" id="oval:nist.validation:tst:3" version="1">
+        <ind-def:object object_ref="oval:nist.validation:obj:3"/>
+    </ind-def:sql511_test>
+      <ind-def:sql511_test xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" check="all" check_existence="none_exist" comment="4.7: All password hashes should be 41 bytes or longer" id="oval:nist.validation:tst:4" version="1">
+        <ind-def:object object_ref="oval:nist.validation:obj:4"/>
+    </ind-def:sql511_test>
+      <ind-def:sql511_test xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" check="all" check_existence="none_exist" comment="4.9: User hosts should not be wildcards" id="oval:nist.validation:tst:5" version="1">
+        <ind-def:object object_ref="oval:nist.validation:obj:5"/>
+    </ind-def:sql511_test>
+  </tests>
+    <objects>
+      <ind-def:sql511_object xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" comment="Get mysql version" id="oval:nist.validation:obj:1" version="1">
+        <ind-def:engine>odbc</ind-def:engine>
+        <ind-def:version>1.2.3</ind-def:version>
+        <ind-def:connection_string>dsn=mysqltest</ind-def:connection_string>
+        <ind-def:sql>show variables like 'version';</ind-def:sql>
+    </ind-def:sql511_object>
+      <ind-def:sql511_object xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" comment="Get 'test' database" id="oval:nist.validation:obj:2" version="1">
+        <ind-def:engine>odbc</ind-def:engine>
+        <ind-def:version>1.2.3</ind-def:version>
+        <ind-def:connection_string>dsn=mysqltest</ind-def:connection_string>
+        <ind-def:sql>show databases like 'test';</ind-def:sql>
+    </ind-def:sql511_object>
+      <ind-def:sql511_object xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" comment="Get 'root' user" id="oval:nist.validation:obj:3" version="1">
+        <ind-def:engine>odbc</ind-def:engine>
+        <ind-def:version>1.2.3</ind-def:version>
+        <ind-def:connection_string>dsn=mysqltest</ind-def:connection_string>
+        <ind-def:sql>select user from mysql.user where user = 'root' limit 1;</ind-def:sql>
+    </ind-def:sql511_object>
+      <ind-def:sql511_object xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" comment="Get password hashes that are too short" id="oval:nist.validation:obj:4" version="1">
+        <ind-def:engine>odbc</ind-def:engine>
+        <ind-def:version>1.2.3</ind-def:version>
+        <ind-def:connection_string>dsn=mysqltest</ind-def:connection_string>
+        <ind-def:sql>select password from mysql.user where length(password) &lt; 41 limit 1;</ind-def:sql>
+    </ind-def:sql511_object>
+      <ind-def:sql511_object xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" comment="Get users with wildcard hosts" id="oval:nist.validation:obj:5" version="1">
+        <ind-def:engine>odbc</ind-def:engine>
+        <ind-def:version>1.2.3</ind-def:version>
+        <ind-def:connection_string>dsn=mysqltest</ind-def:connection_string>
+        <ind-def:sql>select host from mysql.user where host = '%' limit 1;</ind-def:sql>
+    </ind-def:sql511_object>
+  </objects>
+    <states>
+      <ind-def:sql511_state xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511" comment="version is >= 4.1" id="oval:nist.validation:ste:1" version="1">
+        <ind-def:result datatype="record">
+          <field name="variable_name">version</field>
+          <field datatype="version" name="value" operation="greater than or equal">4.1</field>
+      </ind-def:result>
+    </ind-def:sql511_state>
+  </states>
+</oval_definitions>  <results>
+    <system>
+      <definitions>
+        <definition definition_id="oval:nist.validation:def:1" result="true" version="1">
+          <criteria operator="AND" result="true">
+            <criterion result="true" test_ref="oval:nist.validation:tst:1" version="1"/>
+          </criteria>
+        </definition>
+        <definition definition_id="oval:nist.validation:def:2" result="false" version="1">
+          <criteria operator="AND" result="false">
+            <criterion result="false" test_ref="oval:nist.validation:tst:2" version="1"/>
+          </criteria>
+        </definition>
+        <definition definition_id="oval:nist.validation:def:3" result="false" version="1">
+          <criteria operator="AND" result="false">
+            <criterion result="false" test_ref="oval:nist.validation:tst:3" version="1"/>
+          </criteria>
+        </definition>
+        <definition definition_id="oval:nist.validation:def:4" result="false" version="1">
+          <criteria operator="AND" result="false">
+            <criterion result="false" test_ref="oval:nist.validation:tst:4" version="1"/>
+          </criteria>
+        </definition>
+        <definition definition_id="oval:nist.validation:def:5" result="false" version="1">
+          <criteria operator="AND" result="false">
+            <criterion result="false" test_ref="oval:nist.validation:tst:5" version="1"/>
+          </criteria>
+        </definition>
+      </definitions>
+      <tests>
+        <test check="all" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:nist.validation:tst:1" version="1">
+          <tested_item item_id="1" result="true"/>
+        </test>
+        <test check="all" check_existence="none_exist" result="false" state_operator="AND" test_id="oval:nist.validation:tst:2" version="1">
+          <tested_item item_id="2" result="not evaluated"/>
+        </test>
+        <test check="all" check_existence="none_exist" result="false" state_operator="AND" test_id="oval:nist.validation:tst:3" version="1">
+          <tested_item item_id="3" result="not evaluated"/>
+        </test>
+        <test check="all" check_existence="none_exist" result="false" state_operator="AND" test_id="oval:nist.validation:tst:4" version="1">
+          <tested_item item_id="4" result="not evaluated"/>
+        </test>
+        <test check="all" check_existence="none_exist" result="false" state_operator="AND" test_id="oval:nist.validation:tst:5" version="1">
+          <tested_item item_id="5" result="not evaluated"/>
+        </test>
+      </tests>
+      <oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">
+        <generator>
+          <oval:product_name>cpe:/a:mitre:ovaldi:5.10.1.3</oval:product_name>
+          <oval:product_version>5.10.1 Build: 3</oval:product_version>
+          <oval:schema_version>5.10.1</oval:schema_version>
+          <oval:timestamp>2012-11-15T14:37:23</oval:timestamp>
+          <vendor>The MITRE Corporation</vendor>
+        </generator>
+        <system_info>
+          <os_name>Microsoft Windows 7 Professional Service Pack 1</os_name>
+          <os_version>6.1.7601</os_version>
+          <architecture>AMD64</architecture>
+          <primary_host_name>MM188773-PC.MITRE.ORG</primary_host_name>
+          <interfaces>
+            <interface>
+              <interface_name>Intel(R) 82579LM Gigabit Network Connection</interface_name>
+              <ip_address>10.146.15.23</ip_address>
+              <mac_address>5C-26-0A-67-4C-92</mac_address>
+            </interface>
+            <interface>
+              <interface_name>VirtualBox Host-Only Ethernet Adapter</interface_name>
+              <ip_address>192.168.56.1</ip_address>
+              <mac_address>08-00-27-00-6C-82</mac_address>
+            </interface>
+          </interfaces>
+        </system_info>
+        <collected_objects>
+          <object comment="Get mysql version" flag="complete" id="oval:nist.validation:obj:1" version="1">
+            <reference item_ref="1"/>
+          </object>
+          <object comment="Get 'test' database" flag="complete" id="oval:nist.validation:obj:2" version="1">
+            <reference item_ref="2"/>
+          </object>
+          <object comment="Get 'root' user" flag="complete" id="oval:nist.validation:obj:3" version="1">
+            <reference item_ref="3"/>
+          </object>
+          <object comment="Get password hashes that are too short" flag="complete" id="oval:nist.validation:obj:4" version="1">
+            <reference item_ref="4"/>
+          </object>
+          <object comment="Get users with wildcard hosts" flag="complete" id="oval:nist.validation:obj:5" version="1">
+            <reference item_ref="5"/>
+          </object>
+        </collected_objects>
+        <system_data>
+          <sql511_item id="1" xmlns="http://oval.mitre.org/XMLSchema/x-ind-sql511">
+            <engine>odbc</engine>
+            <version>1.2.3</version>
+            <connection_string>dsn=mysqltest</connection_string>
+            <sql>show variables like 'version';</sql>
+            <result datatype="record">
+              <oval-sc:field name="variable_name">version</oval-sc:field>
+              <oval-sc:field name="value">5.5.28</oval-sc:field>
+            </result>
+          </sql511_item>
+          <sql511_item id="2" xmlns="http://oval.mitre.org/XMLSchema/x-ind-sql511">
+            <engine>odbc</engine>
+            <version>1.2.3</version>
+            <connection_string>dsn=mysqltest</connection_string>
+            <sql>show databases like 'test';</sql>
+            <result datatype="record">
+              <oval-sc:field name="database (test)">test</oval-sc:field>
+            </result>
+          </sql511_item>
+          <sql511_item id="3" xmlns="http://oval.mitre.org/XMLSchema/x-ind-sql511">
+            <engine>odbc</engine>
+            <version>1.2.3</version>
+            <connection_string>dsn=mysqltest</connection_string>
+            <sql>select user from mysql.user where user = 'root' limit 1;</sql>
+            <result datatype="record">
+              <oval-sc:field name="user">root</oval-sc:field>
+            </result>
+          </sql511_item>
+          <sql511_item id="4" xmlns="http://oval.mitre.org/XMLSchema/x-ind-sql511">
+            <engine>odbc</engine>
+            <version>1.2.3</version>
+            <connection_string>dsn=mysqltest</connection_string>
+            <sql>select password from mysql.user where length(password) &lt; 41 limit 1;</sql>
+            <result datatype="record">
+              <oval-sc:field name="password"></oval-sc:field>
+            </result>
+          </sql511_item>
+          <sql511_item id="5" xmlns="http://oval.mitre.org/XMLSchema/x-ind-sql511">
+            <engine>odbc</engine>
+            <version>1.2.3</version>
+            <connection_string>dsn=mysqltest</connection_string>
+            <sql>select host from mysql.user where host = '%' limit 1;</sql>
+            <result datatype="record">
+              <oval-sc:field name="host">%</oval-sc:field>
+            </result>
+          </sql511_item>
+        </system_data>
+      </oval_system_characteristics>
+    </system>
+  </results>
+
+</oval_results>

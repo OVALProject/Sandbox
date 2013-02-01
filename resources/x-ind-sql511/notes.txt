@@ -1,0 +1,72 @@
+sql511 Test Support
+===================
+
+Experimental code implementing this test may be found in the ovaldi Subversion
+source repository branch:
+
+https://ovaldi.svn.sourceforge.net/svnroot/ovaldi/branches/sql57_probes
+
+Windows:
+--------
+
+On Windows, the probe is implemented using the .NET data API.  This API works 
+via "providers", and the sample definition was written using ODBC to query a
+MySQL database.  This means you must have a suitable ODBC datasource set up.
+Setting up an ODBC datasource which can query a MySQL database requires a
+MySQL ODBC driver be installed.  Note that the bitness of the driver must
+match the bitness of the ODBC datasource and of the ovaldi build.  MySQL ODBC
+drivers are available at:
+
+http://dev.mysql.com/downloads/connector/odbc/
+
+The Windows sql511 probe implementation selects a data provider based on the
+<engine> object entity, and rather than add MySQL as a legal enumerator for
+that entity, a generic "odbc" enumerator was added which specifically instructs
+the probe to use the ODBC provider.  This enables interoperability with any
+ODBC-capable database.  In keeping with the pattern established by the other
+enumerators though, the "odbc" enumerator will probably be replaced with actual
+database names in the future.
+
+On a 64-bit Windows computer, you can configure 32-bit ODBC datasources by
+running:
+
+C:\Windows\SysWOW64\odbcad32.exe
+
+You can configure 64-bit ODBC datasources by navigating to the control panel:
+
+Control Panel -> Adminstrative Tools -> Data Sources (ODBC)
+
+or by running
+
+C:\Windows\System32\odbcad32.exe
+
+Linux:
+------
+
+The Linux implementation of the probe uses the libodbc++ library, which provides
+an easier to use C++ wrapper around the raw ODBC API.  libodbc++ is available
+from:
+
+http://libodbcxx.sourceforge.net/
+
+libodbc++ requires an ODBC driver manager implementation to wrap.  It is
+compatible with two: unixODBC and iODBC.  Their homepages are:
+
+http://www.unixodbc.org/
+http://www.iodbc.org/
+
+It doesn't matter which you use; ovaldi has no direct dependency on either.
+Within the driver manager, you must install an ODBC driver.  The details of this
+vary slightly between the managers, and depend on how they were configured when
+they were built.  Once your ODBC driver manager and driver are set up and 
+working, ovaldi should be able to run queries against your database.
+
+The probe was tested on linux (rhel5) using unixODBC.  For information on
+setting up drivers and datasources for unixODBC using commandline tools, see:
+
+http://www.unixodbc.org/odbcinst.html
+
+MySQL drivers for Linux are available from the same source as Windows (see
+above).
+
+

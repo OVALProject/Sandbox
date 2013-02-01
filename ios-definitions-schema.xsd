@@ -107,7 +107,7 @@
             </xsd:complexType>
       </xsd:element>
       <!-- =============================================================================== -->
-      <!-- =============================  INTERFACE TEST  ================================ -->
+      <!-- =======================  INTERFACE TEST (deprecated)  ========================= -->
       <!-- =============================================================================== -->
       <xsd:element name="interface_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
@@ -119,6 +119,18 @@
                               <oval:state>interface_state</oval:state>
                               <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios">interface_item</oval:item>
                         </oval:element_mapping>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>The interface test, object, state, and item have been deprecated because some of the desired improvements for this test would break backwards compatibility with existing content. As a result, this test has been deprecated in favor of the interface511_test. Please see the interface511_test for more information.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="ios-def_interfacetst_dep">
+                              <sch:rule context="ios-def:interface_test">
+                                    <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>
                   </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="ios-def_interfacetst">
@@ -145,6 +157,18 @@
       <xsd:element name="interface_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
                   <xsd:documentation/>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>The interface test, object, state, and item have been deprecated because some of the desired improvements for this test would break backwards compatibility with existing content. As a result, this object has been deprecated in favor of the interface511_object. Please see the interface511_object for more information.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="ios-def_interfaceobj_dep">
+                              <sch:rule context="ios-def:interface_object">
+                                    <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>                        
+                  </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="ios-def_interface_object_verify_filter_state">
                               <sch:rule context="ios-def:interface_object//oval-def:filter">
@@ -182,6 +206,18 @@
       <xsd:element name="interface_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
                   <xsd:documentation/>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>The interface test, object, state, and item have been deprecated because some of the desired improvements for this test would break backwards compatibility with existing content. As a result, this state has been deprecated in favor of the interface511_state. Please see the interface511_state for more information.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="ios-def_interfaceste_dep">
+                              <sch:rule context="ios-def:interface_state">
+                                    <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>                        
+                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -315,7 +351,7 @@
             </xsd:complexType>
       </xsd:element>
       <!-- =============================================================================== -->
-      <!-- =================================  SNMP TEST  ================================= -->
+      <!-- ============================  SNMP TEST (deprecated)  ========================= -->
       <!-- =============================================================================== -->
       <xsd:element name="snmp_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
@@ -327,6 +363,18 @@
                               <oval:state>snmp_state</oval:state>
                               <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios">snmp_item</oval:item>
                         </oval:element_mapping>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
+                      <oval:deprecated_info>
+                          <oval:version>5.11</oval:version>
+                          <oval:reason>The SNMP test, object/state/item are too generic to include the Cisco IOS SNMP feature. As a result, this test has been deprecated. New SNMP test/object/state/items will be created for Cisco IOS.</oval:reason>
+                          <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                      </oval:deprecated_info>
+                      <sch:pattern id="ios-def_snmptst_dep">
+                          <sch:rule context="ios-def:snmp_test">
+                              <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                          </sch:rule>
+                      </sch:pattern>
                   </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="ios-def_snmptst">
@@ -353,6 +401,18 @@
       <xsd:element name="snmp_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
                   <xsd:documentation>The snmp_object element is used by a snmp test to define those objects to evaluated based on a specified state. There is actually only one object relating to snmp and this is the system as a whole. Therefore, there are no child entities defined. Any OVAL Test written to check snmp will reference the same snmp_object which is basically an empty object element.</xsd:documentation>
+            <xsd:appinfo>
+                      <oval:deprecated_info>
+                          <oval:version>5.11</oval:version>
+                          <oval:reason>The SNMP test, object/state/item are too generic to include the Cisco IOS SNMP feature. As a result, this object has been deprecated. New SNMP test/object/state/items will be created for Cisco IOS.</oval:reason>
+                          <oval:comment>This object has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                      </oval:deprecated_info>
+                      <sch:pattern id="ios-def_snmpobj_dep">
+                          <sch:rule context="ios-def:snmp_object">
+                              <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                          </sch:rule>
+                      </sch:pattern>                        
+                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -363,6 +423,18 @@
       <xsd:element name="snmp_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
                   <xsd:documentation/>
+            <xsd:appinfo>
+                      <oval:deprecated_info>
+                          <oval:version>5.11</oval:version>
+                          <oval:reason>The SNMP test, object/state/item are too generic to include the Cisco IOS SNMP feature. As a result, this state has been deprecated. New SNMP test/object/state/items will be created for Cisco IOS.</oval:reason>
+                          <oval:comment>This state has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                      </oval:deprecated_info>
+                      <sch:pattern id="ios-def_snmpste_dep">
+                          <sch:rule context="ios-def:snmp_state">
+                              <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                          </sch:rule>
+                      </sch:pattern>                        
+                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>

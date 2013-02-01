@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd   http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-ind-sql511 x-ind-sql511.xsd" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:ind-def="http://oval.mitre.org/XMLSchema/x-ind-sql511">
+  <generator>
+    <oval:schema_version>5.7</oval:schema_version>
+    <oval:timestamp>2012-11-05T18:18:56-05:00</oval:timestamp>
+  </generator>
+  <definitions>
+    <definition id="oval:nist.validation:def:1" version="1" class="compliance">
+      <metadata>
+        <title>MySQL security check</title>
+        <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+      <criteria>
+        <criterion test_ref="oval:nist.validation:tst:1" comment="4.1: Test whether the mysql version is >= 4.1"/>
+      </criteria> 
+    </definition>
+    <definition id="oval:nist.validation:def:2" version="1" class="compliance">
+      <metadata>
+        <title>MySQL security check</title>
+        <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+      <criteria>
+        <criterion test_ref="oval:nist.validation:tst:2" comment="4.4: Make sure test database does not exist"/>
+      </criteria> 
+    </definition>
+    <definition id="oval:nist.validation:def:3" version="1" class="compliance">
+      <metadata>
+        <title>MySQL security check</title>
+        <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+      <criteria>
+        <criterion test_ref="oval:nist.validation:tst:3" comment="4.5: Make sure there is no 'root' account"/>
+      </criteria> 
+    </definition>
+    <definition id="oval:nist.validation:def:4" version="1" class="compliance">
+      <metadata>
+        <title>MySQL security check</title>
+        <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+      <criteria>
+        <criterion test_ref="oval:nist.validation:tst:4" comment="4.7: All password hashes should be 41 bytes or longer"/>
+      </criteria> 
+    </definition>
+    <definition id="oval:nist.validation:def:5" version="1" class="compliance">
+      <metadata>
+        <title>MySQL security check</title>
+        <description>Check if a MySQL database is secure.  Uses guidelines from http://benchmarks.cisecurity.org/tools2/mysql/CIS_MySQL_Benchmark_v1.0.2.pdf</description>
+      </metadata>
+      <criteria>
+        <criterion test_ref="oval:nist.validation:tst:5" comment="4.9: User hosts should not be wildcards"/>
+      </criteria> 
+    </definition>
+  </definitions>
+  <tests>
+    <ind-def:sql511_test id="oval:nist.validation:tst:1" version="1" check="all" comment="4.1: Test whether the mysql version is >= 4.1">
+      <ind-def:object object_ref="oval:nist.validation:obj:1"/>
+      <ind-def:state state_ref="oval:nist.validation:ste:1"/>
+    </ind-def:sql511_test>
+    <ind-def:sql511_test id="oval:nist.validation:tst:2" version="1" check="all" check_existence="none_exist" comment="4.4: Make sure test database does not exist">
+      <ind-def:object object_ref="oval:nist.validation:obj:2"/>
+    </ind-def:sql511_test>
+    <ind-def:sql511_test id="oval:nist.validation:tst:3" version="1" check="all" check_existence="none_exist" comment="4.5: Make sure there is no 'root' account">
+      <ind-def:object object_ref="oval:nist.validation:obj:3"/>
+    </ind-def:sql511_test>
+    <ind-def:sql511_test id="oval:nist.validation:tst:4" version="1" check="all" check_existence="none_exist" comment="4.7: All password hashes should be 41 bytes or longer">
+      <ind-def:object object_ref="oval:nist.validation:obj:4"/>
+    </ind-def:sql511_test>
+    <ind-def:sql511_test id="oval:nist.validation:tst:5" version="1" check="all" check_existence="none_exist" comment="4.9: User hosts should not be wildcards">
+      <ind-def:object object_ref="oval:nist.validation:obj:5"/>
+    </ind-def:sql511_test>
+  </tests>
+  <objects>
+    <ind-def:sql511_object id="oval:nist.validation:obj:1" comment="Get mysql version" version="1">
+      <ind-def:engine>odbc</ind-def:engine>
+      <ind-def:version>1.2.3</ind-def:version>
+      <ind-def:connection_string>dsn=mysqltest</ind-def:connection_string>
+      <ind-def:sql>show variables like 'version';</ind-def:sql>
+    </ind-def:sql511_object>
+    <ind-def:sql511_object id="oval:nist.validation:obj:2" comment="Get 'test' database" version="1">
+      <ind-def:engine>odbc</ind-def:engine>
+      <ind-def:version>1.2.3</ind-def:version>
+      <ind-def:connection_string>dsn=mysqltest</ind-def:connection_string>
+      <ind-def:sql>show databases like 'test';</ind-def:sql>
+    </ind-def:sql511_object>
+    <ind-def:sql511_object id="oval:nist.validation:obj:3" comment="Get 'root' user" version="1">
+      <ind-def:engine>odbc</ind-def:engine>
+      <ind-def:version>1.2.3</ind-def:version>
+      <ind-def:connection_string>dsn=mysqltest</ind-def:connection_string>
+      <ind-def:sql>select user from mysql.user where user = 'root' limit 1;</ind-def:sql>
+    </ind-def:sql511_object>
+    <ind-def:sql511_object id="oval:nist.validation:obj:4" comment="Get password hashes that are too short" version="1">
+      <ind-def:engine>odbc</ind-def:engine>
+      <ind-def:version>1.2.3</ind-def:version>
+      <ind-def:connection_string>dsn=mysqltest</ind-def:connection_string>
+      <ind-def:sql>select password from mysql.user where length(password) &lt; 41 limit 1;</ind-def:sql>
+    </ind-def:sql511_object>
+    <ind-def:sql511_object id="oval:nist.validation:obj:5" comment="Get users with wildcard hosts" version="1">
+      <ind-def:engine>odbc</ind-def:engine>
+      <ind-def:version>1.2.3</ind-def:version>
+      <ind-def:connection_string>dsn=mysqltest</ind-def:connection_string>
+      <ind-def:sql>select host from mysql.user where host = '%' limit 1;</ind-def:sql>
+    </ind-def:sql511_object>
+  </objects>
+  <states>
+    <ind-def:sql511_state id="oval:nist.validation:ste:1" version="1" comment="version is >= 4.1">
+      <ind-def:result datatype="record">
+        <field name="variable_name">version</field>
+        <field name="value" datatype="version" operation="greater than or equal">4.1</field>
+      </ind-def:result>
+    </ind-def:sql511_state>
+  </states>
+</oval_definitions>

@@ -44,3 +44,5 @@ On-hold for technical reasons:
 
 3.       adb_system_test
 
+
+Sample OVAL content can be downloaded from SCAPrepo (http://www.scaprepo.com/) by searching for "android definitions".
