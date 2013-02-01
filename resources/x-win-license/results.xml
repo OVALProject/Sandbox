@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oval_results xmlns:xmldsig="http://www.w3.org/2000/09/xmldsig#" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:apache-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#apache" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:linux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:hpux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux" xmlns:macos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:unix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix" xmlns:linux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:ind-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent" xmlns:hpux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#hpux" xmlns:macos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#macos" xmlns:netconf-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#netconf" xmlns:junos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#junos" xmlns:aix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#aix" xmlns:esx-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#esx" xmlns:sharepoint-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint" xmlns:pixos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#pixos" xmlns:catos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#catos" xmlns:ios-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" xmlns:solaris-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris" xmlns:freebsd-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#freebsd" xmlns:esx-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#esx" xmlns:apache-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apache" xmlns:sharepoint-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#sharepoint" xmlns:netconf-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#netconf" xmlns:aix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#aix" xmlns:solaris-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris" xmlns:ios-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios" xmlns:junos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#junos" xmlns:catos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#catos" xmlns:pixos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#pixos" xmlns:freebsd-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#freebsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#esx esx-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux linux-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#netconf netconf-system-characteristics-schema.xsd http://www.w3.org/2000/09/xmldsig# xmldsig-core-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#macos macos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios ios-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#aix aix-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris solaris-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#junos junos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#pixos pixos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#hpux hpux-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix unix-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent independent-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apache apache-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows windows-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#freebsd freebsd-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#sharepoint sharepoint-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#catos catos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint sharepoint-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux hpux-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#apache apache-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#esx esx-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris solaris-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#pixos pixos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#ios ios-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#netconf netconf-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#catos catos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#aix aix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#macos macos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#junos junos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#freebsd freebsd-definitions-schema.xsd">
+    <generator>
+        <oval:product_name>jOVAL Definition Interpreter</oval:product_name>
+        <oval:product_version>5.10.1.1</oval:product_version>
+        <oval:schema_version>5.10.1</oval:schema_version>
+        <oval:timestamp>2013-02-01T11:43:17.821-06:00</oval:timestamp>
+    </generator>
+    <directives include_source_definitions="true">
+        <definition_true reported="true" content="full"/>
+        <definition_false reported="true" content="full"/>
+        <definition_unknown reported="true" content="full"/>
+        <definition_error reported="true" content="full"/>
+        <definition_not_evaluated reported="true" content="full"/>
+        <definition_not_applicable reported="true" content="full"/>
+    </directives>
+    <oval-def:oval_definitions>
+        <oval-def:generator>
+            <oval:schema_version>5.10.1</oval:schema_version>
+            <oval:timestamp>2012-04-10T11:58:00-06:00</oval:timestamp>
+        </oval-def:generator>
+        <oval-def:definitions>
+            <oval-def:definition id="oval:org.joval.oval.test:def:100" version="1" class="miscellaneous">
+                <oval-def:metadata>
+                    <oval-def:title>Evaluate to true if the win-def:license_test is properly supported.</oval-def:title>
+                    <oval-def:description>This definition is intended to evalutate to true if the interpreter properly supports the win-def:license_test.</oval-def:description>
+                </oval-def:metadata>
+                <oval-def:notes>
+                    <oval-def:note>It is important to note that the values used in this test definition are specific to a particular machine, and may not necessarily apply to your system. As a result, in order to have the definition return a result of 'true', you must either change these values to the ones found on your particular system, or you must configure your system to use these values.</oval-def:note>
+                </oval-def:notes>
+                <oval-def:criteria>
+                    <oval-def:criterion test_ref="oval:org.joval.oval.test:tst:100" comment="Test if a license_object is supported."/>
+                </oval-def:criteria>
+            </oval-def:definition>
+        </oval-def:definitions>
+        <oval-def:tests>
+            <win-def:license_test id="oval:org.joval.oval.test:tst:100" version="1" check_existence="at_least_one_exists" check="all" comment="Test if a license_object is supported.">
+                <win-def:object object_ref="oval:org.joval.oval.test:obj:100"/>
+                <win-def:state state_ref="oval:org.joval.oval.test:ste:100"/>
+            </win-def:license_test>
+        </oval-def:tests>
+        <oval-def:objects>
+            <win-def:license_object id="oval:org.joval.oval.test:obj:100" version="1" comment="Retrieve a license_object with a name matching the pattern '^Microsoft'.">
+                <win-def:name operation="pattern match">^Microsoft</win-def:name>
+            </win-def:license_object>
+        </oval-def:objects>
+        <oval-def:states>
+            <win-def:license_state id="oval:org.joval.oval.test:ste:100" version="1" comment="This license_state represents a license_object with a name matching the pattern '^Microsoft'.">
+                <win-def:name operation="pattern match">^Microsoft</win-def:name>
+            </win-def:license_state>
+        </oval-def:states>
+    </oval-def:oval_definitions>
+    <results>
+        <system>
+            <definitions>
+                <definition definition_id="oval:org.joval.oval.test:def:100" version="1" class="miscellaneous" result="true">
+                    <criteria operator="AND" result="true">
+                        <criterion test_ref="oval:org.joval.oval.test:tst:100" result="true"/>
+                    </criteria>
+                </definition>
+            </definitions>
+            <tests>
+                <test test_id="oval:org.joval.oval.test:tst:100" check_existence="at_least_one_exists" check="all" state_operator="AND" result="true">
+                    <tested_item item_id="0" result="true"/>
+                    <tested_item item_id="1" result="true"/>
+                    <tested_item item_id="2" result="true"/>
+                    <tested_item item_id="3" result="true"/>
+                    <tested_item item_id="4" result="true"/>
+                    <tested_item item_id="5" result="true"/>
+                    <tested_item item_id="6" result="true"/>
+                    <tested_item item_id="7" result="true"/>
+                    <tested_item item_id="8" result="true"/>
+                    <tested_item item_id="9" result="true"/>
+                    <tested_item item_id="10" result="true"/>
+                    <tested_item item_id="11" result="true"/>
+                    <tested_item item_id="12" result="true"/>
+                    <tested_item item_id="13" result="true"/>
+                    <tested_item item_id="14" result="true"/>
+                    <tested_item item_id="15" result="true"/>
+                    <tested_item item_id="17" result="true"/>
+                    <tested_item item_id="16" result="true"/>
+                    <tested_item item_id="19" result="true"/>
+                    <tested_item item_id="18" result="true"/>
+                    <tested_item item_id="21" result="true"/>
+                    <tested_item item_id="20" result="true"/>
+                    <tested_item item_id="23" result="true"/>
+                    <tested_item item_id="22" result="true"/>
+                    <tested_item item_id="25" result="true"/>
+                    <tested_item item_id="24" result="true"/>
+                    <tested_item item_id="27" result="true"/>
+                    <tested_item item_id="26" result="true"/>
+                    <tested_item item_id="29" result="true"/>
+                    <tested_item item_id="28" result="true"/>
+                    <tested_item item_id="31" result="true"/>
+                    <tested_item item_id="30" result="true"/>
+                    <tested_item item_id="32" result="true"/>
+                    <tested_item item_id="33" result="true"/>
+                </test>
+            </tests>
+            <oval-sc:oval_system_characteristics>
+                <oval-sc:generator>
+                    <oval:product_name>jOVAL Definition Interpreter</oval:product_name>
+                    <oval:product_version>5.10.1.1</oval:product_version>
+                    <oval:schema_version>5.10.1</oval:schema_version>
+                    <oval:timestamp>2013-02-01T11:43:17.821-06:00</oval:timestamp>
+                </oval-sc:generator>
+                <oval-sc:system_info>
+                    <oval-sc:os_name>Windows 7 Professional</oval-sc:os_name>
+                    <oval-sc:os_version>6.1</oval-sc:os_version>
+                    <oval-sc:architecture>AMD64</oval-sc:architecture>
+                    <oval-sc:primary_host_name>TARDIS</oval-sc:primary_host_name>
+                    <oval-sc:interfaces>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>DW1501 Wireless-N WLAN Half-Mini Card</oval-sc:interface_name>
+                            <oval-sc:ip_address>192.168.0.109</oval-sc:ip_address>
+                            <oval-sc:mac_address>68:A3:C4:3F:A7:E7</oval-sc:mac_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>DW1501 Wireless-N WLAN Half-Mini Card</oval-sc:interface_name>
+                            <oval-sc:ip_address>fe80::212d:bb5:dd1d:7672</oval-sc:ip_address>
+                            <oval-sc:mac_address>68:A3:C4:3F:A7:E7</oval-sc:mac_address>
+                        </oval-sc:interface>
+                    </oval-sc:interfaces>
+                </oval-sc:system_info>
+                <oval-sc:collected_objects>
+                    <oval-sc:object id="oval:org.joval.oval.test:obj:100" version="1" comment="Retrieve a license_object with a name matching the pattern '^Microsoft'." flag="complete">
+                        <oval-sc:reference item_ref="0"/>
+                        <oval-sc:reference item_ref="1"/>
+                        <oval-sc:reference item_ref="2"/>
+                        <oval-sc:reference item_ref="3"/>
+                        <oval-sc:reference item_ref="4"/>
+                        <oval-sc:reference item_ref="5"/>
+                        <oval-sc:reference item_ref="6"/>
+                        <oval-sc:reference item_ref="7"/>
+                        <oval-sc:reference item_ref="8"/>
+                        <oval-sc:reference item_ref="9"/>
+                        <oval-sc:reference item_ref="10"/>
+                        <oval-sc:reference item_ref="11"/>
+                        <oval-sc:reference item_ref="12"/>
+                        <oval-sc:reference item_ref="13"/>
+                        <oval-sc:reference item_ref="14"/>
+                        <oval-sc:reference item_ref="15"/>
+                        <oval-sc:reference item_ref="17"/>
+                        <oval-sc:reference item_ref="16"/>
+                        <oval-sc:reference item_ref="19"/>
+                        <oval-sc:reference item_ref="18"/>
+                        <oval-sc:reference item_ref="21"/>
+                        <oval-sc:reference item_ref="20"/>
+                        <oval-sc:reference item_ref="23"/>
+                        <oval-sc:reference item_ref="22"/>
+                        <oval-sc:reference item_ref="25"/>
+                        <oval-sc:reference item_ref="24"/>
+                        <oval-sc:reference item_ref="27"/>
+                        <oval-sc:reference item_ref="26"/>
+                        <oval-sc:reference item_ref="29"/>
+                        <oval-sc:reference item_ref="28"/>
+                        <oval-sc:reference item_ref="31"/>
+                        <oval-sc:reference item_ref="30"/>
+                        <oval-sc:reference item_ref="32"/>
+                        <oval-sc:reference item_ref="33"/>
+                    </oval-sc:object>
+                </oval-sc:collected_objects>
+                <oval-sc:system_data>
+                    <win-sc:license_item id="0">
+                        <win-sc:name datatype="string">Microsoft-Windows-OfflineFiles-Core-FeatureEnabled</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="1">
+                        <win-sc:name datatype="string">Microsoft-Windows-Core-AllowedControlledDevicesForBoot</win-sc:name>
+                        <win-sc:type>reg_sz</win-sc:type>
+                        <win-sc:value datatype="string">12</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="2">
+                        <win-sc:name datatype="string">Microsoft-Windows-Fax-Common-EnableServerPolicy</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="3">
+                        <win-sc:name datatype="string">Microsoft-Windows-DOT11PREF-AllowAdhoc</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="4">
+                        <win-sc:name datatype="string">Microsoft-Windows-SensorsLicense-EnableCPL</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="5">
+                        <win-sc:name datatype="string">Microsoft-Windows-DesktopWindowManager-Core-ThumbnailsAllowed</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="6">
+                        <win-sc:name datatype="string">Microsoft-Windows-DesktopWindowManager-Core-Flip3dAllowed</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="7">
+                        <win-sc:name datatype="string">Microsoft-Windows-DesktopWindowManager-Core-TransparencyAllowed</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="8">
+                        <win-sc:name datatype="string">Microsoft-Windows-OfflineFiles-Core-BranchCachingEnabled</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="9">
+                        <win-sc:name datatype="string">Microsoft-Windows-Core-MaxHRes</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">-1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="10">
+                        <win-sc:name datatype="string">Microsoft-Windows-QWAVE-Layer3Probing</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="11">
+                        <win-sc:name datatype="string">Microsoft-Windows-Core-MaxVRes</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">-1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="12">
+                        <win-sc:name datatype="string">Microsoft-Windows-HotStart-EnableHotStart</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="13">
+                        <win-sc:name datatype="string">Microsoft-Windows-Core-MaxConcurrentIApp</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="14">
+                        <win-sc:name datatype="string">Microsoft-Windows-AuxiliaryDisplay-EnableSDP</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="15">
+                        <win-sc:name datatype="string">Microsoft-Windows-Core-InstanceLimitExemptedApps</win-sc:name>
+                        <win-sc:type>reg_sz</win-sc:type>
+                        <win-sc:value datatype="string"></win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="17">
+                        <win-sc:name datatype="string">Microsoft-Windows-AuxiliaryDisplay-EnableCPL</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="16">
+                        <win-sc:name datatype="string">Microsoft-Windows-Fax-Common-DeviceLimit</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="19">
+                        <win-sc:name datatype="string">Microsoft-Windows-AuxiliaryDisplay-EnableAPI</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="18">
+                        <win-sc:name datatype="string">MicrosoftWindowsSafeDocsMain-GPSupport</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="21">
+                        <win-sc:name datatype="string">MicrosoftWindowsSafeDocsMain-BackupToNetShare</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="20">
+                        <win-sc:name datatype="string">Microsoft-Windows-Core-ParentProcessDenyList</win-sc:name>
+                        <win-sc:type>reg_sz</win-sc:type>
+                        <win-sc:value datatype="string"></win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="23">
+                        <win-sc:name datatype="string">Microsoft-Windows-InternetConnectionSharingConfig-HomeNetBeacon</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="22">
+                        <win-sc:name datatype="string">Microsoft-Windows-QWAVE-EnableAdaptiveFlow</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="25">
+                        <win-sc:name datatype="string">Microsoft-Windows-DesktopWindowManager-Core-CompositionAllowed</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="24">
+                        <win-sc:name datatype="string">Microsoft-Windows-DesktopWindowManager-Core-LivePreviewAllowed</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="27">
+                        <win-sc:name datatype="string">MicrosoftWindowsSafeDocsMain-PerUserBackup</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="26">
+                        <win-sc:name datatype="string">Microsoft-Windows-Core-AllowMultiMon</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="29">
+                        <win-sc:name datatype="string">Microsoft-Windows-NetworkBridge-WindowsHomeNwkEnabled</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="28">
+                        <win-sc:name datatype="string">Microsoft-Windows-DesktopWindowManager-Core-AnimatedTransitionsAllowed</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="31">
+                        <win-sc:name datatype="string">Microsoft-Windows-AuxiliaryDisplay-EnableDriver</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="30">
+                        <win-sc:name datatype="string">Microsoft-Windows-Core-NeedsFullOEMVerification</win-sc:name>
+                        <win-sc:type>reg_sz</win-sc:type>
+                        <win-sc:value datatype="string">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="32">
+                        <win-sc:name datatype="string">Microsoft-Windows-InternetConnectionSharingConfig-HomeNetICS</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:license_item>
+                    <win-sc:license_item id="33">
+                        <win-sc:name datatype="string">Microsoft-Windows-Core-MaxTopLevelWinPerApp</win-sc:name>
+                        <win-sc:type>reg_dword</win-sc:type>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:license_item>
+                </oval-sc:system_data>
+            </oval-sc:oval_system_characteristics>
+        </system>
+    </results>
+</oval_results>

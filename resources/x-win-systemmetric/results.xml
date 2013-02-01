@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oval_results xmlns:xmldsig="http://www.w3.org/2000/09/xmldsig#" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:apache-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#apache" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:linux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:hpux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux" xmlns:macos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:unix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix" xmlns:linux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:ind-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent" xmlns:hpux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#hpux" xmlns:macos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#macos" xmlns:netconf-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#netconf" xmlns:junos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#junos" xmlns:aix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#aix" xmlns:esx-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#esx" xmlns:sharepoint-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint" xmlns:pixos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#pixos" xmlns:catos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#catos" xmlns:ios-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" xmlns:solaris-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris" xmlns:freebsd-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#freebsd" xmlns:esx-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#esx" xmlns:apache-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apache" xmlns:sharepoint-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#sharepoint" xmlns:netconf-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#netconf" xmlns:aix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#aix" xmlns:solaris-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris" xmlns:ios-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios" xmlns:junos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#junos" xmlns:catos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#catos" xmlns:pixos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#pixos" xmlns:freebsd-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#freebsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#esx esx-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux linux-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#netconf netconf-system-characteristics-schema.xsd http://www.w3.org/2000/09/xmldsig# xmldsig-core-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#macos macos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios ios-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#aix aix-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris solaris-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#junos junos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#pixos pixos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#hpux hpux-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix unix-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent independent-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apache apache-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows windows-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#freebsd freebsd-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#sharepoint sharepoint-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#catos catos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint sharepoint-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux hpux-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#apache apache-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#esx esx-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris solaris-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#pixos pixos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#ios ios-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#netconf netconf-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#catos catos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#aix aix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#macos macos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#junos junos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#freebsd freebsd-definitions-schema.xsd">
+    <generator>
+        <oval:product_name>jOVAL Definition Interpreter</oval:product_name>
+        <oval:product_version>5.10.1.1</oval:product_version>
+        <oval:schema_version>5.10.1</oval:schema_version>
+        <oval:timestamp>2013-02-01T11:42:36.295-06:00</oval:timestamp>
+    </generator>
+    <directives include_source_definitions="true">
+        <definition_true reported="true" content="full"/>
+        <definition_false reported="true" content="full"/>
+        <definition_unknown reported="true" content="full"/>
+        <definition_error reported="true" content="full"/>
+        <definition_not_evaluated reported="true" content="full"/>
+        <definition_not_applicable reported="true" content="full"/>
+    </directives>
+    <oval-def:oval_definitions>
+        <oval-def:generator>
+            <oval:schema_version>5.10.1</oval:schema_version>
+            <oval:timestamp>2012-04-10T11:58:00-06:00</oval:timestamp>
+        </oval-def:generator>
+        <oval-def:definitions>
+            <oval-def:definition id="oval:org.joval.oval.test:def:100" version="1" class="miscellaneous">
+                <oval-def:metadata>
+                    <oval-def:title>Evaluate to true if the win-def:systemmetric_test is properly supported.</oval-def:title>
+                    <oval-def:description>This definition is intended to evalutate to true if the interpreter properly supports the win-def:systemmetric_test.</oval-def:description>
+                </oval-def:metadata>
+                <oval-def:notes>
+                    <oval-def:note>It is important to note that the values used in this test definition are specific to a particular machine, and may not necessarily apply to your system. As a result, in order to have the definition return a result of 'true', you must either change these values to the ones found on your particular system, or you must configure your system to use these values.</oval-def:note>
+                </oval-def:notes>
+                <oval-def:criteria>
+                    <oval-def:criterion test_ref="oval:org.joval.oval.test:tst:110" comment="Test if a systemmetric_object is supported."/>
+                </oval-def:criteria>
+            </oval-def:definition>
+        </oval-def:definitions>
+        <oval-def:tests>
+            <win-def:systemmetric_test id="oval:org.joval.oval.test:tst:110" version="1" check_existence="at_least_one_exists" check="all" comment="Test if a systemmetric_object is supported.">
+                <win-def:object object_ref="oval:org.joval.oval.test:obj:110"/>
+                <win-def:state state_ref="oval:org.joval.oval.test:ste:110"/>
+            </win-def:systemmetric_test>
+        </oval-def:tests>
+        <oval-def:objects>
+            <win-def:systemmetric_object id="oval:org.joval.oval.test:obj:110" version="1" comment="Retrieve a systemmetric_object with a name matching the pattern '^SM_'.">
+                <win-def:index operation="not equal">SM_CMOUSEBUTTONS</win-def:index>
+            </win-def:systemmetric_object>
+        </oval-def:objects>
+        <oval-def:states>
+            <win-def:systemmetric_state id="oval:org.joval.oval.test:ste:110" version="1" comment="This systemmetric_state represents a license_object with an index matching the pattern '^SM_'.">
+                <win-def:index operation="not equal">SM_CMOUSEBUTTONS</win-def:index>
+            </win-def:systemmetric_state>
+        </oval-def:states>
+    </oval-def:oval_definitions>
+    <results>
+        <system>
+            <definitions>
+                <definition definition_id="oval:org.joval.oval.test:def:100" version="1" class="miscellaneous" result="true">
+                    <criteria operator="AND" result="true">
+                        <criterion test_ref="oval:org.joval.oval.test:tst:110" result="true"/>
+                    </criteria>
+                </definition>
+            </definitions>
+            <tests>
+                <test test_id="oval:org.joval.oval.test:tst:110" check_existence="at_least_one_exists" check="all" state_operator="AND" result="true">
+                    <tested_item item_id="0" result="true"/>
+                    <tested_item item_id="1" result="true"/>
+                    <tested_item item_id="2" result="true"/>
+                    <tested_item item_id="3" result="true"/>
+                    <tested_item item_id="4" result="true"/>
+                    <tested_item item_id="5" result="true"/>
+                    <tested_item item_id="6" result="true"/>
+                    <tested_item item_id="7" result="true"/>
+                    <tested_item item_id="8" result="true"/>
+                    <tested_item item_id="9" result="true"/>
+                    <tested_item item_id="10" result="true"/>
+                    <tested_item item_id="11" result="true"/>
+                    <tested_item item_id="12" result="true"/>
+                    <tested_item item_id="13" result="true"/>
+                    <tested_item item_id="14" result="true"/>
+                    <tested_item item_id="15" result="true"/>
+                    <tested_item item_id="17" result="true"/>
+                    <tested_item item_id="16" result="true"/>
+                    <tested_item item_id="19" result="true"/>
+                    <tested_item item_id="18" result="true"/>
+                    <tested_item item_id="21" result="true"/>
+                    <tested_item item_id="20" result="true"/>
+                    <tested_item item_id="23" result="true"/>
+                    <tested_item item_id="22" result="true"/>
+                    <tested_item item_id="25" result="true"/>
+                    <tested_item item_id="24" result="true"/>
+                    <tested_item item_id="27" result="true"/>
+                    <tested_item item_id="26" result="true"/>
+                    <tested_item item_id="29" result="true"/>
+                    <tested_item item_id="28" result="true"/>
+                    <tested_item item_id="31" result="true"/>
+                    <tested_item item_id="30" result="true"/>
+                    <tested_item item_id="34" result="true"/>
+                    <tested_item item_id="35" result="true"/>
+                    <tested_item item_id="32" result="true"/>
+                    <tested_item item_id="33" result="true"/>
+                    <tested_item item_id="38" result="true"/>
+                    <tested_item item_id="39" result="true"/>
+                    <tested_item item_id="36" result="true"/>
+                    <tested_item item_id="37" result="true"/>
+                    <tested_item item_id="42" result="true"/>
+                    <tested_item item_id="43" result="true"/>
+                    <tested_item item_id="40" result="true"/>
+                    <tested_item item_id="41" result="true"/>
+                    <tested_item item_id="46" result="true"/>
+                    <tested_item item_id="47" result="true"/>
+                    <tested_item item_id="44" result="true"/>
+                    <tested_item item_id="45" result="true"/>
+                    <tested_item item_id="51" result="true"/>
+                    <tested_item item_id="50" result="true"/>
+                    <tested_item item_id="49" result="true"/>
+                    <tested_item item_id="48" result="true"/>
+                    <tested_item item_id="55" result="true"/>
+                    <tested_item item_id="54" result="true"/>
+                    <tested_item item_id="53" result="true"/>
+                    <tested_item item_id="52" result="true"/>
+                    <tested_item item_id="59" result="true"/>
+                    <tested_item item_id="58" result="true"/>
+                    <tested_item item_id="57" result="true"/>
+                    <tested_item item_id="56" result="true"/>
+                    <tested_item item_id="63" result="true"/>
+                    <tested_item item_id="62" result="true"/>
+                    <tested_item item_id="61" result="true"/>
+                    <tested_item item_id="60" result="true"/>
+                    <tested_item item_id="68" result="true"/>
+                    <tested_item item_id="69" result="true"/>
+                    <tested_item item_id="70" result="true"/>
+                    <tested_item item_id="71" result="true"/>
+                    <tested_item item_id="64" result="true"/>
+                    <tested_item item_id="65" result="true"/>
+                    <tested_item item_id="66" result="true"/>
+                    <tested_item item_id="67" result="true"/>
+                    <tested_item item_id="76" result="true"/>
+                    <tested_item item_id="77" result="true"/>
+                    <tested_item item_id="78" result="true"/>
+                    <tested_item item_id="79" result="true"/>
+                    <tested_item item_id="72" result="true"/>
+                    <tested_item item_id="73" result="true"/>
+                    <tested_item item_id="74" result="true"/>
+                    <tested_item item_id="75" result="true"/>
+                    <tested_item item_id="85" result="true"/>
+                    <tested_item item_id="84" result="true"/>
+                    <tested_item item_id="87" result="true"/>
+                    <tested_item item_id="86" result="true"/>
+                    <tested_item item_id="81" result="true"/>
+                    <tested_item item_id="80" result="true"/>
+                    <tested_item item_id="83" result="true"/>
+                    <tested_item item_id="82" result="true"/>
+                </test>
+            </tests>
+            <oval-sc:oval_system_characteristics>
+                <oval-sc:generator>
+                    <oval:product_name>jOVAL Definition Interpreter</oval:product_name>
+                    <oval:product_version>5.10.1.1</oval:product_version>
+                    <oval:schema_version>5.10.1</oval:schema_version>
+                    <oval:timestamp>2013-02-01T11:42:36.296-06:00</oval:timestamp>
+                </oval-sc:generator>
+                <oval-sc:system_info>
+                    <oval-sc:os_name>Windows 7 Professional</oval-sc:os_name>
+                    <oval-sc:os_version>6.1</oval-sc:os_version>
+                    <oval-sc:architecture>AMD64</oval-sc:architecture>
+                    <oval-sc:primary_host_name>TARDIS</oval-sc:primary_host_name>
+                    <oval-sc:interfaces>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>DW1501 Wireless-N WLAN Half-Mini Card</oval-sc:interface_name>
+                            <oval-sc:ip_address>192.168.0.109</oval-sc:ip_address>
+                            <oval-sc:mac_address>68:A3:C4:3F:A7:E7</oval-sc:mac_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>DW1501 Wireless-N WLAN Half-Mini Card</oval-sc:interface_name>
+                            <oval-sc:ip_address>fe80::212d:bb5:dd1d:7672</oval-sc:ip_address>
+                            <oval-sc:mac_address>68:A3:C4:3F:A7:E7</oval-sc:mac_address>
+                        </oval-sc:interface>
+                    </oval-sc:interfaces>
+                </oval-sc:system_info>
+                <oval-sc:collected_objects>
+                    <oval-sc:object id="oval:org.joval.oval.test:obj:110" version="1" comment="Retrieve a systemmetric_object with a name matching the pattern '^SM_'." flag="complete">
+                        <oval-sc:reference item_ref="0"/>
+                        <oval-sc:reference item_ref="1"/>
+                        <oval-sc:reference item_ref="2"/>
+                        <oval-sc:reference item_ref="3"/>
+                        <oval-sc:reference item_ref="4"/>
+                        <oval-sc:reference item_ref="5"/>
+                        <oval-sc:reference item_ref="6"/>
+                        <oval-sc:reference item_ref="7"/>
+                        <oval-sc:reference item_ref="8"/>
+                        <oval-sc:reference item_ref="9"/>
+                        <oval-sc:reference item_ref="10"/>
+                        <oval-sc:reference item_ref="11"/>
+                        <oval-sc:reference item_ref="12"/>
+                        <oval-sc:reference item_ref="13"/>
+                        <oval-sc:reference item_ref="14"/>
+                        <oval-sc:reference item_ref="15"/>
+                        <oval-sc:reference item_ref="17"/>
+                        <oval-sc:reference item_ref="16"/>
+                        <oval-sc:reference item_ref="19"/>
+                        <oval-sc:reference item_ref="18"/>
+                        <oval-sc:reference item_ref="21"/>
+                        <oval-sc:reference item_ref="20"/>
+                        <oval-sc:reference item_ref="23"/>
+                        <oval-sc:reference item_ref="22"/>
+                        <oval-sc:reference item_ref="25"/>
+                        <oval-sc:reference item_ref="24"/>
+                        <oval-sc:reference item_ref="27"/>
+                        <oval-sc:reference item_ref="26"/>
+                        <oval-sc:reference item_ref="29"/>
+                        <oval-sc:reference item_ref="28"/>
+                        <oval-sc:reference item_ref="31"/>
+                        <oval-sc:reference item_ref="30"/>
+                        <oval-sc:reference item_ref="34"/>
+                        <oval-sc:reference item_ref="35"/>
+                        <oval-sc:reference item_ref="32"/>
+                        <oval-sc:reference item_ref="33"/>
+                        <oval-sc:reference item_ref="38"/>
+                        <oval-sc:reference item_ref="39"/>
+                        <oval-sc:reference item_ref="36"/>
+                        <oval-sc:reference item_ref="37"/>
+                        <oval-sc:reference item_ref="42"/>
+                        <oval-sc:reference item_ref="43"/>
+                        <oval-sc:reference item_ref="40"/>
+                        <oval-sc:reference item_ref="41"/>
+                        <oval-sc:reference item_ref="46"/>
+                        <oval-sc:reference item_ref="47"/>
+                        <oval-sc:reference item_ref="44"/>
+                        <oval-sc:reference item_ref="45"/>
+                        <oval-sc:reference item_ref="51"/>
+                        <oval-sc:reference item_ref="50"/>
+                        <oval-sc:reference item_ref="49"/>
+                        <oval-sc:reference item_ref="48"/>
+                        <oval-sc:reference item_ref="55"/>
+                        <oval-sc:reference item_ref="54"/>
+                        <oval-sc:reference item_ref="53"/>
+                        <oval-sc:reference item_ref="52"/>
+                        <oval-sc:reference item_ref="59"/>
+                        <oval-sc:reference item_ref="58"/>
+                        <oval-sc:reference item_ref="57"/>
+                        <oval-sc:reference item_ref="56"/>
+                        <oval-sc:reference item_ref="63"/>
+                        <oval-sc:reference item_ref="62"/>
+                        <oval-sc:reference item_ref="61"/>
+                        <oval-sc:reference item_ref="60"/>
+                        <oval-sc:reference item_ref="68"/>
+                        <oval-sc:reference item_ref="69"/>
+                        <oval-sc:reference item_ref="70"/>
+                        <oval-sc:reference item_ref="71"/>
+                        <oval-sc:reference item_ref="64"/>
+                        <oval-sc:reference item_ref="65"/>
+                        <oval-sc:reference item_ref="66"/>
+                        <oval-sc:reference item_ref="67"/>
+                        <oval-sc:reference item_ref="76"/>
+                        <oval-sc:reference item_ref="77"/>
+                        <oval-sc:reference item_ref="78"/>
+                        <oval-sc:reference item_ref="79"/>
+                        <oval-sc:reference item_ref="72"/>
+                        <oval-sc:reference item_ref="73"/>
+                        <oval-sc:reference item_ref="74"/>
+                        <oval-sc:reference item_ref="75"/>
+                        <oval-sc:reference item_ref="85"/>
+                        <oval-sc:reference item_ref="84"/>
+                        <oval-sc:reference item_ref="87"/>
+                        <oval-sc:reference item_ref="86"/>
+                        <oval-sc:reference item_ref="81"/>
+                        <oval-sc:reference item_ref="80"/>
+                        <oval-sc:reference item_ref="83"/>
+                        <oval-sc:reference item_ref="82"/>
+                    </oval-sc:object>
+                </oval-sc:collected_objects>
+                <oval-sc:system_data>
+                    <win-sc:systemmetric_item id="0">
+                        <win-sc:index datatype="string">SM_REMOTESESSION</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="1">
+                        <win-sc:index datatype="string">SM_CXMINIMIZED</win-sc:index>
+                        <win-sc:value datatype="int">160</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="2">
+                        <win-sc:index datatype="string">SM_CXCURSOR</win-sc:index>
+                        <win-sc:value datatype="int">32</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="3">
+                        <win-sc:index datatype="string">SM_CYBORDER</win-sc:index>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="4">
+                        <win-sc:index datatype="string">SM_CXFULLSCREEN</win-sc:index>
+                        <win-sc:value datatype="int">1920</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="5">
+                        <win-sc:index datatype="string">SM_CYMINIMIZED</win-sc:index>
+                        <win-sc:value datatype="int">27</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="6">
+                        <win-sc:index datatype="string">SM_MAXIMUMTOUCHES</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="7">
+                        <win-sc:index datatype="string">SM_CXMENUCHECK</win-sc:index>
+                        <win-sc:value datatype="int">15</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="8">
+                        <win-sc:index datatype="string">SM_CYMAXIMIZED</win-sc:index>
+                        <win-sc:value datatype="int">1066</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="9">
+                        <win-sc:index datatype="string">SM_CYKANJIWINDOW</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="10">
+                        <win-sc:index datatype="string">SM_CXDLGFRAME</win-sc:index>
+                        <win-sc:value datatype="int">3</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="11">
+                        <win-sc:index datatype="string">SM_SAMEDISPLAYFORMAT</win-sc:index>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="12">
+                        <win-sc:index datatype="string">SM_CYSMICON</win-sc:index>
+                        <win-sc:value datatype="int">16</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="13">
+                        <win-sc:index datatype="string">SM_MOUSEHORIZONTALWHEELPRESENT</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="14">
+                        <win-sc:index datatype="string">SM_CXMAXIMIZED</win-sc:index>
+                        <win-sc:value datatype="int">1936</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="15">
+                        <win-sc:index datatype="string">SM_CYMAXTRACK</win-sc:index>
+                        <win-sc:value datatype="int">1092</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="17">
+                        <win-sc:index datatype="string">SM_CXMINTRACK</win-sc:index>
+                        <win-sc:value datatype="int">132</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="16">
+                        <win-sc:index datatype="string">SM_CXVSCROLL</win-sc:index>
+                        <win-sc:value datatype="int">17</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="19">
+                        <win-sc:index datatype="string">SM_MIDEASTENABLED</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="18">
+                        <win-sc:index datatype="string">SM_CXHSCROLL</win-sc:index>
+                        <win-sc:value datatype="int">17</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="21">
+                        <win-sc:index datatype="string">SM_CXSIZE</win-sc:index>
+                        <win-sc:value datatype="int">35</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="20">
+                        <win-sc:index datatype="string">SM_CYMIN</win-sc:index>
+                        <win-sc:value datatype="int">38</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="23">
+                        <win-sc:index datatype="string">SM_SLOWMACHINE</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="22">
+                        <win-sc:index datatype="string">SM_CXDOUBLECLK</win-sc:index>
+                        <win-sc:value datatype="int">4</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="25">
+                        <win-sc:index datatype="string">SM_CYFULLSCREEN</win-sc:index>
+                        <win-sc:value datatype="int">1028</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="24">
+                        <win-sc:index datatype="string">SM_IMMENABLED</win-sc:index>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="27">
+                        <win-sc:index datatype="string">SM_CYSIZEFRAME</win-sc:index>
+                        <win-sc:value datatype="int">8</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="26">
+                        <win-sc:index datatype="string">SM_SERVERR2</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="29">
+                        <win-sc:index datatype="string">SM_CYSCREEN</win-sc:index>
+                        <win-sc:value datatype="int">1080</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="28">
+                        <win-sc:index datatype="string">SM_CYEDGE</win-sc:index>
+                        <win-sc:value datatype="int">2</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="31">
+                        <win-sc:index datatype="string">SM_CYFOCUSBORDER</win-sc:index>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="30">
+                        <win-sc:index datatype="string">SM_DIGITIZER</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="34">
+                        <win-sc:index datatype="string">SM_ARRANGE</win-sc:index>
+                        <win-sc:value datatype="int">8</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="35">
+                        <win-sc:index datatype="string">SM_CXSMICON</win-sc:index>
+                        <win-sc:value datatype="int">16</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="32">
+                        <win-sc:index datatype="string">SM_CYVIRTUALSCREEN</win-sc:index>
+                        <win-sc:value datatype="int">1080</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="33">
+                        <win-sc:index datatype="string">SM_CYMENU</win-sc:index>
+                        <win-sc:value datatype="int">20</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="38">
+                        <win-sc:index datatype="string">SM_NETWORK</win-sc:index>
+                        <win-sc:value datatype="int">3</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="39">
+                        <win-sc:index datatype="string">SM_CXEDGE</win-sc:index>
+                        <win-sc:value datatype="int">2</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="36">
+                        <win-sc:index datatype="string">SM_CXDRAG</win-sc:index>
+                        <win-sc:value datatype="int">4</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="37">
+                        <win-sc:index datatype="string">SM_MOUSEWHEELPRESENT</win-sc:index>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="42">
+                        <win-sc:index datatype="string">SM_CYDRAG</win-sc:index>
+                        <win-sc:value datatype="int">4</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="43">
+                        <win-sc:index datatype="string">SM_SWAPBUTTON</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="40">
+                        <win-sc:index datatype="string">SM_XVIRTUALSCREEN</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="41">
+                        <win-sc:index datatype="string">SM_CYMENUCHECK</win-sc:index>
+                        <win-sc:value datatype="int">15</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="46">
+                        <win-sc:index datatype="string">SM_MEDIACENTER</win-sc:index>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="47">
+                        <win-sc:index datatype="string">SM_CXVIRTUALSCREEN</win-sc:index>
+                        <win-sc:value datatype="int">1920</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="44">
+                        <win-sc:index datatype="string">SM_CXSCREEN</win-sc:index>
+                        <win-sc:value datatype="int">1920</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="45">
+                        <win-sc:index datatype="string">SM_CXFRAME</win-sc:index>
+                        <win-sc:value datatype="int">8</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="51">
+                        <win-sc:index datatype="string">SM_MOUSEPRESENT</win-sc:index>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="50">
+                        <win-sc:index datatype="string">SM_STARTER</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="49">
+                        <win-sc:index datatype="string">SM_TABLETPC</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="48">
+                        <win-sc:index datatype="string">SM_CYICONSPACING</win-sc:index>
+                        <win-sc:value datatype="int">75</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="55">
+                        <win-sc:index datatype="string">SM_CXFOCUSBORDER</win-sc:index>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="54">
+                        <win-sc:index datatype="string">SM_CXPADDEDBORDER</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="53">
+                        <win-sc:index datatype="string">SM_CYVTHUMB</win-sc:index>
+                        <win-sc:value datatype="int">17</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="52">
+                        <win-sc:index datatype="string">SM_CYHSCROLL</win-sc:index>
+                        <win-sc:value datatype="int">17</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="59">
+                        <win-sc:index datatype="string">SM_CYFIXEDFRAME</win-sc:index>
+                        <win-sc:value datatype="int">3</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="58">
+                        <win-sc:index datatype="string">SM_CYVSCROLL</win-sc:index>
+                        <win-sc:value datatype="int">17</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="57">
+                        <win-sc:index datatype="string">SM_YVIRTUALSCREEN</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="56">
+                        <win-sc:index datatype="string">SM_CMONITORS</win-sc:index>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="63">
+                        <win-sc:index datatype="string">SM_CLEANBOOT</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="62">
+                        <win-sc:index datatype="string">SM_CYDOUBLECLK</win-sc:index>
+                        <win-sc:value datatype="int">4</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="61">
+                        <win-sc:index datatype="string">SM_CYICON</win-sc:index>
+                        <win-sc:value datatype="int">32</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="60">
+                        <win-sc:index datatype="string">SM_CXHTHUMB</win-sc:index>
+                        <win-sc:value datatype="int">17</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="68">
+                        <win-sc:index datatype="string">SM_CXICON</win-sc:index>
+                        <win-sc:value datatype="int">32</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="69">
+                        <win-sc:index datatype="string">SM_CYMINTRACK</win-sc:index>
+                        <win-sc:value datatype="int">38</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="70">
+                        <win-sc:index datatype="string">SM_CYSMSIZE</win-sc:index>
+                        <win-sc:value datatype="int">17</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="71">
+                        <win-sc:index datatype="string">SM_CXMIN</win-sc:index>
+                        <win-sc:value datatype="int">132</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="64">
+                        <win-sc:index datatype="string">SM_SECURE</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="65">
+                        <win-sc:index datatype="string">SM_MENUDROPALIGNMENT</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="66">
+                        <win-sc:index datatype="string">SM_PENWINDOWS</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="67">
+                        <win-sc:index datatype="string">SM_CYMENUSIZE</win-sc:index>
+                        <win-sc:value datatype="int">19</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="76">
+                        <win-sc:index datatype="string">SM_CYCURSOR</win-sc:index>
+                        <win-sc:value datatype="int">32</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="77">
+                        <win-sc:index datatype="string">SM_REMOTECONTROL</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="78">
+                        <win-sc:index datatype="string">SM_CYSMCAPTION</win-sc:index>
+                        <win-sc:value datatype="int">18</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="79">
+                        <win-sc:index datatype="string">SM_DBCSENABLED</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="72">
+                        <win-sc:index datatype="string">SM_SHOWSOUNDS</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="73">
+                        <win-sc:index datatype="string">SM_CXBORDER</win-sc:index>
+                        <win-sc:value datatype="int">1</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="74">
+                        <win-sc:index datatype="string">SM_CYMINSPACING</win-sc:index>
+                        <win-sc:value datatype="int">27</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="75">
+                        <win-sc:index datatype="string">SM_CYCAPTION</win-sc:index>
+                        <win-sc:value datatype="int">22</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="85">
+                        <win-sc:index datatype="string">SM_DEBUG</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="84">
+                        <win-sc:index datatype="string">SM_CXMENUSIZE</win-sc:index>
+                        <win-sc:value datatype="int">19</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="87">
+                        <win-sc:index datatype="string">SM_CXMINSPACING</win-sc:index>
+                        <win-sc:value datatype="int">160</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="86">
+                        <win-sc:index datatype="string">SM_CXSMSIZE</win-sc:index>
+                        <win-sc:value datatype="int">17</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="81">
+                        <win-sc:index datatype="string">SM_CXICONSPACING</win-sc:index>
+                        <win-sc:value datatype="int">75</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="80">
+                        <win-sc:index datatype="string">SM_SHUTTINGDOWN</win-sc:index>
+                        <win-sc:value datatype="int">0</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="83">
+                        <win-sc:index datatype="string">SM_CYSIZE</win-sc:index>
+                        <win-sc:value datatype="int">21</win-sc:value>
+                    </win-sc:systemmetric_item>
+                    <win-sc:systemmetric_item id="82">
+                        <win-sc:index datatype="string">SM_CXMAXTRACK</win-sc:index>
+                        <win-sc:value datatype="int">1932</win-sc:value>
+                    </win-sc:systemmetric_item>
+                </oval-sc:system_data>
+            </oval-sc:oval_system_characteristics>
+        </system>
+    </results>
+</oval_results>
