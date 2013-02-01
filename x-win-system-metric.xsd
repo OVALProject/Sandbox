@@ -92,7 +92,7 @@
             <xsd:complexContent>
                 <xsd:extension base="oval-sc:ItemType">
                     <xsd:sequence>
-                        <xsd:element name="name" type="x-win-system-metric:EntityItemSystemMetricIndexType" minOccurs="0" maxOccurs="1">
+                        <xsd:element name="index" type="x-win-system-metric:EntityItemSystemMetricIndexType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
                                 <xsd:documentation>This element describes the index of a system metric entry.</xsd:documentation>
                             </xsd:annotation>
