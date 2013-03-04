@@ -1054,10 +1054,9 @@ public class GenerateAndroidSC {
 			// Version
 			if(pi.versionName != null)
 			{
-				EntityItemVersionType ei5 = EntityItemVersionType.Factory
+				EntityItemStringType ei5 = EntityItemStringType.Factory
 					.newInstance();
 				ei5.setStringValue(pi.versionName);
-				ei5.setDatatype("version");
 				ami.setVersion(ei5);
 			}
 

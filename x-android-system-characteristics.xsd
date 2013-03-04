@@ -51,7 +51,7 @@
                 <xsd:documentation>Data directory assigned to the application.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
-            <xsd:element name="version" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+            <xsd:element name="version" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
                 <xsd:documentation>Application version.</xsd:documentation>
               </xsd:annotation>
