@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#android x-android-definitions.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+  <generator>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2009-01-12T10:41:00-05:00</oval:timestamp>
+    <terms_of_use>Copyright (c) 2002-2012, The MITRE Corporation. All rights reserved. The contents of this file are subject to the license described in terms.txt.</terms_of_use>
+  </generator>
+  <definitions>
+    <definition id="oval:android.test:def:2001" version="1" class="miscellaneous">
+      <metadata>
+        <title>Evaluate to true if the android-def:system_details_test is properly supported</title>
+        <description>This definition is intended to evaluate to true if the interpreter properly supports the android-def:system_details_test.</description>
+      </metadata>
+      <notes>
+        <note>It is important to note that the values used in this test definition are specific to a particular machine, and may not necessarily apply to your system. As a result, in order to have the definition return a result of 'true', you must either change these values to the ones found on your particular system, or you must configure your system to use these values.</note>
+      </notes>
+      <criteria operator="AND">
+        <criterion comment="Test that the system_details_object is supported." test_ref="oval:android.test:tst:3001" />
+      </criteria>
+    </definition>
+    <definition id="oval:android.test:def:2101" version="1" class="compliance">
+      <metadata>
+        <title>Evaluate to true if USB debugging is turned off</title>
+        <description>Evaluate to true if USB debugging is turned off</description>
+      </metadata>
+      <notes>
+        <note>blah</note>
+      </notes>
+      <criteria operator="AND">
+        <criterion comment="Test that USB debugging is turned off" test_ref="oval:android.test:tst:3101" />
+      </criteria>
+    </definition>
+    <definition id="oval:android.test:def:2102" version="1" class="compliance">
+      <metadata>
+        <title>Evaluate to true if allow non-market apps is turned off</title>
+        <description>Evaluate to true if allow non-market apps is turned off</description>
+      </metadata>
+      <notes>
+        <note>Evaluate to true if allow non-market apps is turned off</note>
+      </notes>
+      <criteria operator="AND">
+        <criterion comment="Test that allow non-market apps is turned off" test_ref="oval:android.test:tst:3102" />
+      </criteria>
+    </definition>
+    <definition id="oval:android.test:def:2103" version="1" class="compliance">
+      <metadata>
+        <title>Evaluate to true if minimum password length policy is at least 6</title>
+        <description>Evaluate to true if minimum password length policy is at least 6</description>
+      </metadata>
+      <notes>
+        <note>Evaluate to true if minimum password length policy is at least 6</note>
+      </notes>
+      <criteria operator="AND">
+        <criterion comment="Evaluate to true if minimum password length policy is at least 6" test_ref="oval:android.test:tst:3103" />
+      </criteria>
+    </definition>
+    <definition id="oval:android.test:def:2104" version="1" class="compliance">
+      <metadata>
+        <title>Evaluate to false if any non-system apps that request GET_TASKS permission are installed</title>
+        <description>GET_TASKS is a very dangerous permission for user-installed apps to hold</description>
+      </metadata>
+      <notes>
+        <note>Evaluate to false if any non-system apps that request GET_TASKS permission are installed</note>
+      </notes>
+      <criteria operator="AND">
+        <criterion comment="Evaluate to false if any non-system apps that request GET_TASKS permission are installed" test_ref="oval:android.test:tst:3104" />
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <system_details_test id="oval:android.test:tst:3001" version="1" comment="Test that the system_details_object is supported." check_existence="at_least_one_exists" check="all" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android">
+      <object object_ref="oval:android.test:obj:3002" />
+      <state state_ref="oval:android.test:ste:3003" />
+    </system_details_test>
+    <device_settings_test id="oval:android.test:tst:3101" version="1" comment="Test that USB debugging is off" check_existence="at_least_one_exists" check="all" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android">
+      <object object_ref="oval:android.test:obj:13001" />
+      <state state_ref="oval:android.test:ste:3101" />
+    </device_settings_test>
+    <device_settings_test id="oval:android.test:tst:3102" version="1" comment="Test that allow non-market apps is turned off" check_existence="at_least_one_exists" check="all" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android">
+      <object object_ref="oval:android.test:obj:13001" />
+      <state state_ref="oval:android.test:ste:3102" />
+    </device_settings_test>
+    <password_test id="oval:android.test:tst:3103" version="1" comment="Test that minimum password length policy is at least 6" check_existence="at_least_one_exists" check="all" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android">
+      <object object_ref="oval:android.test:obj:4001" />
+      <state state_ref="oval:android.test:ste:3103" />
+    </password_test>
+    <app_manager_test id="oval:android.test:tst:3104" version="1" comment="Test if any non-system apps that request GET_TASKS are installed" check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android">
+      <object object_ref="oval:android.test:obj:8001" />
+      <state state_ref="oval:android.test:ste:3104" />
+    </app_manager_test>
+  </tests>
+  <objects>
+    <system_details_object id="oval:android.test:obj:3002" version="1" comment="Retrieve the only system_details_item on the system." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
+    <password_object id="oval:android.test:obj:4001" version="1" comment="Password_item" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
+    <camera_object id="oval:android.test:obj:5001" version="1" comment="camera" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
+    <encryption_object id="oval:android.test:obj:6001" version="1" comment="encryption" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
+    <device_access_object id="oval:android.test:obj:7001" version="1" comment="device_access" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
+    <app_manager_object id="oval:android.test:obj:8001" version="1" comment="app_manager" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android">
+      <package_name operation="pattern match">^.*$</package_name>
+      <signing_certificates operation="pattern match">^.*$</signing_certificates>
+    </app_manager_object>
+    <location_service_object id="oval:android.test:obj:9001" version="1" comment="location" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
+    <wifi_object id="oval:android.test:obj:10001" version="1" comment="wifi" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
+    <wifi_security_object id="oval:android.test:obj:11001" version="1" comment="wifi_security" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android">
+      <ssid operation="pattern match">^.*$</ssid>
+    </wifi_security_object>
+    <bluetooth_object id="oval:android.test:obj:12001" version="1" comment="bluetooth" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
+    <device_settings_object id="oval:android.test:obj:13001" version="1" comment="device settings" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
+    <network_object id="oval:android.test:obj:14001" version="1" comment="network object" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
+  </objects>
+  <states>
+    <system_details_state id="oval:android.test:ste:3003" version="1" comment="This state represents a android system_details_state item that match the regular expression '.*'." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android">
+      <hardware operation="pattern match">.*</hardware>
+      <manufacturer operation="pattern match">.*</manufacturer>
+      <model operation="pattern match">.*</model>
+      <product operation="pattern match">.*</product>
+      <cpu_abi operation="pattern match">.*</cpu_abi>
+      <os_version_build_number operation="pattern match">.*</os_version_build_number>
+    </system_details_state>
+    <device_settings_state id="oval:android.test:ste:3101" version="1" comment="device_settings_state" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android">
+      <adb_enabled datatype="boolean" operation="equals">false</adb_enabled>
+    </device_settings_state>
+    <device_settings_state id="oval:android.test:ste:3102" version="1" comment="device_settings_state" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android">
+      <install_non_market_apps datatype="boolean" operation="equals">false</install_non_market_apps>
+    </device_settings_state>
+    <password_state id="oval:android.test:ste:3103" version="1" comment="password_state" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android">
+      <password_min_length datatype="int" operation="greater than or equal">6</password_min_length>
+    </password_state>
+    <app_manager_state id="oval:android.test:ste:3104" version="1" comment="app_manager_state" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android">
+      <permission entity_check="at least one">android.permission.GET_TASKS</permission>
+      <package_file_location operation="pattern match">^/data</package_file_location>
+    </app_manager_state>
+  </states>
+</oval_definitions>

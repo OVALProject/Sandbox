@@ -1,3 +1,12 @@
+This file is currently out-of-date and will need to be updated.
+code/README.txt contains information about the proof-of-concept
+OVAL Android application and how to use it.
+
+content/android-test.xml contains sample OVAL definitions that exercise
+the current schemas.
+
+
+
 No.	Probe Name				Description
 ==============================================================================
 1.	android-def:camera_test			Camera enabled/disabled...	
