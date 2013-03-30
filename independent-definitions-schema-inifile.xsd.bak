@@ -2254,6 +2254,7 @@
                         </xsd:enumeration>
                         <xsd:enumeration value="firebird">
                               <xsd:annotation>
+
                                     <xsd:documentation>The firebird value describes the Firebird database engine.</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
