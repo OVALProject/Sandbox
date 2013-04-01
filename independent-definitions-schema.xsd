@@ -1487,6 +1487,210 @@
             </xsd:complexContent>
       </xsd:complexType>
       <!-- =============================================================================== -->
+      <!-- ==========================  INI FILE CONTENT ITEM  ============================ -->
+      <!-- =============================================================================== -->
+      <xsd:element name="inifile_test" substitutionGroup="oval-def:test">
+            <xsd:annotation>
+                  <xsd:documentation>The inifile_test element is used to check the standard INI file configuration settings. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a inifile_object and the optional state element specifies the metadata to check.</xsd:documentation>
+		  <xsd:documentation>An initialization or ini file is a configuration file typically found on Microsoft's Windows operating system and contains data for Windows based applications.</xsd:documentation>
+		  <xsd:documentation>The format of ini files is fairly straight forward and is composed of three components sections, (subsections), parameters and comments.</xsd:documentation>
+		  <xsd:documentation>Apache Commons library has an implementation for parsing INI files. As an extension to the standard INI file format, this test supports subsection under section which is typically found in some of the Unix configuration files such as kdc.conf</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:element_mapping>
+                              <oval:test>inifile_test</oval:test>
+                              <oval:object>inifile_object</oval:object>
+                              <oval:state>inifile_state</oval:state>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">inifile_item</oval:item>
+                        </oval:element_mapping>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
+                        <sch:pattern id="ind-def_initst">
+                              <sch:rule context="ind-def:inifile_test/ind-def:object">
+                                    <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/ind-def:inifile_object/@id"><sch:value-of select="../@id"/> - the object child element of a inifile_test must reference a inifile_object</sch:assert>
+                              </sch:rule>
+                              <sch:rule context="ind-def:inifile_test/ind-def:state">
+                                    <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/ind-def:inifile_state/@id"><sch:value-of select="../@id"/> - the state child element of a inifile_test must reference a inifile_state</sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:TestType">
+                              <xsd:sequence>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
+                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="inifile_object" substitutionGroup="oval-def:object">
+            <xsd:annotation>
+                  <xsd:documentation>The inifile_object element is used by a inifile_test to define the specific sections of the INI file to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  <xsd:appinfo>
+                        <sch:pattern id="ind-def_inifile_object_verify_filter_state">
+                              <sch:rule context="ind-def:inifile_object//oval-def:filter">
+                                    <sch:let name="parent_object" value="ancestor::ind-def:inifile_object"/>
+                                    <sch:let name="parent_object_id" value="$parent_object/@id"/>
+                                    <sch:let name="state_ref" value="."/>
+                                    <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+                                    <sch:let name="state_name" value="local-name($reffed_state)"/>
+                                    <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+                                    <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#independent') and ($state_name='inifile_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:ObjectType">
+                              <xsd:sequence>
+                                    <xsd:choice>
+                                          <xsd:element ref="oval-def:set"/>
+                                          <xsd:sequence>
+                                                <xsd:element name="behaviors" type="ind-def:inifileBehaviors" minOccurs="0" maxOccurs="1"/>
+                                                      <xsd:element name="filepath" type="oval-def:EntityObjectStringType">
+                                                            <xsd:annotation>
+                                                                  <xsd:documentation>The filepath element specifies the absolute path for a INI file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
+                                                                  <xsd:appinfo>
+                                                                        <sch:pattern id="ind-def_iniobjfilepath">
+                                                                              <sch:rule context="ind-def:inifile_object/ind-def:filepath">
+                                                                                    <sch:assert test="not(preceding-sibling::ind-def:behaviors[@max_depth or @recurse_direction])"><sch:value-of select="../@id"/> - the max_depth and recurse_direction behaviors are not allowed with a filepath entity</sch:assert>
+                                                                              </sch:rule>
+                                                                        </sch:pattern>
+                                                                        <sch:pattern id="ind-def_iniobjfilepath2">
+                                                                              <sch:rule context="ind-def:inifile_object/ind-def:filepath[not(@operation='equals' or not(@operation))]">
+                                                                                    <sch:assert test="not(preceding-sibling::ind-def:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a filepath entity.</sch:assert>
+                                                                              </sch:rule>
+                                                                        </sch:pattern>
+                                                                  </xsd:appinfo>
+                                                            </xsd:annotation>
+                                                      </xsd:element>
+                                                      <xsd:element name="section" type="oval-def:EntityObjectStringType" minOccurs="0" maxOccurs="1">
+                                                                <xsd:annotation>
+                                                                      <xsd:documentation>The section entity specifies the name of the section in the INI file. </xsd:documentation>
+                                                                      <xsd:appinfo>
+                                                                            <sch:pattern id="ind-def_iniobjsection">
+                                                                                  <sch:rule context="ind-def:inifile_object/ind-def:section">
+                                                                                        <sch:assert test="(@var_ref and .='') or not(.='') or (.='' and @operation = 'pattern match')"><sch:value-of select="../@id"/> - section entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
+                                                                                  </sch:rule>
+                                                                            </sch:pattern>
+                                                                      </xsd:appinfo>
+                                                                </xsd:annotation>
+                                                      </xsd:element>
+                                                      <xsd:element name="subsection" type="oval-def:EntityObjectStringType" minOccurs="0" maxOccurs="1">
+                                                                <xsd:annotation>
+                                                                      <xsd:documentation>The subsection entity specifies the name of the subsection in the INI file.</xsd:documentation>
+                                                                      <xsd:appinfo>
+                                                                            <sch:pattern id="ind-def_iniobjsubsection">
+                                                                                  <sch:rule context="ind-def:inifile_object/ind-def:subsection">
+                                                                                        <sch:assert test="(@var_ref and .='') or not(.='') or (.='' and @operation = 'pattern match')"><sch:value-of select="../@id"/> - subsection entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
+                                                                                  </sch:rule>
+                                                                            </sch:pattern>
+                                                                      </xsd:appinfo>
+                                                                </xsd:annotation>
+                                                      </xsd:element>
+                                                      <xsd:element name="name" type="oval-def:EntityObjectStringType" minOccurs="0" maxOccurs="1">
+                                                                <xsd:annotation>
+                                                                      <xsd:documentation>The name entity specifies the parameter name for which the values have to be collected from the given INI file.</xsd:documentation>
+                                                                      <xsd:appinfo>
+                                                                            <sch:pattern id="ind-def_iniobjfilename">
+                                                                                  <sch:rule context="ind-def:inifile_object/ind-def:name">
+                                                                                        <sch:assert test="(@var_ref and .='') or not(.='') or (.='' and @operation = 'pattern match')"><sch:value-of select="../@id"/> - filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
+                                                                                  </sch:rule>
+                                                                            </sch:pattern>
+                                                                      </xsd:appinfo>
+                                                                </xsd:annotation>
+                                                      </xsd:element>
+                                                      <xsd:element name="instance" type="oval-def:EntityObjectIntType">
+                                                            <xsd:annotation>
+                                                               <xsd:documentation>The instance entity calls out a specific match of the given name.  The first match is given an instance value of 1, the second match is given an instance value of 2, and so on.  Note that the main purpose of this entity is to provide uniqueness for different inifile_items that results from multiple matches of a given name against the same file. Most likely this entity will be defined as greater than or equal to 1 which would result in the object representing the set of all matches of the pattern.</xsd:documentation>
+                                                            </xsd:annotation>
+                                                      </xsd:element>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                          </xsd:sequence>
+                                    </xsd:choice>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="inifile_state" substitutionGroup="oval-def:state">
+            <xsd:annotation>
+                  <xsd:documentation>The inifile_state element contains entities that are used to check the file path, section, subsection and name, as well as the value in question and the value of the subexpressions.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:StateType">
+                              <xsd:sequence>
+                                    <xsd:element name="filepath" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The filepath element specifies the absolute path for a INI file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="section" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The section entity specifies the name of the section in the INI file. </xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="subsection" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The subsection entity specifies the name of the subsection in the INI file.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="name" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The name entity specifies the parameter name for which the values have to be collected from the given INI file.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="value" type="oval-def:EntityStateAnySimpleType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The value entity represents the value for the given parameter.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="instance" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The instance entity calls out which match of the pattern is being represented by this item.  The first match is given an instance value of 1, the second match is given an instance value of 2, and so on.  The main purpose of this entity is too provide uniqueness for different inifile_items that results from multiple matches of a given pattern against the same file.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="windows_view" type="ind-def:EntityStateWindowsViewType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The windows view value to which this was targeted. This is used to indicate which view (32-bit or 64-bit), the associated State applies to.  This entity only applies to 64-bit Microsoft Windows operating systems.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="inifileBehaviors">
+            <xsd:annotation>
+                  <xsd:documentation>The inifileBehaviors complex type defines a number of behaviors that allow a more detailed definition of the inifile_object being specified.  Note that using these behaviors may result in some unique results.  For example, a double negative type condition might be created where an object entity says include everything except a specific item, but a behavior is used that might then add that item back in.</xsd:documentation>
+                  <xsd:documentation>It is important to note that the 'max_depth' and 'recurse_direction' attributes of the 'behaviors' element do not apply to the 'filepath' element, only to the 'path' and 'filename' elements.  This is because the 'filepath' element represents an absolute path to a particular file and it is not possible to recurse over a file.</xsd:documentation>
+                  <xsd:documentation>The inifileBehaviors extend the ind-def:FileBehaviors and therefore include the behaviors defined by that type.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexContent>
+                  <xsd:extension base="ind-def:FileBehaviors">
+                        <xsd:attribute name="ignore_case" type="xsd:boolean" use="optional" default="false">
+                              <xsd:annotation>
+                                    <xsd:documentation>'ignore_case' indicates whether case should be considered when matching system values against the regular expression provided by the pattern entity. This behavior is intended to align with the Perl regular expression 'i' modifier: if true, case will be ignored.  If false, case will not be ignored. The default is false.</xsd:documentation>
+                              </xsd:annotation>                  
+                        </xsd:attribute>
+                        <xsd:attribute name="multiline" type="xsd:boolean" use="optional" default="true">
+                              <xsd:annotation>
+                                    <xsd:documentation>'multiline' enables multiple line semantics in the regular expression provided by the pattern entity. This behavior is intended to align with the Perl regular expression 'm' modifier: if true, the '^' and '$' metacharacters will match both at the beginning/end of a string, and immediately after/before newline characters.  If false, they will match only at the beginning/end of a string.  The default is true.</xsd:documentation>
+                              </xsd:annotation>                  
+                        </xsd:attribute>
+                        <xsd:attribute name="singleline" type="xsd:boolean" use="optional" default="false">
+                              <xsd:annotation>
+                                    <xsd:documentation>'singleline' enables single line semantics in the regular expression provided by the pattern entity. This behavior is intended to align with the Perl regular expression 's' modifier: if true, the '.' metacharacter will match newlines. If false, it will not.  The default is false.</xsd:documentation>
+                              </xsd:annotation>                  
+                        </xsd:attribute>
+                  </xsd:extension>
+            </xsd:complexContent>
+      </xsd:complexType>
+      <!-- =============================================================================== -->
       <!-- ==========================  TEXT FILE CONTENT TEST  =========================== -->
       <!-- =============================================================================== -->
       <xsd:element name="textfilecontent_test" substitutionGroup="oval-def:test">
