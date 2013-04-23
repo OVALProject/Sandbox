@@ -1,0 +1,2059 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<oval-res:oval_results
+      xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-common-5 http://oval.mitre.org/language/version5.10.1/ovaldefinition/complete/oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-results-5 http://oval.mitre.org/language/version5.10.1/ovalresults/complete/oval-results-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 http://oval.mitre.org/language/version5.10.1/ovaldefinition/complete/oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent http://oval.mitre.org/language/version5.10.1/ovaldefinition/complete/independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#windows http://oval.mitre.org/language/version5.10.1/ovaldefinition/complete/windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 http://oval.mitre.org/language/version5.10.1/ovalsc/complete/oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent http://oval.mitre.org/language/version5.10.1/ovalsc/complete/independent-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows http://oval.mitre.org/language/version5.10.1/ovalsc/complete/windows-system-characteristics-schema.xsd"
+      xmlns:oval-res="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+      xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"
+      xmlns:ind-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <oval-res:generator>
+            <oval:product_name>SCAP Compliance Checker</oval:product_name>
+            <oval:product_version>4.0 DEV 1</oval:product_version>
+            <oval:schema_version>5.10.1</oval:schema_version>
+            <oval:timestamp>2013-04-22T15:31:08</oval:timestamp>
+      </oval-res:generator>
+      <oval-res:directives>
+            <oval-res:definition_true reported="true"/>
+            <oval-res:definition_false reported="true"/>
+            <oval-res:definition_unknown reported="true"/>
+            <oval-res:definition_error reported="true"/>
+            <oval-res:definition_not_evaluated reported="true"/>
+            <oval-res:definition_not_applicable reported="true"/>
+      </oval-res:directives>
+      <oval-def:oval_definitions>
+            <oval-def:generator>
+                  <oval:schema_version>5.10.1</oval:schema_version>
+                  <oval:timestamp>2013-04-22T13:30:51-05:00</oval:timestamp>
+            </oval-def:generator>
+            <oval-def:definitions>
+                  <oval-def:definition version="1" class="miscellaneous" id="oval:mil.ssclant.oval.test:def:38">
+                        <oval-def:metadata>
+                              <oval-def:title>Evaluate to true if the win-def:ntuser_test is properly supported.</oval-def:title>
+                              <oval-def:description>This definition is intended to evalutate to true if the interpreter properly supports the win-def:ntuser_test.</oval-def:description>
+                        </oval-def:metadata>
+                        <oval-def:notes>
+                              <oval-def:note>It is important to note that the values used in this test definition are specific to a particular machine, and may not necessarily apply to your system. As
+                                    a result, in order to have the definition return a result of 'true', you must either change these values to the ones found on your particular system, or you must
+                                    configure your system to use these values.</oval-def:note>
+                              <oval-def:note>Information regarding the registry on your particular machine can be found by navigating to Start-&gt;Run... and by typing 'regedit'.</oval-def:note>
+                        </oval-def:notes>
+                        <oval-def:criteria>
+                              <oval-def:criterion comment="Test if a ntuser_object with a  key is supported." test_ref="oval:mil.ssclant.oval.test:tst:1000"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with a  key, and name is supported." test_ref="oval:mil.ssclant.oval.test:tst:1001"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with a  key, and name pattern match is supported." test_ref="oval:mil.ssclant.oval.test:tst:1002"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with a  key pattern match, and name pattern match is supported." test_ref="oval:mil.ssclant.oval.test:tst:1003"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with a  key pattern match, and name is supported." test_ref="oval:mil.ssclant.oval.test:tst:1004"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with a key pattern match and name is an empty string." test_ref="oval:mil.ssclant.oval.test:tst:1005"/>
+                              <oval-def:criterion
+                                    comment="Test that the max_depth behavior is supported with a limited depth of recursion and that the ntuser_object with the account_type element to domain is supported."
+                                    test_ref="oval:mil.ssclant.oval.test:tst:1006"/>
+                              <oval-def:criterion
+                                    comment="Test that the max_depth behavior is supported with a unlimited depth of recursion and that the ntuser_object with the account_type element to domain is supported"
+                                    test_ref="oval:mil.ssclant.oval.test:tst:1007"/>
+                              <oval-def:criterion
+                                    comment="Test that the recurse_direction behavior is supported in the 'up' direction and that the ntuser_object with the account_type element to domain is supported"
+                                    test_ref="oval:mil.ssclant.oval.test:tst:1008"/>
+                              <oval-def:criterion
+                                    comment="Test that the max_depth behavior is supported with a limited depth of recursion and that the ntuser_object with the account_type element to local is supported"
+                                    test_ref="oval:mil.ssclant.oval.test:tst:1009"/>
+                              <oval-def:criterion
+                                    comment="Test that the max_depth behavior is supported with a unlimited depth of recursion and that the ntuser_object with the account_type element to local is supported"
+                                    test_ref="oval:mil.ssclant.oval.test:tst:1010"/>
+                              <oval-def:criterion
+                                    comment="Test that the recurse_direction behavior is supported in the 'up' direction and that the ntuser_object with the account_type element to local is supported"
+                                    test_ref="oval:mil.ssclant.oval.test:tst:1011"/>
+                              <oval-def:criterion comment="Test that the ntuser_object with the account_type element to local is supported" test_ref="oval:mil.ssclant.oval.test:tst:1012"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with the logged_in element equal to true is supported." test_ref="oval:mil.ssclant.oval.test:tst:1013"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with the logged_in element equal to false is supported." test_ref="oval:mil.ssclant.oval.test:tst:1014"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with an enabled element equal to true is supported." test_ref="oval:mil.ssclant.oval.test:tst:1015"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with an enabled element equal to false is supported." test_ref="oval:mil.ssclant.oval.test:tst:1016"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with a date_modified element equal to true is supported." test_ref="oval:mil.ssclant.oval.test:tst:1017"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with a date_modified element false to true is supported." test_ref="oval:mil.ssclant.oval.test:tst:1018"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with a filepath element set to pattern match." test_ref="oval:mil.ssclant.oval.test:tst:1019"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with last_time_write element with a less than operation is supported." test_ref="oval:mil.ssclant.oval.test:tst:1020"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with last_time_write element with a greater than operation is supported"
+                                    test_ref="oval:mil.ssclant.oval.test:tst:1021"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with a type element is supported." test_ref="oval:mil.ssclant.oval.test:tst:1022"/>
+                              <oval-def:criterion comment="Test if a ntuser_object with a value element is supported." test_ref="oval:mil.ssclant.oval.test:tst:1023"/>
+                        </oval-def:criteria>
+                  </oval-def:definition>
+            </oval-def:definitions>
+            <oval-def:tests>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with a  key is supported." check="at least one" state_operator="AND" version="1"
+                        id="oval:mil.ssclant.oval.test:tst:1000">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:223"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:944"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with a  key, and name is supported." check="at least one" state_operator="AND" version="1"
+                        id="oval:mil.ssclant.oval.test:tst:1001">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:1256"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with a  key, and name pattern match is supported." check="at least one"
+                        state_operator="AND" version="1" id="oval:mil.ssclant.oval.test:tst:1002">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:713"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:947"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with a  key pattern match, and name pattern match is supported." check="at least one"
+                        state_operator="AND" version="1" id="oval:mil.ssclant.oval.test:tst:1003">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:342"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:1211"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with a  key pattern match, and name is supported." check="at least one"
+                        state_operator="AND" version="1" id="oval:mil.ssclant.oval.test:tst:1004">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:428"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:1148"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object is supported with a empty string for a registry key name." check="at least one"
+                        state_operator="AND" version="1" id="oval:mil.ssclant.oval.test:tst:1005">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:185"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:287"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists"
+                        comment="Test that the max_depth behavior is supported with a limited depth of recursion with the account_type equal to domain" check="at least one" state_operator="AND"
+                        version="1" id="oval:mil.ssclant.oval.test:tst:1006">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:479"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17721"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists"
+                        comment="Test that the max_depth behavior is supported with a unlimited depth of recursion with the account_type equal to domain" check="at least one" state_operator="AND"
+                        version="1" id="oval:mil.ssclant.oval.test:tst:1007">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:288"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17721"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test that the recurse_direction behavior is supported in the 'up' direction with the account_type equal to domain"
+                        check="at least one" state_operator="AND" version="1" id="oval:mil.ssclant.oval.test:tst:1008">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:711"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17721"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists"
+                        comment="Test that the max_depth behavior is supported with a limited depth of recursion with the account_type equal to local" check="at least one" state_operator="AND"
+                        version="1" id="oval:mil.ssclant.oval.test:tst:1009">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:479"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17722"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists"
+                        comment="Test that the max_depth behavior is supported with a unlimited depth of recursion with the account_type equal to local" check="at least one" state_operator="AND"
+                        version="1" id="oval:mil.ssclant.oval.test:tst:1010">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:288"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17722"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test that the recurse_direction behavior is supported in the 'up' direction with the account_type equal to local"
+                        check="at least one" state_operator="AND" version="1" id="oval:mil.ssclant.oval.test:tst:1011">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:711"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17722"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test that the account_type is supported with a local account" check="at least one" state_operator="AND"
+                        version="1" id="oval:mil.ssclant.oval.test:tst:1012">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:5645"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:944"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with the logged_in element is supported" check="at least one" state_operator="AND"
+                        version="1" id="oval:mil.ssclant.oval.test:tst:1013">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17723"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with the logged_in element equal to false is supported." check="at least one"
+                        state_operator="AND" version="1" id="oval:mil.ssclant.oval.test:tst:1014">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17724"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with an enabled element equal to true is supported." check="at least one"
+                        state_operator="AND" version="1" id="oval:mil.ssclant.oval.test:tst:1015">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17725"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with an enabled element equal to false is supported." check="at least one"
+                        state_operator="AND" version="1" id="oval:mil.ssclant.oval.test:tst:1016">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17726"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with a date_modified element equal to true is supported." check="at least one"
+                        state_operator="AND" version="1" id="oval:mil.ssclant.oval.test:tst:1017">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17727"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with a date_modified element set to false is supported." check="at least one"
+                        state_operator="AND" version="1" id="oval:mil.ssclant.oval.test:tst:1018">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17728"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with a filepath element set to pattern match." check="at least one" state_operator="AND"
+                        version="1" id="oval:mil.ssclant.oval.test:tst:1019">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17729"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with last_time_write element with a less than operation is supported."
+                        check="at least one" state_operator="AND" version="1" id="oval:mil.ssclant.oval.test:tst:1020">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17730"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with last_time_write element with a less than operation is supported."
+                        check="at least one" state_operator="AND" version="1" id="oval:mil.ssclant.oval.test:tst:1021">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17731"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with a type element is supported." check="at least one" state_operator="AND" version="1"
+                        id="oval:mil.ssclant.oval.test:tst:1022">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17732"/>
+                  </win-def:ntuser_test>
+                  <win-def:ntuser_test check_existence="at_least_one_exists" comment="Test if a ntuser_object with a value element is supported." check="at least one" state_operator="AND" version="1"
+                        id="oval:mil.ssclant.oval.test:tst:1023">
+                        <win-def:object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
+                        <win-def:state state_ref="oval:mil.ssclant.oval.test:ste:17733"/>
+                  </win-def:ntuser_test>
+            </oval-def:tests>
+            <oval-def:objects>
+                  <win-def:ntuser_object comment="Retrieve a ntuser_object  key equal to 'Control Panel\Desktop'." version="1" id="oval:mil.ssclant.oval.test:obj:223">
+                        <win-def:key>Control Panel\Desktop</win-def:key>
+                        <win-def:name xsi:nil="true"/>
+                  </win-def:ntuser_object>
+                  <win-def:ntuser_object comment="Retrieve a ntuser_object with a  key equal to 'Control Panel\Desktop', and name equal to 'ScreenSaveActive'." version="1"
+                        id="oval:mil.ssclant.oval.test:obj:563">
+                        <win-def:key>Control Panel\Desktop</win-def:key>
+                        <win-def:name>ScreenSaveActive</win-def:name>
+                  </win-def:ntuser_object>
+                  <win-def:ntuser_object comment="Retrieve a ntuser_object with a  key equal to 'Control Panel\Desktop', and name matches a regular expression'." version="1"
+                        id="oval:mil.ssclant.oval.test:obj:713">
+                        <win-def:key>Control Panel\Desktop</win-def:key>
+                        <win-def:name operation="pattern match">ScreenSaveActi.*</win-def:name>
+                  </win-def:ntuser_object>
+                  <win-def:ntuser_object comment="Retrieve a ntuser_object with a key pattern matches a regular expressoin, and name pattern matches a regular expression'." version="1"
+                        id="oval:mil.ssclant.oval.test:obj:342">
+                        <win-def:key operation="pattern match">Control Panel\\Deskt.*</win-def:key>
+                        <win-def:name operation="pattern match">ScreenSaveActi.*</win-def:name>
+                  </win-def:ntuser_object>
+                  <win-def:ntuser_object comment="Retrieve a ntuser_object with a  key pattern matches a regular expression, and name equals 'ScreenSaveActive'." version="1"
+                        id="oval:mil.ssclant.oval.test:obj:428">
+                        <win-def:key operation="pattern match">Control Panel\\Deskt.*</win-def:key>
+                        <win-def:name>ScreenSaveActive</win-def:name>
+                  </win-def:ntuser_object>
+                  <win-def:ntuser_object comment="Retrieve a ntuser_object with a key equal to 'Control Panel', and name equal to ''." version="1" id="oval:mil.ssclant.oval.test:obj:185">
+                        <win-def:key>Control Panel\Desktop</win-def:key>
+                        <win-def:name/>
+                  </win-def:ntuser_object>
+                  <win-def:ntuser_object comment="Retrieve a ntuser_object with a  key equal to 'Control Panel\Desktop', recursing down one level, and name equal to 'ScreenSaveActive'." version="1"
+                        id="oval:mil.ssclant.oval.test:obj:479">
+                        <win-def:behaviors recurse_direction="down" max_depth="1"/>
+                        <win-def:key>Control Panel\Desktop</win-def:key>
+                        <win-def:name>ScreenSaveActive</win-def:name>
+                  </win-def:ntuser_object>
+                  <win-def:ntuser_object comment="Retrieve a ntuser_object with a  key equal to 'Control Panel\Desktop', recursing down infinitely, and name equal to 'ScreenSaveActive'." version="1"
+                        id="oval:mil.ssclant.oval.test:obj:288">
+                        <win-def:behaviors recurse_direction="down"/>
+                        <win-def:key>Control Panel\Desktop</win-def:key>
+                        <win-def:name>ScreenSaveActive</win-def:name>
+                  </win-def:ntuser_object>
+                  <win-def:ntuser_object comment="Retrieve a ntuser_object with a  key equal to ''Control Panel\Desktop', recursing up one level, and name equal to 'ScreenSaveActive'." version="1"
+                        id="oval:mil.ssclant.oval.test:obj:711">
+                        <win-def:behaviors recurse_direction="up" max_depth="1"/>
+                        <win-def:key>Control Panel\Desktop</win-def:key>
+                        <win-def:name>ScreenSaveActive</win-def:name>
+                  </win-def:ntuser_object>
+                  <win-def:ntuser_object comment="Retrieve a ntuser_object with a  key pattern matches a regular expression'." version="1" id="oval:mil.ssclant.oval.test:obj:5645">
+                        <win-def:key operation="pattern match">Control Panel\\Deskt.*</win-def:key>
+                        <win-def:name xsi:nil="true"/>
+                  </win-def:ntuser_object>
+            </oval-def:objects>
+            <oval-def:states>
+                  <win-def:ntuser_state comment="This ntuser_state represents a ntuser_object  key equal to 'Control Panel\Desktop'." version="1" id="oval:mil.ssclant.oval.test:ste:944">
+                        <win-def:key>Control Panel\Desktop</win-def:key>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="This ntuser_state represents a ntuser_object with a  key equal to 'Control Panel\Desktop', and name equal to 'CurrentVersion'." version="1"
+                        id="oval:mil.ssclant.oval.test:ste:1256">
+                        <win-def:key>Control Panel\Desktop</win-def:key>
+                        <win-def:name>ScreenSaveActive</win-def:name>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="This ntuser_state represents a ntuser_object with a  key equal to 'Control Panel\Desktop', and name pattern matches a regular expression." version="1"
+                        id="oval:mil.ssclant.oval.test:ste:947">
+                        <win-def:key>Control Panel\Desktop</win-def:key>
+                        <win-def:name operation="pattern match">ScreenSaveAct.*</win-def:name>
+                        <win-def:sid operation="pattern match">.*</win-def:sid>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="This ntuser_state represents a ntuser_object with a key pattern matches a regular expression, and name pattern matches a regular expression."
+                        version="1" id="oval:mil.ssclant.oval.test:ste:1211">
+                        <win-def:key operation="pattern match">Control Panel\\Deskt.*</win-def:key>
+                        <win-def:name operation="pattern match">.*</win-def:name>
+                        <win-def:username operation="pattern match">.*</win-def:username>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="This ntuser_state represents a ntuser_object with a  key pattern matches a regular expression, and name equals 'CurrentVersion'." version="1"
+                        id="oval:mil.ssclant.oval.test:ste:1148">
+                        <win-def:key operation="pattern match">Control Panel\\Deskt.*</win-def:key>
+                        <win-def:name>ScreenSaveActive</win-def:name>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="This ntuser_state represents a ntuser_object with a  key equal to 'Control Panel', and name equal to ''." version="1"
+                        id="oval:mil.ssclant.oval.test:ste:287">
+                        <win-def:key>Control Panel\Desktop</win-def:key>
+                        <win-def:name/>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="domain account" version="1" id="oval:mil.ssclant.oval.test:ste:17721">
+                        <win-def:account_type>domain</win-def:account_type>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="local account" version="1" id="oval:mil.ssclant.oval.test:ste:17722">
+                        <win-def:account_type>local</win-def:account_type>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="Test if a ntuser_object with the logged_in element is supported" version="1" id="oval:mil.ssclant.oval.test:ste:17723">
+                        <win-def:logged_on datatype="boolean">true</win-def:logged_on>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="Test if a ntuser_object with the logged_in element equal to false is supported." version="1" id="oval:mil.ssclant.oval.test:ste:17724">
+                        <win-def:logged_on datatype="boolean">false</win-def:logged_on>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="Test if a ntuser_object with an enabled element equal to true is supported." version="1" id="oval:mil.ssclant.oval.test:ste:17725">
+                        <win-def:enabled datatype="boolean">true</win-def:enabled>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="Test if a ntuser_object with an enabled element equal to false is supported." version="1" id="oval:mil.ssclant.oval.test:ste:17726">
+                        <win-def:enabled datatype="boolean">false</win-def:enabled>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="Test if a ntuser_object with a date_modified element equal to true is supported." version="1" id="oval:mil.ssclant.oval.test:ste:17727">
+                        <win-def:date_modified operation="greater than" datatype="int">116522496000000000</win-def:date_modified>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="Test if a ntuser_object with a date_modified element set to false is supported" version="1" id="oval:mil.ssclant.oval.test:ste:17728">
+                        <win-def:date_modified operation="less than" datatype="int">132283728000000000</win-def:date_modified>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="Test if a ntuser_object with a filepath element set to pattern match" version="1" id="oval:mil.ssclant.oval.test:ste:17729">
+                        <win-def:filepath operation="pattern match">.*\\.*ntuser.*</win-def:filepath>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="Test if a ntuser_object with last_time_write element with a less than operation is supported" version="1" id="oval:mil.ssclant.oval.test:ste:17730">
+                        <win-def:last_write_time operation="less than" datatype="int">132283728000000000</win-def:last_write_time>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="Test if a ntuser_object with last_time_write element with a greater than operation is supported" version="1" id="oval:mil.ssclant.oval.test:ste:17731">
+                        <win-def:last_write_time operation="greater than" datatype="int">116522496000000000</win-def:last_write_time>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="Test if a ntuser_object with a type element is supported" version="1" id="oval:mil.ssclant.oval.test:ste:17732">
+                        <win-def:type>reg_sz</win-def:type>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="Test if a ntuser_object with a value element is supported" version="1" id="oval:mil.ssclant.oval.test:ste:17733">
+                        <win-def:value>1</win-def:value>
+                  </win-def:ntuser_state>
+                  <win-def:ntuser_state comment="Verify user account is enabled" version="1" id="oval:mil.ssclant.oval.test:ste:20000">
+                        <win-def:username operation="pattern match">.*</win-def:username>
+                        <win-def:enabled datatype="boolean">true</win-def:enabled>
+                  </win-def:ntuser_state>
+            </oval-def:states>
+      </oval-def:oval_definitions>
+      <oval-res:results>
+            <oval-res:system>
+                  <oval-res:definitions>
+                        <oval-res:definition definition_id="oval:mil.ssclant.oval.test:def:38" version="1" result="false">
+                              <oval-res:criteria operator="AND" result="false">
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1000" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1001" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1002" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1003" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1004" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1005" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1006" result="false"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1007" result="false"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1008" result="false"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1009" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1010" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1011" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1012" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1013" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1014" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1015" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1016" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1017" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1018" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1019" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1020" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1021" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1022" result="true"/>
+                                    <oval-res:criterion version="1" test_ref="oval:mil.ssclant.oval.test:tst:1023" result="true"/>
+                              </oval-res:criteria>
+                        </oval-res:definition>
+                  </oval-res:definitions>
+                  <oval-res:tests>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1000" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="1"/>
+                              <oval-res:tested_item result="true" item_id="2"/>
+                              <oval-res:tested_item result="true" item_id="3"/>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1001" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="4"/>
+                              <oval-res:tested_item result="true" item_id="5"/>
+                              <oval-res:tested_item result="true" item_id="6"/>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1002" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="7"/>
+                              <oval-res:tested_item result="true" item_id="8"/>
+                              <oval-res:tested_item result="true" item_id="9"/>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1003" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="10"/>
+                              <oval-res:tested_item result="true" item_id="11"/>
+                              <oval-res:tested_item result="true" item_id="12"/>
+                              <oval-res:tested_item result="true" item_id="13"/>
+                              <oval-res:tested_item result="true" item_id="14"/>
+                              <oval-res:tested_item result="true" item_id="15"/>
+                              <oval-res:tested_item result="true" item_id="16"/>
+                              <oval-res:tested_item result="true" item_id="17"/>
+                              <oval-res:tested_item result="true" item_id="18"/>
+                              <oval-res:tested_item result="true" item_id="19"/>
+                              <oval-res:tested_item result="true" item_id="20"/>
+                              <oval-res:tested_item result="true" item_id="21"/>
+                              <oval-res:tested_item result="true" item_id="22"/>
+                              <oval-res:tested_item result="true" item_id="23"/>
+                              <oval-res:tested_item result="true" item_id="24"/>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1004" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="25"/>
+                              <oval-res:tested_item result="true" item_id="26"/>
+                              <oval-res:tested_item result="true" item_id="27"/>
+                              <oval-res:tested_item result="true" item_id="28"/>
+                              <oval-res:tested_item result="true" item_id="29"/>
+                              <oval-res:tested_item result="true" item_id="30"/>
+                              <oval-res:tested_item result="true" item_id="31"/>
+                              <oval-res:tested_item result="true" item_id="32"/>
+                              <oval-res:tested_item result="true" item_id="33"/>
+                              <oval-res:tested_item result="true" item_id="34"/>
+                              <oval-res:tested_item result="true" item_id="35"/>
+                              <oval-res:tested_item result="true" item_id="36"/>
+                              <oval-res:tested_item result="true" item_id="37"/>
+                              <oval-res:tested_item result="true" item_id="38"/>
+                              <oval-res:tested_item result="true" item_id="39"/>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1005" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="40"/>
+                              <oval-res:tested_item result="true" item_id="41"/>
+                              <oval-res:tested_item result="true" item_id="42"/>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1006" state_operator="AND" version="1" result="false">
+                              <oval-res:message level="info">check</oval-res:message>
+                              <oval-res:tested_item result="false" item_id="43">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="44">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="45">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="46">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="47">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="48">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="49">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="50">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="51">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="52">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="53">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="54">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="55">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="56">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="57">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1007" state_operator="AND" version="1" result="false">
+                              <oval-res:message level="info">check</oval-res:message>
+                              <oval-res:tested_item result="false" item_id="58">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="59">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="60">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="61">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="62">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="63">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="64">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="65">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="66">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="67">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="68">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="69">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="70">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="71">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="72">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1008" state_operator="AND" version="1" result="false">
+                              <oval-res:message level="info">check</oval-res:message>
+                              <oval-res:tested_item result="false" item_id="73">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="74">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="75">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="76">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="77">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="78">
+                                    <oval-res:message level="info">account_type</oval-res:message>
+                              </oval-res:tested_item>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1009" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="43"/>
+                              <oval-res:tested_item result="true" item_id="44"/>
+                              <oval-res:tested_item result="true" item_id="45"/>
+                              <oval-res:tested_item result="true" item_id="46"/>
+                              <oval-res:tested_item result="true" item_id="47"/>
+                              <oval-res:tested_item result="true" item_id="48"/>
+                              <oval-res:tested_item result="true" item_id="49"/>
+                              <oval-res:tested_item result="true" item_id="50"/>
+                              <oval-res:tested_item result="true" item_id="51"/>
+                              <oval-res:tested_item result="true" item_id="52"/>
+                              <oval-res:tested_item result="true" item_id="53"/>
+                              <oval-res:tested_item result="true" item_id="54"/>
+                              <oval-res:tested_item result="true" item_id="55"/>
+                              <oval-res:tested_item result="true" item_id="56"/>
+                              <oval-res:tested_item result="true" item_id="57"/>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1010" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="58"/>
+                              <oval-res:tested_item result="true" item_id="59"/>
+                              <oval-res:tested_item result="true" item_id="60"/>
+                              <oval-res:tested_item result="true" item_id="61"/>
+                              <oval-res:tested_item result="true" item_id="62"/>
+                              <oval-res:tested_item result="true" item_id="63"/>
+                              <oval-res:tested_item result="true" item_id="64"/>
+                              <oval-res:tested_item result="true" item_id="65"/>
+                              <oval-res:tested_item result="true" item_id="66"/>
+                              <oval-res:tested_item result="true" item_id="67"/>
+                              <oval-res:tested_item result="true" item_id="68"/>
+                              <oval-res:tested_item result="true" item_id="69"/>
+                              <oval-res:tested_item result="true" item_id="70"/>
+                              <oval-res:tested_item result="true" item_id="71"/>
+                              <oval-res:tested_item result="true" item_id="72"/>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1011" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="73"/>
+                              <oval-res:tested_item result="true" item_id="74"/>
+                              <oval-res:tested_item result="true" item_id="75"/>
+                              <oval-res:tested_item result="true" item_id="76"/>
+                              <oval-res:tested_item result="true" item_id="77"/>
+                              <oval-res:tested_item result="true" item_id="78"/>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1012" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="79"/>
+                              <oval-res:tested_item result="false" item_id="80">
+                                    <oval-res:message level="info">key</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="81">
+                                    <oval-res:message level="info">key</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="82">
+                                    <oval-res:message level="info">key</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="83">
+                                    <oval-res:message level="info">key</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="true" item_id="84"/>
+                              <oval-res:tested_item result="false" item_id="85">
+                                    <oval-res:message level="info">key</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="86">
+                                    <oval-res:message level="info">key</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="87">
+                                    <oval-res:message level="info">key</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="88">
+                                    <oval-res:message level="info">key</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="true" item_id="89"/>
+                              <oval-res:tested_item result="false" item_id="90">
+                                    <oval-res:message level="info">key</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="91">
+                                    <oval-res:message level="info">key</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="92">
+                                    <oval-res:message level="info">key</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="93">
+                                    <oval-res:message level="info">key</oval-res:message>
+                              </oval-res:tested_item>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1013" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="false" item_id="4">
+                                    <oval-res:message level="info">logged_on</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="true" item_id="5"/>
+                              <oval-res:tested_item result="false" item_id="6">
+                                    <oval-res:message level="info">logged_on</oval-res:message>
+                              </oval-res:tested_item>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1014" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="4"/>
+                              <oval-res:tested_item result="false" item_id="5">
+                                    <oval-res:message level="info">logged_on</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="true" item_id="6"/>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1015" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="4"/>
+                              <oval-res:tested_item result="true" item_id="5"/>
+                              <oval-res:tested_item result="false" item_id="6">
+                                    <oval-res:message level="info">enabled</oval-res:message>
+                              </oval-res:tested_item>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1016" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="false" item_id="4">
+                                    <oval-res:message level="info">enabled</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="5">
+                                    <oval-res:message level="info">enabled</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="true" item_id="6"/>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1017" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="4"/>
+                              <oval-res:tested_item result="true" item_id="5"/>
+                              <oval-res:tested_item result="true" item_id="6"/>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1018" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="4"/>
+                              <oval-res:tested_item result="true" item_id="5"/>
+                              <oval-res:tested_item result="true" item_id="6"/>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1019" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="4"/>
+                              <oval-res:tested_item result="true" item_id="5"/>
+                              <oval-res:tested_item result="true" item_id="6"/>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1020" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="4"/>
+                              <oval-res:tested_item result="true" item_id="5"/>
+                              <oval-res:tested_item result="true" item_id="6"/>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1021" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="4"/>
+                              <oval-res:tested_item result="true" item_id="5"/>
+                              <oval-res:tested_item result="false" item_id="6">
+                                    <oval-res:message level="info">last_write_time</oval-res:message>
+                              </oval-res:tested_item>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1022" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="4"/>
+                              <oval-res:tested_item result="true" item_id="5"/>
+                              <oval-res:tested_item result="false" item_id="6">
+                                    <oval-res:message level="info">type</oval-res:message>
+                              </oval-res:tested_item>
+                        </oval-res:test>
+                        <oval-res:test check_existence="at_least_one_exists" check="at least one" test_id="oval:mil.ssclant.oval.test:tst:1023" state_operator="AND" version="1" result="true">
+                              <oval-res:tested_item result="true" item_id="4"/>
+                              <oval-res:tested_item result="false" item_id="5">
+                                    <oval-res:message level="info">value</oval-res:message>
+                              </oval-res:tested_item>
+                              <oval-res:tested_item result="false" item_id="6"/>
+                        </oval-res:test>
+                  </oval-res:tests>
+                  <oval-sc:oval_system_characteristics>
+                        <oval-sc:generator>
+                              <oval:product_name>SCAP Compliance Checker</oval:product_name>
+                              <oval:product_version>4.0 DEV 1</oval:product_version>
+                              <oval:schema_version>5.10.1</oval:schema_version>
+                              <oval:timestamp>2013-04-22T15:31:08</oval:timestamp>
+                        </oval-sc:generator>
+                        <oval-sc:system_info>
+                              <oval-sc:os_name>Windows 7 Professional</oval-sc:os_name>
+                              <oval-sc:os_version>Windows 7 Professional</oval-sc:os_version>
+                              <oval-sc:architecture>Intel64 Family 6 Model 42 Stepping 7</oval-sc:architecture>
+                              <oval-sc:primary_host_name>DLY0MS1</oval-sc:primary_host_name>
+                              <oval-sc:interfaces>
+                                    <oval-sc:interface>
+                                          <oval-sc:interface_name>[00000007] Intel(R) 82579LM Gigabit Network Connection</oval-sc:interface_name>
+                                          <oval-sc:ip_address></oval-sc:ip_address>
+                                          <oval-sc:mac_address></oval-sc:mac_address>
+                                    </oval-sc:interface>
+                              </oval-sc:interfaces>
+                        </oval-sc:system_info>
+                        <oval-sc:collected_objects>
+                              <oval-sc:object version="1" id="oval:mil.ssclant.oval.test:obj:223" flag="complete">
+                                    <oval-sc:reference item_ref="1"/>
+                                    <oval-sc:reference item_ref="2"/>
+                                    <oval-sc:reference item_ref="3"/>
+                              </oval-sc:object>
+                              <oval-sc:object version="1" id="oval:mil.ssclant.oval.test:obj:563" flag="complete">
+                                    <oval-sc:reference item_ref="4"/>
+                                    <oval-sc:reference item_ref="5"/>
+                                    <oval-sc:reference item_ref="6"/>
+                              </oval-sc:object>
+                              <oval-sc:object version="1" id="oval:mil.ssclant.oval.test:obj:713" flag="complete">
+                                    <oval-sc:reference item_ref="7"/>
+                                    <oval-sc:reference item_ref="8"/>
+                                    <oval-sc:reference item_ref="9"/>
+                              </oval-sc:object>
+                              <oval-sc:object version="1" id="oval:mil.ssclant.oval.test:obj:342" flag="complete">
+                                    <oval-sc:reference item_ref="10"/>
+                                    <oval-sc:reference item_ref="11"/>
+                                    <oval-sc:reference item_ref="12"/>
+                                    <oval-sc:reference item_ref="13"/>
+                                    <oval-sc:reference item_ref="14"/>
+                                    <oval-sc:reference item_ref="15"/>
+                                    <oval-sc:reference item_ref="16"/>
+                                    <oval-sc:reference item_ref="17"/>
+                                    <oval-sc:reference item_ref="18"/>
+                                    <oval-sc:reference item_ref="19"/>
+                                    <oval-sc:reference item_ref="20"/>
+                                    <oval-sc:reference item_ref="21"/>
+                                    <oval-sc:reference item_ref="22"/>
+                                    <oval-sc:reference item_ref="23"/>
+                                    <oval-sc:reference item_ref="24"/>
+                              </oval-sc:object>
+                              <oval-sc:object version="1" id="oval:mil.ssclant.oval.test:obj:428" flag="complete">
+                                    <oval-sc:reference item_ref="25"/>
+                                    <oval-sc:reference item_ref="26"/>
+                                    <oval-sc:reference item_ref="27"/>
+                                    <oval-sc:reference item_ref="28"/>
+                                    <oval-sc:reference item_ref="29"/>
+                                    <oval-sc:reference item_ref="30"/>
+                                    <oval-sc:reference item_ref="31"/>
+                                    <oval-sc:reference item_ref="32"/>
+                                    <oval-sc:reference item_ref="33"/>
+                                    <oval-sc:reference item_ref="34"/>
+                                    <oval-sc:reference item_ref="35"/>
+                                    <oval-sc:reference item_ref="36"/>
+                                    <oval-sc:reference item_ref="37"/>
+                                    <oval-sc:reference item_ref="38"/>
+                                    <oval-sc:reference item_ref="39"/>
+                              </oval-sc:object>
+                              <oval-sc:object version="1" id="oval:mil.ssclant.oval.test:obj:185" flag="complete">
+                                    <oval-sc:reference item_ref="40"/>
+                                    <oval-sc:reference item_ref="41"/>
+                                    <oval-sc:reference item_ref="42"/>
+                              </oval-sc:object>
+                              <oval-sc:object version="1" id="oval:mil.ssclant.oval.test:obj:479" flag="complete">
+                                    <oval-sc:reference item_ref="43"/>
+                                    <oval-sc:reference item_ref="44"/>
+                                    <oval-sc:reference item_ref="45"/>
+                                    <oval-sc:reference item_ref="46"/>
+                                    <oval-sc:reference item_ref="47"/>
+                                    <oval-sc:reference item_ref="48"/>
+                                    <oval-sc:reference item_ref="49"/>
+                                    <oval-sc:reference item_ref="50"/>
+                                    <oval-sc:reference item_ref="51"/>
+                                    <oval-sc:reference item_ref="52"/>
+                                    <oval-sc:reference item_ref="53"/>
+                                    <oval-sc:reference item_ref="54"/>
+                                    <oval-sc:reference item_ref="55"/>
+                                    <oval-sc:reference item_ref="56"/>
+                                    <oval-sc:reference item_ref="57"/>
+                              </oval-sc:object>
+                              <oval-sc:object version="1" id="oval:mil.ssclant.oval.test:obj:288" flag="complete">
+                                    <oval-sc:reference item_ref="58"/>
+                                    <oval-sc:reference item_ref="59"/>
+                                    <oval-sc:reference item_ref="60"/>
+                                    <oval-sc:reference item_ref="61"/>
+                                    <oval-sc:reference item_ref="62"/>
+                                    <oval-sc:reference item_ref="63"/>
+                                    <oval-sc:reference item_ref="64"/>
+                                    <oval-sc:reference item_ref="65"/>
+                                    <oval-sc:reference item_ref="66"/>
+                                    <oval-sc:reference item_ref="67"/>
+                                    <oval-sc:reference item_ref="68"/>
+                                    <oval-sc:reference item_ref="69"/>
+                                    <oval-sc:reference item_ref="70"/>
+                                    <oval-sc:reference item_ref="71"/>
+                                    <oval-sc:reference item_ref="72"/>
+                              </oval-sc:object>
+                              <oval-sc:object version="1" id="oval:mil.ssclant.oval.test:obj:711" flag="complete">
+                                    <oval-sc:reference item_ref="73"/>
+                                    <oval-sc:reference item_ref="74"/>
+                                    <oval-sc:reference item_ref="75"/>
+                                    <oval-sc:reference item_ref="76"/>
+                                    <oval-sc:reference item_ref="77"/>
+                                    <oval-sc:reference item_ref="78"/>
+                              </oval-sc:object>
+                              <oval-sc:object version="1" id="oval:mil.ssclant.oval.test:obj:5645" flag="complete">
+                                    <oval-sc:reference item_ref="79"/>
+                                    <oval-sc:reference item_ref="80"/>
+                                    <oval-sc:reference item_ref="81"/>
+                                    <oval-sc:reference item_ref="82"/>
+                                    <oval-sc:reference item_ref="83"/>
+                                    <oval-sc:reference item_ref="84"/>
+                                    <oval-sc:reference item_ref="85"/>
+                                    <oval-sc:reference item_ref="86"/>
+                                    <oval-sc:reference item_ref="87"/>
+                                    <oval-sc:reference item_ref="88"/>
+                                    <oval-sc:reference item_ref="89"/>
+                                    <oval-sc:reference item_ref="90"/>
+                                    <oval-sc:reference item_ref="91"/>
+                                    <oval-sc:reference item_ref="92"/>
+                                    <oval-sc:reference item_ref="93"/>
+                              </oval-sc:object>
+                        </oval-sc:collected_objects>
+                        <oval-sc:system_data>
+                              <win-sc:ntuser_item status="exists" id="1">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name xsi:nil="true"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="2">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name xsi:nil="true"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130111227160000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="3">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name status="not collected"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="4">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name>ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type>reg_sz</win-sc:type>
+                                    <win-sc:value>1</win-sc:value>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="5">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name>ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130111227160000000</win-sc:last_write_time>
+                                    <win-sc:type>reg_sz</win-sc:type>
+                                    <win-sc:value>0</win-sc:value>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="6">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="7">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name>ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type>reg_sz</win-sc:type>
+                                    <win-sc:value>1</win-sc:value>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="8">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name>ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130111227160000000</win-sc:last_write_time>
+                                    <win-sc:type>reg_sz</win-sc:type>
+                                    <win-sc:value>0</win-sc:value>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="9">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="10">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name>ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type>reg_sz</win-sc:type>
+                                    <win-sc:value>1</win-sc:value>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="11">
+                                    <win-sc:key>Control Panel\Desktop\Colors</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="12">
+                                    <win-sc:key>Control Panel\Desktop\LanguageConfiguration</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="13">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\MuiCached</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="14">
+                                    <win-sc:key>Control Panel\Desktop\WindowMetrics</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="15">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name>ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130111227160000000</win-sc:last_write_time>
+                                    <win-sc:type>reg_sz</win-sc:type>
+                                    <win-sc:value>0</win-sc:value>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="16">
+                                    <win-sc:key>Control Panel\Desktop\Colors</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129797647120000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="17">
+                                    <win-sc:key>Control Panel\Desktop\LanguageConfiguration</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129797647120000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="18">
+                                    <win-sc:key>Control Panel\Desktop\MuiCached</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130111227160000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="19">
+                                    <win-sc:key>Control Panel\Desktop\WindowMetrics</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130102537600000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="20">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="21">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\Colors</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="22">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\LanguageConfiguration</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="23">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\MuiCached</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="24">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\WindowMetrics</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="25">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name>ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type>reg_sz</win-sc:type>
+                                    <win-sc:value>1</win-sc:value>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="26">
+                                    <win-sc:key>Control Panel\Desktop\Colors</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="27">
+                                    <win-sc:key>Control Panel\Desktop\LanguageConfiguration</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="28">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\MuiCached</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="29">
+                                    <win-sc:key>Control Panel\Desktop\WindowMetrics</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="30">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name>ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130111227160000000</win-sc:last_write_time>
+                                    <win-sc:type>reg_sz</win-sc:type>
+                                    <win-sc:value>0</win-sc:value>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="31">
+                                    <win-sc:key>Control Panel\Desktop\Colors</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129797647120000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="32">
+                                    <win-sc:key>Control Panel\Desktop\LanguageConfiguration</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129797647120000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="33">
+                                    <win-sc:key>Control Panel\Desktop\MuiCached</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130111227160000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="34">
+                                    <win-sc:key>Control Panel\Desktop\WindowMetrics</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130102537600000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="35">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="36">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\Colors</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="37">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\LanguageConfiguration</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="38">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\MuiCached</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="39">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\WindowMetrics</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="40">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name xsi:nil="true"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="41">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name xsi:nil="true"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130111227160000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="42">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name status="not collected"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="43">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name>ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type>reg_sz</win-sc:type>
+                                    <win-sc:value>1</win-sc:value>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="44">
+                                    <win-sc:key>Control Panel\Desktop\Colors</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="45">
+                                    <win-sc:key>Control Panel\Desktop\LanguageConfiguration</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="46">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\MuiCached</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="47">
+                                    <win-sc:key>Control Panel\Desktop\WindowMetrics</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="48">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name>ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130111227160000000</win-sc:last_write_time>
+                                    <win-sc:type>reg_sz</win-sc:type>
+                                    <win-sc:value>0</win-sc:value>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="49">
+                                    <win-sc:key>Control Panel\Desktop\Colors</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129797647120000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="50">
+                                    <win-sc:key>Control Panel\Desktop\LanguageConfiguration</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129797647120000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="51">
+                                    <win-sc:key>Control Panel\Desktop\MuiCached</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130111227160000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="52">
+                                    <win-sc:key>Control Panel\Desktop\WindowMetrics</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130102537600000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="53">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="54">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\Colors</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="55">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\LanguageConfiguration</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="56">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\MuiCached</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="57">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\WindowMetrics</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="58">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name>ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type>reg_sz</win-sc:type>
+                                    <win-sc:value>1</win-sc:value>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="59">
+                                    <win-sc:key>Control Panel\Desktop\Colors</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="60">
+                                    <win-sc:key>Control Panel\Desktop\LanguageConfiguration</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="61">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\MuiCached</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="62">
+                                    <win-sc:key>Control Panel\Desktop\WindowMetrics</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="63">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name>ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130111227160000000</win-sc:last_write_time>
+                                    <win-sc:type>reg_sz</win-sc:type>
+                                    <win-sc:value>0</win-sc:value>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="64">
+                                    <win-sc:key>Control Panel\Desktop\Colors</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129797647120000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="65">
+                                    <win-sc:key>Control Panel\Desktop\LanguageConfiguration</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129797647120000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="66">
+                                    <win-sc:key>Control Panel\Desktop\MuiCached</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130111227160000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="67">
+                                    <win-sc:key>Control Panel\Desktop\WindowMetrics</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130102537600000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="68">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="69">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\Colors</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="70">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\LanguageConfiguration</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="71">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\MuiCached</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="72">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\WindowMetrics</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="73">
+                                    <win-sc:key>Control Panel</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="74">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name>ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type>reg_sz</win-sc:type>
+                                    <win-sc:value>1</win-sc:value>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="75">
+                                    <win-sc:key>Control Panel</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129801215950000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="76">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name>ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130111227160000000</win-sc:last_write_time>
+                                    <win-sc:type>reg_sz</win-sc:type>
+                                    <win-sc:value>0</win-sc:value>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="77">
+                                    <win-sc:key>Control Panel</win-sc:key>
+                                    <win-sc:name status="does not exist">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130078437910000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="78">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name status="not collected">ScreenSaveActive</win-sc:name>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="79">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name xsi:nil="true"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="80">
+                                    <win-sc:key>Control Panel\Desktop\Colors</win-sc:key>
+                                    <win-sc:name xsi:nil="true"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="81">
+                                    <win-sc:key>Control Panel\Desktop\LanguageConfiguration</win-sc:key>
+                                    <win-sc:name xsi:nil="true"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="82">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\MuiCached</win-sc:key>
+                                    <win-sc:name status="not collected"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="83">
+                                    <win-sc:key>Control Panel\Desktop\WindowMetrics</win-sc:key>
+                                    <win-sc:name xsi:nil="true"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1000</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\UpdatusUser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438350000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\UpdatusUser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129780550290000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="84">
+                                    <win-sc:key>Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name xsi:nil="true"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130111227160000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="85">
+                                    <win-sc:key>Control Panel\Desktop\Colors</win-sc:key>
+                                    <win-sc:name xsi:nil="true"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129797647120000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="86">
+                                    <win-sc:key>Control Panel\Desktop\LanguageConfiguration</win-sc:key>
+                                    <win-sc:name xsi:nil="true"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">129797647120000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="87">
+                                    <win-sc:key>Control Panel\Desktop\MuiCached</win-sc:key>
+                                    <win-sc:name xsi:nil="true"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130111227160000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="exists" id="88">
+                                    <win-sc:key>Control Panel\Desktop\WindowMetrics</win-sc:key>
+                                    <win-sc:name xsi:nil="true"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1001</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\Doug</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">true</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">true</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130111326640000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\Doug\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time datatype="int">130102537600000000</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="89">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop</win-sc:key>
+                                    <win-sc:name status="not collected"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="90">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\Colors</win-sc:key>
+                                    <win-sc:name status="not collected"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="91">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\LanguageConfiguration</win-sc:key>
+                                    <win-sc:name status="not collected"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="92">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\MuiCached</win-sc:key>
+                                    <win-sc:name status="not collected"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                              <win-sc:ntuser_item status="does not exist" id="93">
+                                    <win-sc:key status="does not exist">Control Panel\Desktop\WindowMetrics</win-sc:key>
+                                    <win-sc:name status="not collected"/>
+                                    <win-sc:sid>S-1-5-21-616278023-1648581586-3879865802-1016</win-sc:sid>
+                                    <win-sc:username>DLY0MS1\testuser</win-sc:username>
+                                    <win-sc:account_type>local</win-sc:account_type>
+                                    <win-sc:logged_on datatype="boolean">false</win-sc:logged_on>
+                                    <win-sc:enabled datatype="boolean">false</win-sc:enabled>
+                                    <win-sc:date_modified datatype="int">130078438600000000</win-sc:date_modified>
+                                    <win-sc:filepath>C:\Users\testuser\ntuser.dat</win-sc:filepath>
+                                    <win-sc:last_write_time status="not collected" datatype="int">0</win-sc:last_write_time>
+                                    <win-sc:type status="not collected"/>
+                              </win-sc:ntuser_item>
+                        </oval-sc:system_data>
+                  </oval-sc:oval_system_characteristics>
+            </oval-res:system>
+      </oval-res:results>
+</oval-res:oval_results>
