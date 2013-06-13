@@ -138,7 +138,7 @@
                 <xsd:documentation>True if the application is enabled</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
-            <xsd:element name="permission" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="permission" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
                 <xsd:documentation>One element for each permission requested by the application</xsd:documentation>
               </xsd:annotation>
