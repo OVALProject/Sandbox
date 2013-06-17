@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:android-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android" elementFormDefault="qualified" version="5.10">
   <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd" />
   <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd" />
@@ -149,6 +149,27 @@
     </xsd:complexType>
   </xsd:element>
   <!-- =============================================================================== -->
+  <!-- =========================  CERTIFICATE ITEM  ================================== -->
+  <!-- =============================================================================== -->
+  <xsd:element name="certificate_item" substitutionGroup="oval-sc:item">
+    <xsd:annotation>
+      <xsd:documentation>This item stores information about the Operating System and hardware.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="oval-sc:ItemType">
+          <xsd:sequence>
+            <xsd:element name="trusted_certificate" type="oval-sc:EntityItemBinaryType" minOccurs="0" maxOccurs="unbounded">
+              <xsd:annotation>
+                <xsd:documentation>Hexadecimal string of each certificate in the OS's trusted certificate store, including both certificates installed by the system and by users.  System trusted certificates that were disabled by the user are not included here.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+  <!-- =============================================================================== -->
   <!-- ============================  DEVICE ACCESS ITEM  ============================= -->
   <!-- =============================================================================== -->
   <xsd:element name="device_access_item" substitutionGroup="oval-sc:item">
@@ -203,6 +224,21 @@
             <xsd:element name="device_admin" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
               <xsd:annotation>
                 <xsd:documentation>One element per application that holds device administrator access.  Contains the application's package name.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="auto_time" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>True the user prefers the date and time to be automatically fetched from the network.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="auto_time_zone" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>True if the user prefers the time zone to be automatically fetched from the network.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="usb_mass_storage_enabled" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>True if USB mass storage is enabled on the device, otherwise false.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>
@@ -276,6 +312,11 @@
             <xsd:element name="airplane_mode" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
                 <xsd:documentation>True if airplane mode is enabled, otherwise false</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="nfc_enabled" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>True if NFC is enabled on the device, otherwise false.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>
@@ -435,6 +476,8 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
+  <!-- =============================================================================== -->
+  <!-- =============================================================================== -->
   <!-- =============================================================================== -->
   <!-- ===========================  WIFI ITEM  ======================================= -->
   <!-- =============================================================================== -->
@@ -661,129 +704,129 @@
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="EntityItemEncryptionStatusType">
-  	<xsd:annotation>
-  	  <xsd:documentation>The EntityItemEncryptionStatusType complex type restricts a string value to a specific set of values.</xsd:documentation>
-  	</xsd:annotation>
-  	<xsd:simpleContent>
-  	  <xsd:restriction base="oval-sc:EntityItemStringType">
-  	    <xsd:enumeration value="ENCRYPTION_STATUS_UNSUPPORTED">
-  	      <xsd:annotation>
-  	        <xsd:documentation>Encryption is not supported</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	    <xsd:enumeration value="ENCRYPTION_STATUS_ACTIVE">
-  	      <xsd:annotation>
-  	        <xsd:documentation>Encryption is active.</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	    <xsd:enumeration value="ENCRYPTION_STATUS_INACTIVE">
-  	      <xsd:annotation>
-  	        <xsd:documentation>Encryption is supported but is not currently active.</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	    <xsd:enumeration value="ENCRYPTION_STATUS_ACTIVATING">
-  	      <xsd:annotation>
-  	        <xsd:documentation>Encryption is not currently active, but is currently being activated.</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	  </xsd:restriction>
-  	</xsd:simpleContent>
+    <xsd:annotation>
+      <xsd:documentation>The EntityItemEncryptionStatusType complex type restricts a string value to a specific set of values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="oval-sc:EntityItemStringType">
+        <xsd:enumeration value="ENCRYPTION_STATUS_UNSUPPORTED">
+          <xsd:annotation>
+            <xsd:documentation>Encryption is not supported</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ENCRYPTION_STATUS_ACTIVE">
+          <xsd:annotation>
+            <xsd:documentation>Encryption is active.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ENCRYPTION_STATUS_INACTIVE">
+          <xsd:annotation>
+            <xsd:documentation>Encryption is supported but is not currently active.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ENCRYPTION_STATUS_ACTIVATING">
+          <xsd:annotation>
+            <xsd:documentation>Encryption is not currently active, but is currently being activated.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+      </xsd:restriction>
+    </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="EntityItemPasswordQualityType">
-  	<xsd:annotation>
-  	  <xsd:documentation>The EntityItemPasswordQualityType complex type restricts a string value to a specific set of values.</xsd:documentation>
-  	</xsd:annotation>
-  	<xsd:simpleContent>
-  	  <xsd:restriction base="oval-sc:EntityItemStringType">
-  	    <xsd:enumeration value="PASSWORD_QUALITY_ALPHABETIC">
-  	      <xsd:annotation>
-  	        <xsd:documentation>The password must contain alphabetic (or other symbol) characters</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	    <xsd:enumeration value="PASSWORD_QUALITY_ALPHANUMERIC">
-  	      <xsd:annotation>
-  	        <xsd:documentation>The password must contain both numeric and alphabetic (or other symbol) characters</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	    <xsd:enumeration value="PASSWORD_QUALITY_BIOMETRIC_WEAK">
-  	      <xsd:annotation>
-  	        <xsd:documentation>This policy allows for low-security biometric recognition technology</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	    <xsd:enumeration value="PASSWORD_QUALITY_COMPLEX">
-  	      <xsd:annotation>
-  	        <xsd:documentation>The password must contain at least a letter, a numerical digit, and a special symbol</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	    <xsd:enumeration value="PASSWORD_QUALITY_NUMERIC">
-  	      <xsd:annotation>
-  	        <xsd:documentation>The password must contain at least numeric characters</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	    <xsd:enumeration value="PASSWORD_QUALITY_SOMETHING">
-  	      <xsd:annotation>
-  	        <xsd:documentation>This policy requires some kind of password, but doesn't care what it is</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	    <xsd:enumeration value="PASSWORD_QUALITY_UNSPECIFIED">
-  	      <xsd:annotation>
-  	        <xsd:documentation>There are no password policy requirements</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	  </xsd:restriction>
-  	</xsd:simpleContent>
+    <xsd:annotation>
+      <xsd:documentation>The EntityItemPasswordQualityType complex type restricts a string value to a specific set of values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="oval-sc:EntityItemStringType">
+        <xsd:enumeration value="PASSWORD_QUALITY_ALPHABETIC">
+          <xsd:annotation>
+            <xsd:documentation>The password must contain alphabetic (or other symbol) characters</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PASSWORD_QUALITY_ALPHANUMERIC">
+          <xsd:annotation>
+            <xsd:documentation>The password must contain both numeric and alphabetic (or other symbol) characters</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PASSWORD_QUALITY_BIOMETRIC_WEAK">
+          <xsd:annotation>
+            <xsd:documentation>This policy allows for low-security biometric recognition technology</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PASSWORD_QUALITY_COMPLEX">
+          <xsd:annotation>
+            <xsd:documentation>The password must contain at least a letter, a numerical digit, and a special symbol</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PASSWORD_QUALITY_NUMERIC">
+          <xsd:annotation>
+            <xsd:documentation>The password must contain at least numeric characters</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PASSWORD_QUALITY_SOMETHING">
+          <xsd:annotation>
+            <xsd:documentation>This policy requires some kind of password, but doesn't care what it is</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PASSWORD_QUALITY_UNSPECIFIED">
+          <xsd:annotation>
+            <xsd:documentation>There are no password policy requirements</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+      </xsd:restriction>
+    </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="EntityItemKeyguardDisabledFeaturesType">
-  	<xsd:annotation>
-  	  <xsd:documentation>The EntityItemKeyguardDisabledFeaturesType complex type restricts a string value to a specific set of values.</xsd:documentation>
-  	</xsd:annotation>
-  	<xsd:simpleContent>
-  	  <xsd:restriction base="oval-sc:EntityItemStringType">
-  	    <xsd:enumeration value="KEYGUARD_DISABLE_FEATURES_NONE">
-  	      <xsd:annotation>
-  	        <xsd:documentation>Widgets are enabled in keyguard</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	    <xsd:enumeration value="KEYGUARD_DISABLE_WIDGETS_ALL">
-  	      <xsd:annotation>
-  	        <xsd:documentation>Disable all keyguard widgets</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	    <xsd:enumeration value="KEYGUARD_DISABLE_SECURE_CAMERA">
-  	      <xsd:annotation>
-  	        <xsd:documentation>Disable the camera on secure keyguard screens (e.g. PIN/Pattern/Password)</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	    <xsd:enumeration value="KEYGUARD_DISABLE_FEATURES_ALL">
-  	      <xsd:annotation>
-  	        <xsd:documentation>Disable all current and future keyguard customizations</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	  </xsd:restriction>
-  	</xsd:simpleContent>
+    <xsd:annotation>
+      <xsd:documentation>The EntityItemKeyguardDisabledFeaturesType complex type restricts a string value to a specific set of values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="oval-sc:EntityItemStringType">
+        <xsd:enumeration value="KEYGUARD_DISABLE_FEATURES_NONE">
+          <xsd:annotation>
+            <xsd:documentation>Widgets are enabled in keyguard</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="KEYGUARD_DISABLE_WIDGETS_ALL">
+          <xsd:annotation>
+            <xsd:documentation>Disable all keyguard widgets</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="KEYGUARD_DISABLE_SECURE_CAMERA">
+          <xsd:annotation>
+            <xsd:documentation>Disable the camera on secure keyguard screens (e.g. PIN/Pattern/Password)</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="KEYGUARD_DISABLE_FEATURES_ALL">
+          <xsd:annotation>
+            <xsd:documentation>Disable all current and future keyguard customizations</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+      </xsd:restriction>
+    </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="EntityItemWifiCurrentStatusType">
-  	<xsd:annotation>
-  	  <xsd:documentation>The EntityItemWifiCurrentStatusType complex type restricts a string value to a specific set of values.</xsd:documentation>
-  	</xsd:annotation>
-  	<xsd:simpleContent>
-  	  <xsd:restriction base="oval-sc:EntityItemStringType">
-  	    <xsd:enumeration value="CURRENT">
-  	      <xsd:annotation>
-  	        <xsd:documentation>The network we are currently connected to</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	    <xsd:enumeration value="ENABLED">
-  	      <xsd:annotation>
-  	        <xsd:documentation>Supplicant will not attempt to use this network</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	    <xsd:enumeration value="DISABLED">
-  	      <xsd:annotation>
-  	        <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
-  	      </xsd:annotation>
-  	    </xsd:enumeration>
-  	  </xsd:restriction>
-  	</xsd:simpleContent>
+    <xsd:annotation>
+      <xsd:documentation>The EntityItemWifiCurrentStatusType complex type restricts a string value to a specific set of values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="oval-sc:EntityItemStringType">
+        <xsd:enumeration value="CURRENT">
+          <xsd:annotation>
+            <xsd:documentation>The network we are currently connected to</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ENABLED">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will not attempt to use this network</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="DISABLED">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+      </xsd:restriction>
+    </xsd:simpleContent>
   </xsd:complexType>
 </xsd:schema>
