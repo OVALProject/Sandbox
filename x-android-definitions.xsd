@@ -330,10 +330,10 @@
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
-        <sch:pattern id="android-def_cmrtst" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+        <sch:pattern id="android-def_certtst" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
           <sch:rule context="android-def:certificate_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:camera_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of a camera_test must reference a camera_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:certificate_object/@id">
+              <sch:value-of select="../@id" /> - the object child element of a certificate_test must reference a certificate_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:certificate_test/android-def:state">
             <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:certificate_state/@id">
@@ -530,7 +530,7 @@
             </xsd:element>
             <xsd:element name="auto_time" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>True the user prefers the date and time to be automatically fetched from the network.</xsd:documentation>
+                <xsd:documentation>True if the user prefers the date and time to be automatically fetched from the network.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="auto_time_zone" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">

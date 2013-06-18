@@ -153,7 +153,7 @@
   <!-- =============================================================================== -->
   <xsd:element name="certificate_item" substitutionGroup="oval-sc:item">
     <xsd:annotation>
-      <xsd:documentation>This item stores information about the Operating System and hardware.</xsd:documentation>
+      <xsd:documentation>This item stores information about the certificates installed on the device.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
@@ -228,7 +228,7 @@
             </xsd:element>
             <xsd:element name="auto_time" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>True the user prefers the date and time to be automatically fetched from the network.</xsd:documentation>
+                <xsd:documentation>True if the user prefers the date and time to be automatically fetched from the network.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="auto_time_zone" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
