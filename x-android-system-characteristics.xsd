@@ -273,6 +273,37 @@
     </xsd:complexType>
   </xsd:element>
   <!-- =============================================================================== -->
+  <!-- =======================  EXTERNAL STORAGE ITEM  ============================= -->
+  <!-- =============================================================================== -->
+  <xsd:element name="external_storage_item" substitutionGroup="oval-sc:item">
+    <xsd:annotation>
+      <xsd:documentation>Device encryption information.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="oval-sc:ItemType">
+          <xsd:sequence>
+            <xsd:element name="external_storage_state" type="android-sc:EntityItemExternalStorageType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>State of the external storage</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="external_storage_removable" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>True if the external storage is physically removable</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="path" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>The mount path</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+  <!-- =============================================================================== -->
   <!-- ============================  LOCATION SERVICE ITEM  ========================== -->
   <!-- =============================================================================== -->
   <xsd:element name="location_service_item" substitutionGroup="oval-sc:item">
@@ -317,6 +348,16 @@
             <xsd:element name="nfc_enabled" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
                 <xsd:documentation>True if NFC is enabled on the device, otherwise false.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="tether_supported" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>True if tethering is supported, otherwise false.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="tether_active" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>True if device is currently tethering, otherwise false.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>
@@ -383,6 +424,11 @@
             <xsd:element name="password_min_upper_case_letters" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
                 <xsd:documentation>Minimum number of upper case letters password must have.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="password_max_repeated_characters" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>Maximum number of repeated characters allowed by policy.  NOTE: This policy is not currently supported by stock Android so this item will likely not be populated in many cases.  We put this in here to support any Android devices with policies extended by the OEM or for future use.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="password_expiration_timeout" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
@@ -822,6 +868,60 @@
           </xsd:annotation>
         </xsd:enumeration>
         <xsd:enumeration value="DISABLED">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+      </xsd:restriction>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="EntityItemExternalStorageType">
+    <xsd:annotation>
+      <xsd:documentation>The EntityItemWifiCurrentStatusType complex type restricts a string value to a specific set of values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="oval-sc:EntityItemStringType">
+        <xsd:enumeration value="MEDIA_BAD_REMOVAL">
+          <xsd:annotation>
+            <xsd:documentation>The network we are currently connected to</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_CHECKING">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will not attempt to use this network</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_MOUNTED">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_MOUNTED_READ_ONLY">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_NOFS">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_REMOVED">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_SHARED">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_UNMOUNTABLE">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_UNMOUNTED">
           <xsd:annotation>
             <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
           </xsd:annotation>
