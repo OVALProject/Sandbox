@@ -36,15 +36,25 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateEncodingException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.BitSet;
 import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
 import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -74,12 +84,15 @@ import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.BluetoothItemD
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.BluetoothItemDocument.BluetoothItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.CameraItemDocument;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.CameraItemDocument.CameraItem;
+import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.CertificateItemDocument;
+import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.CertificateItemDocument.CertificateItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.DeviceAccessItemDocument;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.DeviceAccessItemDocument.DeviceAccessItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.DeviceSettingsItemDocument;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.DeviceSettingsItemDocument.DeviceSettingsItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EncryptionItemDocument;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EncryptionItemDocument.EncryptionItem;
+import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemExternalStorageType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemPasswordQualityType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemWifiAuthAlgorithmType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemWifiCurrentStatusType;
@@ -87,6 +100,8 @@ import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemWifi
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemWifiKeyMgmtType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemWifiPairwiseCipherType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemWifiProtocolType;
+import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.ExternalStorageItemDocument;
+import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.ExternalStorageItemDocument.ExternalStorageItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.LocationServiceItemDocument;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.LocationServiceItemDocument.LocationServiceItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.NetworkItemDocument;
@@ -106,6 +121,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import android.app.admin.DevicePolicyManager;
+import android.bluetooth.BluetoothAdapter;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -113,10 +129,13 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
+import android.nfc.NfcAdapter;
 import android.os.Build;
 import android.os.Environment;
+import android.os.storage.StorageManager;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -125,7 +144,7 @@ public class GenerateAndroidSC {
 	// from http://rgagnon.com/javadetails/java-0596.html
 	static final String HEXES = "0123456789ABCDEF";
 
-	public static String getHex(byte[] raw) {
+	public static String getHex(byte[] raw, String separator) {
 		if (raw == null) {
 			return null;
 		}
@@ -133,7 +152,8 @@ public class GenerateAndroidSC {
 		for (final byte b : raw) {
 			hex.append(HEXES.charAt((b & 0xF0) >> 4)).append(
 					HEXES.charAt((b & 0x0F)));
-			hex.append("-");
+			if(separator != null)
+				hex.append(separator);
 		}
 		String out = hex.toString();
 		return out.toString().substring(0, out.length() - 1);
@@ -199,7 +219,7 @@ public class GenerateAndroidSC {
 
 					byte[] macAddress = iface.getHardwareAddress();
 					if (macAddress != null) {
-						macAddressString = getHex(macAddress);
+						macAddressString = getHex(macAddress, "-");
 						
 					}
 
@@ -299,6 +319,12 @@ public class GenerateAndroidSC {
 								} else if (objectName.equals("device_settings_object")) {
 									generateDeviceSettingsItem(co, sd, id, current_item_ref, c);
 									current_item_ref++;
+								} else if (objectName.equals("certificate_object")) {
+									generateCertificateItem(co, sd, id, current_item_ref, c);
+									current_item_ref++;
+								} else if (objectName.equals("external_storage_object")) {
+									current_item_ref = generateExternalStorageItem(co, sd, id, current_item_ref, c);
+									
 								}
 							}
 						} else {
@@ -589,11 +615,18 @@ public class GenerateAndroidSC {
 		int bluetoothOn = Settings.System.getInt(c.getContentResolver(),
 				Settings.System.BLUETOOTH_ON, 0);
 
-		int bluetoothDiscover = Settings.System.getInt(c.getContentResolver(),
-				Settings.System.BLUETOOTH_DISCOVERABILITY, 0);
+		//int bluetoothDiscover = Settings.System.getInt(c.getContentResolver(),
+			//	Settings.System.BLUETOOTH_DISCOVERABILITY, 0);
 
+		BluetoothAdapter bAdapter = BluetoothAdapter.getDefaultAdapter();
+		int scanMode = bAdapter.getScanMode();
+		
 		String bluetoothTimeout = Settings.System.getString(c.getContentResolver(),
 				Settings.System.BLUETOOTH_DISCOVERABILITY_TIMEOUT);
+	
+		
+		// On my DROID RAZR, BLUETOOTH_DISCOVERABILITY and BLUETOOTH_DISCOVERABILITY_TIMEOUT don't appear to work
+		// Need to check if the same problem exists Android-wide and if there is another way to get this information
 		
 		EntityItemBoolType ei1 = EntityItemBoolType.Factory.newInstance();
 
@@ -606,12 +639,13 @@ public class GenerateAndroidSC {
 		bi.setCurrentStatus(ei1);
 
 		EntityItemBoolType ei2 = EntityItemBoolType.Factory.newInstance();
-		Log.d("AndroidSC", "BLUETOOTH_DISCOVERABILITY: " + bluetoothDiscover);
+		//Log.d("AndroidSC", "BLUETOOTH_DISCOVERABILITY: " + bluetoothDiscover);
 		// 0 = neither connectable nor discoverable
 		// 1 = connectable not discoverable
 		// 2 = connectable & discoverable
 		// does 1 mean bluetooth turned on? (use for bluetoothOn?)
-		if (bluetoothDiscover == 2) {
+		// probably make this enum to handle scan_mode_connectable too.
+		if (scanMode == BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
 			ei2.setStringValue("true");
 		} else {
 			ei2.setStringValue("false");
@@ -769,7 +803,169 @@ public class GenerateAndroidSC {
 		airplaneBool.setDatatype("boolean");
 		ni.setAirplaneMode(airplaneBool);
 		
+		EntityItemBoolType nfcBool = EntityItemBoolType.Factory.newInstance();
+		NfcAdapter nfc = NfcAdapter.getDefaultAdapter(c);
+		if(nfc != null) {
+			if(nfc.isEnabled())
+				nfcBool.setStringValue("true");
+			else
+				nfcBool.setStringValue("false");
+		} else {
+			nfcBool.setStringValue("false");
+		}
+		nfcBool.setDatatype("boolean");
+		ni.setNfcEnabled(nfcBool);
+		
+		EntityItemBoolType tetherBool = EntityItemBoolType.Factory.newInstance();
+		EntityItemBoolType tetherActiveBool = EntityItemBoolType.Factory.newInstance();
+		
+		ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+		
+		try {
+			Method[] cmMethods = cm.getClass().getDeclaredMethods();
+			for(Method method : cmMethods) {
+				if(method.getName().equals("isTetheringSupported")) {
+					boolean isTetherSupt = (Boolean) method.invoke(cm);
+					if(isTetherSupt == true) {
+						tetherBool.setStringValue("true");
+						tetherBool.setDatatype("boolean");
+						ni.setTetherSupported(tetherBool);
+					} if(isTetherSupt == false) {
+						tetherBool.setStringValue("false");
+						tetherBool.setDatatype("boolean");
+						ni.setTetherSupported(tetherBool);
+					}
+				}
+				if(method.getName().equals("getTetheredIfaces")) {
+					String[] tethered = (String[]) method.invoke(cm);
+					if(tethered != null && tethered.length == 0) {
+						tetherActiveBool.setStringValue("false");
+						tetherActiveBool.setDatatype("boolean");
+						ni.setTetherActive(tetherActiveBool);
+					} else if (tethered != null && tethered.length > 0) {
+						tetherActiveBool.setStringValue("true");
+						tetherActiveBool.setDatatype("boolean");
+						ni.setTetherActive(tetherActiveBool);
+					}
+				}
+			}
+			
+		} catch (Exception e) {}
+		
+		
+		
 	}
+	
+	public static int generateExternalStorageItem(CollectedObjectsType co,
+			SystemDataType sd, String id, int item_ref, Context c) {
+		ObjectType ot = co.addNewObject();
+		ot.setComment("Retrieve external_storage_item");
+		ot.setFlag(FlagEnumeration.COMPLETE); // Fix
+		ot.setId(id);
+		ot.setVersion(BigInteger.ONE); // Fix
+
+		StorageManager sm = (StorageManager) c.getSystemService(Context.STORAGE_SERVICE);
+		
+		// need to call getVolumeList on sm, which returns StorageVolume[], but
+		// we don't have either available to us..
+		try {
+			
+			Method[] smMethods = sm.getClass().getDeclaredMethods();
+			Method getVolumeState = null;
+			
+			for(Method method3: smMethods)
+				if(method3.getName().equals("getVolumeState")) {
+					getVolumeState = method3;
+				}
+			
+			for(Method method: smMethods)
+				if(method.getName().equals("getVolumeList")) {
+					Object[] storageVolumes = (Object[]) method.invoke(sm);
+				
+					for(Object storageVolume : storageVolumes) {
+						ReferenceType rt = ot.addNewReference();
+						rt.setItemRef(BigInteger.valueOf(item_ref));
+						ItemType it2 = sd.addNewItem();
+						ExternalStorageItem esi = (ExternalStorageItem) it2.substitute(
+								ExternalStorageItemDocument.type.getDocumentElementName(), ExternalStorageItem.type);
+						esi.setId(BigInteger.valueOf(item_ref));
+						item_ref++;
+						
+						Method[] svMethods = storageVolume.getClass().getDeclaredMethods();
+						for(Method method2: svMethods) {
+							if(method2.getName().equals("isRemovable")) {
+								boolean removable = (Boolean) method2.invoke(storageVolume);
+								if(removable == true) {
+									EntityItemBoolType esi2 = EntityItemBoolType.Factory.newInstance();
+									esi2.setStringValue("true");
+									esi2.setDatatype("boolean");
+									esi.setExternalStorageRemovable(esi2);
+								} else if (removable == false) {
+									EntityItemBoolType esi2 = EntityItemBoolType.Factory.newInstance();
+									esi2.setStringValue("false");
+									esi2.setDatatype("boolean");
+									esi.setExternalStorageRemovable(esi2);
+								}
+							}
+							if(method2.getName().equals("getPath")) {
+								String path = (String) method2.invoke(storageVolume);
+								EntityItemStringType path2 = EntityItemStringType.Factory.newInstance();
+								path2.setStringValue(path);
+								esi.setPath(path2);
+								
+								if(getVolumeState != null) {
+									EntityItemExternalStorageType esi1 = EntityItemExternalStorageType.Factory.newInstance();
+									String storageState = (String) getVolumeState.invoke(sm, path);
+									if(storageState.equals(Environment.MEDIA_BAD_REMOVAL)) {
+										esi1.setStringValue("MEDIA_BAD_REMOVAL");
+										esi.setExternalStorageState(esi1);
+									}
+									else if(storageState.equals(Environment.MEDIA_CHECKING)) {
+										esi1.setStringValue("MEDIA_CHECKING");
+										esi.setExternalStorageState(esi1);
+									}
+									else if(storageState.equals(Environment.MEDIA_MOUNTED)) {
+										esi1.setStringValue("MEDIA_MOUNTED");
+										esi.setExternalStorageState(esi1);
+									}
+									else if(storageState.equals(Environment.MEDIA_MOUNTED_READ_ONLY)) {
+										esi1.setStringValue("MEDIA_MOUNTED_READ_ONLY");
+										esi.setExternalStorageState(esi1);
+									}
+									else if(storageState.equals(Environment.MEDIA_NOFS)) {
+										esi1.setStringValue("MEDIA_NOFS");
+										esi.setExternalStorageState(esi1);
+									}
+									else if(storageState.equals(Environment.MEDIA_REMOVED)) {
+										esi1.setStringValue("MEDIA_REMOVED");
+										esi.setExternalStorageState(esi1);
+									}
+									else if(storageState.equals(Environment.MEDIA_SHARED)) {
+										esi1.setStringValue("MEDIA_SHARED");
+										esi.setExternalStorageState(esi1);
+									}
+									else if(storageState.equals(Environment.MEDIA_UNMOUNTABLE)) {
+										esi1.setStringValue("MEDIA_UNMOUNTABLE");
+										esi.setExternalStorageState(esi1);
+									}
+									else if(storageState.equals(Environment.MEDIA_UNMOUNTED)) {
+										esi1.setStringValue("MEDIA_UNMOUNTED");
+										esi.setExternalStorageState(esi1);
+									}
+									
+								}
+							}
+						}
+					}
+					
+				}
+		} catch (Exception e) {
+			Log.d("GenerateAndroidSC", "EXTERNAL STORAGE " + e.getMessage());
+		}
+		return item_ref;
+		
+	}
+	
 	
 	public static void generateWifiItem(CollectedObjectsType co,
 			SystemDataType sd, String id, int item_ref, Context c) {
@@ -787,7 +983,6 @@ public class GenerateAndroidSC {
 		WifiItem wi = (WifiItem) it2.substitute(
 				WifiItemDocument.type.getDocumentElementName(), WifiItem.type);
 		wi.setId(BigInteger.valueOf(item_ref));
-;
 
 		WifiManager wm = (WifiManager) c.getSystemService(Context.WIFI_SERVICE);
 		if (wm == null)
@@ -1126,6 +1321,58 @@ public class GenerateAndroidSC {
 		return item_ref;
 	}
 
+	public static void generateCertificateItem(CollectedObjectsType co,
+			SystemDataType sd, String id, int item_ref, Context c) {
+		ObjectType ot = co.addNewObject();
+
+		ot.setComment("Retrieve certificate_item");
+		ot.setFlag(FlagEnumeration.COMPLETE); // Fix
+		ot.setId(id);
+		ot.setVersion(BigInteger.ONE); // Fix
+
+		ReferenceType rt = ot.addNewReference();
+		rt.setItemRef(BigInteger.valueOf(item_ref));
+
+		ItemType it2 = sd.addNewItem();
+		CertificateItem dsi = (CertificateItem) it2.substitute(
+				CertificateItemDocument.type.getDocumentElementName(),
+				CertificateItem.type);
+		dsi.setId(BigInteger.valueOf(item_ref)); // Needs to match setItemRef
+													// value above
+		// Get list of trust anchors (root certificates)
+		// Good write-up here: http://nelenkov.blogspot.com/2011/12/ics-trust-store-implementation.html
+		
+		KeyStore ks;
+		try {
+			ks = KeyStore.getInstance("AndroidCAStore");
+			if(ks != null) {
+				ks.load(null, null);
+				Enumeration<String> aliases = ks.aliases();
+				while (aliases.hasMoreElements()) {
+					String alias = aliases.nextElement();
+					X509Certificate cert = (X509Certificate) ks.getCertificate(alias);
+					byte[] certbytes = cert.getEncoded();
+					EntityItemBinaryType cert2 = dsi.addNewTrustedCertificate();
+					cert2.setDatatype("binary");
+					cert2.setStringValue(getHex(certbytes, null));
+				}
+			}
+		} catch (KeyStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CertificateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public static void generateDeviceSettingsItem(CollectedObjectsType co,
 			SystemDataType sd, String id, int item_ref, Context c) {
 		ObjectType ot = co.addNewObject();
@@ -1183,5 +1430,33 @@ public class GenerateAndroidSC {
 				}
 			}
 		}
+		
+		EntityItemBoolType autotime = EntityItemBoolType.Factory.newInstance();
+		int autotimeInt = Settings.System.getInt(c.getContentResolver(), Settings.System.AUTO_TIME, 0);
+		if(autotimeInt == 1)
+			autotime.setStringValue("true");
+		else
+			autotime.setStringValue("false");
+		autotime.setDatatype("boolean");
+		dsi.setAutoTime(autotime);
+		
+		EntityItemBoolType autotimezone = EntityItemBoolType.Factory.newInstance();
+		int autotimezoneInt = Settings.System.getInt(c.getContentResolver(), Settings.System.AUTO_TIME_ZONE, 0);
+		if(autotimezoneInt == 1)
+			autotimezone.setStringValue("true");
+		else
+			autotimezone.setStringValue("false");
+		autotimezone.setDatatype("boolean");
+		dsi.setAutoTimeZone(autotimezone);
+		
+		EntityItemBoolType usbMassStorage = EntityItemBoolType.Factory.newInstance();
+		int usbStorageInt = Settings.System.getInt(c.getContentResolver(), Settings.System.USB_MASS_STORAGE_ENABLED, 0);
+		if(usbStorageInt == 1)
+			usbMassStorage.setStringValue("true");
+		else
+			usbMassStorage.setStringValue("false");
+		usbMassStorage.setDatatype("boolean");
+		dsi.setUsbMassStorageEnabled(usbMassStorage);
+		
 	}		
 }
