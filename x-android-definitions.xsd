@@ -634,14 +634,14 @@
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
-        <sch:pattern id="android-def_location_service_test">
-          <sch:rule context="android-def:location_service_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:location_service_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of an location_service_test must reference an location_service_object</sch:assert>
+        <sch:pattern id="android-def_external_storage_test">
+          <sch:rule context="android-def:external_storage_test/android-def:object">
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:external_storage_object/@id">
+              <sch:value-of select="../@id" /> - the object child element of an external_storage_test must reference an external_storage_object</sch:assert>
           </sch:rule>
-          <sch:rule context="android-def:location_service_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:location_service_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of an location_service_test must reference an location_service_state</sch:assert>
+          <sch:rule context="android-def:external_storage_test/android-def:state">
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:external_storage_state/@id">
+              <sch:value-of select="../@id" /> - the state child element of an external_storage_test must reference an external_storage_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
