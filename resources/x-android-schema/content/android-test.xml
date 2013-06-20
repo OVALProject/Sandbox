@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#android x-android-definitions.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
   <generator>
     <oval:schema_version>5.9</oval:schema_version>
@@ -107,6 +107,8 @@
     <bluetooth_object id="oval:android.test:obj:12001" version="1" comment="bluetooth" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
     <device_settings_object id="oval:android.test:obj:13001" version="1" comment="device settings" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
     <network_object id="oval:android.test:obj:14001" version="1" comment="network object" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
+    <certificate_object id="oval:android:testobj:15001" version="1" comment="certificate_object" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
+    <external_storage_object id="oval:android:testobj:16001" version="1" comment="external_storage_object" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
   </objects>
   <states>
     <system_details_state id="oval:android.test:ste:3003" version="1" comment="This state represents a android system_details_state item that match the regular expression '.*'." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#android">
