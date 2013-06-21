@@ -620,6 +620,82 @@
     </xsd:complexType>
   </xsd:element>
   <!-- =============================================================================== -->
+  <!-- ===============================  EXTERNAL STORAGE TEST  ======================= -->
+  <!-- =============================================================================== -->
+  <xsd:element name="external_storage_test" substitutionGroup="oval-def:test">
+    <xsd:annotation>
+      <xsd:documentation>The location_service_test is used to check the status of location based services. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a location_service_object and the optional state element specifies the data to check.</xsd:documentation>
+      <xsd:appinfo>
+        <oval:element_mapping>
+          <oval:test>external_storage_test</oval:test>
+          <oval:object>external_storage_object</oval:object>
+          <oval:state>external_storage_state</oval:state>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">external_storage_item</oval:item>
+        </oval:element_mapping>
+      </xsd:appinfo>
+      <xsd:appinfo>
+        <sch:pattern id="android-def_external_storage_test">
+          <sch:rule context="android-def:external_storage_test/android-def:object">
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:external_storage_object/@id">
+              <sch:value-of select="../@id" /> - the object child element of an external_storage_test must reference an external_storage_object</sch:assert>
+          </sch:rule>
+          <sch:rule context="android-def:external_storage_test/android-def:state">
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:external_storage_state/@id">
+              <sch:value-of select="../@id" /> - the state child element of an external_storage_test must reference an external_storage_state</sch:assert>
+          </sch:rule>
+        </sch:pattern>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="oval-def:TestType">
+          <xsd:sequence>
+            <xsd:element name="object" type="oval-def:ObjectRefType" />
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="external_storage_object" substitutionGroup="oval-def:object">
+    <xsd:annotation>
+      <xsd:documentation>The external_storage_object element is used by an external storage test to define those objects to evaluated based on a specified state. Any OVAL Test written to check external storage status will reference the same external_storage_object which is basically an empty object element.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="oval-def:ObjectType" />
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="external_storage_state" substitutionGroup="oval-def:state">
+    <xsd:annotation>
+      <xsd:documentation>The external_storage_state element defines the external storage status.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="oval-def:StateType">
+          <xsd:sequence>
+            <xsd:element name="external_storage_state" type="android-def:EntityStateExternalStorageType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>State of the external storage.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="external_storage_removable" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>True if the external storage is physically removable</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="path" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>The mount path</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+  <!-- =============================================================================== -->
   <!-- ===============================  LOCATION SERVICE TEST  ======================= -->
   <!-- =============================================================================== -->
   <xsd:element name="location_service_test" substitutionGroup="oval-def:test">
@@ -756,6 +832,16 @@
                 <xsd:documentation>True if NFC is enabled on the device, otherwise false.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
+            <xsd:element name="tether_supported" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>True if tethering is supported, otherwise false.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="tether_active" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>True if device is currently tethering, otherwise false.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -865,6 +951,11 @@
             <xsd:element name="password_min_upper_case_letters" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
                 <xsd:documentation>Minimum number of upper case letters password must have.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="password_max_repeated_characters" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>Maximum number of repeated characters allowed by policy.  NOTE: This policy is not currently supported by stock Android so this item will likely not be populated in many cases.  We put this in here to support any Android devices with policies extended by the OEM or for future use.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="password_expiration_timeout" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
@@ -1464,6 +1555,60 @@
           </xsd:annotation>
         </xsd:enumeration>
         <xsd:enumeration value="DISABLED">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+      </xsd:restriction>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="EntityStateExternalStorageType">
+    <xsd:annotation>
+      <xsd:documentation>The EntityStateWifiCurrentStatusType complex type restricts a string value to a specific set of values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="oval-def:EntityStateStringType">
+        <xsd:enumeration value="MEDIA_BAD_REMOVAL">
+          <xsd:annotation>
+            <xsd:documentation>The network we are currently connected to</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_CHECKING">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will not attempt to use this network</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_MOUNTED">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_MOUNTED_READ_ONLY">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_NOFS">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_REMOVED">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_SHARED">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_UNMOUNTABLE">
+          <xsd:annotation>
+            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEDIA_UNMOUNTED">
           <xsd:annotation>
             <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
           </xsd:annotation>
