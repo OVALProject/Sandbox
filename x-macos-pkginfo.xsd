@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+    xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"
+    xmlns:macos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos"
+    xmlns:macos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#macos"
+    xmlns:x-macos-pkginfo="http://oval.mitre.org/XMLSchema/x-macos-pkginfo"
+    xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+    targetNamespace="http://oval.mitre.org/XMLSchema/x-macos-pkginfo"
+    elementFormDefault="qualified"
+    version="5.11">
+    <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
+    <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
+    <xsd:annotation>
+        <xsd:documentation>The following is a proposal for the experimental macos-def:pkginfo_test and macos-sc:pkginfo_item that will support checking a Mac OS system to see if a particular package is installed.</xsd:documentation>
+        <xsd:appinfo>
+            <schema>Experimental Schema for the Mac OS pkginfo Test</schema>
+            <version>5.11</version>
+            <date>3/4/2012 8:00:00 PM</date>
+            <terms_of_use>Copyright (c) 2002-2012, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+            <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
+            <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
+            <sch:ns prefix="macos-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos"/>
+            <sch:ns prefix="macos-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#macos"/>
+            <sch:ns prefix="x-macos-pkginfo" uri="http://oval.mitre.org/XMLSchema/x-macos-pkginfo"/>
+            <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
+        </xsd:appinfo>
+    </xsd:annotation>
+    <!-- =============================================================================== -->
+    <!-- ===============================  PKGINFO TEST  ================================ -->
+    <!-- =============================================================================== -->
+    <xsd:element name="pkginfo_test" substitutionGroup="oval-def:test">
+        <xsd:annotation>
+            <xsd:documentation>This test supports the collection of system state information related to installed packages using the pkgutil utility on Mac OS systems.</xsd:documentation>
+            <xsd:appinfo>
+                <oval:element_mapping>
+                    <oval:test>pkginfo_test</oval:test>
+                    <oval:object>pkginfo_object</oval:object>
+                    <oval:state>pkginfo_state</oval:state>
+                    <oval:item>pkginfo_item</oval:item>
+                </oval:element_mapping>
+            </xsd:appinfo>
+            <xsd:appinfo>
+                <sch:pattern id="x-macos-pkginfo_test">
+                    <sch:rule context="x-macos-pkginfo:pkginfo_test/x-macos-pkginfo:object">
+                        <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/x-macos-pkginfo:pkginfo_object/@id"><sch:value-of select="../@id"/> - the object child element of an pkginfo_test must reference an pkginfo_object</sch:assert>
+                    </sch:rule>
+                    <sch:rule context="x-macos-pkginfo:pkginfo_test/x-macos-pkginfo:state">
+                        <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/x-macos-pkginfo:pkginfo_state/@id"><sch:value-of select="../@id"/> - the state child element of an pkginfo_test must reference an pkginfo_state</sch:assert>
+                    </sch:rule>
+                </sch:pattern>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="oval-def:TestType">
+                    <xsd:sequence>
+                        <xsd:element name="object" type="oval-def:ObjectRefType" />
+                        <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="pkginfo_object" substitutionGroup="oval-def:object">
+        <xsd:annotation>
+            <xsd:documentation>The pkginfo_object element is used by an pkginfo_test to define the items to be collected.</xsd:documentation>
+            <xsd:documentation>An pkginfo_object consists of a single package ID entity that identifies the package(s) on the system to collect.</xsd:documentation>
+            <xsd:appinfo>
+                <sch:pattern id="x-macos-pkginfo_pkginfo_object_verify_filter_state">
+                    <sch:rule context="x-macos-pkginfo:pkginfo_object//oval-def:filter">
+                        <sch:let name="parent_object" value="ancestor::x-macos-pkginfo:pkginfo_object"/>
+                        <sch:let name="parent_object_id" value="$parent_object/@id"/>
+                        <sch:let name="state_ref" value="."/>
+                        <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+                        <sch:let name="state_name" value="local-name($reffed_state)"/>
+                        <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+                        <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#macos') and ($state_name='pkginfo_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+                    </sch:rule>
+                </sch:pattern>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="oval-def:ObjectType">
+                    <xsd:sequence>
+                        <xsd:choice>
+                            <xsd:element ref="oval-def:set"/>
+                            <xsd:sequence>
+                                <xsd:element name="package_id" type="oval-def:EntityObjectStringType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>Specifies the installed package(s) on the system to collect.</xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                            </xsd:sequence>
+                        </xsd:choice>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="pkginfo_state" substitutionGroup="oval-def:state">
+        <xsd:annotation>
+            <xsd:documentation>The pkginfo_state element defines the different system information that can be used to evaluate the specified packages.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="oval-def:StateType">
+                    <xsd:sequence>
+                        <xsd:element name="package_id" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Specifies the package ID of a package installed on the system.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="version" type="oval-def:EntityStateVersionType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Specifies the version of the package installed on the system.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="install_time" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Specifies the time when the package was installed on the system.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="volume" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Specifies the volume where the installed package is located on the system.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="location" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Specifies the location of the installed package on the system.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="group" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>Specifies the package groups that the installed package is part of on the system.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>                        
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <!-- =============================================================================== -->
+    <!-- ===============================  PKGINFO ITEM  ================================ -->
+    <!-- =============================================================================== -->
+    <xsd:element name="pkginfo_item" substitutionGroup="oval-sc:item">
+        <xsd:annotation>
+            <xsd:documentation>This item stores system state information associated with packages installed on a Mac OS system.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="oval-sc:ItemType">
+                    <xsd:sequence>
+                        <xsd:element name="package_id" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Specifies the package ID of a package installed on the system.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="version" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Specifies the version of the package installed on the system.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="install_time" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Specifies the time when the package was installed on the system.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="volume" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Specifies the volume where the installed package is located on the system.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="location" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Specifies the location of the installed package on the system.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="group" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>Specifies the package groups that the installed package is part of on the system.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

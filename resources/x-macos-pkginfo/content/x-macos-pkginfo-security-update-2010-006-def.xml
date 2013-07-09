@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions
+  xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+  xsi:schemaLocation="
+  http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd
+  http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd 
+  http://oval.mitre.org/XMLSchema/x-macos-pkginfo x-macos-pkginfo.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+  xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+  xmlns:x-macos-pkginfo="http://oval.mitre.org/XMLSchema/x-macos-pkginfo"
+  >
+  <generator>
+    <oval:product_name>The OVAL Repository</oval:product_name>
+    <oval:schema_version>5.11</oval:schema_version>
+    <oval:timestamp>2012-01-04T13:10:44.199-05:00</oval:timestamp>
+  </generator>
+  <definitions>
+    <definition id="oval:sample:def:1" version="3" class="inventory">
+      <metadata>
+        <title>Apple Security Update 2010-006 is Installed</title>
+        <affected family="macos">
+          <platform>Apple Mac OS X</platform>
+        </affected>
+        <description>Apple Security Update 2010-006 has been installed on the system</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Check if Apple Security Update 2010-006 is installed." test_ref="oval:sample:tst:1"/>
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <x-macos-pkginfo:pkginfo_test id="oval:sample:tst:1" version="1" check="all" check_existence="at_least_one_exists" comment="Check if Apple Security Update 2010-006 is installed.">
+      <x-macos-pkginfo:object object_ref="oval:sample:obj:1"/>
+    </x-macos-pkginfo:pkginfo_test>
+  </tests>
+  <objects>
+    <x-macos-pkginfo:pkginfo_object id="oval:sample:obj:1" version="1">
+      <x-macos-pkginfo:package_id>com.apple.pkg.update.security.2010.006.snowleopard</x-macos-pkginfo:package_id>
+    </x-macos-pkginfo:pkginfo_object>
+  </objects>
+</oval_definitions>
