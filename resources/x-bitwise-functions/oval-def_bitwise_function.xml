@@ -2,14 +2,14 @@
 <oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 x-oval-definitions-schema.xsd    http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd   http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
   <generator>
     <oval:schema_version>5.10</oval:schema_version>
-    <oval:timestamp>2012-05-21T09:30:00-04:00</oval:timestamp>
-    <terms_of_use>Copyright (c) 2002-2012, The MITRE Corporation. All rights reserved. The contents of this file are subject to the license described in terms.txt.</terms_of_use>
+    <oval:timestamp>2013-07-09T09:30:00-04:00</oval:timestamp>
+    <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved. The contents of this file are subject to the license described in terms.txt.</terms_of_use>
   </generator>
   <definitions>
     <definition id="oval:org.mitre.oval.bitfun:def:1" version="1" class="miscellaneous">
       <metadata>
-        <title>Evaluate to true if arithmetic operations are properly supported</title>
-        <description>This definition is intended to evaluate to true if the interpreter properly supports all of the valid arithmetic operations.</description>
+        <title>Evaluate to true if bitwise operations are properly supported</title>
+        <description>This definition is intended to evaluate to true if the interpreter properly supports all of the valid bitwise operations.</description>
       </metadata>
       <criteria operator="AND">
         <criterion comment="Test that the bitwise function is supported with the AND operation and two integer values." test_ref="oval:org.mitre.oval.bitfun:tst:1"/>
