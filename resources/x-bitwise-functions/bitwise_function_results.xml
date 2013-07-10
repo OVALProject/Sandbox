@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<oval_results xmlns="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-res="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 x-oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-results-5 oval-results-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent independent-system-characteristics-schema.xsd">
+
+  <generator>
+    <oval:product_name>cpe:/a:mitre:ovaldi:5.10.1.2</oval:product_name>
+    <oval:product_version>5.10.1 Build: 2</oval:product_version>
+    <oval:schema_version>5.10.1</oval:schema_version>
+    <oval:timestamp>2013-07-09T13:28:21</oval:timestamp>
+    <vendor>The MITRE Corporation</vendor>
+  </generator>
+
+  <directives include_source_definitions="true">
+    <definition_true content="full" reported="true"/>
+    <definition_false content="full" reported="true"/>
+    <definition_unknown content="full" reported="true"/>
+    <definition_error content="full" reported="true"/>
+    <definition_not_evaluated content="full" reported="true"/>
+    <definition_not_applicable content="full" reported="true"/>
+  </directives>
+
+  <oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+    <generator>
+      <oval:schema_version xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">5.10</oval:schema_version>
+      <oval:timestamp xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">2013-07-09T09:30:00-04:00</oval:timestamp>
+      <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved. The contents of this file are subject to the license described in terms.txt.</terms_of_use>
+  </generator>
+    <definitions>
+      <definition class="miscellaneous" id="oval:org.mitre.oval.bitfun:def:1" version="1">
+        <metadata>
+          <title>Evaluate to true if bitwise operations are properly supported</title>
+          <description>This definition is intended to evaluate to true if the interpreter properly supports all of the valid bitwise operations.</description>
+      </metadata>
+        <criteria operator="AND">
+          <criterion comment="Test that the bitwise function is supported with the AND operation and two integer values." test_ref="oval:org.mitre.oval.bitfun:tst:1"/>
+          <criterion comment="Test that the bitwise function is supported with the AND operation, an integer value, and a binary value." test_ref="oval:org.mitre.oval.bitfun:tst:2"/>
+          <criterion comment="Test that the bitwise function is supported with the AND operation, a binary value, and an integer value." test_ref="oval:org.mitre.oval.bitfun:tst:3"/>
+          <criterion comment="Test that the bitwise function is supported with the AND operation and two binary values." test_ref="oval:org.mitre.oval.bitfun:tst:4"/>
+          <criterion comment="Test that the bitwise function is supported with the OR operation and two integer values." test_ref="oval:org.mitre.oval.bitfun:tst:21"/>
+          <criterion comment="Test that the bitwise function is supported with the OR operation, an integer value, and a binary value." test_ref="oval:org.mitre.oval.bitfun:tst:22"/>
+          <criterion comment="Test that the bitwise function is supported with the OR operation, a binary value, and an integer value." test_ref="oval:org.mitre.oval.bitfun:tst:23"/>
+          <criterion comment="Test that the bitwise function is supported with the OR operation and two binary values." test_ref="oval:org.mitre.oval.bitfun:tst:24"/>
+          <criterion comment="Test that the bitwise function is supported with the XOR operation and two integer values." test_ref="oval:org.mitre.oval.bitfun:tst:31"/>
+          <criterion comment="Test that the bitwise function is supported with the XOR operation, an integer value, and a binary value." test_ref="oval:org.mitre.oval.bitfun:tst:32"/>
+          <criterion comment="Test that the bitwise function is supported with the XOR operation, a binary value, and an integer value." test_ref="oval:org.mitre.oval.bitfun:tst:33"/>
+          <criterion comment="Test that the bitwise function is supported with the XOR operation and two binary values." test_ref="oval:org.mitre.oval.bitfun:tst:34"/>
+          <criterion comment="Test that the bitwise function is supported with the NOT operation and one integer value." test_ref="oval:org.mitre.oval.bitfun:tst:41"/>
+          <criterion comment="Test that the bitwise function is supported with the NOT operation and one binary value." test_ref="oval:org.mitre.oval.bitfun:tst:42"/>
+          <criterion comment="Test that the bitwise function is supported with the AND operation and multiple-value variables." test_ref="oval:org.mitre.oval.bitfun:tst:5"/>
+          <criterion comment="Test that the bitwise function is supported with the OR operation and multiple-value variables." test_ref="oval:org.mitre.oval.bitfun:tst:6"/>
+          <criterion comment="Test that the bitwise function is supported with the XOR operation and multiple-value variables." test_ref="oval:org.mitre.oval.bitfun:tst:7"/>
+          <criterion comment="Test that the bitwise function is supported with the NOT operation and a multiple-value variable." test_ref="oval:org.mitre.oval.bitfun:tst:8"/>
+          <criterion comment="Test that nested bitwise functions are supported with the AND and NOT operations and two binary values through an object reference." test_ref="oval:org.mitre.oval.bitfun:tst:9"/>
+          <criterion comment="Test that the bitwise AND operation with two integer values has a common bit set." test_ref="oval:org.mitre.oval.bitfun:tst:10"/>
+      </criteria>
+    </definition>
+  </definitions>
+    <tests>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the AND operation and two integer values." id="oval:org.mitre.oval.bitfun:tst:1" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:1"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:1"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the AND operation, an integer value, and a binary value." id="oval:org.mitre.oval.bitfun:tst:2" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:2"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:2"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the AND operation, a binary value, and an integer value." id="oval:org.mitre.oval.bitfun:tst:3" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:3"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:3"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the AND operation and two binary values." id="oval:org.mitre.oval.bitfun:tst:4" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:4"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:4"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the OR operation and two integer values." id="oval:org.mitre.oval.bitfun:tst:21" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:21"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:21"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the OR operation, an integer value, and a binary value." id="oval:org.mitre.oval.bitfun:tst:22" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:22"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:22"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the OR operation, a binary value, and an integer value." id="oval:org.mitre.oval.bitfun:tst:23" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:23"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:23"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the OR operation and two binary values." id="oval:org.mitre.oval.bitfun:tst:24" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:24"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:24"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the XOR operation and two integer values." id="oval:org.mitre.oval.bitfun:tst:31" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:31"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:31"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the XOR operation, an integer value, and a binary value." id="oval:org.mitre.oval.bitfun:tst:32" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:32"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:32"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the XOR operation, a binary value, and an integer value." id="oval:org.mitre.oval.bitfun:tst:33" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:33"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:33"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the XOR operation and two binary values." id="oval:org.mitre.oval.bitfun:tst:34" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:34"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:34"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the NOT operation and one integer value." id="oval:org.mitre.oval.bitfun:tst:41" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:41"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:41"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the NOT operation and one binary value." id="oval:org.mitre.oval.bitfun:tst:42" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:42"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:42"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the AND operation and multiple-value variables." id="oval:org.mitre.oval.bitfun:tst:5" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:5"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:5"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the OR operation and multiple-value variables." id="oval:org.mitre.oval.bitfun:tst:6" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:6"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:6"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the XOR operation and multiple-value variables." id="oval:org.mitre.oval.bitfun:tst:7" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:7"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:7"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise function is supported with the NOT operation and a multiple-value variable." id="oval:org.mitre.oval.bitfun:tst:8" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:8"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:8"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that nested bitwise functions are supported with the AND and NOT operations and two binary values through an object reference." id="oval:org.mitre.oval.bitfun:tst:9" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:9"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:9"/>
+    </variable_test>
+      <variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Test that the bitwise AND operation with two integer values has a common bit set." id="oval:org.mitre.oval.bitfun:tst:10" version="1">
+        <object object_ref="oval:org.mitre.oval.bitfun:obj:1"/>
+        <state state_ref="oval:org.mitre.oval.bitfun:ste:10"/>
+    </variable_test>
+  </tests>
+    <objects>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:1" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:1</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:2" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:2</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:3" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:3</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:4" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:4</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:21" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:21</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:22" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:22</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:23" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:23</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:24" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:24</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:31" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:31</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:32" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:32</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:33" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:33</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:34" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:34</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:41" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:41</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:42" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:42</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:5" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:5</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:6" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:6</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:7" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:7</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:8" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:8</var_ref>
+    </variable_object>
+      <variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval.bitfun:obj:9" version="1">
+        <var_ref>oval:org.mitre.oval.bitfun:var:9</var_ref>
+    </variable_object>
+  </objects>
+    <states>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The int 10" id="oval:org.mitre.oval.bitfun:ste:1" version="1">
+        <value datatype="int">10</value>
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The hex binary value 0A, represented as 10 in decimal" id="oval:org.mitre.oval.bitfun:ste:2" version="1">
+        <value datatype="binary">0A</value>
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The hex binary value 0A, represented as 10 in decimal" id="oval:org.mitre.oval.bitfun:ste:3" version="1">
+        <value datatype="binary">0A</value>
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The hex binary value 0A, represented as 10 in decimal" id="oval:org.mitre.oval.bitfun:ste:4" version="1">
+        <value datatype="binary">0A</value>
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The int 175" id="oval:org.mitre.oval.bitfun:ste:21" version="1">
+        <value datatype="int">175</value>
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The hex binary value AF, represented as 10 in decimal" id="oval:org.mitre.oval.bitfun:ste:22" version="1">
+        <value datatype="binary">AF</value>
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The hex binary value AF, represented as 10 in decimal" id="oval:org.mitre.oval.bitfun:ste:23" version="1">
+        <value datatype="binary">AF</value>
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The hex binary value AF, represented as 10 in decimal" id="oval:org.mitre.oval.bitfun:ste:24" version="1">
+        <value datatype="binary">AF</value>
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The int 165" id="oval:org.mitre.oval.bitfun:ste:31" version="1">
+        <value datatype="int">165</value>
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The hex binary value A5, represented as 165 in decimal" id="oval:org.mitre.oval.bitfun:ste:32" version="1">
+        <value datatype="binary">A5</value>
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The hex binary value A5, represented as 165 in decimal" id="oval:org.mitre.oval.bitfun:ste:33" version="1">
+        <value datatype="binary">A5</value>
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The hex binary value A5, represented as 165 in decimal" id="oval:org.mitre.oval.bitfun:ste:34" version="1">
+        <value datatype="binary">A5</value>
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The int -171" id="oval:org.mitre.oval.bitfun:ste:41" version="1">
+        <value datatype="int">-171</value>
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The hex binary value F0, represented as 240 in decimal" id="oval:org.mitre.oval.bitfun:ste:42" version="1">
+        <value datatype="binary">F0</value>
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The result of multiple-value AND" id="oval:org.mitre.oval.bitfun:ste:5" version="1">
+        <value datatype="binary" var_check="at least one" var_ref="oval:org.mitre.oval.bitfun:var:15"/>
+      
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The result of multiple-value OR" id="oval:org.mitre.oval.bitfun:ste:6" version="1">
+        <value datatype="binary" var_check="at least one" var_ref="oval:org.mitre.oval.bitfun:var:16"/>
+      
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The result of multiple-value XOR" id="oval:org.mitre.oval.bitfun:ste:7" version="1">
+        <value datatype="binary" var_check="at least one" var_ref="oval:org.mitre.oval.bitfun:var:17"/>
+      
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The result of multiple-value NOT" id="oval:org.mitre.oval.bitfun:ste:8" version="1">
+        <value datatype="int" var_check="at least one" var_ref="oval:org.mitre.oval.bitfun:var:18"/>
+      
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The hex binary value 50, represented as 80 in decimal" id="oval:org.mitre.oval.bitfun:ste:9" version="1">
+        <value datatype="binary">50</value>
+    </variable_state>
+      <variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="The value has one bit set" id="oval:org.mitre.oval.bitfun:ste:10" version="1">
+        <value datatype="int" operation="not equal">0</value>
+    </variable_state>
+  </states>
+  
+    <variables>
+      <local_variable comment="The integer 170 AND the integer 15" datatype="int" id="oval:org.mitre.oval.bitfun:var:1" version="1">
+        <bitwise bitwise_operation="AND">
+          <literal_component datatype="int">170</literal_component>
+          <literal_component datatype="int">15</literal_component>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="The integer 170 AND the binary value 0F" datatype="binary" id="oval:org.mitre.oval.bitfun:var:2" version="1">
+        <bitwise bitwise_operation="AND">
+          <literal_component datatype="int">170</literal_component>
+          <literal_component datatype="binary">0F</literal_component>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="The binary value 0F AND the integer 170" datatype="binary" id="oval:org.mitre.oval.bitfun:var:3" version="1">
+        <bitwise bitwise_operation="AND">
+          <literal_component datatype="binary">0F</literal_component>
+          <literal_component datatype="int">170</literal_component>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="The binary value 0F AND the binary value AA " datatype="binary" id="oval:org.mitre.oval.bitfun:var:4" version="1">
+        <bitwise bitwise_operation="AND">
+          <literal_component datatype="binary">0F</literal_component>
+          <literal_component datatype="binary">AA</literal_component>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="The integer 170 OR the integer 15" datatype="int" id="oval:org.mitre.oval.bitfun:var:21" version="1">
+        <bitwise bitwise_operation="OR">
+          <literal_component datatype="int">170</literal_component>
+          <literal_component datatype="int">15</literal_component>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="The integer 170 OR the binary value 0F" datatype="binary" id="oval:org.mitre.oval.bitfun:var:22" version="1">
+        <bitwise bitwise_operation="OR">
+          <literal_component datatype="int">170</literal_component>
+          <literal_component datatype="binary">0F</literal_component>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="The binary value 0F OR the integer 170" datatype="binary" id="oval:org.mitre.oval.bitfun:var:23" version="1">
+        <bitwise bitwise_operation="OR">
+          <literal_component datatype="binary">0F</literal_component>
+          <literal_component datatype="int">170</literal_component>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="The binary value 0F OR the binary value AA " datatype="binary" id="oval:org.mitre.oval.bitfun:var:24" version="1">
+        <bitwise bitwise_operation="OR">
+          <literal_component datatype="binary">0F</literal_component>
+          <literal_component datatype="binary">AA</literal_component>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="The integer 170 XOR the integer 15" datatype="int" id="oval:org.mitre.oval.bitfun:var:31" version="1">
+        <bitwise bitwise_operation="XOR">
+          <literal_component datatype="int">170</literal_component>
+          <literal_component datatype="int">15</literal_component>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="The integer 170 XOR the binary value 0F" datatype="binary" id="oval:org.mitre.oval.bitfun:var:32" version="1">
+        <bitwise bitwise_operation="XOR">
+          <literal_component datatype="int">170</literal_component>
+          <literal_component datatype="binary">0F</literal_component>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="The binary value 0F XOR the integer 170" datatype="binary" id="oval:org.mitre.oval.bitfun:var:33" version="1">
+        <bitwise bitwise_operation="XOR">
+          <literal_component datatype="binary">0F</literal_component>
+          <literal_component datatype="int">170</literal_component>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="The binary value 0F XOR the binary value AA " datatype="binary" id="oval:org.mitre.oval.bitfun:var:34" version="1">
+        <bitwise bitwise_operation="XOR">
+          <literal_component datatype="binary">0F</literal_component>
+          <literal_component datatype="binary">AA</literal_component>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="NOT the integer 170" datatype="int" id="oval:org.mitre.oval.bitfun:var:41" version="1">
+        <bitwise bitwise_operation="NOT">
+          <literal_component datatype="int">170</literal_component>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="NOT the binary value 0F" datatype="binary" id="oval:org.mitre.oval.bitfun:var:42" version="1">
+        <bitwise bitwise_operation="NOT">
+          <literal_component datatype="binary">0F</literal_component>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="AND multiple-value variables" datatype="binary" id="oval:org.mitre.oval.bitfun:var:5" version="1">
+        <bitwise bitwise_operation="AND">
+          <variable_component var_ref="oval:org.mitre.oval.bitfun:var:11"/>
+          <variable_component var_ref="oval:org.mitre.oval.bitfun:var:12"/>
+          <variable_component var_ref="oval:org.mitre.oval.bitfun:var:13"/>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="Multiplying the multiple-value variables" datatype="binary" id="oval:org.mitre.oval.bitfun:var:6" version="1">
+        <bitwise bitwise_operation="OR">
+          <variable_component var_ref="oval:org.mitre.oval.bitfun:var:11"/>
+          <variable_component var_ref="oval:org.mitre.oval.bitfun:var:12"/>
+          <variable_component var_ref="oval:org.mitre.oval.bitfun:var:13"/>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="Adding the multiple-value variables" datatype="binary" id="oval:org.mitre.oval.bitfun:var:7" version="1">
+        <bitwise bitwise_operation="XOR">
+          <variable_component var_ref="oval:org.mitre.oval.bitfun:var:11"/>
+          <variable_component var_ref="oval:org.mitre.oval.bitfun:var:12"/>
+          <variable_component var_ref="oval:org.mitre.oval.bitfun:var:13"/>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="NOT multiple-value variable" datatype="int" id="oval:org.mitre.oval.bitfun:var:8" version="1">
+        <bitwise bitwise_operation="NOT">
+          <variable_component var_ref="oval:org.mitre.oval.bitfun:var:12"/>
+      </bitwise>
+    </local_variable>
+      <local_variable comment="NOT the object component represented by the binary value 0F AND the binary value AA" datatype="binary" id="oval:org.mitre.oval.bitfun:var:9" version="1">
+        <bitwise bitwise_operation="NOT">
+          <object_component item_field="value" object_ref="oval:org.mitre.oval.bitfun:obj:24"/>
+      </bitwise>
+    </local_variable>
+      <constant_variable comment="a multi-valued variable" datatype="int" id="oval:org.mitre.oval.bitfun:var:11" version="1">
+        <value>10</value>
+        <value>15</value>
+    </constant_variable>
+      <constant_variable comment="a multi-valued variable" datatype="int" id="oval:org.mitre.oval.bitfun:var:12" version="1">
+        <value>170</value>
+        <value>175</value>
+    </constant_variable>
+      <constant_variable comment="a multi-valued variable" datatype="binary" id="oval:org.mitre.oval.bitfun:var:13" version="1">
+        <value>F0</value>
+        <value>FF</value>
+    </constant_variable>
+      <constant_variable comment="result of AND'ing variables 11, 12, 13" datatype="binary" id="oval:org.mitre.oval.bitfun:var:15" version="1">
+        <value>00</value>
+        <value>0A</value>
+        <value>0F</value>
+    </constant_variable>
+      <constant_variable comment="result of OR'ing variables 11, 12, 13" datatype="binary" id="oval:org.mitre.oval.bitfun:var:16" version="1">
+        <value>FA</value>
+        <value>FF</value>
+    </constant_variable>
+      <constant_variable comment="result of XOR'ing variables 11, 12, 13" datatype="binary" id="oval:org.mitre.oval.bitfun:var:17" version="1">
+        <value>50</value>
+        <value>55</value>
+        <value>5A</value>
+        <value>5F</value>
+    </constant_variable>
+      <constant_variable comment="result of NOT'ing variable 12" datatype="int" id="oval:org.mitre.oval.bitfun:var:18" version="1">
+        <value>-171</value>
+        <value>-176</value>
+    </constant_variable>
+  </variables>
+  </oval_definitions> 
+  <results>
+    <system>
+      <definitions>
+        <definition definition_id="oval:org.mitre.oval.bitfun:def:1" result="true" version="1">
+          <criteria operator="AND" result="true">
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:1" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:2" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:3" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:4" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:21" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:22" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:23" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:24" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:31" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:32" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:33" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:34" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:41" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:42" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:5" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:6" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:7" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:8" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:9" version="1"/>
+            <criterion result="true" test_ref="oval:org.mitre.oval.bitfun:tst:10" version="1"/>
+          </criteria>
+        </definition>
+      </definitions>
+      <tests>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:1" version="1">
+          <tested_item item_id="1" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:2" version="1">
+          <tested_item item_id="2" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:3" version="1">
+          <tested_item item_id="3" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:4" version="1">
+          <tested_item item_id="4" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:21" version="1">
+          <tested_item item_id="5" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:22" version="1">
+          <tested_item item_id="6" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:23" version="1">
+          <tested_item item_id="7" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:24" version="1">
+          <tested_item item_id="8" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:31" version="1">
+          <tested_item item_id="9" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:32" version="1">
+          <tested_item item_id="10" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:33" version="1">
+          <tested_item item_id="11" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:34" version="1">
+          <tested_item item_id="12" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:41" version="1">
+          <tested_item item_id="13" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:42" version="1">
+          <tested_item item_id="14" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:5" version="1">
+          <tested_item item_id="15" result="true"/>
+          <tested_variable variable_id="oval:org.mitre.oval.bitfun:var:15">00</tested_variable>
+          <tested_variable variable_id="oval:org.mitre.oval.bitfun:var:15">0A</tested_variable>
+          <tested_variable variable_id="oval:org.mitre.oval.bitfun:var:15">0F</tested_variable>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:6" version="1">
+          <tested_item item_id="16" result="true"/>
+          <tested_variable variable_id="oval:org.mitre.oval.bitfun:var:16">FA</tested_variable>
+          <tested_variable variable_id="oval:org.mitre.oval.bitfun:var:16">FF</tested_variable>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:7" version="1">
+          <tested_item item_id="17" result="true"/>
+          <tested_variable variable_id="oval:org.mitre.oval.bitfun:var:17">50</tested_variable>
+          <tested_variable variable_id="oval:org.mitre.oval.bitfun:var:17">55</tested_variable>
+          <tested_variable variable_id="oval:org.mitre.oval.bitfun:var:17">5A</tested_variable>
+          <tested_variable variable_id="oval:org.mitre.oval.bitfun:var:17">5F</tested_variable>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:8" version="1">
+          <tested_item item_id="18" result="true"/>
+          <tested_variable variable_id="oval:org.mitre.oval.bitfun:var:18">-171</tested_variable>
+          <tested_variable variable_id="oval:org.mitre.oval.bitfun:var:18">-176</tested_variable>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:9" version="1">
+          <tested_item item_id="19" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval.bitfun:tst:10" version="1">
+          <tested_item item_id="1" result="true"/>
+        </test>
+      </tests>
+      <oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">
+        <generator>
+          <oval:product_name>cpe:/a:mitre:ovaldi:5.10.1.2</oval:product_name>
+          <oval:product_version>5.10.1 Build: 2</oval:product_version>
+          <oval:schema_version>5.10.1</oval:schema_version>
+          <oval:timestamp>2013-07-09T13:28:17</oval:timestamp>
+          <vendor>The MITRE Corporation</vendor>
+        </generator>
+        <system_info>
+          <os_name/>
+          <os_version/>
+          <architecture/>
+          <primary_host_name/>
+          <interfaces/>
+        </system_info>
+        <collected_objects>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:1" version="1">
+            <reference item_ref="1"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:2" version="1">
+            <reference item_ref="2"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:21" version="1">
+            <reference item_ref="5"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:22" version="1">
+            <reference item_ref="6"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:23" version="1">
+            <reference item_ref="7"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:24" version="1">
+            <reference item_ref="8"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:3" version="1">
+            <reference item_ref="3"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:31" version="1">
+            <reference item_ref="9"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:32" version="1">
+            <reference item_ref="10"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:33" version="1">
+            <reference item_ref="11"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:34" version="1">
+            <reference item_ref="12"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:4" version="1">
+            <reference item_ref="4"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:41" version="1">
+            <reference item_ref="13"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:42" version="1">
+            <reference item_ref="14"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:5" version="1">
+            <reference item_ref="15"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:6" version="1">
+            <reference item_ref="16"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:7" version="1">
+            <reference item_ref="17"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:8" version="1">
+            <reference item_ref="18"/>
+          </object>
+          <object flag="complete" id="oval:org.mitre.oval.bitfun:obj:9" version="1">
+            <reference item_ref="19"/>
+          </object>
+        </collected_objects>
+        <system_data>
+          <variable_item id="1" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:1</var_ref>
+            <value datatype="int">10</value>
+          </variable_item>
+          <variable_item id="2" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:2</var_ref>
+            <value datatype="binary">0A</value>
+          </variable_item>
+          <variable_item id="5" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:21</var_ref>
+            <value datatype="int">175</value>
+          </variable_item>
+          <variable_item id="6" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:22</var_ref>
+            <value datatype="binary">AF</value>
+          </variable_item>
+          <variable_item id="7" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:23</var_ref>
+            <value datatype="binary">AF</value>
+          </variable_item>
+          <variable_item id="8" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:24</var_ref>
+            <value datatype="binary">AF</value>
+          </variable_item>
+          <variable_item id="3" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:3</var_ref>
+            <value datatype="binary">0A</value>
+          </variable_item>
+          <variable_item id="9" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:31</var_ref>
+            <value datatype="int">165</value>
+          </variable_item>
+          <variable_item id="10" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:32</var_ref>
+            <value datatype="binary">A5</value>
+          </variable_item>
+          <variable_item id="11" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:33</var_ref>
+            <value datatype="binary">A5</value>
+          </variable_item>
+          <variable_item id="12" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:34</var_ref>
+            <value datatype="binary">A5</value>
+          </variable_item>
+          <variable_item id="4" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:4</var_ref>
+            <value datatype="binary">0A</value>
+          </variable_item>
+          <variable_item id="13" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:41</var_ref>
+            <value datatype="int">-171</value>
+          </variable_item>
+          <variable_item id="14" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:42</var_ref>
+            <value datatype="binary">F0</value>
+          </variable_item>
+          <variable_item id="15" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:5</var_ref>
+            <value datatype="binary">00</value>
+            <value datatype="binary">0A</value>
+            <value datatype="binary">00</value>
+            <value datatype="binary">0A</value>
+            <value datatype="binary">00</value>
+            <value datatype="binary">0A</value>
+            <value datatype="binary">00</value>
+            <value datatype="binary">0F</value>
+          </variable_item>
+          <variable_item id="16" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:6</var_ref>
+            <value datatype="binary">FA</value>
+            <value datatype="binary">FF</value>
+            <value datatype="binary">FF</value>
+            <value datatype="binary">FF</value>
+            <value datatype="binary">FF</value>
+            <value datatype="binary">FF</value>
+            <value datatype="binary">FF</value>
+            <value datatype="binary">FF</value>
+          </variable_item>
+          <variable_item id="17" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:7</var_ref>
+            <value datatype="binary">50</value>
+            <value datatype="binary">5F</value>
+            <value datatype="binary">55</value>
+            <value datatype="binary">5A</value>
+            <value datatype="binary">55</value>
+            <value datatype="binary">5A</value>
+            <value datatype="binary">50</value>
+            <value datatype="binary">5F</value>
+          </variable_item>
+          <variable_item id="18" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:8</var_ref>
+            <value datatype="int">-171</value>
+            <value datatype="int">-176</value>
+          </variable_item>
+          <variable_item id="19" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+            <var_ref>oval:org.mitre.oval.bitfun:var:9</var_ref>
+            <value datatype="binary">50</value>
+          </variable_item>
+        </system_data>
+      </oval_system_characteristics>
+    </system>
+  </results>
+
+</oval_results>
