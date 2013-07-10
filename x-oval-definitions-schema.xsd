@@ -728,7 +728,7 @@
             <xsd:documentation>The bitwise function takes one or more integer or binary components and performs a basic bitwise function on them.
                 The result of this function is a single integer or binary representation unless one of the components returns multiple values.
                 In this case the specified bitwise function would be performed multiple times and the end result would be a collection of values for the local variable.
-                For example assume a local_variable specifies the bitwise function with an bitwise_operation of "AND" and has two sub-components under
+                For example assume a local_variable specifies the bitwise function with a bitwise_operation of "AND" and has two sub-components under
                 this function: the first component returns multiple values "4" and "7" (0x04, 0x07), and the second component returns multiple values "3" and "5" and "25" (0x03, 0x05, 0x19).
                 The local_variable element would be evaluated to have six values: 4 AND 3 (0x00), 4 AND 5 (0x04), 4 AND 25 (0x00), 7 AND 3 (0x03), 7 AND 5 (0x05), and 7 AND 25 (0x01). The "0x" prefix 
                 is used to clarify a hex base in these examples only and should not be included in the actual values in conforming to the xsd:hexBinary datatype. The binary representation result takes
@@ -737,7 +737,7 @@
             <xsd:appinfo>
                 <sch:pattern id="oval-def_bitwisefunctionrules">
                     <sch:rule context="oval-def:bitwise/oval-def:literal_component">
-                        <sch:assert test="@datatype='binary' or @datatype='int'">A literal_component used by an bitwise function must have a datatype of int or binary.</sch:assert>
+                        <sch:assert test="@datatype='binary' or @datatype='int'">A literal_component used by the bitwise function must have a datatype of int or binary.</sch:assert>
                     </sch:rule>
                     <sch:rule context="oval-def:bitwise/oval-def:variable_component">
                         <sch:let name="var_ref" value="@var_ref"/>
