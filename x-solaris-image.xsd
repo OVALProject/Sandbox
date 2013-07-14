@@ -95,7 +95,7 @@
                   </xsd:complexContent>
             </xsd:complexType>
       </xsd:element>
-      <xsd:element name="images_state" substitutionGroup="oval-def:state">
+      <xsd:element name="image_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
                   <xsd:documentation>The image_state element defines the different system state information that can be used to check the metadata associated with the specified IPS image on a Solaris system.</xsd:documentation>
             </xsd:annotation>
@@ -103,7 +103,7 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="path" type="oval-def:EntityStateStringType">
+                                    <xsd:element name="path" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The path to the Solaris IPS image.</xsd:documentation>
                                           </xsd:annotation>
