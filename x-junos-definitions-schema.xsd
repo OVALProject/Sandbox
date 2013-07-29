@@ -201,7 +201,7 @@
                                 <xsd:documentation>The part of the release version of the component corresponding to the [year].[quarter] in which the release occurred. For example, the major_version for 12.2R6.1 would be 12.2.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="release_type" type="oval-def:EntityStateJunosReleaseTypeType" minOccurs="1" maxOccurs="1">
+                        <xsd:element name="release_type" type="junos-def:EntityStateJunosReleaseTypeType" minOccurs="1" maxOccurs="1">
                             <xsd:annotation>
                                 <xsd:documentation>The release type embedded in the version of the component.</xsd:documentation>
                             </xsd:annotation>
