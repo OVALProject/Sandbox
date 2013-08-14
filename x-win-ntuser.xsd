@@ -178,6 +178,11 @@
                                                       of 100-nanosecond intervals since January 1, 1601 (UTC).</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
+                                    <xsd:element name="days_since_modified" type="oval-def:EntityStateIntType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The number of days since the ntuser.dat file was last modified.  The value should be rounded up to the next whole integer.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
                                     <xsd:element name="filepath" type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>This element describes the filepath of the ntuser.dat file.</xsd:documentation>
@@ -309,24 +314,28 @@
                                     </xsd:element>
                                     <xsd:element name="account_type" type="win-sc:EntityItemNTUserAccountTypeType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The account_type element describes if the user account(s) to test is/are local account(s), domain account(s), or to include both
-                                                      local and domain accounts.</xsd:documentation>
+                                                <xsd:documentation>The account_type element describes if the user account is a local account or domain account.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="logged_on" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The logged_on element describes if the usre account(s) to test is/are currently logged on to the computeror not.</xsd:documentation>
+                                                <xsd:documentation>The logged_on element describes if the user account is currently logged on to the computer.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="enabled" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The enabled_status element describes if the user account(s) to test is/are enabled or not.</xsd:documentation>
+                                                <xsd:documentation>The enabled element describes if the user account is enabled or disabled.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="date_modified" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Time of last modification of file. The string should represent the FILETIME structure which is a 64-bit value representing the number
                                                       of 100-nanosecond intervals since January 1, 1601 (UTC).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="days_since_modified" type="oval-sc:EntityItemIntType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The number of days since the ntuser.dat file was last modified.  The value should be rounded up to the next whole integer.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="filepath" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
