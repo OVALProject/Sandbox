@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<oval_results xmlns="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-res="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-results-5 oval-results-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows windows-system-characteristics-schema.xsd">
+  <generator>
+    <oval:product_name>OVAL Definition Interpreter</oval:product_name>
+    <oval:product_version>5.9 Build: 1</oval:product_version>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2011-06-09T21:13:04</oval:timestamp>
+    <vendor>The MITRE Corporation</vendor>
+  </generator>
+  <directives include_source_definitions="false" include_system_data="false">
+    <definition_true content="full" reported="true"/>
+    <definition_false content="full" reported="true"/>
+    <definition_unknown content="full" reported="true"/>
+    <definition_error content="full" reported="true"/>
+    <definition_not_evaluated content="full" reported="true"/>
+    <definition_not_applicable content="full" reported="true"/>
+  </directives>
+  <results>
+    <system>
+      <definitions>
+        <definition definition_id="oval:sample:def:1" result="true" version="2">
+          <criteria operator="AND" result="true">
+            <criterion result="true" test_ref="oval:sample:tst:1" version="1"/>
+          </criteria>
+        </definition>
+      </definitions>
+      <tests>
+        <test check="all" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:sample:1" version="1">
+          <tested_item item_id="1" result="true"/>
+          <!-- 
+            The observed_value element would b new. 
+            It must have an item_id attrbute to allow for tracking back to the SC item that it is reporting on (A test might be checking multiple items).
+            It must have an instance_id because a named entity can apear more than once in an item. This is a non negative integer. default value can be one then this can be an optional attribute. 
+            It must have an item_field. This will be the name of the state entity that is to be reported on. I choose this name because this is what we use in the oval-def:ObjectComponentType. This is a required attribute that is of string type and does not have a default value.
+            It must have a record_field. This will be the name of the field in a record that is being reported on. I choose this name because this is what we use in the oval-def:ObjectComponentType. This is a required attribute that is of string type and does not have a default value.
+          -->
+          <observed_value item_id="1" instance_id="1" item_field="size">21</observed_value>
+        </test>
+      </tests>
+      <oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">
+        <generator>
+          <oval:product_name>OVAL Definition Interpreter</oval:product_name>
+          <oval:product_version>5.9 Build: 1</oval:product_version>
+          <oval:schema_version>5.9</oval:schema_version>
+          <oval:timestamp>2011-06-09T21:13:04</oval:timestamp>
+          <vendor>The MITRE Corporation</vendor>
+        </generator>
+        <system_info>
+          <os_name>unknown Professional </os_name>
+          <os_version>6.1.7600</os_version>
+          <architecture>INTEL32</architecture>
+          <primary_host_name>MM172846-PC.MITRE.ORG</primary_host_name>
+          <interfaces>
+            <interface>
+              <interface_name>Cisco Systems VPN Adapter for 64-bit Windows</interface_name>
+              <ip_address>172.31.52.29</ip_address>
+              <mac_address>00-05-9A-3C-78-00</mac_address>
+            </interface>
+            <interface>
+              <interface_name>Dell Wireless 1510 Wireless-N WLAN Mini-Card</interface_name>
+              <ip_address>192.168.0.5</ip_address>
+              <mac_address>00-25-56-3E-47-3F</mac_address>
+            </interface>
+          </interfaces>
+        </system_info>
+      </oval_system_characteristics>
+    </system>
+  </results>
+</oval_results>
