@@ -49,17 +49,17 @@
           <os_name>unknown Professional </os_name>
           <os_version>6.1.7600</os_version>
           <architecture>INTEL32</architecture>
-          <primary_host_name>MM172846-PC.MITRE.ORG</primary_host_name>
+          <primary_host_name>hostname</primary_host_name>
           <interfaces>
             <interface>
               <interface_name>Cisco Systems VPN Adapter for 64-bit Windows</interface_name>
-              <ip_address>172.31.52.29</ip_address>
-              <mac_address>00-05-9A-3C-78-00</mac_address>
+              <ip_address>123.123.123.123</ip_address>
+              <mac_address>01-02-03-04-05-06</mac_address>
             </interface>
             <interface>
               <interface_name>Dell Wireless 1510 Wireless-N WLAN Mini-Card</interface_name>
-              <ip_address>192.168.0.5</ip_address>
-              <mac_address>00-25-56-3E-47-3F</mac_address>
+              <ip_address>123.123.123.124/ip_address>
+              <mac_address>01-02-03-04-05-06</mac_address>
             </interface>
           </interfaces>
         </system_info>
