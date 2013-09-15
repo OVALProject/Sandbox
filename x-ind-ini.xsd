@@ -11,7 +11,7 @@
             <schema>Experimental Schema for INI files</schema>
             <version>5.11</version>
             <date>4/1/2013 8:00:00 AM</date>
-            <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+            <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
             <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
             <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
             <sch:ns prefix="ind-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"/>
@@ -52,7 +52,7 @@
             <xsd:complexContent>
                 <xsd:extension base="oval-def:TestType">
                     <xsd:sequence>
-                        <xsd:element name="object" type="oval-def:ObjectRefType" />
+                        <xsd:element name="object" type="oval-def:ObjectRefType"/>
                         <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
                     </xsd:sequence>
                 </xsd:extension>
@@ -84,23 +84,54 @@
                             <xsd:element ref="oval-def:set"/>
                             <xsd:sequence>
                                 <xsd:element name="behaviors" type="x-ind-ini:inifileBehaviors" minOccurs="0" maxOccurs="1"/>
-                                <xsd:element name="filepath" type="oval-def:EntityObjectStringType">
-                                    <xsd:annotation>
-                                        <xsd:documentation>The filepath element specifies the absolute path for a INI file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
-                                        <xsd:appinfo>
-                                            <sch:pattern id="x-ind-def_iniobjfilepath">
-                                                <sch:rule context="x-ind-def:inifile_object/x-ind-def:filepath">
-                                                    <sch:assert test="not(preceding-sibling::x-ind-def:behaviors[@max_depth or @recurse_direction])"><sch:value-of select="../@id"/> - the max_depth and recurse_direction behaviors are not allowed with a filepath entity</sch:assert>
-                                                </sch:rule>
-                                            </sch:pattern>
-                                            <sch:pattern id="x-ind-def_iniobjfilepath2">
-                                                <sch:rule context="x-ind-def:inifile_object/x-ind-def:filepath[not(@operation='equals' or not(@operation))]">
-                                                    <sch:assert test="not(preceding-sibling::x-ind-def:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a filepath entity.</sch:assert>
-                                                </sch:rule>
-                                            </sch:pattern>
-                                        </xsd:appinfo>
-                                    </xsd:annotation>
-                                </xsd:element>
+                                <xsd:choice>
+                                    <xsd:element name="filepath" type="oval-def:EntityObjectStringType">
+                                        <xsd:annotation>
+                                            <xsd:documentation>The filepath element specifies the absolute path for a INI file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
+                                            <xsd:appinfo>
+                                                <sch:pattern id="x-ind-def_iniobjfilepath">
+                                                    <sch:rule context="x-ind-def:inifile_object/x-ind-def:filepath">
+                                                        <sch:assert test="not(preceding-sibling::x-ind-def:behaviors[@max_depth or @recurse_direction])"><sch:value-of select="../@id"/> - the max_depth and recurse_direction behaviors are not allowed with a filepath entity</sch:assert>
+                                                    </sch:rule>
+                                                </sch:pattern>
+                                                <sch:pattern id="x-ind-def_iniobjfilepath2">
+                                                    <sch:rule context="x-ind-def:inifile_object/x-ind-def:filepath[not(@operation='equals' or not(@operation))]">
+                                                        <sch:assert test="not(preceding-sibling::x-ind-def:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a filepath entity.</sch:assert>
+                                                    </sch:rule>
+                                                </sch:pattern>
+                                            </xsd:appinfo>
+                                        </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:sequence>
+                                        <xsd:element name="path" type="oval-def:EntityObjectStringType">
+                                            <xsd:annotation>
+                                                <xsd:documentation>The path entity specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                    <sch:pattern id="x-ind-def_iniobjpath">
+                                                        <sch:rule context="x-ind-def:inifile_object/x-ind-def:path[not(@operation='equals' or not(@operation))]">
+                                                            <sch:assert test="not(preceding-sibling::x-ind-def:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a path entity.</sch:assert>
+                                                            <sch:assert test="not(preceding-sibling::x-ind-def:behaviors[@max_depth])"><sch:value-of select="../@id"/> - the max_depth behavior MUST not be used when a pattern match is used with a path entity.</sch:assert>
+                                                            <sch:assert test="not(preceding-sibling::x-ind-def:behaviors[@recurse_direction])"><sch:value-of select="../@id"/> - the recurse_direction behavior MUST not be used when a pattern match is used with a path entity.</sch:assert>
+                                                            <sch:assert test="not(preceding-sibling::x-ind-def:behaviors[@recurse])"><sch:value-of select="../@id"/> - the recurse behavior MUST not be used when a pattern match is used with a path entity.</sch:assert>
+                                                        </sch:rule>
+                                                    </sch:pattern>
+                                                </xsd:appinfo>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="filename" type="oval-def:EntityObjectStringType">
+                                            <xsd:annotation>
+                                                <xsd:documentation>The filename entity specifies the name of the file.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                    <sch:pattern id="x-ind-def_iniobjfilename">
+                                                        <sch:rule context="x-ind-def:inifile_object/x-ind-def:filename">
+                                                            <sch:assert test="(@var_ref and .='') or not(.='') or (.='' and @operation = 'pattern match')"><sch:value-of select="../@id"/> - filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
+                                                        </sch:rule>
+                                                    </sch:pattern>
+                                                </xsd:appinfo>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:choice>
                                 <xsd:element name="section" type="oval-def:EntityObjectStringType" minOccurs="0" maxOccurs="1">
                                     <xsd:annotation>
                                         <xsd:documentation>The section entity specifies the name of the section in the INI file. </xsd:documentation>
@@ -139,7 +170,7 @@
                                 </xsd:element>
                                 <xsd:element name="instance" type="oval-def:EntityObjectIntType">
                                     <xsd:annotation>
-                                        <xsd:documentation>The instance entity calls out a specific match of the given name.  The first match is given an instance value of 1, the second match is given an instance value of 2, and so on.  Note that the main purpose of this entity is to provide uniqueness for different inifile_items that results from multiple matches of a given name against the same file. Most likely this entity will be defined as greater than or equal to 1 which would result in the object representing the set of all matches of the pattern.</xsd:documentation>
+                                        <xsd:documentation>The instance entity calls out a specific match of the given name. The first match is given an instance value of 1, the second match is given an instance value of 2, and so on. Note that the main purpose of this entity is to provide uniqueness for different inifile_items that results from multiple matches of a given name against the same file. Most likely this entity will be defined as greater than or equal to 1 which would result in the object representing the set of all matches of the pattern.</xsd:documentation>
                                     </xsd:annotation>
                                 </xsd:element>
                                 <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
@@ -185,12 +216,12 @@
                         </xsd:element>
                         <xsd:element name="instance" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The instance entity calls out which match of the pattern is being represented by this item.  The first match is given an instance value of 1, the second match is given an instance value of 2, and so on.  The main purpose of this entity is too provide uniqueness for different inifile_items that results from multiple matches of a given pattern against the same file.</xsd:documentation>
+                                <xsd:documentation>The instance entity calls out which match of the pattern is being represented by this item. The first match is given an instance value of 1, the second match is given an instance value of 2, and so on. The main purpose of this entity is too provide uniqueness for different inifile_items that results from multiple matches of a given pattern against the same file.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="windows_view" type="ind-def:EntityStateWindowsViewType" minOccurs="0">
                             <xsd:annotation>
-                                <xsd:documentation>The windows view value to which this was targeted. This is used to indicate which view (32-bit or 64-bit), the associated State applies to.  This entity only applies to 64-bit Microsoft Windows operating systems.</xsd:documentation>
+                                <xsd:documentation>The windows view value to which this was targeted. This is used to indicate which view (32-bit or 64-bit), the associated State applies to. This entity only applies to 64-bit Microsoft Windows operating systems.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                     </xsd:sequence>
@@ -200,26 +231,26 @@
     </xsd:element>
     <xsd:complexType name="inifileBehaviors">
         <xsd:annotation>
-            <xsd:documentation>The inifileBehaviors complex type defines a number of behaviors that allow a more detailed definition of the inifile_object being specified.  Note that using these behaviors may result in some unique results.  For example, a double negative type condition might be created where an object entity says include everything except a specific item, but a behavior is used that might then add that item back in.</xsd:documentation>
-            <xsd:documentation>It is important to note that the 'max_depth' and 'recurse_direction' attributes of the 'behaviors' element do not apply to the 'filepath' element, only to the 'path' and 'filename' elements.  This is because the 'filepath' element represents an absolute path to a particular file and it is not possible to recurse over a file.</xsd:documentation>
+            <xsd:documentation>The inifileBehaviors complex type defines a number of behaviors that allow a more detailed definition of the inifile_object being specified. Note that using these behaviors may result in some unique results. For example, a double negative type condition might be created where an object entity says include everything except a specific item, but a behavior is used that might then add that item back in.</xsd:documentation>
+            <xsd:documentation>It is important to note that the 'max_depth' and 'recurse_direction' attributes of the 'behaviors' element do not apply to the 'filepath' element, only to the 'path' and 'filename' elements. This is because the 'filepath' element represents an absolute path to a particular file and it is not possible to recurse over a file.</xsd:documentation>
             <xsd:documentation>The inifileBehaviors extend the ind-def:FileBehaviors and therefore include the behaviors defined by that type.</xsd:documentation>
         </xsd:annotation>
         <xsd:complexContent>
             <xsd:extension base="ind-def:FileBehaviors">
                 <xsd:attribute name="ignore_case" type="xsd:boolean" use="optional" default="false">
                     <xsd:annotation>
-                        <xsd:documentation>'ignore_case' indicates whether case should be considered when matching system values against the regular expression provided by the pattern entity. This behavior is intended to align with the Perl regular expression 'i' modifier: if true, case will be ignored.  If false, case will not be ignored. The default is false.</xsd:documentation>
-                    </xsd:annotation>                  
+                        <xsd:documentation>'ignore_case' indicates whether case should be considered when matching system values against the regular expression provided by the pattern entity. This behavior is intended to align with the Perl regular expression 'i' modifier: if true, case will be ignored. If false, case will not be ignored. The default is false.</xsd:documentation>
+                    </xsd:annotation>
                 </xsd:attribute>
                 <xsd:attribute name="multiline" type="xsd:boolean" use="optional" default="true">
                     <xsd:annotation>
-                        <xsd:documentation>'multiline' enables multiple line semantics in the regular expression provided by the pattern entity. This behavior is intended to align with the Perl regular expression 'm' modifier: if true, the '^' and '$' metacharacters will match both at the beginning/end of a string, and immediately after/before newline characters.  If false, they will match only at the beginning/end of a string.  The default is true.</xsd:documentation>
-                    </xsd:annotation>                  
+                        <xsd:documentation>'multiline' enables multiple line semantics in the regular expression provided by the pattern entity. This behavior is intended to align with the Perl regular expression 'm' modifier: if true, the '^' and '$' metacharacters will match both at the beginning/end of a string, and immediately after/before newline characters. If false, they will match only at the beginning/end of a string. The default is true.</xsd:documentation>
+                    </xsd:annotation>
                 </xsd:attribute>
                 <xsd:attribute name="singleline" type="xsd:boolean" use="optional" default="false">
                     <xsd:annotation>
-                        <xsd:documentation>'singleline' enables single line semantics in the regular expression provided by the pattern entity. This behavior is intended to align with the Perl regular expression 's' modifier: if true, the '.' metacharacter will match newlines. If false, it will not.  The default is false.</xsd:documentation>
-                    </xsd:annotation>                  
+                        <xsd:documentation>'singleline' enables single line semantics in the regular expression provided by the pattern entity. This behavior is intended to align with the Perl regular expression 's' modifier: if true, the '.' metacharacter will match newlines. If false, it will not. The default is false.</xsd:documentation>
+                    </xsd:annotation>
                 </xsd:attribute>
             </xsd:extension>
         </xsd:complexContent>
@@ -238,6 +269,16 @@
                         <xsd:element name="filepath" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
                                 <xsd:documentation>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="path" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="filename" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The name of the file.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="section" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
@@ -262,12 +303,12 @@
                         </xsd:element>
                         <xsd:element name="instance" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The instance entity calls out which match of the pattern is being represented by this item.  The first match is given an instance value of 1, the second match is given an instance value of 2, and so on.  The main purpose of this entity is too provide uniqueness for different inifile_items that results from multiple matches of a given pattern against the same file.</xsd:documentation>
+                                <xsd:documentation>The instance entity calls out which match of the pattern is being represented by this item. The first match is given an instance value of 1, the second match is given an instance value of 2, and so on. The main purpose of this entity is too provide uniqueness for different inifile_items that results from multiple matches of a given pattern against the same file.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="windows_view" type="ind-sc:EntityItemWindowsViewType" minOccurs="0">
                             <xsd:annotation>
-                                <xsd:documentation>The windows view value from which this OVAL Item was collected. This is used to indicate from which view (32-bit or 64-bit), the associated Item was collected. A value of '32_bit' indicates the Item was collected from the 32-bit view.  A value of '64-bit' indicates the Item was collected from the 64-bit view. Omitting this entity removes any assertion about which view the Item was collected from, and therefore it is strongly suggested that this entity be set. This entity only applies to 64-bit Microsoft Windows operating systems.</xsd:documentation>
+                                <xsd:documentation>The windows view value from which this OVAL Item was collected. This is used to indicate from which view (32-bit or 64-bit), the associated Item was collected. A value of '32_bit' indicates the Item was collected from the 32-bit view. A value of '64-bit' indicates the Item was collected from the 64-bit view. Omitting this entity removes any assertion about which view the Item was collected from, and therefore it is strongly suggested that this entity be set. This entity only applies to 64-bit Microsoft Windows operating systems.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                     </xsd:sequence>
