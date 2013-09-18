@@ -25,12 +25,18 @@
         <criterion comment="Test if a ntuser_object with a  key pattern match, and name pattern match is supported." test_ref="oval:mil.ssclant.oval.test:tst:1003"/>
         <criterion comment="Test if a ntuser_object with a  key pattern match, and name is supported." test_ref="oval:mil.ssclant.oval.test:tst:1004"/>
         <criterion comment="Test if a ntuser_object with a key pattern match and name is an empty string." test_ref="oval:mil.ssclant.oval.test:tst:1005"/>
-        <criterion comment="Test that the max_depth behavior is supported with a limited depth of recursion and that the ntuser_object with the account_type element to domain is supported." test_ref="oval:mil.ssclant.oval.test:tst:1006"/>
-        <criterion comment="Test that the max_depth behavior is supported with a unlimited depth of recursion and that the ntuser_object with the account_type element to domain is supported" test_ref="oval:mil.ssclant.oval.test:tst:1007"/>
-        <criterion comment="Test that the recurse_direction behavior is supported in the 'up' direction and that the ntuser_object with the account_type element to domain is supported" test_ref="oval:mil.ssclant.oval.test:tst:1008"/>
-        <criterion comment="Test that the max_depth behavior is supported with a limited depth of recursion and that the ntuser_object with the account_type element to local is supported" test_ref="oval:mil.ssclant.oval.test:tst:1009"/>
-        <criterion comment="Test that the max_depth behavior is supported with a unlimited depth of recursion and that the ntuser_object with the account_type element to local is supported" test_ref="oval:mil.ssclant.oval.test:tst:1010"/>
-        <criterion comment="Test that the recurse_direction behavior is supported in the 'up' direction and that the ntuser_object with the account_type element to local is supported" test_ref="oval:mil.ssclant.oval.test:tst:1011"/>
+        <criterion comment="Test that the max_depth behavior is supported with a limited depth of recursion and that the ntuser_object with the account_type element to domain is supported."
+          test_ref="oval:mil.ssclant.oval.test:tst:1006"/>
+        <criterion comment="Test that the max_depth behavior is supported with a unlimited depth of recursion and that the ntuser_object with the account_type element to domain is supported"
+          test_ref="oval:mil.ssclant.oval.test:tst:1007"/>
+        <criterion comment="Test that the recurse_direction behavior is supported in the 'up' direction and that the ntuser_object with the account_type element to domain is supported"
+          test_ref="oval:mil.ssclant.oval.test:tst:1008"/>
+        <criterion comment="Test that the max_depth behavior is supported with a limited depth of recursion and that the ntuser_object with the account_type element to local is supported"
+          test_ref="oval:mil.ssclant.oval.test:tst:1009"/>
+        <criterion comment="Test that the max_depth behavior is supported with a unlimited depth of recursion and that the ntuser_object with the account_type element to local is supported"
+          test_ref="oval:mil.ssclant.oval.test:tst:1010"/>
+        <criterion comment="Test that the recurse_direction behavior is supported in the 'up' direction and that the ntuser_object with the account_type element to local is supported"
+          test_ref="oval:mil.ssclant.oval.test:tst:1011"/>
         <criterion comment="Test that the ntuser_object with the account_type element to local is supported" test_ref="oval:mil.ssclant.oval.test:tst:1012"/>
         <criterion comment="Test if a ntuser_object with the logged_in element equal to true is supported." test_ref="oval:mil.ssclant.oval.test:tst:1013"/>
         <criterion comment="Test if a ntuser_object with the logged_in element equal to false is supported." test_ref="oval:mil.ssclant.oval.test:tst:1014"/>
@@ -42,9 +48,10 @@
         <criterion comment="Test if a ntuser_object with last_time_write element with a less than operation is supported." test_ref="oval:mil.ssclant.oval.test:tst:1020"/>
         <criterion comment="Test if a ntuser_object with last_time_write element with a greater than operation is supported" test_ref="oval:mil.ssclant.oval.test:tst:1021"/>
         <criterion comment="Test if a ntuser_object with a type element is supported." test_ref="oval:mil.ssclant.oval.test:tst:1022"/>
-        <criterion comment="Test if a ntuser_object with a value element is supported." test_ref="oval:mil.ssclant.oval.test:tst:1023"/>	
-		<criterion test_ref="oval:mil.ssclant.oval.test:tst:20002" comment="Test if a ntuser.dat file has been modified in last 90 days using seconds_since_epoch" />
-		<criterion test_ref="oval:mil.ssclant.oval.test:tst:20010" comment="Test if a ntuser.dat file has been modified in last 90 days using seconds_since_epoch for only enabled accounts." />	      
+        <criterion comment="Test if a ntuser_object with a value element is supported." test_ref="oval:mil.ssclant.oval.test:tst:1023"/>
+        <criterion comment="Test if a ntuser_object with a  key is supported and include_default behavior is supported." test_ref="oval:mil.ssclant.oval.test:tst:1024"/>
+        <criterion test_ref="oval:mil.ssclant.oval.test:tst:20002" comment="Test if a ntuser.dat file has been modified in last 90 days using seconds_since_epoch"/>
+        <criterion test_ref="oval:mil.ssclant.oval.test:tst:20010" comment="Test if a ntuser.dat file has been modified in last 90 days using seconds_since_epoch for only enabled accounts."/>
       </criteria>
     </definition>
   </definitions>
@@ -79,33 +86,33 @@
       <object object_ref="oval:mil.ssclant.oval.test:obj:185"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:287"/>
     </ntuser_test>
-    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1006" version="1" comment="Test that the max_depth behavior is supported with a limited depth of recursion with the account_type equal to domain" check_existence="at_least_one_exists"
-      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1006" version="1" comment="Test that the max_depth behavior is supported with a limited depth of recursion with the account_type equal to domain"
+      check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <object object_ref="oval:mil.ssclant.oval.test:obj:479"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17721"/>
     </ntuser_test>
-    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1007" version="1" comment="Test that the max_depth behavior is supported with a unlimited depth of recursion with the account_type equal to domain" check_existence="at_least_one_exists"
-      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1007" version="1" comment="Test that the max_depth behavior is supported with a unlimited depth of recursion with the account_type equal to domain"
+      check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <object object_ref="oval:mil.ssclant.oval.test:obj:288"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17721"/>
     </ntuser_test>
-    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1008" version="1" comment="Test that the recurse_direction behavior is supported in the 'up' direction with the account_type equal to domain" check_existence="at_least_one_exists"
-      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1008" version="1" comment="Test that the recurse_direction behavior is supported in the 'up' direction with the account_type equal to domain"
+      check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <object object_ref="oval:mil.ssclant.oval.test:obj:711"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17721"/>
     </ntuser_test>
-    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1009" version="1" comment="Test that the max_depth behavior is supported with a limited depth of recursion with the account_type equal to local" check_existence="at_least_one_exists"
-      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1009" version="1" comment="Test that the max_depth behavior is supported with a limited depth of recursion with the account_type equal to local"
+      check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <object object_ref="oval:mil.ssclant.oval.test:obj:479"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17722"/>
     </ntuser_test>
-    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1010" version="1" comment="Test that the max_depth behavior is supported with a unlimited depth of recursion with the account_type equal to local" check_existence="at_least_one_exists"
-      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1010" version="1" comment="Test that the max_depth behavior is supported with a unlimited depth of recursion with the account_type equal to local"
+      check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <object object_ref="oval:mil.ssclant.oval.test:obj:288"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17722"/>
     </ntuser_test>
-    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1011" version="1" comment="Test that the recurse_direction behavior is supported in the 'up' direction with the account_type equal to local" check_existence="at_least_one_exists"
-      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1011" version="1" comment="Test that the recurse_direction behavior is supported in the 'up' direction with the account_type equal to local"
+      check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <object object_ref="oval:mil.ssclant.oval.test:obj:711"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17722"/>
     </ntuser_test>
@@ -114,48 +121,48 @@
       <object object_ref="oval:mil.ssclant.oval.test:obj:5645"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:944"/>
     </ntuser_test>
-    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1013" version="1" comment="Test if a ntuser_object with the logged_in element is supported" check_existence="at_least_one_exists" check="at least one"
-      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1013" version="1" comment="Test if a ntuser_object with the logged_in element is supported" check_existence="at_least_one_exists"
+      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17723"/>
     </ntuser_test>
-    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1014" version="1" comment="Test if a ntuser_object with the logged_in element equal to false is supported." check_existence="at_least_one_exists" check="at least one"
-      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1014" version="1" comment="Test if a ntuser_object with the logged_in element equal to false is supported." check_existence="at_least_one_exists"
+      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17724"/>
     </ntuser_test>
-    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1015" version="1" comment="Test if a ntuser_object with an enabled element equal to true is supported." check_existence="at_least_one_exists" check="at least one"
-      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1015" version="1" comment="Test if a ntuser_object with an enabled element equal to true is supported." check_existence="at_least_one_exists"
+      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17725"/>
     </ntuser_test>
-    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1016" version="1" comment="Test if a ntuser_object with an enabled element equal to false is supported." check_existence="at_least_one_exists" check="at least one"
-      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1016" version="1" comment="Test if a ntuser_object with an enabled element equal to false is supported." check_existence="at_least_one_exists"
+      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17726"/>
     </ntuser_test>
-    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1017" version="1" comment="Test if a ntuser_object with a date_modified element equal to true is supported." check_existence="at_least_one_exists" check="at least one"
-      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1017" version="1" comment="Test if a ntuser_object with a date_modified element equal to true is supported." check_existence="at_least_one_exists"
+      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17727"/>
     </ntuser_test>
-    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1018" version="1" comment="Test if a ntuser_object with a date_modified element set to false is supported." check_existence="at_least_one_exists" check="at least one"
-      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1018" version="1" comment="Test if a ntuser_object with a date_modified element set to false is supported." check_existence="at_least_one_exists"
+      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17728"/>
     </ntuser_test>
-    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1019" version="1" comment="Test if a ntuser_object with a filepath element set to pattern match." check_existence="at_least_one_exists" check="at least one"
-      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1019" version="1" comment="Test if a ntuser_object with a filepath element set to pattern match." check_existence="at_least_one_exists"
+      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17729"/>
     </ntuser_test>
-    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1020" version="1" comment="Test if a ntuser_object with last_time_write element with a less than operation is supported." check_existence="at_least_one_exists" check="at least one"
-      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1020" version="1" comment="Test if a ntuser_object with last_time_write element with a less than operation is supported."
+      check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17730"/>
     </ntuser_test>
-    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1021" version="1" comment="Test if a ntuser_object with last_time_write element with a less than operation is supported." check_existence="at_least_one_exists" check="at least one"
-      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1021" version="1" comment="Test if a ntuser_object with last_time_write element with a less than operation is supported."
+      check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17731"/>
     </ntuser_test>
@@ -169,9 +176,15 @@
       <object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
       <state state_ref="oval:mil.ssclant.oval.test:ste:17733"/>
     </ntuser_test>
-	<ntuser_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:mil.ssclant.oval.test:tst:20000" version="1" check_existence="at_least_one_exists" check="at least one" comment="user is enabled">
-      <object object_ref="oval:mil.ssclant.oval.test:obj:20000" />
-      <state state_ref="oval:mil.ssclant.oval.test:ste:20000" />
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1024" version="1" comment="Test if a ntuser_object with a  key is supported and include_default behavior is supported."
+      check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:mil.ssclant.oval.test:obj:1024"/>
+      <state state_ref="oval:mil.ssclant.oval.test:ste:1024"/>
+    </ntuser_test>
+    <ntuser_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:mil.ssclant.oval.test:tst:20000" version="1" check_existence="at_least_one_exists" check="at least one"
+      comment="user is enabled">
+      <object object_ref="oval:mil.ssclant.oval.test:obj:20000"/>
+      <state state_ref="oval:mil.ssclant.oval.test:ste:20000"/>
     </ntuser_test>
   </tests>
   <objects>
@@ -227,12 +240,20 @@
       <key>Control Panel\Desktop</key>
       <name>ScreenSaveActive</name>
     </ntuser_object>
+    <ntuser_object id="oval:mil.ssclant.oval.test:obj:1024" version="1"
+      comment="Retrieve a ntuser_object  key equal to 'Control Panel\Desktop' and include the Default user ntuser.dat file in the
+      results."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <behaviors include_default="true"/>
+      <key>Control Panel\Desktop</key>
+      <name xsi:nil="true"/>
+    </ntuser_object>
     <ntuser_object id="oval:mil.ssclant.oval.test:obj:5645" version="1" comment="Retrieve a ntuser_object with a  key pattern matches a regular expression'."
       xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <key operation="pattern match">Control Panel\\Deskt.*</key>
       <name xsi:nil="true"/>
     </ntuser_object>
-	<ntuser_object id="oval:mil.ssclant.oval.test:obj:20000" version="1" comment="Verify user account is enabled" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_object id="oval:mil.ssclant.oval.test:obj:20000" version="1" comment="Verify user account is enabled" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <key>Control Panel\Desktop</key>
       <name>ScreenSaveActive</name>
     </ntuser_object>
@@ -279,22 +300,26 @@
     <ntuser_state id="oval:mil.ssclant.oval.test:ste:17722" version="1" comment="local account" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <account_type>local</account_type>
     </ntuser_state>
-    <ntuser_state id="oval:mil.ssclant.oval.test:ste:17723" version="1" comment="Test if a ntuser_object with the logged_in element is supported" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:17723" version="1" comment="Test if a ntuser_object with the logged_in element is supported"
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <logged_on datatype="boolean">true</logged_on>
     </ntuser_state>
-    <ntuser_state id="oval:mil.ssclant.oval.test:ste:17724" version="1" comment="Test if a ntuser_object with the logged_in element equal to false is supported." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:17724" version="1" comment="Test if a ntuser_object with the logged_in element equal to false is supported."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <logged_on datatype="boolean">false</logged_on>
     </ntuser_state>
-    <ntuser_state id="oval:mil.ssclant.oval.test:ste:17725" version="1" comment="Test if a ntuser_object with an enabled element equal to true is supported." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:17725" version="1" comment="Test if a ntuser_object with an enabled element equal to true is supported."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <enabled datatype="boolean">true</enabled>
     </ntuser_state>
-    <ntuser_state id="oval:mil.ssclant.oval.test:ste:17726" version="1" comment="Test if a ntuser_object with an enabled element equal to false is supported." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:17726" version="1" comment="Test if a ntuser_object with an enabled element equal to false is supported."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <enabled datatype="boolean">false</enabled>
     </ntuser_state>
     <ntuser_state id="oval:mil.ssclant.oval.test:ste:17727" version="1" comment="Test if a ntuser_object with a date_modified element equal to true is supported."
       xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <date_modified datatype="int" operation="greater than">116522496000000000</date_modified>
-     <!-- 116522496000000000 is FILETIME for Jan 01, 1971 -->
+      <!-- 116522496000000000 is FILETIME for Jan 01, 1971 -->
     </ntuser_state>
     <ntuser_state id="oval:mil.ssclant.oval.test:ste:17728" version="1" comment="Test if a ntuser_object with a date_modified element set to false is supported"
       xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
@@ -322,6 +347,11 @@
     <ntuser_state id="oval:mil.ssclant.oval.test:ste:17733" version="1" comment="Test if a ntuser_object with a value element is supported"
       xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
       <value>1</value>
+    </ntuser_state>
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:1024" version="1" comment="This ntuser_state represents a ntuser_object  key equal to 'Control Panel\Desktop'."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <key>Control Panel\Desktop</key>
+      <username operation="pattern match">^.*\\Default</username>
     </ntuser_state>
   </states>
 </oval_definitions>
