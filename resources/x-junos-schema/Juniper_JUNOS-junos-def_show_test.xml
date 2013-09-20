@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oval_results xmlns:xmldsig="http://www.w3.org/2000/09/xmldsig#" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:aix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#aix" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:linux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:ns8="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" xmlns:netconf-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#netconf" xmlns:hpux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux" xmlns:esx-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#esx" xmlns:macos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" xmlns:junos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#junos" xmlns:sharepoint-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint" xmlns:pixos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#pixos" xmlns:catos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#catos" xmlns:ios-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xmlns:apache-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#apache" xmlns:freebsd-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#freebsd" xmlns:solaris-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:aix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#aix" xmlns:esx-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#esx" xmlns:apache-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apache" xmlns:sharepoint-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#sharepoint" xmlns:ns27="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android" xmlns:junos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#junos" xmlns:netconf-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#netconf" xmlns:unix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix" xmlns:solaris-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris" xmlns:linux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux" xmlns:ios-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:ind-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent" xmlns:hpux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#hpux" xmlns:catos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#catos" xmlns:macos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#macos" xmlns:pixos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#pixos" xmlns:freebsd-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#freebsd" xmlns="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#esx esx-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux linux-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#netconf netconf-system-characteristics-schema.xsd http://www.w3.org/2000/09/xmldsig# xmldsig-core-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#macos macos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios ios-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#aix aix-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris solaris-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#junos junos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#pixos pixos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#hpux hpux-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix unix-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent independent-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apache apache-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows windows-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#freebsd freebsd-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#sharepoint sharepoint-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#catos catos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint sharepoint-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux hpux-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#apache apache-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#esx esx-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris solaris-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#pixos pixos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#ios ios-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#netconf netconf-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#catos catos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#aix aix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#macos macos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#junos junos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#freebsd freebsd-definitions-schema.xsd">
+    <generator>
+        <oval:product_name>jOVAL(tm) SDK</oval:product_name>
+        <oval:product_version>5.10.1.2_dev</oval:product_version>
+        <oval:schema_version>5.10.1</oval:schema_version>
+        <oval:timestamp>2013-09-20T11:52:18.108-05:00</oval:timestamp>
+    </generator>
+    <directives include_source_definitions="true">
+        <definition_true content="full" reported="true"/>
+        <definition_false content="full" reported="true"/>
+        <definition_unknown content="full" reported="true"/>
+        <definition_error content="full" reported="true"/>
+        <definition_not_evaluated content="full" reported="true"/>
+        <definition_not_applicable content="full" reported="true"/>
+    </directives>
+    <oval-def:oval_definitions>
+        <oval-def:generator>
+            <oval:schema_version>5.9</oval:schema_version>
+            <oval:timestamp>2009-01-12T10:41:00-05:00</oval:timestamp>
+        </oval-def:generator>
+        <oval-def:definitions>
+            <oval-def:definition class="miscellaneous" version="1" id="oval:org.joval.junos.test:def:2">
+                <oval-def:metadata>
+                    <oval-def:title>Evaluate whether all the JUNOS show test type is supported</oval-def:title>
+                    <oval-def:description>This definition is intended to evalutate to version if the interpreter properly supports all the junos-def:XXX_test types and all of their valid operations.</oval-def:description>
+                </oval-def:metadata>
+                <oval-def:notes>
+                    <oval-def:note>It is important to note that the values used in this test definition are specific to a particular machine, and may not necessarily apply to your system. As a result, in order to have the definition return a result of 'true', you must either change these values to the ones found on your particular system, or you must configure your system to use these values.</oval-def:note>
+                </oval-def:notes>
+                <oval-def:criteria operator="AND">
+                    <oval-def:criterion comment="Test that the show_object is supported." test_ref="oval:org.joval.junos.test:tst:2"/>
+                </oval-def:criteria>
+            </oval-def:definition>
+        </oval-def:definitions>
+        <oval-def:tests>
+            <junos-def:show_test comment="Test that the show_object is supported." check="at least one" check_existence="at_least_one_exists" version="1" id="oval:org.joval.junos.test:tst:2">
+                <junos-def:object object_ref="oval:org.joval.junos.test:obj:2"/>
+            </junos-def:show_test>
+        </oval-def:tests>
+        <oval-def:objects>
+            <junos-def:show_object version="1" id="oval:org.joval.junos.test:obj:2">
+                <junos-def:subcommand>show system processes extensive</junos-def:subcommand>
+            </junos-def:show_object>
+        </oval-def:objects>
+    </oval-def:oval_definitions>
+    <results>
+        <system>
+            <definitions>
+                <definition result="true" class="miscellaneous" version="1" definition_id="oval:org.joval.junos.test:def:2">
+                    <criteria result="true" negate="false" operator="AND">
+                        <criterion result="true" negate="false" test_ref="oval:org.joval.junos.test:tst:2"/>
+                    </criteria>
+                </definition>
+            </definitions>
+            <tests>
+                <test result="true" state_operator="AND" check="at least one" check_existence="at_least_one_exists" test_id="oval:org.joval.junos.test:tst:2">
+                    <tested_item result="not evaluated" item_id="0"/>
+                </test>
+            </tests>
+            <oval-sc:oval_system_characteristics>
+                <oval-sc:generator>
+                    <oval:product_name>jOVAL(tm) SDK</oval:product_name>
+                    <oval:product_version>5.10.1.2_dev</oval:product_version>
+                    <oval:schema_version>5.10.1</oval:schema_version>
+                    <oval:timestamp>2013-09-20T11:52:15.849-05:00</oval:timestamp>
+                </oval-sc:generator>
+                <oval-sc:system_info>
+                    <oval-sc:os_name>Juniper JunOS</oval-sc:os_name>
+                    <oval-sc:os_version>8.5R1.14</oval-sc:os_version>
+                    <oval-sc:architecture>olive</oval-sc:architecture>
+                    <oval-sc:primary_host_name>olive</oval-sc:primary_host_name>
+                    <oval-sc:interfaces>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>.local..0</oval-sc:interface_name>
+                            <oval-sc:ip_address>192.168.0.54</oval-sc:ip_address>
+                            <oval-sc:mac_address>Unspecified</oval-sc:mac_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>.local..2</oval-sc:interface_name>
+                            <oval-sc:ip_address>127.0.0.1</oval-sc:ip_address>
+                            <oval-sc:mac_address>Unspecified</oval-sc:mac_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>em0.0</oval-sc:interface_name>
+                            <oval-sc:ip_address>192.168.0.54</oval-sc:ip_address>
+                            <oval-sc:mac_address>08:00:27:d8:47:22</oval-sc:mac_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>lo0.16384</oval-sc:interface_name>
+                            <oval-sc:ip_address>127.0.0.1</oval-sc:ip_address>
+                            <oval-sc:mac_address>Unspecified</oval-sc:mac_address>
+                        </oval-sc:interface>
+                    </oval-sc:interfaces>
+                </oval-sc:system_info>
+                <oval-sc:collected_objects>
+                    <oval-sc:object flag="complete" version="1" id="oval:org.joval.junos.test:obj:2">
+                        <oval-sc:reference item_ref="0"/>
+                    </oval-sc:object>
+                </oval-sc:collected_objects>
+                <oval-sc:system_data>
+                    <junos-sc:show_item id="0">
+                        <junos-sc:subcommand>show system processes extensive</junos-sc:subcommand>
+                        <junos-sc:value>last pid:  4557;  load averages:  0.00,  0.00,  0.00  up 0+00:36:24    11:52:10&#xD;
+106 processes: 3 running, 86 sleeping, 17 waiting&#xD;
+&#xD;
+Mem: 77M Active, 85M Inact, 23M Wired, 113M Cache, 60M Buf, 191M Free&#xD;
+Swap: 1024M Total, 1024M Free&#xD;
+&#xD;
+&#xD;
+  PID USERNAME  THR PRI NICE   SIZE    RES STATE    TIME   WCPU COMMAND&#xD;
+   11 root        1 171   52     0K    12K RUN     34:52 92.58% idle&#xD;
+ 4515 root        1  96    0  5800K  2652K RUN      0:00  4.55% sshd&#xD;
+   13 root        1 -20 -139     0K    12K WAIT     0:28  3.27% swi7: clock sio&#xD;
+ 4180 root        1   4    0  4684K  3648K kqread   0:04  0.00% mcsnoopd&#xD;
+ 4154 root        1   4    0 12008K  9764K kqread   0:03  0.00% rpd&#xD;
+ 4155 root        1  96    0  3916K  3356K select   0:03  0.00% l2ald&#xD;
+ 4057 root        1  96    0  1576K  1004K select   0:02  0.00% bslockd&#xD;
+    4 root        1  -8    0     0K    12K -        0:01  0.00% g_down&#xD;
+    3 root        1  -8    0     0K    12K -        0:01  0.00% g_up&#xD;
+   15 root        1 -16    0     0K    12K -        0:01  0.00% yarrow&#xD;
+    2 root        1  -8    0     0K    12K -        0:01  0.00% g_event&#xD;
+ 4149 root        1  96    0  2572K  2080K select   0:01  0.00% alarmd&#xD;
+ 4168 root        1  96    0  2504K  1328K select   0:01  0.00% irsd&#xD;
+   68 root        1  -8    0     0K    12K mdwait   0:01  0.00% md1&#xD;
+   46 root        1  -8    0     0K    12K mdwait   0:00  0.00% md0&#xD;
+ 4147 root        1  96    0  3872K  3256K select   0:00  0.00% dcd&#xD;
+  100 root        1  -8    0     0K    12K mdwait   0:00  0.00% md4&#xD;
+    9 root        1 171   52     0K    12K pgzero   0:00  0.00% pagezero&#xD;
+   20 root        1 -64 -183     0K    12K WAIT     0:00  0.00% irq14: ata0&#xD;
+   22 root        1 -68 -187     0K    12K WAIT     0:00  0.00% irq10: em0&#xD;
+ 4176 root        1  96    0  2836K  1916K select   0:00  0.00% lfmd&#xD;
+   45 root        1 -16    0     0K    12K -        0:00  0.00% schedcpu&#xD;
+   40 root        1 -16    0     0K    12K psleep   0:00  0.00% vmkmemdaemon&#xD;
+ 4236 root        1  96    0 12424K  6576K select   0:00  0.00% cli&#xD;
+ 4148 root        1  96    0 22152K  6272K select   0:00  0.00% chassisd&#xD;
+   31 root        1  20    0     0K    12K syncer   0:00  0.00% syncer&#xD;
+ 3992 root        1  96    0  2528K  1996K select   0:00  0.00% eventd&#xD;
+   32 root        1 -16    0     0K    12K sdflus   0:00  0.00% softdepflush&#xD;
+ 4152 root        1  96    0  5480K  4384K select   0:00  0.00% snmpd&#xD;
+   29 root        1 -16    0     0K    12K psleep   0:00  0.00% bufdaemon&#xD;
+   38 root        1 -16    0     0K    12K psleep   0:00  0.00% vmuncachedaemon&#xD;
+   30 root        1  -4    0     0K    12K vlruwt   0:00  0.00% vnlru&#xD;
+ 4151 root        1  96    0 17420K 14912K select   0:00  0.00% mgd&#xD;
+  111 root        1  -8    0     0K    12K mdwait   0:00  0.00% md5&#xD;
+   12 root        1 -40 -159     0K    12K WAIT     0:00  0.00% swi2: net&#xD;
+    1 root        1   8    0  1100K   792K wait     0:00  0.00% init&#xD;
+ 4163 root        1  96    0  6776K  5568K select   0:00  0.00% kmd&#xD;
+ 4171 root        1  96    0  3748K  3104K select   0:00  0.00% bfdd&#xD;
+ 4164 root        1  96    0  3000K  2156K select   0:00  0.00% ppmd&#xD;
+ 4528 root        1  96    0 17472K 15212K select   0:00  0.00% mgd&#xD;
+ 4527 root        1  96    0 12404K  7676K select   0:00  0.00% cli&#xD;
+ 4521 juniper     1  96    0 12428K  7700K select   0:00  0.00% cli&#xD;
+ 4175 root        1  96    0  2616K  2136K select   0:00  0.00% lacpd&#xD;
+ 4153 root        1  96    0  4800K  4240K select   0:00  0.00% mib2d&#xD;
+ 4159 root        1  96    0  3592K  3116K select   0:00  0.00% pfed&#xD;
+    7 root        1 -16    0     0K    12K psleep   0:00  0.00% pagedaemon&#xD;
+ 4222 root        1  20    0  3696K  2348K pause    0:00  0.00% csh&#xD;
+ 4167 root        1  96    0  3664K  3208K select   0:00  0.00% dfwd&#xD;
+ 4150 root        1 103    0  3344K  1356K select   0:00  0.00% craftd&#xD;
+   89 root        1  -8    0     0K    12K mdwait   0:00  0.00% md3&#xD;
+ 4156 root        1  96    0  1820K  1176K select   0:00  0.00% inetd&#xD;
+  162 root        1  -8    0     0K    12K mdwait   0:00  0.00% md8&#xD;
+ 4181 root        1   8    0  1644K  1172K wait     0:00  0.00% login&#xD;
+  151 root        1  -8    0     0K    12K mdwait   0:00  0.00% md7&#xD;
+ 4053 root        1   8    0  1452K  1016K nanslp   0:00  0.00% cron&#xD;
+   23 root        1 -60 -179     0K    12K WAIT     0:00  0.00% irq1: atkbd0&#xD;
+ 4162 root        1  96    0  4136K  3672K select   0:00  0.00% cosd&#xD;
+ 4172 root        1  96    0  2552K  2108K select   0:00  0.00% rdd&#xD;
+ 4179 root        1  96    0  5668K  5088K select   0:00  0.00% authd&#xD;
+ 4146 root        1 109    0  1488K   952K select   0:00  0.00% tnetd&#xD;
+ 4170 root        1  96    0  2668K  2180K select   0:00  0.00% fsad&#xD;
+ 4174 root        1  96    0  6460K  5292K select   0:00  0.00% dfcd&#xD;
+ 4145 root        1  96    0  1328K   616K select   0:00  0.00% watchdog&#xD;
+ 4160 root        1 124   15  4188K  3648K select   0:00  0.00% sampled&#xD;
+ 4169 root        1 109    0  1848K  1044K select   0:00  0.00% rtspd&#xD;
+ 4157 root        1  81  -15  3560K  2968K select   0:00  0.00% apsd&#xD;
+ 4161 root        1  96    0  3492K  2796K select   0:00  0.00% ilmid&#xD;
+   36 root        1   4    0     0K    12K pfeacc   0:00  0.00% if_pfe_listen&#xD;
+ 4178 root        1  96    0  2564K  2084K select   0:00  0.00% mspd&#xD;
+ 4173 root        1  96    0  2800K  2304K select   0:00  0.00% pppd&#xD;
+ 4177 root        1  96    0  2680K  1728K select   0:00  0.00% mplsoamd&#xD;
+ 4165 root        1  96    0  2776K  2280K select   0:00  0.00% lmpd&#xD;
+ 4522 root        1  96    0 17476K 15152K select   0:00  0.00% mgd&#xD;
+ 4166 root        1   8    0  1536K   964K nanslp   0:00  0.00% smartd&#xD;
+ 4182 root        1   5    0  1432K   916K ttyin    0:00  0.00% getty&#xD;
+ 4523 root        1   8    0  1792K  1252K wait     0:00  0.00% sh&#xD;
+ 4237 root        1  96    0 17452K 15112K select   0:00  0.00% mgd&#xD;
+ 4158 root        1   4    0  1328K   668K sbwait   0:00  0.00% tnp.sntpd&#xD;
+  122 root        1  -8    0     0K    12K mdwait   0:00  0.00% md6&#xD;
+   79 root        1  -8    0     0K    12K mdwait   0:00  0.00% md2&#xD;
+   25 root        1 -48 -167     0K    12K WAIT     0:00  0.00% swi0: sio&#xD;
+    0 root        1 -16    0     0K     0K WAIT     0:00  0.00% swapper&#xD;
+    5 root        1   8    0     0K    12K -        0:00  0.00% kqueue taskq&#xD;
+   18 root        1 -12 -131     0K    12K WAIT     0:00  0.00% swi9: task queue&#xD;
+   39 root        1   4    0     0K    12K picacc   0:00  0.00% if_pic_listen&#xD;
+   37 root        1   4    0     0K    12K scs_ho   0:00  0.00% scs_housekeeping&#xD;
+   41 root        1   8    0     0K    12K -        0:00  0.00% nfsiod 0&#xD;
+   44 root        1   8    0     0K    12K -        0:00  0.00% nfsiod 3&#xD;
+   42 root        1   8    0     0K    12K -        0:00  0.00% nfsiod 1&#xD;
+   43 root        1   8    0     0K    12K -        0:00  0.00% nfsiod 2&#xD;
+   34 root        1   4    0     0K    12K cb-pol   0:00  0.00% cb_poll&#xD;
+   35 root        1   4    0     0K    12K dump_r   0:00  0.00% kern_dump_proc&#xD;
+   33 root        1  96    0     0K    12K sleep    0:00  0.00% netdaemon&#xD;
+    8 root        1  20    0     0K    12K psleep   0:00  0.00% vmdaemon&#xD;
+    6 root        1   8    0     0K    12K -        0:00  0.00% thread taskq&#xD;
+   10 root        1 -16    0     0K    12K ktrace   0:00  0.00% ktrace&#xD;
+   19 root        1 -12 -131     0K    12K WAIT     0:00  0.00% swi9: +&#xD;
+   16 root        1 -16 -135     0K    12K WAIT     0:00  0.00% swi8: +&#xD;
+   14 root        1 -24 -143     0K    12K WAIT     0:00  0.00% swi6: vm&#xD;
+   17 root        1 -28 -147     0K    12K WAIT     0:00  0.00% swi5: cambio&#xD;
+   27 root        1 -32 -151     0K    12K WAIT     0:00  0.00% swi4: ip6mismatch+&#xD;
+   26 root        1 -36 -155     0K    12K WAIT     0:00  0.00% swi3: ip6opt ipopt&#xD;
+   28 root        1 -44 -163     0K    12K WAIT     0:00  0.00% swi1: ipfwd&#xD;
+   24 root        1 -60 -179     0K    12K WAIT     0:00  0.00% irq12: psm0&#xD;
+   21 root        1 -64 -183     0K    12K WAIT     0:00  0.00% irq15: ata1&#xD;
+ 4557 root        1  96    0 22064K  1468K RUN      0:00  0.00% top&#xD;
+&#xD;
+&#xD;
+</junos-sc:value>
+                    </junos-sc:show_item>
+                </oval-sc:system_data>
+            </oval-sc:oval_system_characteristics>
+        </system>
+    </results>
+</oval_results>
