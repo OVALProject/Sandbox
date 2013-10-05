@@ -15,7 +15,7 @@
         </xsd:appinfo>
     </xsd:annotation>
     <!-- ====================================================================== -->
-    <!-- ============================  JUNOS GLOBAL ITEM  ============================ -->
+    <!-- ============================  JUNOS GLOBAL ITEM  ===================== -->
     <!-- ====================================================================== -->
     <xsd:element name="global_item" substitutionGroup="oval-sc:item">
         <xsd:annotation>
@@ -32,7 +32,7 @@
         </xsd:complexType>
     </xsd:element>
     <!-- ==================================================================== -->
-    <!-- ============================  JUNOS LINE ITEM  ============================ -->
+    <!-- ============================  JUNOS LINE ITEM  ===================== -->
     <!-- ==================================================================== -->
     <xsd:element name="line_item" substitutionGroup="oval-sc:item">
         <xsd:annotation>
@@ -61,7 +61,10 @@
                 <xsd:extension base="oval-sc:ItemType">
                     <xsd:sequence>
                         <xsd:element name="component" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
-                        <xsd:element name="release" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1"/>
+                        <xsd:element name="raw_release" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
+                        <xsd:element name="major_version" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1"/>
+                        <xsd:element name="release_type" type="junos-sc:EntityItemJunosReleaseTypeType" minOccurs="0" maxOccurs="1"/>
+                        <xsd:element name="revision" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1"/>
                         <xsd:element name="builder" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
                         <xsd:element name="build_date" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1"/>
                     </xsd:sequence>
@@ -69,6 +72,35 @@
             </xsd:complexContent>
         </xsd:complexType>
     </xsd:element>
+    <xsd:complexType name="EntityItemJunosReleaseTypeType">
+        <xsd:annotation>
+            <xsd:documentation>The EntityItemJunosReleaseTypeType complex type defines the different values that are valid for the release_type entity of a system_metric state. These values describe the release type specified in the raw version string.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:restriction base="oval-sc:EntityItemStringType">
+                <xsd:enumeration value="R">
+                    <xsd:annotation>
+                        <xsd:documentation>Indicates a normal release.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="S">
+                    <xsd:annotation>
+                        <xsd:documentation>Indicates a service release.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="B">
+                    <xsd:annotation>
+                        <xsd:documentation>Indicates a beta release.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="X">
+                    <xsd:annotation>
+                        <xsd:documentation>Indicates a release of the SRX branch.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+            </xsd:restriction>
+        </xsd:simpleContent>
+    </xsd:complexType>
     <!-- ======================================================================= -->
     <!-- ============================  JUNOS XML LINE ITEM  ============================ -->
     <!-- ======================================================================= -->

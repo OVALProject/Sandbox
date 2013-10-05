@@ -638,6 +638,131 @@
   </xsd:element>
   <!-- =============================================================================== -->
   <!-- =============================================================================== -->
+  <!-- ===========================Start of New Test From SRI-B======================== -->
+  <!-- =============================================================================== -->
+  <!-- =============================  TELEPHONY ITEM  ================================ -->
+  <!-- =============================================================================== -->
+  <xsd:element name="telephony_item" substitutionGroup="oval-sc:item">
+    <xsd:annotation>
+      <xsd:documentation>The telephony_item element contains a single entity that is used to check the status of the telephony manager Item. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="oval-sc:ItemType">
+          <xsd:sequence>
+            <xsd:element name="network_type" type="android-sc:EntityItemNetworkType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>A constant String value indicating the radio technology (network type) currently in use on the device for data transmission.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+	        <xsd:element name="sim_country_iso" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>The ISO country code equivalent for the SIM provider's country code.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="sim_operator_code" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>the MCC+MNC (mobile country code + mobile network code) of the provider of the SIM. It contains 5 or 6 decimal digits.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+           </xsd:sequence>
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="EntityItemNetworkType">
+    <xsd:annotation>
+      <xsd:documentation>The EntityItemNetworkType complex type restricts a string value to a specific set of values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="oval-sc:EntityItemStringType">
+        <xsd:enumeration value="UNKNOWN">
+          <xsd:annotation>
+            <xsd:documentation>The network type is unknown</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GPRS">
+          <xsd:annotation>
+            <xsd:documentation>Current network is GPRS </xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="EDGE">
+          <xsd:annotation>
+            <xsd:documentation>Current network is EDGE </xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+  	<xsd:enumeration value="UMTS">
+          <xsd:annotation>
+            <xsd:documentation>Current network is UMTS </xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+		<xsd:enumeration value="CDMA">
+          <xsd:annotation>
+            <xsd:documentation>Current network is CDMA</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+		<xsd:enumeration value="EVDO-0">
+          <xsd:annotation>
+            <xsd:documentation>Current network is EVDO-0</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+		<xsd:enumeration value="EVDO-A">
+          <xsd:annotation>
+            <xsd:documentation>Current network is EVDO-A</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+		<xsd:enumeration value="1xRTT">
+          <xsd:annotation>
+            <xsd:documentation>Current network is 1xRTT</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+		<xsd:enumeration value="HSDPA">
+          <xsd:annotation>
+            <xsd:documentation>Current network is HSDPA</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+		<xsd:enumeration value="HSUPA">
+          <xsd:annotation>
+            <xsd:documentation>Current network is HSUPA</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+		<xsd:enumeration value="HSPA">
+          <xsd:annotation>
+            <xsd:documentation>Current network is HSPA</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+		<xsd:enumeration value="IDEN">
+          <xsd:annotation>
+            <xsd:documentation>Current network is IDEN</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+		<xsd:enumeration value="EVDO-B">
+          <xsd:annotation>
+            <xsd:documentation>Current network is EVDO-B</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+		<xsd:enumeration value="LTE">
+          <xsd:annotation>
+            <xsd:documentation>Current network is LTE</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+		<xsd:enumeration value="EHRPD">
+          <xsd:annotation>
+            <xsd:documentation>Current network is EHRPD</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+		<xsd:enumeration value="HSPAP">
+          <xsd:annotation>
+            <xsd:documentation>Current network is HSPAP</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+      </xsd:restriction>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  
+  <!--  End of Tests from SRI-B  -->
+  <!-- =============================================================================== -->
+  <!-- =============================================================================== -->
   <!-- =============================================================================== -->
   <xsd:complexType name="EntityItemWifiAuthAlgorithmType">
     <xsd:annotation>
