@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<oval_results xmlns="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-res="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-results-5 oval-results-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris solaris-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-solaris-variant x-solaris-variant.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix unix-system-characteristics-schema.xsd">
+
+  <generator>
+    <oval:product_name>cpe:/a:mitre:ovaldi:5.10.1.5</oval:product_name>
+    <oval:product_version>5.10.1 Build: 5</oval:product_version>
+    <oval:schema_version>5.11</oval:schema_version>
+    <oval:timestamp>2013-10-22T16:19:46</oval:timestamp>
+    <vendor>The MITRE Corporation</vendor>
+  </generator>
+
+  <directives include_source_definitions="true">
+    <definition_true content="full" reported="true"/>
+    <definition_false content="full" reported="true"/>
+    <definition_unknown content="full" reported="true"/>
+    <definition_error content="full" reported="true"/>
+    <definition_not_evaluated content="full" reported="true"/>
+    <definition_not_applicable content="full" reported="true"/>
+  </directives>
+
+  <oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+    <generator>
+      <oval:product_name xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">The OVAL Repository</oval:product_name>
+      <oval:schema_version xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">5.10.1</oval:schema_version>
+      <oval:timestamp xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">2013-07-14T14:06:41.489-04:00</oval:timestamp>
+  </generator>
+    <definitions>
+      <definition class="compliance" id="oval:sample:def:1" version="0">
+        <metadata>
+          <title>Make sure all images are configured to ensure only packages of the correct architecture are installed.</title>
+          <affected family="unix">
+            <platform>Sun Solaris 11</platform>
+        </affected>
+          <description>This definition checks the architecture variant, on a system's images, to ensure it aligns with the system's hardware.</description>
+      </metadata>
+        <criteria operator="OR">
+          <criteria comment="Make sure the variant tag is set to 'i386' on a x86 system.">
+            <criterion comment="ix86 architecture" test_ref="oval:org.mitre.oval:tst:3912"/>
+            <criterion comment="Check to see if the architecture variant is set to 'i386' on all images." test_ref="oval:sample:tst:1"/>
+        </criteria>
+          <criteria comment="Make sure the variant tag is set to 'sparc' on a SPARC system.">
+            <criterion comment="sparc architecture" test_ref="oval:org.mitre.oval:tst:3237"/>
+            <criterion comment="Check to see if the architecture variant is set to 'sparc' on all images." test_ref="oval:sample:tst:2"/>
+        </criteria>        
+      </criteria>
+    </definition>
+  </definitions>
+    <tests>
+      <uname_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="at least one" check_existence="at_least_one_exists" comment="ix86 architecture" id="oval:org.mitre.oval:tst:3912" version="1">
+        <object object_ref="oval:org.mitre.oval:obj:2759"/>
+        <state state_ref="oval:org.mitre.oval:ste:3443"/>
+    </uname_test>
+      <uname_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="at least one" check_existence="at_least_one_exists" comment="sparc architecture" id="oval:org.mitre.oval:tst:3237" version="1">
+        <object object_ref="oval:org.mitre.oval:obj:2759"/>
+        <state state_ref="oval:org.mitre.oval:ste:3478"/>
+    </uname_test>
+      <variant_test xmlns="http://oval.mitre.org/XMLSchema/x-solaris-variant" check="all" check_existence="at_least_one_exists" comment="Check to see if the architecture variant is set to 'i386' on all images." id="oval:sample:tst:1" version="0">
+        <object object_ref="oval:sample:obj:1"/>
+        <state state_ref="oval:sample:ste:1"/>
+    </variant_test>
+      <variant_test xmlns="http://oval.mitre.org/XMLSchema/x-solaris-variant" check="all" check_existence="at_least_one_exists" comment="Check to see if the architecture variant is set to 'sparc' on all images." id="oval:sample:tst:2" version="0">
+        <object object_ref="oval:sample:obj:1"/>
+        <state state_ref="oval:sample:ste:2"/>
+    </variant_test>
+  </tests>
+    <objects>
+      <uname_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="The single uname object." id="oval:org.mitre.oval:obj:2759" version="1"/>
+      <variant_object xmlns="http://oval.mitre.org/XMLSchema/x-solaris-variant" comment="Collect the variant property for all images on the system." id="oval:sample:obj:1" version="0">
+        <path operation="pattern match">.*</path>
+        <name>variant.arch</name>
+    </variant_object>
+  </objects>
+    <states>
+      <uname_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="processor type is ix86" id="oval:org.mitre.oval:ste:3443" version="1">
+        <processor_type operation="pattern match">^i.*86</processor_type>
+    </uname_state>
+      <uname_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="processor type is SPARC" id="oval:org.mitre.oval:ste:3478" version="1">
+        <processor_type operation="pattern match">[Ss][Pp][Aa][Rr][Cc]</processor_type>
+    </uname_state>
+      <variant_state xmlns="http://oval.mitre.org/XMLSchema/x-solaris-variant" comment="The value of the variant is set to 'i386'." id="oval:sample:ste:1" version="0">
+        <value>i386</value>
+    </variant_state>
+      <variant_state xmlns="http://oval.mitre.org/XMLSchema/x-solaris-variant" comment="The value of the variant is set to 'sparc'." id="oval:sample:ste:2" version="0">
+        <value>sparc</value>
+    </variant_state>
+  </states>
+</oval_definitions>  <results>
+    <system>
+      <definitions>
+        <definition definition_id="oval:sample:def:1" result="true" version="0">
+          <criteria operator="OR" result="true">
+            <criteria operator="AND" result="true">
+              <criterion result="true" test_ref="oval:org.mitre.oval:tst:3912" version="1"/>
+              <criterion result="true" test_ref="oval:sample:tst:1" version="0"/>
+            </criteria>
+            <criteria operator="AND" result="false">
+              <criterion result="false" test_ref="oval:org.mitre.oval:tst:3237" version="1"/>
+              <criterion result="false" test_ref="oval:sample:tst:2" version="0"/>
+            </criteria>
+          </criteria>
+        </definition>
+      </definitions>
+      <tests>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:org.mitre.oval:tst:3912" version="1">
+          <tested_item item_id="1" result="true"/>
+        </test>
+        <test check="all" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:sample:tst:1" version="0">
+          <tested_item item_id="2" result="true"/>
+        </test>
+        <test check="at least one" check_existence="at_least_one_exists" result="false" state_operator="AND" test_id="oval:org.mitre.oval:tst:3237" version="1">
+          <tested_item item_id="1" result="false"/>
+        </test>
+        <test check="all" check_existence="at_least_one_exists" result="false" state_operator="AND" test_id="oval:sample:tst:2" version="0">
+          <tested_item item_id="2" result="false"/>
+        </test>
+      </tests>
+      <oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">
+
+        <generator>
+          <oval:product_name xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">cpe:/a:mitre:ovaldi:5.10.1.5</oval:product_name>
+          <oval:product_version xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">5.10.1 Build: 5</oval:product_version>
+          <oval:schema_version xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">5.10.1</oval:schema_version>
+          <oval:timestamp xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">2013-10-15T15:11:15</oval:timestamp>
+          <vendor>The MITRE Corporation</vendor>
+    </generator>
+
+        <system_info>
+          <os_name>SunOS</os_name>
+          <os_version>11.1</os_version>
+          <architecture>i86pc</architecture>
+          <primary_host_name>solaris.example.com</primary_host_name>
+          <interfaces>
+            <interface>
+                <interface_name>net0</interface_name>
+                <ip_address>123.123.123.123</ip_address>
+                <mac_address>11-11-11-11-11-11</mac_address>
+            </interface>
+        </interfaces>
+    </system_info>
+
+        <collected_objects>
+          <object comment="The single uname object." flag="complete" id="oval:org.mitre.oval:obj:2759" version="1">
+            <reference item_ref="1"/>
+        </object>
+          <object comment="Collect the variant property for all images on the system." flag="complete" id="oval:sample:obj:1" version="0">
+            <reference item_ref="2"/>
+        </object>
+    </collected_objects>
+
+        <system_data>
+          <uname_item xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix" id="1">
+            <machine_class>i86pc</machine_class>
+            <node_name>sol11-test-machine</node_name>
+            <os_name>SunOS</os_name>
+            <os_release>5.11</os_release>
+            <os_version>11.1</os_version>
+            <processor_type>i386</processor_type>
+        </uname_item>
+          <variant_item xmlns="http://oval.mitre.org/XMLSchema/x-solaris-variant" id="2">
+            <name>variant.arch</name>
+            <value>i386</value>
+        </variant_item>
+    </system_data>
+
+</oval_system_characteristics>    </system>
+  </results>
+
+</oval_results>

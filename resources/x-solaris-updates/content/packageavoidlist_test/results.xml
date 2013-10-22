@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<oval_results xmlns="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-res="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-results-5 oval-results-schema.xsd http://oval.mitre.org/XMLSchema/x-solaris-packageavoidlist x-solaris-package-avoid-list.xsd http://oval.mitre.org/XMLSchema/x-solaris-packagefreezelist x-solaris-package-freeze-list.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd">
+
+  <generator>
+    <oval:product_name>cpe:/a:mitre:ovaldi:5.10.1.5</oval:product_name>
+    <oval:product_version>5.10.1 Build: 5</oval:product_version>
+    <oval:schema_version>5.11</oval:schema_version>
+    <oval:timestamp>2013-10-22T16:14:32</oval:timestamp>
+    <vendor>The MITRE Corporation</vendor>
+  </generator>
+
+  <directives include_source_definitions="true">
+    <definition_true content="full" reported="true"/>
+    <definition_false content="full" reported="true"/>
+    <definition_unknown content="full" reported="true"/>
+    <definition_error content="full" reported="true"/>
+    <definition_not_evaluated content="full" reported="true"/>
+    <definition_not_applicable content="full" reported="true"/>
+  </directives>
+
+  <oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+    <generator>
+      <oval:product_name xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">The OVAL Sandbox</oval:product_name>
+      <oval:schema_version xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">5.10.1</oval:schema_version>
+      <oval:timestamp xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">2013-07-14T14:06:41.489-04:00</oval:timestamp>
+  </generator>
+    <definitions>
+      <definition class="miscellaneous" id="oval:sample:def:1" version="0">
+        <metadata>
+          <title>Make sure the desktop/irc/xchat package will not get installed as part of a group dependency</title>
+          <affected family="unix">
+            <platform>Sun Solaris 11</platform>
+        </affected>
+          <description>This definition will check to make sure the desktop/irc/xchat package will not get installed as part of a group dependency.</description>
+      </metadata>
+        <criteria operator="AND">
+          <criterion comment="Is the desktop/irc/xchat package on the avoid list?" test_ref="oval:sample:tst:1"/>
+      </criteria>
+    </definition>
+  </definitions>
+    <tests>
+      <packageavoidlist_test xmlns="http://oval.mitre.org/XMLSchema/x-solaris-packageavoidlist" check="at least one" check_existence="at_least_one_exists" comment="Is the desktop/irc/xchat package on the avoid list?" id="oval:sample:tst:1" version="0">
+        <object object_ref="oval:sample:obj:1"/>
+        <state state_ref="oval:sample:ste:1"/>
+    </packageavoidlist_test>
+  </tests>
+    <objects>
+      <packageavoidlist_object xmlns="http://oval.mitre.org/XMLSchema/x-solaris-packageavoidlist" comment="Collect the names of all avoided packages." id="oval:sample:obj:1" version="0"/>
+  </objects>
+    <states>
+      <packageavoidlist_state xmlns="http://oval.mitre.org/XMLSchema/x-solaris-packageavoidlist" comment="Check for the package desktop/irc/xchat." id="oval:sample:ste:1" version="0">
+        <name>desktop/irc/xchat</name>
+    </packageavoidlist_state>
+  </states>
+</oval_definitions>  <results>
+    <system>
+      <definitions>
+        <definition definition_id="oval:sample:def:1" result="true" version="0">
+          <criteria operator="AND" result="true">
+            <criterion result="true" test_ref="oval:sample:tst:1" version="0"/>
+          </criteria>
+        </definition>
+      </definitions>
+      <tests>
+        <test check="at least one" check_existence="at_least_one_exists" result="true" state_operator="AND" test_id="oval:sample:tst:1" version="0">
+          <tested_item item_id="1" result="true"/>
+        </test>
+      </tests>
+      <oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">
+
+        <generator>
+          <oval:product_name xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">cpe:/a:mitre:ovaldi:5.10.1.5</oval:product_name>
+          <oval:product_version xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">5.10.1 Build: 5</oval:product_version>
+          <oval:schema_version xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">5.10.1</oval:schema_version>
+          <oval:timestamp xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">2013-10-15T15:11:15</oval:timestamp>
+          <vendor>The MITRE Corporation</vendor>
+    </generator>
+
+        <system_info>
+          <os_name>SunOS</os_name>
+          <os_version>11.1</os_version>
+          <architecture>i86pc</architecture>
+          <primary_host_name>solaris.example.com</primary_host_name>
+          <interfaces>
+            <interface>
+                <interface_name>net0</interface_name>
+                <ip_address>123.123.123.123</ip_address>
+                <mac_address>11-11-11-11-11-11</mac_address>
+            </interface>
+        </interfaces>
+    </system_info>
+
+        <collected_objects>
+          <object comment="Collect the names of all avoided packages." flag="complete" id="oval:sample:obj:1" version="0">
+            <reference item_ref="1"/>
+        </object>
+    </collected_objects>
+
+        <system_data>
+          <packageavoidlist_item xmlns="http://oval.mitre.org/XMLSchema/x-solaris-packageavoidlist" id="1">
+            <name>desktop/irc/xchat</name>
+        </packageavoidlist_item>
+    </system_data>
+
+</oval_system_characteristics>    </system>
+  </results>
+
+</oval_results>

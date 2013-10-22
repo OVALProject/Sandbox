@@ -1,0 +1,10 @@
+Developer Days Slides 
+http://oval.mitre.org/community/docs/Developer_Days_2013_OVAL_Session_Slides.zip
+
+Developer Days Minutes
+http://oval.mitre.org/community/docs/Developer_Days_2013_OVAL_Session_Minutes.pdf
+
+Relevant oval-developer-list Posts
+http://making-security-measurable.1364806.n2.nabble.com/OVAL-schema-for-Solaris-11-IPS-packages-tp7579737.html
+http://making-security-measurable.1364806.n2.nabble.com/Solaris-SMF-OVAL-Schema-tp7579742.html
+http://making-security-measurable.1364806.n2.nabble.com/Solaris-IPS-Package-Schema-in-OVAL-Sandbox-td7580502.html

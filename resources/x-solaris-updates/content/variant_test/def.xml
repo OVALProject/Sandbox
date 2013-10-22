@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris solaris-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-solaris-variant x-solaris-variant.xsd" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <generator>
+    <oval:product_name>The OVAL Repository</oval:product_name>
+    <oval:schema_version>5.11</oval:schema_version>
+    <oval:timestamp>2013-07-14T14:06:41.489-04:00</oval:timestamp>
+  </generator>
+  <definitions>
+    <definition id="oval:sample:def:1" version="0" class="compliance">
+      <metadata>
+        <title>Make sure all images are configured to ensure only packages of the correct architecture are installed.</title>
+        <affected family="unix">
+          <platform>Sun Solaris 11</platform>
+        </affected>
+        <description>This definition checks the architecture variant, on a system's images, to ensure it aligns with the system's hardware.</description>
+      </metadata>
+      <criteria operator="OR">
+        <criteria comment="Make sure the variant tag is set to 'i386' on a x86 system.">
+          <criterion comment="ix86 architecture" test_ref="oval:org.mitre.oval:tst:3912"/>
+          <criterion comment="Check to see if the architecture variant is set to 'i386' on all images." test_ref="oval:sample:tst:1"/>
+        </criteria>
+        <criteria comment="Make sure the variant tag is set to 'sparc' on a SPARC system.">
+          <criterion comment="sparc architecture" test_ref="oval:org.mitre.oval:tst:3237"/>
+          <criterion comment="Check to see if the architecture variant is set to 'sparc' on all images." test_ref="oval:sample:tst:2"/>
+        </criteria>        
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <uname_test id="oval:org.mitre.oval:tst:3912" version="1" comment="ix86 architecture" check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:org.mitre.oval:obj:2759"/>
+      <state state_ref="oval:org.mitre.oval:ste:3443"/>
+    </uname_test>
+    <uname_test id="oval:org.mitre.oval:tst:3237" version="1" comment="sparc architecture" check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:org.mitre.oval:obj:2759"/>
+      <state state_ref="oval:org.mitre.oval:ste:3478"/>
+    </uname_test>
+    <variant_test id="oval:sample:tst:1" version="0" comment="Check to see if the architecture variant is set to 'i386' on all images." check_existence="at_least_one_exists" check="all" xmlns="http://oval.mitre.org/XMLSchema/x-solaris-variant">
+      <object object_ref="oval:sample:obj:1"/>
+      <state state_ref="oval:sample:ste:1"/>
+    </variant_test>
+    <variant_test id="oval:sample:tst:2" version="0" comment="Check to see if the architecture variant is set to 'sparc' on all images." check_existence="at_least_one_exists" check="all" xmlns="http://oval.mitre.org/XMLSchema/x-solaris-variant">
+      <object object_ref="oval:sample:obj:1"/>
+      <state state_ref="oval:sample:ste:2"/>
+    </variant_test>
+  </tests>
+  <objects>
+    <uname_object id="oval:org.mitre.oval:obj:2759" version="1" comment="The single uname object." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix"/>
+    <variant_object id="oval:sample:obj:1" version="0" comment="Collect the variant property for all images on the system." xmlns="http://oval.mitre.org/XMLSchema/x-solaris-variant">
+      <path operation="pattern match">.*</path>
+      <name>variant.arch</name>
+    </variant_object>
+  </objects>
+  <states>
+    <uname_state id="oval:org.mitre.oval:ste:3443" version="1" comment="processor type is ix86" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <processor_type operation="pattern match">^i.*86</processor_type>
+    </uname_state>
+    <uname_state id="oval:org.mitre.oval:ste:3478" version="1" comment="processor type is SPARC" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <processor_type operation="pattern match">[Ss][Pp][Aa][Rr][Cc]</processor_type>
+    </uname_state>
+    <variant_state id="oval:sample:ste:1" version="0" comment="The value of the variant is set to 'i386'." xmlns="http://oval.mitre.org/XMLSchema/x-solaris-variant">
+      <value>i386</value>
+    </variant_state>
+    <variant_state id="oval:sample:ste:2" version="0" comment="The value of the variant is set to 'sparc'." xmlns="http://oval.mitre.org/XMLSchema/x-solaris-variant">
+      <value>sparc</value>
+    </variant_state>
+  </states>
+</oval_definitions>
