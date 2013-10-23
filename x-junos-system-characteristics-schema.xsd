@@ -15,26 +15,27 @@
         </xsd:appinfo>
     </xsd:annotation>
     <!-- ====================================================================== -->
-    <!-- ============================  JUNOS GLOBAL ITEM  ===================== -->
+    <!-- =======================  JUNOS XML CONFIG ITEM  ====================== -->
     <!-- ====================================================================== -->
-    <xsd:element name="global_item" substitutionGroup="oval-sc:item">
+    <xsd:element name="xml_config_item" substitutionGroup="oval-sc:item">
         <xsd:annotation>
-            <xsd:documentation>Stores information about the existence of a particular line in the JunOS config file, under the global context.</xsd:documentation>
+            <xsd:documentation>Stores information about the existence of a particular XPATH query result from the JunOS XML config file.</xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
             <xsd:complexContent>
                 <xsd:extension base="oval-sc:ItemType">
                     <xsd:sequence>
-                        <xsd:element name="global_command" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
+                        <xsd:element name="xpath" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
+                        <xsd:element name="value_of" type="oval-sc:EntityItemAnySimpleType" minOccurs="0" maxOccurs="unbounded"/>
                     </xsd:sequence>
                 </xsd:extension>
             </xsd:complexContent>
         </xsd:complexType>
     </xsd:element>
     <!-- ==================================================================== -->
-    <!-- ============================  JUNOS LINE ITEM  ===================== -->
+    <!-- ==========================  JUNOS SHOW ITEM  ======================= -->
     <!-- ==================================================================== -->
-    <xsd:element name="line_item" substitutionGroup="oval-sc:item">
+    <xsd:element name="show_item" substitutionGroup="oval-sc:item">
         <xsd:annotation>
             <xsd:documentation>Stores the resulting configuration data provided by the execution of a specific show command.</xsd:documentation>
         </xsd:annotation>
@@ -42,15 +43,15 @@
             <xsd:complexContent>
                 <xsd:extension base="oval-sc:ItemType">
                     <xsd:sequence>
-                        <xsd:element name="show_subcommand" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
-                        <xsd:element name="config_line" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
+                        <xsd:element name="subcommand" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
+                        <xsd:element name="value" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
                     </xsd:sequence>
                 </xsd:extension>
             </xsd:complexContent>
         </xsd:complexType>
     </xsd:element>
     <!-- ======================================================================= -->
-    <!-- ============================  JUNOS VERSION ITEM  ============================ -->
+    <!-- ========================  JUNOS VERSION ITEM  ========================= -->
     <!-- ======================================================================= -->
     <xsd:element name="version_item" substitutionGroup="oval-sc:item">
         <xsd:annotation>
@@ -102,9 +103,9 @@
         </xsd:simpleContent>
     </xsd:complexType>
     <!-- ======================================================================= -->
-    <!-- ============================  JUNOS XML LINE ITEM  ============================ -->
+    <!-- =======================  JUNOS XML SHOW ITEM  ========================= -->
     <!-- ======================================================================= -->
-    <xsd:element name="xml_line_item" substitutionGroup="oval-sc:item">
+    <xsd:element name="xml_show_item" substitutionGroup="oval-sc:item">
         <xsd:annotation>
             <xsd:documentation>Stores the result of the application of an XPATH query applied to the JunOS configuration data provided by the execution of a specific show command, which has been piped to "display xml".</xsd:documentation>
         </xsd:annotation>
@@ -112,7 +113,7 @@
             <xsd:complexContent>
                 <xsd:extension base="oval-sc:ItemType">
                     <xsd:sequence>
-                        <xsd:element name="show_subcommand" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
+                        <xsd:element name="subcommand" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
                         <xsd:element name="xpath" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
                         <xsd:element name="value_of" type="oval-sc:EntityItemAnySimpleType" minOccurs="0" maxOccurs="unbounded"/>
                     </xsd:sequence>
