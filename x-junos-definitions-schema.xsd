@@ -21,7 +21,7 @@
     <xsd:element name="xml_config_test" substitutionGroup="oval-def:test">
         <xsd:complexType>
             <xsd:annotation>
-                <xsd:documentation>The XML config test is used to perform XPATH queries against the JunOS XML configuration file. The JunOS XML configuration file can be retrieved using the command "show configuration | display xml". It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a global_object and the optional state element specifies the data to check.</xsd:documentation>
+                <xsd:documentation>The XML config test is used to perform XPATH queries against the JunOS XML configuration file. The JunOS XML configuration file can be retrieved using the command "show configuration | display xml". It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a xml_config_object and the optional state element specifies the data to check.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexContent>
                 <xsd:extension base="oval-def:TestType">
@@ -85,7 +85,7 @@
     <!-- ============================================================================ -->
     <xsd:element name="show_test" substitutionGroup="oval-def:test">
         <xsd:annotation>
-            <xsd:documentation>The line test is used to check the properties of specific output lines from a SHOW command, such as "show configuration". It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a line_object and the optional state element specifies the data to check.</xsd:documentation>
+            <xsd:documentation>The show test is used to check the properties of specific output lines from a SHOW command, such as "show configuration". It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a show_object and the optional state element specifies the data to check.</xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
             <xsd:complexContent>
@@ -100,7 +100,7 @@
     </xsd:element>
     <xsd:element name="show_object" substitutionGroup="oval-def:object">
         <xsd:annotation>
-            <xsd:documentation>The line_object element is used by a line test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+            <xsd:documentation>The show_object element is used by a show test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
             <xsd:complexContent>
@@ -269,7 +269,7 @@
     <!-- ============================================================================= -->
     <xsd:element name="xml_show_test" substitutionGroup="oval-def:test">
         <xsd:annotation>
-            <xsd:documentation>The XML show test is used to check the properties of specific output from an XML SHOW command, such as "show configuration | display xml". It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a line_object and the optional state element specifies the data to check.</xsd:documentation>
+            <xsd:documentation>The XML show test is used to check the properties of specific output from an XML SHOW command, such as "show configuration | display xml". It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a xml_show_object and the optional state element specifies the data to check.</xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
             <xsd:complexContent>
@@ -284,7 +284,7 @@
     </xsd:element>
     <xsd:element name="xml_show_object" substitutionGroup="oval-def:object">
         <xsd:annotation>
-            <xsd:documentation>The xml_show_object element is used by an XML line test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+            <xsd:documentation>The xml_show_object element is used by an XML show test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
             <xsd:complexContent>
