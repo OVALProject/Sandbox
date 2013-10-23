@@ -36,6 +36,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.net.InetAddress;
@@ -93,6 +94,7 @@ import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.DeviceSettings
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EncryptionItemDocument;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EncryptionItemDocument.EncryptionItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemExternalStorageType;
+import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemNetworkType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemPasswordQualityType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemWifiAuthAlgorithmType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemWifiCurrentStatusType;
@@ -110,6 +112,8 @@ import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.PasswordItemDo
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.PasswordItemDocument.PasswordItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.SystemDetailsItemDocument;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.SystemDetailsItemDocument.SystemDetailsItem;
+import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.TelephonyItemDocument;
+import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.TelephonyItemDocument.TelephonyItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.WifiItemDocument;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.WifiItemDocument.WifiItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.WifiSecurityItemDocument;
@@ -137,6 +141,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.storage.StorageManager;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 public class GenerateAndroidSC {
@@ -324,7 +329,9 @@ public class GenerateAndroidSC {
 									current_item_ref++;
 								} else if (objectName.equals("external_storage_object")) {
 									current_item_ref = generateExternalStorageItem(co, sd, id, current_item_ref, c);
-									
+								} else if (objectName.equals("telephony_object")) {
+									generateTelephonyItem(co, sd, id, current_item_ref, c);
+									current_item_ref++;
 								}
 							}
 						} else {
@@ -477,8 +484,14 @@ public class GenerateAndroidSC {
 		EntityItemStringType ei10 = EntityItemStringType.Factory.newInstance();
 		ei10.setStringValue(Build.VERSION.CODENAME);
 		sdi.setOsVersionCodeName(ei10);
-
-		//Log.d("AndroidSC", "Done setting stuff");
+		
+		int sdk = Build.VERSION.SDK_INT;
+		if(sdk >= 18) {
+			Gatherer g = new JellyBeanMR2Gatherer();
+			g.systemDetails(sdi);
+		}
+		
+		
 	}
 
 	public static void generatePasswordItem(CollectedObjectsType co,
@@ -625,9 +638,13 @@ public class GenerateAndroidSC {
 				Settings.System.BLUETOOTH_DISCOVERABILITY_TIMEOUT);
 	
 		
-		// On my DROID RAZR, BLUETOOTH_DISCOVERABILITY and BLUETOOTH_DISCOVERABILITY_TIMEOUT don't appear to work
-		// Need to check if the same problem exists Android-wide and if there is another way to get this information
-		
+		// Android doesn't appear to populate BLUETOOTH_DISCOVERABILITY and BLUETOOTH_DISCOVERABILITY_TIMEOUT
+		//
+		// Reported to Google here: https://code.google.com/p/android/issues/detail?id=56589
+		//
+		// Bluetooth discoverability can be obtained using BluetoothAdapter.getScanMode(),
+		// but the discoverability timeout method, BluetoothAdapter.getDiscoverableTimeout() is not publicly exposed
+		// through the Android SDK for some reason.
 		EntityItemBoolType ei1 = EntityItemBoolType.Factory.newInstance();
 
 		if (bluetoothOn > 0) {
@@ -639,12 +656,6 @@ public class GenerateAndroidSC {
 		bi.setCurrentStatus(ei1);
 
 		EntityItemBoolType ei2 = EntityItemBoolType.Factory.newInstance();
-		//Log.d("AndroidSC", "BLUETOOTH_DISCOVERABILITY: " + bluetoothDiscover);
-		// 0 = neither connectable nor discoverable
-		// 1 = connectable not discoverable
-		// 2 = connectable & discoverable
-		// does 1 mean bluetooth turned on? (use for bluetoothOn?)
-		// probably make this enum to handle scan_mode_connectable too.
 		if (scanMode == BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
 			ei2.setStringValue("true");
 		} else {
@@ -652,12 +663,27 @@ public class GenerateAndroidSC {
 		}
 		ei2.setDatatype("boolean");
 		bi.setDiscoverable(ei2);
-
+				
 		if(bluetoothTimeout != null) {
 			EntityItemIntType ei3 = EntityItemIntType.Factory.newInstance();
 			ei3.setStringValue(bluetoothTimeout);
 			ei3.setDatatype("int");
 			bi.setDiscoverabilityTimeout(ei3);
+		} else { // Attempt to obtain through reflection on BluetoothAdapter
+			try {
+				Method[] baMethods = bAdapter.getClass().getDeclaredMethods();
+				for(Method method : baMethods) {
+					if(method.getName().equals("getDiscoverableTimeout")) {
+						Integer dTimeout = (Integer) method.invoke(bAdapter);
+						if(dTimeout != null && dTimeout.intValue() >= 0) {
+							EntityItemIntType ei3 = EntityItemIntType.Factory.newInstance();
+							ei3.setStringValue(dTimeout.toString());
+							ei3.setDatatype("int");
+							bi.setDiscoverabilityTimeout(ei3);
+						}
+					}
+				}
+			} catch (Exception e) {}
 		}
 	}
 
@@ -1440,14 +1466,12 @@ public class GenerateAndroidSC {
 		autotime.setDatatype("boolean");
 		dsi.setAutoTime(autotime);
 		
-		EntityItemBoolType autotimezone = EntityItemBoolType.Factory.newInstance();
-		int autotimezoneInt = Settings.System.getInt(c.getContentResolver(), Settings.System.AUTO_TIME_ZONE, 0);
-		if(autotimezoneInt == 1)
-			autotimezone.setStringValue("true");
-		else
-			autotimezone.setStringValue("false");
-		autotimezone.setDatatype("boolean");
-		dsi.setAutoTimeZone(autotimezone);
+		int sdk = Build.VERSION.SDK_INT;
+		if(sdk >= 11) {
+			// Gather stuff only available in API Level 11 or higher
+			Gatherer g = new HoneycombGatherer();
+			g.deviceSettings(dsi, c);
+		}
 		
 		EntityItemBoolType usbMassStorage = EntityItemBoolType.Factory.newInstance();
 		int usbStorageInt = Settings.System.getInt(c.getContentResolver(), Settings.System.USB_MASS_STORAGE_ENABLED, 0);
@@ -1458,5 +1482,158 @@ public class GenerateAndroidSC {
 		usbMassStorage.setDatatype("boolean");
 		dsi.setUsbMassStorageEnabled(usbMassStorage);
 		
+		try {
+			Class<?> c1 = Class.forName("android.os.SELinux");
+			Method[] allMethods = c1.getDeclaredMethods();
+			
+			for(Method m : allMethods) {
+				String mname = m.getName();
+				if(mname.equals("isSELinuxEnabled")) {
+					Object o = m.invoke(null, (Object[]) null);
+					EntityItemBoolType selinuxEnabled = EntityItemBoolType.Factory.newInstance();
+					selinuxEnabled.setDatatype("boolean");
+					if(((Boolean) o).booleanValue() == true)
+					{
+						selinuxEnabled.setStringValue("true");
+					} else {
+						selinuxEnabled.setStringValue("false");
+					}
+					dsi.setSelinuxEnabled(selinuxEnabled);
+				}
+				
+				// SELinux enforcement check may not always work properly, as the SELinux
+				// policies may prevent 'untrusted apps' from checking enforcement status,
+				// resulting in this always returning false, because in
+				// frameworks/base/core/jni/android_os_SELinux.cpp,
+				// isSELinuxEnforced returns true if (security_getenforce() == 1) otherwise
+				// returns false, but security_getenforce in external/libselinux/src/getenforce.c
+				// returns -1 if the enforcement status cannot be obtained.
+				if(mname.equals("isSELinuxEnforced")) {
+					Object o = m.invoke(null, (Object[]) null);
+					EntityItemBoolType selinuxEnforcing = EntityItemBoolType.Factory.newInstance();
+					selinuxEnforcing.setDatatype("boolean");
+					if(((Boolean) o).booleanValue() == true)
+					{
+						selinuxEnforcing.setStringValue("true");
+					} else {
+						selinuxEnforcing.setStringValue("false");
+					}
+					dsi.setSelinuxEnforcing(selinuxEnforcing);
+				}
+			}
+		// In the exception cases, should we assume SELinux is not present
+		// and set both values to false?
+		} catch (ClassNotFoundException e) {
+
+		} catch (IllegalArgumentException e) {
+
+		} catch (IllegalAccessException e) {
+
+		} catch (InvocationTargetException e) {
+
+		}
+		
+		
 	}		
+	
+	public static void generateTelephonyItem(CollectedObjectsType co,
+			SystemDataType sd, String id, int item_ref, Context c) {
+
+		ObjectType ot = co.addNewObject();
+		ot.setComment("Retrieve telephony_item");
+		ot.setFlag(FlagEnumeration.COMPLETE); // Fix
+		ot.setId(id);
+		ot.setVersion(BigInteger.ONE); // Fix
+
+		ReferenceType rt = ot.addNewReference();
+		rt.setItemRef(BigInteger.valueOf(item_ref));
+		ItemType it2 = sd.addNewItem();
+
+		TelephonyItem ti = (TelephonyItem) it2.substitute(
+				TelephonyItemDocument.type.getDocumentElementName(), TelephonyItem.type);
+		ti.setId(BigInteger.valueOf(item_ref));
+		
+		TelephonyManager tm = (TelephonyManager) c.getSystemService(Context.TELEPHONY_SERVICE);
+		if (tm == null)
+			return;
+
+		EntityItemNetworkType networkType = EntityItemNetworkType.Factory.newInstance();
+		int networkTypeInt = tm.getNetworkType();
+		if(networkTypeInt == TelephonyManager.NETWORK_TYPE_1xRTT) {
+			networkType.setStringValue("1xRTT");
+			ti.setNetworkType(networkType);
+		}
+		else if(networkTypeInt == TelephonyManager.NETWORK_TYPE_CDMA) {
+			networkType.setStringValue("CDMA");
+			ti.setNetworkType(networkType);
+		}
+		else if(networkTypeInt == TelephonyManager.NETWORK_TYPE_EDGE) {
+			networkType.setStringValue("EDGE");
+			ti.setNetworkType(networkType);
+		}
+		else if(networkTypeInt == TelephonyManager.NETWORK_TYPE_EHRPD) {
+			networkType.setStringValue("EHRPD");
+			ti.setNetworkType(networkType);
+		}
+		else if(networkTypeInt == TelephonyManager.NETWORK_TYPE_EVDO_0) {
+			networkType.setStringValue("EVDO-0");
+			ti.setNetworkType(networkType);
+		}
+		else if(networkTypeInt == TelephonyManager.NETWORK_TYPE_EVDO_A) {
+			networkType.setStringValue("EVDO-A");
+			ti.setNetworkType(networkType);
+		}
+		else if(networkTypeInt == TelephonyManager.NETWORK_TYPE_EVDO_B) {
+			networkType.setStringValue("EVDO-B");
+			ti.setNetworkType(networkType);
+		}
+		else if(networkTypeInt == TelephonyManager.NETWORK_TYPE_GPRS) {
+			networkType.setStringValue("GPRS");
+			ti.setNetworkType(networkType);
+		}
+		else if(networkTypeInt == TelephonyManager.NETWORK_TYPE_HSDPA) {
+			networkType.setStringValue("HSDPA");
+			ti.setNetworkType(networkType);
+		}
+		else if(networkTypeInt == TelephonyManager.NETWORK_TYPE_HSPA) {
+			networkType.setStringValue("HSPA");
+			ti.setNetworkType(networkType);
+		}
+		else if(networkTypeInt == TelephonyManager.NETWORK_TYPE_HSPAP) { // Requires API Level 13
+			networkType.setStringValue("HSPAP");
+			ti.setNetworkType(networkType);
+		}
+		else if(networkTypeInt == TelephonyManager.NETWORK_TYPE_HSUPA) {
+			networkType.setStringValue("HSUPA");
+			ti.setNetworkType(networkType);
+		}
+		else if(networkTypeInt == TelephonyManager.NETWORK_TYPE_IDEN) {
+			networkType.setStringValue("IDEN");
+			ti.setNetworkType(networkType);
+		}
+		else if(networkTypeInt == TelephonyManager.NETWORK_TYPE_LTE) { // Requires API Level 11
+			networkType.setStringValue("LTE");
+			ti.setNetworkType(networkType);
+		}
+		else if(networkTypeInt == TelephonyManager.NETWORK_TYPE_UMTS) {
+			networkType.setStringValue("UMTS");
+			ti.setNetworkType(networkType);
+		}
+		else if(networkTypeInt == TelephonyManager.NETWORK_TYPE_UNKNOWN) {
+			networkType.setStringValue("UNKNOWN");
+			ti.setNetworkType(networkType);
+		}
+
+		EntityItemStringType simCountryIso = EntityItemStringType.Factory.newInstance();
+		if((tm.getSimCountryIso() != null) && (!tm.getSimCountryIso().equals(""))) {
+			simCountryIso.setStringValue(tm.getSimCountryIso());
+			ti.setSimCountryIso(simCountryIso);
+		}
+		
+		EntityItemStringType simOperatorCode = EntityItemStringType.Factory.newInstance();
+		if((tm.getSimOperator() != null) && (!tm.getSimOperator().equals(""))) {
+			simOperatorCode.setStringValue(tm.getSimOperator());
+			ti.setSimOperatorCode(simOperatorCode);
+		}
+	}
 }

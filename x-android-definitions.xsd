@@ -543,6 +543,16 @@
                 <xsd:documentation>True if USB mass storage is enabled on the device, otherwise false.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
+            <xsd:element name="selinux_enabled" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>True if SELinux is enabled on the device, otherwise false.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="selinux_enforcing" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>True if SELinux is in enforcing mode, otherwise false.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -1087,6 +1097,11 @@
             <xsd:element name="os_version_sdk_number" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
                 <xsd:documentation>Operating system SDK number, as provided by android.os.Build.VERSION.SDK_INT using the Android SDK.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="hardware_keystore" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>True if the device provides a hardware backed cryptographic keystore (a hardware keystore prevents exporting private keys or directly exposing private keys to the OS), otherwise false.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>
