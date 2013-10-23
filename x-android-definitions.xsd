@@ -543,7 +543,7 @@
                 <xsd:documentation>True if USB mass storage is enabled on the device, otherwise false.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
-	    <xsd:element name="selinux_enabled" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+            <xsd:element name="selinux_enabled" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
                 <xsd:documentation>True if SELinux is enabled on the device, otherwise false.</xsd:documentation>
               </xsd:annotation>
