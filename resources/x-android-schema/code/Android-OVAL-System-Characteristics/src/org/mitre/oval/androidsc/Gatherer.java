@@ -32,12 +32,18 @@ package org.mitre.oval.androidsc;
 
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.CameraItemDocument.CameraItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.DeviceAccessItemDocument.DeviceAccessItem;
+import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.DeviceSettingsItemDocument.DeviceSettingsItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EncryptionItemDocument.EncryptionItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.PasswordItemDocument.PasswordItem;
+import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.SystemDetailsItemDocument.SystemDetailsItem;
 
 import android.app.admin.DevicePolicyManager;
+import android.content.Context;
 
 public abstract class Gatherer {
+	void deviceSettings(DeviceSettingsItem dsi, Context c) {	
+	}
+	
 	void camera(CameraItem ci, DevicePolicyManager dpm) {
 	}
 	
@@ -48,6 +54,10 @@ public abstract class Gatherer {
 	}
 	
 	void device_access(DeviceAccessItem dai, DevicePolicyManager dpm) {
+	
+	}
+	
+	void systemDetails(SystemDetailsItem sdi) {
 	
 	}
 }

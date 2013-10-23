@@ -34,14 +34,29 @@ import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.EntityItemBoolType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.EntityItemIntType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.EntityItemStringType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.CameraItemDocument.CameraItem;
+import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.DeviceSettingsItemDocument.DeviceSettingsItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EncryptionItemDocument.EncryptionItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemEncryptionStatusType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.PasswordItemDocument.PasswordItem;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.SystemDetailsItemDocument.SystemDetailsItem;
 
 import android.app.admin.DevicePolicyManager;
+import android.content.Context;
+import android.provider.Settings;
 
 public class HoneycombGatherer extends Gatherer {
+	void deviceSettings(DeviceSettingsItem dsi, Context c)
+	{
+		EntityItemBoolType autotimezone = EntityItemBoolType.Factory.newInstance();
+		int autotimezoneInt = Settings.System.getInt(c.getContentResolver(), Settings.System.AUTO_TIME_ZONE, 0);
+		if(autotimezoneInt == 1)
+			autotimezone.setStringValue("true");
+		else
+			autotimezone.setStringValue("false");
+		autotimezone.setDatatype("boolean");
+		dsi.setAutoTimeZone(autotimezone);
+	}
+	
 	void password(PasswordItem pi, DevicePolicyManager dpm) {
 		EntityItemIntType ei3 = EntityItemIntType.Factory.newInstance();
 		ei3.setStringValue(Integer.valueOf(dpm.getPasswordHistoryLength(null))
