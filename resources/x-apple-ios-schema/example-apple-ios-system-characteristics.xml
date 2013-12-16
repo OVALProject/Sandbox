@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:apple-ios-sc="http://oval.mitre.org/XMLSchema/x-apple-ios-system-characteristics" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/x-apple-ios-system-characteristics x-apple-ios-system-characteristics.xsd">
+  <generator>
+    <oval:product_name>mitre</oval:product_name>
+    <oval:product_version>0.1</oval:product_version>
+    <oval:schema_version>0.1</oval:schema_version>
+    <oval:timestamp>2013-12-16T16:19:36.268072</oval:timestamp>
+  </generator>
+  <system_info>
+    <os_name>iOS</os_name>
+    <os_version>7.0.3</os_version>
+    <architecture>MC773LL</architecture>
+    <primary_host_name>Mike's iPad</primary_host_name>
+    <interfaces/>
+  </system_info>
+  <collected_objects>
+    <object comment="Retrieve global_restrictions_object" flag="complete" id="oval:gov.nsa.iad:obj:1001" version="1">
+      <reference item_ref="63"/>
+    </object>
+    <object comment="Retrieve passcode_policy_object" flag="complete" id="oval:gov.nsa.iad:obj:2001" version="1">
+      <reference item_ref="64"/>
+    </object>
+    <object comment="Retrieve profile_object" flag="complete" id="oval:gov.nsa.iad:obj:3001" version="1">
+      <reference item_ref="79"/>
+      <reference item_ref="80"/>
+    </object>
+  </collected_objects>
+  <system_data>
+    <apple-ios-sc:global_restrictions_item id="63">
+      <apple-ios-sc:allow_assistant_while_locked datatype="boolean">false</apple-ios-sc:allow_assistant_while_locked>
+      <apple-ios-sc:allow_camera datatype="boolean">false</apple-ios-sc:allow_camera>
+      <apple-ios-sc:allow_cloud_backup datatype="boolean">false</apple-ios-sc:allow_cloud_backup>
+      <apple-ios-sc:allow_untrusted_tls_prompt datatype="boolean">false</apple-ios-sc:allow_untrusted_tls_prompt>
+    </apple-ios-sc:global_restrictions_item>
+    <apple-ios-sc:passcode_policy_item id="64">
+      <apple-ios-sc:allow_simple datatype="boolean">false</apple-ios-sc:allow_simple>
+      <apple-ios-sc:force_pin datatype="boolean">true</apple-ios-sc:force_pin>
+      <apple-ios-sc:max_failed_attempts datatype="int">10</apple-ios-sc:max_failed_attempts>
+      <apple-ios-sc:max_inactivity datatype="int">10</apple-ios-sc:max_inactivity>
+      <apple-ios-sc:max_pin_age_in_days datatype="int">30</apple-ios-sc:max_pin_age_in_days>
+      <apple-ios-sc:min_length datatype="int">6</apple-ios-sc:min_length>
+      <apple-ios-sc:require_alphanumeric datatype="boolean">true</apple-ios-sc:require_alphanumeric>
+      <apple-ios-sc:pin_history datatype="int">30</apple-ios-sc:pin_history>
+      <apple-ios-sc:max_grace_period datatype="int">0</apple-ios-sc:max_grace_period>
+    </apple-ios-sc:passcode_policy_item>
+    <apple-ios-sc:profile_item id="79">
+      <apple-ios-sc:has_removal_passcode datatype="boolean">false</apple-ios-sc:has_removal_passcode>
+      <apple-ios-sc:is_encrypted datatype="boolean">false</apple-ios-sc:is_encrypted>
+      <apple-ios-sc:payload datatype="record">
+        <field datatype="string" name="description">Provides device authentication (certificate or identity).</field>
+        <field datatype="string" name="display_name">MDM Test CA</field>
+        <field datatype="string" name="identifier">com.mitre.certonly.credential1</field>
+        <field datatype="string" name="type">com.apple.security.root</field>
+        <field datatype="int" name="version">1</field>
+      </apple-ios-sc:payload>
+      <apple-ios-sc:description datatype="string">Profile description.</apple-ios-sc:description>
+      <apple-ios-sc:display_name datatype="string">Profile Name 4</apple-ios-sc:display_name>
+      <apple-ios-sc:identifier datatype="string">com.mitre.certonly</apple-ios-sc:identifier>
+      <apple-ios-sc:removal_disallowed datatype="boolean">false</apple-ios-sc:removal_disallowed>
+      <apple-ios-sc:uuid datatype="string">BCF8F81E-6330-42F4-8D09-FA608D224EF4</apple-ios-sc:uuid>
+      <apple-ios-sc:version datatype="int">1</apple-ios-sc:version>
+    </apple-ios-sc:profile_item>
+    <apple-ios-sc:profile_item id="80">
+      <apple-ios-sc:has_removal_passcode datatype="boolean">false</apple-ios-sc:has_removal_passcode>
+      <apple-ios-sc:is_encrypted datatype="boolean">false</apple-ios-sc:is_encrypted>
+      <apple-ios-sc:payload datatype="record">
+        <field datatype="string" name="description">Provides device authentication (certificate or identity).</field>
+        <field datatype="string" name="display_name">MDM Test CA</field>
+        <field datatype="string" name="identifier">org.mitre.oval.profile.credential3</field>
+        <field datatype="string" name="organization">mitre</field>
+        <field datatype="string" name="type">com.apple.security.root</field>
+        <field datatype="int" name="version">1</field>
+      </apple-ios-sc:payload>
+      <apple-ios-sc:payload datatype="record">
+        <field datatype="string" name="description">Provides device authentication (certificate or identity).</field>
+        <field datatype="string" name="display_name">test1</field>
+        <field datatype="string" name="identifier">org.mitre.oval.profile.credential4</field>
+        <field datatype="string" name="organization">mitre</field>
+        <field datatype="string" name="type">com.apple.security.pkcs12</field>
+        <field datatype="int" name="version">1</field>
+      </apple-ios-sc:payload>
+      <apple-ios-sc:payload datatype="record">
+        <field datatype="string" name="description">Configures MobileDeviceManagement.</field>
+        <field datatype="string" name="identifier">org.mitre.oval.profile.mdm5</field>
+        <field datatype="string" name="organization">mitre</field>
+        <field datatype="string" name="type">com.apple.mdm</field>
+        <field datatype="int" name="version">1</field>
+      </apple-ios-sc:payload>
+      <apple-ios-sc:payload datatype="record">
+        <field datatype="string" name="description"/>
+        <field datatype="string" name="display_name">Restrictions</field>
+        <field datatype="string" name="identifier">org.mitre.oval.profile.restrictions1</field>
+        <field datatype="string" name="organization">mitre</field>
+        <field datatype="string" name="type">com.apple.applicationaccess</field>
+        <field datatype="int" name="version">1</field>
+      </apple-ios-sc:payload>
+      <apple-ios-sc:payload datatype="record">
+        <field datatype="string" name="description">Configures security-related items.</field>
+        <field datatype="string" name="display_name">Passcode</field>
+        <field datatype="string" name="identifier">org.mitre.oval.profile.passcode2</field>
+        <field datatype="string" name="organization">mitre</field>
+        <field datatype="string" name="type">com.apple.mobiledevice.passwordpolicy</field>
+        <field datatype="int" name="version">1</field>
+      </apple-ios-sc:payload>
+      <apple-ios-sc:description datatype="string">Profile description.</apple-ios-sc:description>
+      <apple-ios-sc:display_name datatype="string">OVAL Profile</apple-ios-sc:display_name>
+      <apple-ios-sc:identifier datatype="string">org.mitre.oval.profile</apple-ios-sc:identifier>
+      <apple-ios-sc:organization datatype="string">mitre</apple-ios-sc:organization>
+      <apple-ios-sc:removal_disallowed datatype="boolean">false</apple-ios-sc:removal_disallowed>
+      <apple-ios-sc:uuid datatype="string">A292B869-5E10-4051-A030-C7972F3A1CD1</apple-ios-sc:uuid>
+      <apple-ios-sc:version datatype="int">1</apple-ios-sc:version>
+    </apple-ios-sc:profile_item>
+  </system_data>
+</oval_system_characteristics>
