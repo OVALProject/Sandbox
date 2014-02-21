@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:android-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" elementFormDefault="qualified" version="5.10">
-  <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd" />
-  <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd" />
+  <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
+  <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
   <xsd:annotation>
     <xsd:documentation>The following is a description of the elements, types, and attributes that compose the Android specific tests found in Open Vulnerability and Assessment Language (OVAL). Each test is an extension of the standard test element defined in the Core Definition Schema. Through extension, each test inherits a set of elements and attributes that are shared amongst all OVAL tests. Each test is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core Definition Schema is not outlined here.</xsd:documentation>
     <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
@@ -10,9 +10,9 @@
       <version>5.10</version>
       <date>2/26/2013 12:57:23 PM</date>
       <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
-      <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5" />
-      <sch:ns prefix="android-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" />
-      <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance" />
+      <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
+      <sch:ns prefix="android-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#android"/>
+      <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
     </xsd:appinfo>
   </xsd:annotation>
   <!-- =============================================================================== -->
@@ -32,12 +32,10 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_app_manager_test">
           <sch:rule context="android-def:app_manager_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:app_manager_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of an app_manager_test must reference an app_manager_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:app_manager_object/@id"><sch:value-of select="../@id"/> - the object child element of an app_manager_test must reference an app_manager_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:app_manager_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:app_manager_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of an app_manager_test must reference an app_manager_state</sch:assert>
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:app_manager_state/@id"><sch:value-of select="../@id"/> - the state child element of an app_manager_test must reference an app_manager_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -46,8 +44,8 @@
       <xsd:complexContent>
         <xsd:extension base="oval-def:TestType">
           <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType" />
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="object" type="oval-def:ObjectRefType"/>
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -59,13 +57,13 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_app_manager_object_verify_filter_state">
           <sch:rule context="android-def:app_manager_object//oval-def:filter">
-            <sch:let name="parent_object" value="ancestor::android-def:app_manager_object" />
-            <sch:let name="parent_object_id" value="$parent_object/@id" />
-            <sch:let name="state_ref" value="." />
-            <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]" />
-            <sch:let name="state_name" value="local-name($reffed_state)" />
-            <sch:let name="state_namespace" value="namespace-uri($reffed_state)" />
-            <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#android') and ($state_name='app_manager_state'))">State referenced in filter for <sch:value-of select="name($parent_object)" /> '<sch:value-of select="$parent_object_id" />' is of the wrong type. </sch:assert>
+            <sch:let name="parent_object" value="ancestor::android-def:app_manager_object"/>
+            <sch:let name="parent_object_id" value="$parent_object/@id"/>
+            <sch:let name="state_ref" value="."/>
+            <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+            <sch:let name="state_name" value="local-name($reffed_state)"/>
+            <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+            <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#android') and ($state_name='app_manager_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -75,7 +73,7 @@
         <xsd:extension base="oval-def:ObjectType">
           <xsd:sequence>
             <xsd:choice>
-              <xsd:element ref="oval-def:set" />
+              <xsd:element ref="oval-def:set"/>
               <xsd:sequence>
                 <xsd:element name="package_name" type="oval-def:EntityObjectStringType">
                   <xsd:annotation>
@@ -87,7 +85,7 @@
                     <xsd:documentation>Hexadecimal string of the signing certificate corresponding with the key used to sign the application package.  Only the actual signing certificate should be included, not CA certificates in the chain (if applicable).</xsd:documentation>
                   </xsd:annotation>
                 </xsd:element>
-                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded" />
+                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
               </xsd:sequence>
             </xsd:choice>
           </xsd:sequence>
@@ -190,12 +188,10 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_bluetooth_test">
           <sch:rule context="android-def:bluetooth_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:bluetooth_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of an bluetooth_test must reference an bluetooth_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:bluetooth_object/@id"><sch:value-of select="../@id"/> - the object child element of an bluetooth_test must reference an bluetooth_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:bluetooth_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:bluetooth_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of an bluetooth_test must reference an bluetooth_state</sch:assert>
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:bluetooth_state/@id"><sch:value-of select="../@id"/> - the state child element of an bluetooth_test must reference an bluetooth_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -204,8 +200,8 @@
       <xsd:complexContent>
         <xsd:extension base="oval-def:TestType">
           <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType" />
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="object" type="oval-def:ObjectRefType"/>
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -217,7 +213,7 @@
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
-        <xsd:extension base="oval-def:ObjectType" />
+        <xsd:extension base="oval-def:ObjectType"/>
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
@@ -266,12 +262,10 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_cmrtst">
           <sch:rule context="android-def:camera_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:camera_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of a camera_test must reference a camera_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:camera_object/@id"><sch:value-of select="../@id"/> - the object child element of a camera_test must reference a camera_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:camera_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:camera_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of a camera_test must reference a camera_state</sch:assert>
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:camera_state/@id"><sch:value-of select="../@id"/> - the state child element of a camera_test must reference a camera_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -280,8 +274,8 @@
       <xsd:complexContent>
         <xsd:extension base="oval-def:TestType">
           <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType" />
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="object" type="oval-def:ObjectRefType"/>
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -293,7 +287,7 @@
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
-        <xsd:extension base="oval-def:ObjectType" />
+        <xsd:extension base="oval-def:ObjectType"/>
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
@@ -330,14 +324,12 @@
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
-        <sch:pattern id="android-def_certtst" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+        <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="android-def_certtst">
           <sch:rule context="android-def:certificate_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:certificate_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of a certificate_test must reference a certificate_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:certificate_object/@id"><sch:value-of select="../@id"/> - the object child element of a certificate_test must reference a certificate_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:certificate_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:certificate_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of a certificate_test must reference a certificate_state</sch:assert>
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:certificate_state/@id"><sch:value-of select="../@id"/> - the state child element of a certificate_test must reference a certificate_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -346,8 +338,8 @@
       <xsd:complexContent>
         <xsd:extension base="oval-def:TestType">
           <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType" />
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="object" type="oval-def:ObjectRefType"/>
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -359,7 +351,7 @@
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
-        <xsd:extension base="oval-def:ObjectType" />
+        <xsd:extension base="oval-def:ObjectType"/>
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
@@ -398,12 +390,10 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_device_access_test">
           <sch:rule context="android-def:device_access_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:device_access_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of an device_access_test must reference an device_access_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:device_access_object/@id"><sch:value-of select="../@id"/> - the object child element of an device_access_test must reference an device_access_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:device_access_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:device_access_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of an device_access_test must reference an device_access_state</sch:assert>
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:device_access_state/@id"><sch:value-of select="../@id"/> - the state child element of an device_access_test must reference an device_access_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -412,8 +402,8 @@
       <xsd:complexContent>
         <xsd:extension base="oval-def:TestType">
           <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType" />
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="object" type="oval-def:ObjectRefType"/>
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -425,7 +415,7 @@
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
-        <xsd:extension base="oval-def:ObjectType" />
+        <xsd:extension base="oval-def:ObjectType"/>
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
@@ -469,12 +459,10 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_device_settings_test">
           <sch:rule context="android-def:device_settings_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:device_settings_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of an device_settings_test must reference an device_settings_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:device_settings_object/@id"><sch:value-of select="../@id"/> - the object child element of an device_settings_test must reference an device_settings_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:device_settings_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:device_settings_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of an network_test must reference an network_state</sch:assert>
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:device_settings_state/@id"><sch:value-of select="../@id"/> - the state child element of an network_test must reference an network_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -483,8 +471,8 @@
       <xsd:complexContent>
         <xsd:extension base="oval-def:TestType">
           <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType" />
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="object" type="oval-def:ObjectRefType"/>
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -496,7 +484,7 @@
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
-        <xsd:extension base="oval-def:ObjectType" />
+        <xsd:extension base="oval-def:ObjectType"/>
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
@@ -575,12 +563,10 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_encryptiontst">
           <sch:rule context="android-def:encryption_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:encryption_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of a encryption_test must reference a encryption_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:encryption_object/@id"><sch:value-of select="../@id"/> - the object child element of a encryption_test must reference a encryption_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:encryption_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:encryption_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of a encryption_test must reference a encryption_state</sch:assert>
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:encryption_state/@id"><sch:value-of select="../@id"/> - the state child element of a encryption_test must reference a encryption_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -589,8 +575,8 @@
       <xsd:complexContent>
         <xsd:extension base="oval-def:TestType">
           <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType" />
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="object" type="oval-def:ObjectRefType"/>
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -602,7 +588,7 @@
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
-        <xsd:extension base="oval-def:ObjectType" />
+        <xsd:extension base="oval-def:ObjectType"/>
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
@@ -646,12 +632,10 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_external_storage_test">
           <sch:rule context="android-def:external_storage_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:external_storage_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of an external_storage_test must reference an external_storage_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:external_storage_object/@id"><sch:value-of select="../@id"/> - the object child element of an external_storage_test must reference an external_storage_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:external_storage_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:external_storage_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of an external_storage_test must reference an external_storage_state</sch:assert>
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:external_storage_state/@id"><sch:value-of select="../@id"/> - the state child element of an external_storage_test must reference an external_storage_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -660,8 +644,8 @@
       <xsd:complexContent>
         <xsd:extension base="oval-def:TestType">
           <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType" />
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="object" type="oval-def:ObjectRefType"/>
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -673,7 +657,7 @@
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
-        <xsd:extension base="oval-def:ObjectType" />
+        <xsd:extension base="oval-def:ObjectType"/>
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
@@ -722,12 +706,10 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_location_service_test">
           <sch:rule context="android-def:location_service_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:location_service_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of an location_service_test must reference an location_service_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:location_service_object/@id"><sch:value-of select="../@id"/> - the object child element of an location_service_test must reference an location_service_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:location_service_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:location_service_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of an location_service_test must reference an location_service_state</sch:assert>
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:location_service_state/@id"><sch:value-of select="../@id"/> - the state child element of an location_service_test must reference an location_service_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -736,8 +718,8 @@
       <xsd:complexContent>
         <xsd:extension base="oval-def:TestType">
           <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType" />
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="object" type="oval-def:ObjectRefType"/>
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -749,7 +731,7 @@
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
-        <xsd:extension base="oval-def:ObjectType" />
+        <xsd:extension base="oval-def:ObjectType"/>
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
@@ -793,12 +775,10 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_network_test">
           <sch:rule context="android-def:network_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:network_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of an network_test must reference an network_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:network_object/@id"><sch:value-of select="../@id"/> - the object child element of an network_test must reference an network_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:network_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:network_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of an network_test must reference an network_state</sch:assert>
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:network_state/@id"><sch:value-of select="../@id"/> - the state child element of an network_test must reference an network_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -807,8 +787,8 @@
       <xsd:complexContent>
         <xsd:extension base="oval-def:TestType">
           <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType" />
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="object" type="oval-def:ObjectRefType"/>
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -820,7 +800,7 @@
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
-        <xsd:extension base="oval-def:ObjectType" />
+        <xsd:extension base="oval-def:ObjectType"/>
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
@@ -874,12 +854,10 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_ptst">
           <sch:rule context="android-def:password_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:password_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of a password_test must reference a password_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:password_object/@id"><sch:value-of select="../@id"/> - the object child element of a password_test must reference a password_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:password_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:password_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of a password_test must reference a password_state</sch:assert>
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:password_state/@id"><sch:value-of select="../@id"/> - the state child element of a password_test must reference a password_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -888,8 +866,8 @@
       <xsd:complexContent>
         <xsd:extension base="oval-def:TestType">
           <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType" />
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="object" type="oval-def:ObjectRefType"/>
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -901,7 +879,7 @@
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
-        <xsd:extension base="oval-def:ObjectType" />
+        <xsd:extension base="oval-def:ObjectType"/>
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
@@ -1010,12 +988,10 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_system_details_test">
           <sch:rule context="android-def:system_details_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:system_details_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of system_details_test must reference system_details_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:system_details_object/@id"><sch:value-of select="../@id"/> - the object child element of system_details_test must reference system_details_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:system_details_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:system_details_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of an system_details_test must reference an system_details_state</sch:assert>
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:system_details_state/@id"><sch:value-of select="../@id"/> - the state child element of an system_details_test must reference an system_details_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -1024,8 +1000,8 @@
       <xsd:complexContent>
         <xsd:extension base="oval-def:TestType">
           <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType" />
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="object" type="oval-def:ObjectRefType"/>
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -1037,7 +1013,7 @@
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
-        <xsd:extension base="oval-def:ObjectType" />
+        <xsd:extension base="oval-def:ObjectType"/>
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
@@ -1126,12 +1102,10 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_wifi_test">
           <sch:rule context="android-def:wifi_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:wifi_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of an wifi_test must reference an wifi_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:wifi_object/@id"><sch:value-of select="../@id"/> - the object child element of an wifi_test must reference an wifi_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:wifi_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:wifi_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of an wifi_test must reference an wifi_state</sch:assert>
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:wifi_state/@id"><sch:value-of select="../@id"/> - the state child element of an wifi_test must reference an wifi_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -1140,8 +1114,8 @@
       <xsd:complexContent>
         <xsd:extension base="oval-def:TestType">
           <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType" />
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="object" type="oval-def:ObjectRefType"/>
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -1153,7 +1127,7 @@
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
-        <xsd:extension base="oval-def:ObjectType" />
+        <xsd:extension base="oval-def:ObjectType"/>
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
@@ -1197,12 +1171,10 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_wifi_security_test">
           <sch:rule context="android-def:wifi_security_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:wifi_security_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of an wifi_security_test must reference an wifi_security_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:wifi_security_object/@id"><sch:value-of select="../@id"/> - the object child element of an wifi_security_test must reference an wifi_security_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:wifi_security_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:wifi_security_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of an wifi_security_test must reference an wifi_security_state</sch:assert>
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:wifi_security_state/@id"><sch:value-of select="../@id"/> - the state child element of an wifi_security_test must reference an wifi_security_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -1211,8 +1183,8 @@
       <xsd:complexContent>
         <xsd:extension base="oval-def:TestType">
           <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType" />
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="object" type="oval-def:ObjectRefType"/>
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -1224,13 +1196,13 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_wifi_security_object_verify_filter_state">
           <sch:rule context="android-def:wifi_security_object//oval-def:filter">
-            <sch:let name="parent_object" value="ancestor::android-def:wifi_security_object" />
-            <sch:let name="parent_object_id" value="$parent_object/@id" />
-            <sch:let name="state_ref" value="." />
-            <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]" />
-            <sch:let name="state_name" value="local-name($reffed_state)" />
-            <sch:let name="state_namespace" value="namespace-uri($reffed_state)" />
-            <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#android') and ($state_name='wifi_security_state'))">State referenced in filter for <sch:value-of select="name($parent_object)" /> '<sch:value-of select="$parent_object_id" />' is of the wrong type. </sch:assert>
+            <sch:let name="parent_object" value="ancestor::android-def:wifi_security_object"/>
+            <sch:let name="parent_object_id" value="$parent_object/@id"/>
+            <sch:let name="state_ref" value="."/>
+            <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+            <sch:let name="state_name" value="local-name($reffed_state)"/>
+            <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+            <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#android') and ($state_name='wifi_security_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -1240,14 +1212,14 @@
         <xsd:extension base="oval-def:ObjectType">
           <xsd:sequence>
             <xsd:choice>
-              <xsd:element ref="oval-def:set" />
+              <xsd:element ref="oval-def:set"/>
               <xsd:sequence>
                 <xsd:element name="ssid" type="oval-def:EntityObjectStringType">
                   <xsd:annotation>
                     <xsd:documentation>The network's SSID to check.</xsd:documentation>
                   </xsd:annotation>
                 </xsd:element>
-                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded" />
+                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
               </xsd:sequence>
             </xsd:choice>
           </xsd:sequence>
@@ -1323,7 +1295,6 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  
   <!-- ===========================Start of New Test From SRI-B======================= -->
   <!-- =============================  TELEPHONY TEST  =============================== -->
   <!-- ============================================================================== -->
@@ -1341,12 +1312,10 @@
       <xsd:appinfo>
         <sch:pattern id="android-def_teltst">
           <sch:rule context="android-def:telephony_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:telephony_object/@id">
-              <sch:value-of select="../@id" /> - the object child element of a telephony_test must reference a telephony_object</sch:assert>
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:telephony_object/@id"><sch:value-of select="../@id"/> - the object child element of a telephony_test must reference a telephony_object</sch:assert>
           </sch:rule>
           <sch:rule context="android-def:telephony_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:telephony_state/@id">
-              <sch:value-of select="../@id" /> - the state child element of a telephony_test must reference a telephony_state</sch:assert>
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:telephony_state/@id"><sch:value-of select="../@id"/> - the state child element of a telephony_test must reference a telephony_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -1355,8 +1324,8 @@
       <xsd:complexContent>
         <xsd:extension base="oval-def:TestType">
           <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType" />
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="object" type="oval-def:ObjectRefType"/>
+            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -1368,7 +1337,7 @@
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
-        <xsd:extension base="oval-def:ObjectType" />
+        <xsd:extension base="oval-def:ObjectType"/>
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
@@ -1385,7 +1354,7 @@
                 <xsd:documentation>Value indicates the radio technology(network type) currently in use, for data transmission.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
-	        <xsd:element name="sim_country_iso" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+            <xsd:element name="sim_country_iso" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
                 <xsd:documentation>The ISO country code equivalent for the SIM provider's country code.</xsd:documentation>
               </xsd:annotation>
@@ -1395,13 +1364,12 @@
                 <xsd:documentation>The MCC+MNC(mobile country code + mobile network code) of the provider of the SIM. It contains 5 or 6 decimal digits.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
-           </xsd:sequence>
+          </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
   <!--End of New Tests from SRI-B-->
-  
   <!-- =============================================================================== -->
   <!-- ===============================  ENTITY TYPES  ================================ -->
   <!-- =============================================================================== -->
@@ -1653,67 +1621,67 @@
             <xsd:documentation>Current network is EDGE </xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="UMTS">
+        <xsd:enumeration value="UMTS">
           <xsd:annotation>
             <xsd:documentation>Current network is UMTS </xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="CDMA">
+        <xsd:enumeration value="CDMA">
           <xsd:annotation>
             <xsd:documentation>Current network is CDMA</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="EVDO-0">
+        <xsd:enumeration value="EVDO-0">
           <xsd:annotation>
             <xsd:documentation>Current network is EVDO-0</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="EVDO-A">
+        <xsd:enumeration value="EVDO-A">
           <xsd:annotation>
             <xsd:documentation>Current network is EVDO-A</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="1xRTT">
+        <xsd:enumeration value="1xRTT">
           <xsd:annotation>
             <xsd:documentation>Current network is 1xRTT</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="HSDPA">
+        <xsd:enumeration value="HSDPA">
           <xsd:annotation>
             <xsd:documentation>Current network is HSDPA</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="HSUPA">
+        <xsd:enumeration value="HSUPA">
           <xsd:annotation>
             <xsd:documentation>Current network is HSUPA</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="HSPA">
+        <xsd:enumeration value="HSPA">
           <xsd:annotation>
             <xsd:documentation>Current network is HSPA</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="IDEN">
+        <xsd:enumeration value="IDEN">
           <xsd:annotation>
             <xsd:documentation>Current network is IDEN</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="EVDO-B">
+        <xsd:enumeration value="EVDO-B">
           <xsd:annotation>
             <xsd:documentation>Current network is EVDO-B</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="LTE">
+        <xsd:enumeration value="LTE">
           <xsd:annotation>
             <xsd:documentation>Current network is LTE</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="EHRPD">
+        <xsd:enumeration value="EHRPD">
           <xsd:annotation>
             <xsd:documentation>Current network is EHRPD</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="HSPAP">
+        <xsd:enumeration value="HSPAP">
           <xsd:annotation>
             <xsd:documentation>Current network is HSPAP</xsd:documentation>
           </xsd:annotation>

@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:android-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android" elementFormDefault="qualified" version="5.10">
-  <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd" />
-  <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd" />
+  <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
+  <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
   <xsd:annotation>
     <xsd:documentation>The following is a description of the elements, types, and attributes that compose the Android specific system characteristic items found in Open Vulnerability and Assessment Language (OVAL). Each item is an extension of the standard item element defined in the Core System Characteristic Schema. Through extension, each item inherits a set of elements and attributes that are shared amongst all OVAL Items. Each item is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core System Characteristic Schema is not outlined here.</xsd:documentation>
     <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
@@ -10,9 +10,9 @@
       <version>5.10</version>
       <date>2/26/2013 12:57:23 PM</date>
       <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
-      <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
-      <sch:ns prefix="android-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android" />
-      <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance" />
+      <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
+      <sch:ns prefix="android-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android"/>
+      <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
     </xsd:appinfo>
   </xsd:annotation>
   <!-- =============================================================================== -->
@@ -655,7 +655,7 @@
                 <xsd:documentation>A constant String value indicating the radio technology (network type) currently in use on the device for data transmission.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
-	        <xsd:element name="sim_country_iso" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+            <xsd:element name="sim_country_iso" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
                 <xsd:documentation>The ISO country code equivalent for the SIM provider's country code.</xsd:documentation>
               </xsd:annotation>
@@ -665,7 +665,7 @@
                 <xsd:documentation>the MCC+MNC (mobile country code + mobile network code) of the provider of the SIM. It contains 5 or 6 decimal digits.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
-           </xsd:sequence>
+          </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
     </xsd:complexType>
@@ -691,67 +691,67 @@
             <xsd:documentation>Current network is EDGE </xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-  	<xsd:enumeration value="UMTS">
+        <xsd:enumeration value="UMTS">
           <xsd:annotation>
             <xsd:documentation>Current network is UMTS </xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="CDMA">
+        <xsd:enumeration value="CDMA">
           <xsd:annotation>
             <xsd:documentation>Current network is CDMA</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="EVDO-0">
+        <xsd:enumeration value="EVDO-0">
           <xsd:annotation>
             <xsd:documentation>Current network is EVDO-0</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="EVDO-A">
+        <xsd:enumeration value="EVDO-A">
           <xsd:annotation>
             <xsd:documentation>Current network is EVDO-A</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="1xRTT">
+        <xsd:enumeration value="1xRTT">
           <xsd:annotation>
             <xsd:documentation>Current network is 1xRTT</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="HSDPA">
+        <xsd:enumeration value="HSDPA">
           <xsd:annotation>
             <xsd:documentation>Current network is HSDPA</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="HSUPA">
+        <xsd:enumeration value="HSUPA">
           <xsd:annotation>
             <xsd:documentation>Current network is HSUPA</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="HSPA">
+        <xsd:enumeration value="HSPA">
           <xsd:annotation>
             <xsd:documentation>Current network is HSPA</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="IDEN">
+        <xsd:enumeration value="IDEN">
           <xsd:annotation>
             <xsd:documentation>Current network is IDEN</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="EVDO-B">
+        <xsd:enumeration value="EVDO-B">
           <xsd:annotation>
             <xsd:documentation>Current network is EVDO-B</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="LTE">
+        <xsd:enumeration value="LTE">
           <xsd:annotation>
             <xsd:documentation>Current network is LTE</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="EHRPD">
+        <xsd:enumeration value="EHRPD">
           <xsd:annotation>
             <xsd:documentation>Current network is EHRPD</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
-		<xsd:enumeration value="HSPAP">
+        <xsd:enumeration value="HSPAP">
           <xsd:annotation>
             <xsd:documentation>Current network is HSPAP</xsd:documentation>
           </xsd:annotation>
@@ -759,7 +759,6 @@
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
-  
   <!--  End of Tests from SRI-B  -->
   <!-- =============================================================================== -->
   <!-- =============================================================================== -->
