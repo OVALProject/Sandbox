@@ -8,7 +8,7 @@
     <xsd:appinfo>
       <schema>Android System Characteristics</schema>
       <version>5.10</version>
-      <date>2/26/2013 12:57:23 PM</date>
+      <date>1/3/2014 12:28:00 PM</date>
       <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
       <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
       <sch:ns prefix="android-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android"/>
@@ -73,7 +73,7 @@
             </xsd:element>
             <xsd:element name="signing_certificate" type="oval-sc:EntityItemBinaryType" minOccurs="0" maxOccurs="unbounded">
               <xsd:annotation>
-                <xsd:documentation>Hexadecimal string of the signing certificate corresponding with the key used to sign the application package.  Only the actual signing certificate should be included, not CA certificates in the chain (if applicable).  If there is more than one signing certificate (unusual but possible), they are comma separated.</xsd:documentation>
+                <xsd:documentation>Hexadecimal string of the signing certificate corresponding with the key used to sign the application package. Only the actual signing certificate should be included, not CA certificates in the chain (if applicable).</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="first_install_time" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
@@ -119,7 +119,7 @@
             </xsd:element>
             <xsd:element name="discoverability_timeout" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>The amount of time in seconds the device will stay in discoverable mode when discoverability is turned on.  This value can be modified by the user through the device settings.</xsd:documentation>
+                <xsd:documentation>The amount of time in seconds the device will stay in discoverable mode when discoverability is turned on. This value can be modified by the user through the device settings.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>
@@ -132,7 +132,7 @@
   <!-- =============================================================================== -->
   <xsd:element name="camera_item" substitutionGroup="oval-sc:item">
     <xsd:annotation>
-      <xsd:documentation>This item stores true if a policy is in place disabling use of the camera.  This policy was introduced in Android 4.0 (though may also be available through device vendor-specific extensions in earlier versions of Android).</xsd:documentation>
+      <xsd:documentation>This item stores true if a policy is in place disabling use of the camera. This policy was introduced in Android 4.0 (though may also be available through device vendor-specific extensions in earlier versions of Android).</xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
@@ -161,7 +161,7 @@
           <xsd:sequence>
             <xsd:element name="trusted_certificate" type="oval-sc:EntityItemBinaryType" minOccurs="0" maxOccurs="unbounded">
               <xsd:annotation>
-                <xsd:documentation>Hexadecimal string of each certificate in the OS's trusted certificate store, including both certificates installed by the system and by users.  System trusted certificates that were disabled by the user are not included here.</xsd:documentation>
+                <xsd:documentation>Hexadecimal string of each certificate in the OS's trusted certificate store, including both certificates installed by the system and by users. System trusted certificates that were disabled by the user are not included here.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>
@@ -182,12 +182,12 @@
           <xsd:sequence>
             <xsd:element name="screen_lock_timeout" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>The current policy for the highest screen lock timeout the user is allowed to specify.  (The user may still specify lower values in the device settings.)</xsd:documentation>
+                <xsd:documentation>The current policy for the highest screen lock timeout the user is allowed to specify. (The user may still specify lower values in the device settings.)</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="keyguard_disabled_features" type="android-sc:EntityItemKeyguardDisabledFeaturesType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>The current policy for lockscreen widgets as retrieved by DevicePolicyManager.getKeyguardDisabledFeatures.  May be set to one of KEYGUARD_DISABLE_FEATURES_ALL, KEYGUARD_DISABLED_FEATURES_NONE, KEYGUARD_DISABLE_SECURE_CAMERA, or KEYGUARD_DISABLE_WIDGETS_ALL.  Only available in Android 4.2 and up.</xsd:documentation>
+                <xsd:documentation>The current policy for lockscreen widgets as retrieved by DevicePolicyManager.getKeyguardDisabledFeatures. May be set to one of KEYGUARD_DISABLE_FEATURES_ALL, KEYGUARD_DISABLED_FEATURES_NONE, KEYGUARD_DISABLE_SECURE_CAMERA, or KEYGUARD_DISABLE_WIDGETS_ALL. Only available in Android 4.2 and up.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>
@@ -269,12 +269,12 @@
           <xsd:sequence>
             <xsd:element name="encryption_policy_enabled" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>True if a policy is in place requiring the device storage to be encrypted.</xsd:documentation>
+                <xsd:documentation>True if a policy is in place requiring the device storage to be encrypted. (android.app.admin.DevicePolicyManager.getStorageEncryption())</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="encryption_status" type="android-sc:EntityItemEncryptionStatusType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>The current status of device encryption.  Either ENCRYPTION_STATUS_UNSUPPORTED, ENCRYPTION_STATUS_INACTIVE, ENCRYPTION_STATUS_ACTIVATING, or ENCRYPTION_STATUS_ACTIVE as documented in the Android SDK's DevicePolicyManager class.</xsd:documentation>
+                <xsd:documentation>The current status of device encryption. (android.app.admin.DevicePolicyManager.getStorageEncryptionStatus()) Either ENCRYPTION_STATUS_UNSUPPORTED, ENCRYPTION_STATUS_INACTIVE, ENCRYPTION_STATUS_ACTIVATING, or ENCRYPTION_STATUS_ACTIVE as documented in the Android SDK's DevicePolicyManager class.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>
@@ -388,17 +388,17 @@
           <xsd:sequence>
             <xsd:element name="max_num_failed_user_auth" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Maximum number of failed user authentications before device wipe.  Zero means there is no policy in place.</xsd:documentation>
+                <xsd:documentation>Maximum number of failed user authentications before device wipe. Zero means there is no policy in place.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="password_hist" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Specifies the length of password history maintained (passwords in the history cannot be reused).  Zero means there is no policy in place.</xsd:documentation>
+                <xsd:documentation>Specifies the length of password history maintained (passwords in the history cannot be reused). Zero means there is no policy in place.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="password_quality" type="android-sc:EntityItemPasswordQualityType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>The current minimum required password quality required by device policy.  Represented as a string corresponding with a valid Android password quality, currently one of: PASSWORD_QUALITY_ALPHABETIC PASSWORD_QUALITY_ALPHANUMERIC PASSWORD_QUALITY_BIOMETRIC_WEAK PASSWORD_QUALITY_COMPLEX PASSWORD_QUALITY_NUMERIC PASSWORD_QUALITY_SOMETHING PASSWORD_QUALITY_UNSPECIFIED</xsd:documentation>
+                <xsd:documentation>The current minimum required password quality required by device policy. Represented as a string corresponding with a valid Android password quality, currently one of: PASSWORD_QUALITY_ALPHABETIC PASSWORD_QUALITY_ALPHANUMERIC PASSWORD_QUALITY_BIOMETRIC_WEAK PASSWORD_QUALITY_COMPLEX PASSWORD_QUALITY_NUMERIC PASSWORD_QUALITY_SOMETHING PASSWORD_QUALITY_UNSPECIFIED</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="password_min_length" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
@@ -438,22 +438,22 @@
             </xsd:element>
             <xsd:element name="password_max_repeated_characters" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Maximum number of repeated characters allowed by policy.  NOTE: This policy is not currently supported by stock Android so this item will likely not be populated in many cases.  We put this in here to support any Android devices with policies extended by the OEM or for future use.</xsd:documentation>
+                <xsd:documentation>Maximum number of repeated characters allowed by policy. NOTE: This policy is not currently supported by stock Android so this item will likely not be populated in many cases. We put this in here to support any Android devices with policies extended by the OEM or for future use.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="password_expiration_timeout" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Gets the current password expiration timeout policy, in milliseconds.  Zero means there is no policy in place.</xsd:documentation>
+                <xsd:documentation>Gets the current password expiration timeout policy, in milliseconds. Zero means there is no policy in place.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="password_visible" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>When true, the most recently keyed in password character is shown to the user on the screen (the previously entered characters are masked out).  When false, all keyed in password characters are immediately masked out.  This setting is manageable by the device user through the device settings.</xsd:documentation>
+                <xsd:documentation>When true, the most recently keyed in password character is shown to the user on the screen (the previously entered characters are masked out). When false, all keyed in password characters are immediately masked out. This setting is manageable by the device user through the device settings.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="active_password_sufficient" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>When true, the current device password is compliant with the password policy.  (If the policy was recently established, it is possible that a password compliant with the policy may not yet be in place.)</xsd:documentation>
+                <xsd:documentation>When true, the current device password is compliant with the password policy. (If the policy was recently established, it is possible that a password compliant with the policy may not yet be in place.)</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="current_failed_password_attempts" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
@@ -795,22 +795,22 @@
       <xsd:restriction base="oval-sc:EntityItemStringType">
         <xsd:enumeration value="CCMP">
           <xsd:annotation>
-            <xsd:documentation>AES in Counter mode with CBC-MAC [RFC 3610, IEEE 802.11i/D7.0]</xsd:documentation>
+            <xsd:documentation>AES in Counter mode with CBC-MAC [RFC 3610, IEEE 802.11i/D7.0]; Constant Value: 3 (0x00000003)</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
         <xsd:enumeration value="TKIP">
           <xsd:annotation>
-            <xsd:documentation>Temporal Key Integrity Protocol [IEEE 802.11i/D7.0]</xsd:documentation>
+            <xsd:documentation>Temporal Key Integrity Protocol [IEEE 802.11i/D7.0]; Constant Value: 2 (0x00000002)</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
         <xsd:enumeration value="WEP104">
           <xsd:annotation>
-            <xsd:documentation>WEP (Wired Equivalent Privacy) with 104-bit key</xsd:documentation>
+            <xsd:documentation>WEP (Wired Equivalent Privacy) with 104-bit key; Constant Value: 1 (0x00000001)</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
         <xsd:enumeration value="WEP40">
           <xsd:annotation>
-            <xsd:documentation>WEP (Wired Equivalent Privacy) with 40-bit key (original 802.11)</xsd:documentation>
+            <xsd:documentation>WEP (Wired Equivalent Privacy) with 40-bit key (original 802.11); Constant Value: 0 (0x00000000)</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
@@ -1016,53 +1016,53 @@
   </xsd:complexType>
   <xsd:complexType name="EntityItemExternalStorageType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemWifiCurrentStatusType complex type restricts a string value to a specific set of values.</xsd:documentation>
+      <xsd:documentation>The EntityItemExternalStorageType complex type restricts a string value to a specific set of values.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
         <xsd:enumeration value="MEDIA_BAD_REMOVAL">
           <xsd:annotation>
-            <xsd:documentation>The network we are currently connected to</xsd:documentation>
+            <xsd:documentation>The media was removed before it was unmounted.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
         <xsd:enumeration value="MEDIA_CHECKING">
           <xsd:annotation>
-            <xsd:documentation>Supplicant will not attempt to use this network</xsd:documentation>
+            <xsd:documentation>The media is present and being disk-checked.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
         <xsd:enumeration value="MEDIA_MOUNTED">
           <xsd:annotation>
-            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+            <xsd:documentation>The media is present and mounted at its mount point with read/write access.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
         <xsd:enumeration value="MEDIA_MOUNTED_READ_ONLY">
           <xsd:annotation>
-            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+            <xsd:documentation>The media is present and mounted at its mount point with read only access.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
         <xsd:enumeration value="MEDIA_NOFS">
           <xsd:annotation>
-            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+            <xsd:documentation>The media is present but is blank or is using an unsupported filesystem.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
         <xsd:enumeration value="MEDIA_REMOVED">
           <xsd:annotation>
-            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+            <xsd:documentation>The media is not present.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
         <xsd:enumeration value="MEDIA_SHARED">
           <xsd:annotation>
-            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+            <xsd:documentation>The media is present not mounted, and shared via USB mass storage.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
         <xsd:enumeration value="MEDIA_UNMOUNTABLE">
           <xsd:annotation>
-            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+            <xsd:documentation>The media is present but cannot be mounted. Typically this happens if the file system on the media is corrupted.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
         <xsd:enumeration value="MEDIA_UNMOUNTED">
           <xsd:annotation>
-            <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+            <xsd:documentation>The media is present but not mounted.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
