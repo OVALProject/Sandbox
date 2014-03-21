@@ -19,7 +19,7 @@
      <!-- =============================================================================== -->
      <xsd:element name="global_item" substitutionGroup="oval-sc:item">
           <xsd:annotation>
-               <xsd:documentation>Sotres information about the existence of a particular line in the ios config file under the global context</xsd:documentation>
+               <xsd:documentation>Stores information about the existence of a particular line in the ios config file under the global context</xsd:documentation>
           </xsd:annotation>
           <xsd:complexType>
                <xsd:complexContent>
