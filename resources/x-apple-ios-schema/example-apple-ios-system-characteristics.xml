@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:apple-ios-sc="http://oval.mitre.org/XMLSchema/x-apple-ios-system-characteristics" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/x-apple-ios-system-characteristics x-apple-ios-system-characteristics.xsd">
+<oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent" xmlns:apple-ios-sc="http://oval.mitre.org/XMLSchema/x-apple-ios-system-characteristics" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/x-apple-ios-system-characteristics x-apple-ios-system-characteristics.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent independent-system-characteristics-schema.xsd">
   <generator>
     <oval:product_name>mitre</oval:product_name>
     <oval:product_version>0.1</oval:product_version>
@@ -14,18 +14,25 @@
     <interfaces/>
   </system_info>
   <collected_objects>
-    <object comment="Retrieve global_restrictions_object" flag="complete" id="oval:gov.nsa.iad:obj:1001" version="1">
+    <object comment="Retrieve global_restrictions_object" flag="complete" id="oval:test.appleios.stig:obj:1001" version="1">
       <reference item_ref="63"/>
     </object>
-    <object comment="Retrieve passcode_policy_object" flag="complete" id="oval:gov.nsa.iad:obj:2001" version="1">
+    <object comment="Retrieve passcode_policy_object" flag="complete" id="oval:test.appleios.stig:obj:2001" version="1">
       <reference item_ref="64"/>
     </object>
-    <object comment="Retrieve profile_object" flag="complete" id="oval:gov.nsa.iad:obj:3001" version="1">
+    <object comment="Retrieve profile_object" flag="complete" id="oval:test.appleios.stig:obj:3001" version="1">
       <reference item_ref="79"/>
       <reference item_ref="80"/>
     </object>
+    <object comment="Retrieve variable" flag="complete" id="oval:test.appleios.stig:obj:43205" version="1">
+      <reference item_ref="67"/>
+    </object>
   </collected_objects>
   <system_data>
+    <ind:variable_item id="67" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+      <var_ref>oval:test.appleios.stig:var:43205</var_ref>
+      <value datatype="int">10</value>
+    </ind:variable_item> 
     <apple-ios-sc:global_restrictions_item id="63">
       <apple-ios-sc:allow_assistant_while_locked datatype="boolean">false</apple-ios-sc:allow_assistant_while_locked>
       <apple-ios-sc:allow_camera datatype="boolean">false</apple-ios-sc:allow_camera>
