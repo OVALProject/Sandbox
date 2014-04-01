@@ -1,0 +1,495 @@
+<?xml version="1.0"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:unix="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xmlns:linux="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:macos="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" xmlns:apple-ios="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions x-apple-ios-definitions.xsd   http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd   http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd   http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd   http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd   http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd">
+  <!--
+
+These OVAL checks demonstrate usage of OVAL Apple iOS definitions,
+which permit programmatic query of settings in place on an Apple iOS device.
+These definitions are based on the DISA Apple iOS 7 STIG Version 1 Release 1.
+Open-source and commercially-available OVAL interpreters exist which
+can demonstrate evaluation of these definitions against gathered system
+characteristics. System characteristics can be populated using information
+obtained from iOS devices over the network using Apple's MDM protocol.
+
+For more information and to get involved, see http://oval.mitre.org.
+
+-->
+  <generator>
+    <oval:product_name>python</oval:product_name>
+    <oval:product_version>2.6.6</oval:product_version>
+    <oval:schema_version>5.10</oval:schema_version>
+    <oval:timestamp>2014-03-10T23:12:00</oval:timestamp>
+  </generator>
+  <definitions>
+    <!-- V-43210 N/A Applies to the MDM system not the device. -->
+    <definition class="compliance" id="oval:test.appleios.stig:def:43205" version="1">
+      <metadata>
+        <title>Apple iOS must lock the device after 15 minutes of inactivity.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43205"/>
+        <description>Ensure that the sum of the currently enforced max grace period and max inactivity parameters is between 1 and 15 minutes.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="maxGracePeriod + maxInactivity is between 1 and 15" test_ref="oval:test.appleios.stig:tst:43205"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43207" version="1">
+      <metadata>
+        <title>Apple iOS must enforce a minimum length of 6 for the device unlock password.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43207"/>
+        <description>Ensure that the currently enforced password policy minLength is set to 6 or greater.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="minLength set to 6 or greater" test_ref="oval:test.appleios.stig:tst:43207"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43209" version="1">
+      <metadata>
+        <title>Apple iOS must wipe all storage media after 10 consecutive, unsuccessful attempts to unlock the mobile device.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43209"/>
+        <description>Ensure that the currently enforced maxFailedAttempts policy is set to 10 or less.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="maxFailedAttempts set to 10 or less" test_ref="oval:test.appleios.stig:tst:43209"/>
+      </criteria>
+    </definition>
+    <!-- 43211 TBD - check if a passcode payload is installed.. this seems redundant given other password policy definitions though. -->
+    <!-- <definition class="compliance" id="oval:test.appleios.stig:def:43211" version="1">
+      <metadata>
+        <title>Apple iOS must require a valid password be successfully entered before the mobile device data is unencrypted.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43211"/>
+        <description>Ensure that at least one passcode configuration profile payload is installed.</description>
+      </metadata>
+      <criteria>
+      </criteria>
+    </definition> -->
+    <definition class="compliance" id="oval:test.appleios.stig:def:43820" version="1">
+      <metadata>
+        <title>Key "allowSimple" Set To "false"</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43820"/>
+        <description>Ensure that the currently enforced password policy allowSimple is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="allowSimple set to false" test_ref="oval:test.appleios.stig:tst:43820"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43229" version="1">
+      <metadata>
+        <title>Apple iOS must disable screen capture.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43229"/>
+        <description>Ensure that the currently enforced allowScreenShot restriction policy is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="allowScreenShot set to false" test_ref="oval:test.appleios.stig:tst:43229"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43215" version="1">
+      <metadata>
+        <title>Key "allowCloudBackup" Set To "false"</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43215"/>
+        <description>Ensure that the currently enforced allowCloudBackup restriction policy is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="allowCloudBackup set to false" test_ref="oval:test.appleios.stig:tst:43215"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43216" version="1">
+      <metadata>
+        <title>Key "allowCloudDocumentSync" Set To "false"</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43216"/>
+        <description>Ensure that the currently enforced allowCloudDocumentSync restriction policy is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="allowCloudDocumentSync set to false" test_ref="oval:test.appleios.stig:tst:43216"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43217" version="1">
+      <metadata>
+        <title>Apple iOS must have cloud keychain syncing features disabled.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43217"/>
+        <description>Ensure that the currently enforced allowCloudKeychainSync restriction policy is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="allowCloudKeychainSync set to false" test_ref="oval:test.appleios.stig:tst:43217"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43218" version="1">
+      <metadata>
+        <title>Apple iOS must not automatically upload new photos to iCloud.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43218"/>
+        <description>Ensure that the currently enforced allowPhotoStream restriction policy is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="allowPhotoStream set to false" test_ref="oval:test.appleios.stig:tst:43218"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43219" version="1">
+      <metadata>
+        <title>Apple iOS must not create photo streams to share with other people, or subscribe to other peoples shared photo streams.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43219"/>
+        <description>Ensure that the currently enforced allowSharedStream restriction policy is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="allowSharedStream set to false" test_ref="oval:test.appleios.stig:tst:43219"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43230" version="1">
+      <metadata>
+        <title>Apple iOS must not allow diagnostic data to be sent to an organization other than DoD.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43230"/>
+        <description>Ensure that the currently enforced allowDiagnosticSubmission restriction policy is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="allowDiagnosticSubmission set to false" test_ref="oval:test.appleios.stig:tst:43230"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43231" version="1">
+      <metadata>
+        <title>Apple iOS must limit advertisers tracking abilities.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43231"/>
+        <description>Ensure that the currently enforced forceLimitAdTracking restriction policy is set to true.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="forceLimitAdTracking set to true" test_ref="oval:test.appleios.stig:tst:43231"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43220" version="1">
+      <metadata>
+        <title>Apple iOS must not display notifications while the device is locked.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43220"/>
+        <description>Ensure that the currently enforced allowLockScreenNotificationsView restriction policy is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="allowLockScreenNotificationsView set to false" test_ref="oval:test.appleios.stig:tst:43220"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43221" version="1">
+      <metadata>
+        <title>Apple iOS must not display calendar information while the device is locked.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43221"/>
+        <description>Ensure that the currently enforced allowLockScreenTodayView restriction policy is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="allowLockScreenTodayView set to false" test_ref="oval:test.appleios.stig:tst:43221"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43212" version="1">
+      <metadata>
+        <title>Apple iOS must disable voice-activated assistant functionality when the device is locked (Siri).</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43212"/>
+        <description>Ensure that the currently enforced allowAssistant restriction policy is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="allowAssistant set to false" test_ref="oval:test.appleios.stig:tst:43212"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43213" version="1">
+      <metadata>
+        <title>Apple iOS must disable voice-activated assistant functionality when the device is locked (Voice Dialing).</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43213"/>
+        <description>Ensure that the currently enforced allowVoiceDialing restriction policy is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="allowVoiceDialing set to false" test_ref="oval:test.appleios.stig:tst:43213"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43222" version="1">
+      <metadata>
+        <title>Apple iOS must not allow the device to be unlocked using a fingerprint.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43222"/>
+        <description>Ensure that the currently enforced allowFingerprintForUnlock restriction policy is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="allowFingerprintForUnlock set to false" test_ref="oval:test.appleios.stig:tst:43222"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43223" version="1">
+      <metadata>
+        <title>Apple iOS must not allow non-DoD applications to access DoD data.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43223"/>
+        <description>Ensure that the currently enforced allowOpenFromManagedToUnmanaged restriction policy is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="allowOpenFromManagedToUnmanaged set to false" test_ref="oval:test.appleios.stig:tst:43223"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43232" version="1">
+      <metadata>
+        <title>Apple iOS must not allow DoD applications to access non-DoD data.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43232"/>
+        <description>Ensure that the currently enforced allowOpenFromUnmanagedToManaged restriction policy is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="allowOpenFromUnmanagedToManaged set to false" test_ref="oval:test.appleios.stig:tst:43232"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43233" version="1">
+      <metadata>
+        <title>Apple iOS must disable automatic completion of Safari browser passcodes.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43233"/>
+        <description>Ensure that the currently enforced safariAllowAutoFill restriction policy is set to false.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="safariAllowAutoFill set to false" test_ref="oval:test.appleios.stig:tst:43233"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:test.appleios.stig:def:43224" version="1">
+      <metadata>
+        <title>Apple iOS must encrypt iTunes backups.</title>
+        <affected family="macos">
+          <platform>Apple iOS</platform>
+        </affected>
+        <reference source="DISA" ref_id="43224"/>
+        <description>Ensure that the currently enforced forceEncryptedBackup restriction policy is set to true.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="forceEncryptedBackup set to true" test_ref="oval:test.appleios.stig:tst:43224"/>
+      </criteria>
+    </definition>
+    <!-- V-43208 : Not implemented. Would need to add ability to check list of installed trust anchors
+         (root certificates) to ensure that only authorized ones are present. Or alternatively
+         check to see if any unauthorized profiles have been installed that contain trust anchor payloads.
+         (payload of type "com.apple.security.root")
+    -->
+    <!-- V-43225 : Not implemented. Can only impose an AirDrop global restriction if the device is in
+         supervised mode, per Apple Configuration Profile Reference. -->
+    <!-- V-43228 : Not implemented. No way to automate checking of Date and Time Set Automatically setting. -->
+    <!-- V-43226 / V-43227 / V-43234 : Not implemented. Would need to add ability to check list of installed
+         applications to ensure the notice and consent banner application is installed. -->
+  </definitions>
+  <tests>
+    <ind:variable_test check="at least one" id="oval:test.appleios.stig:tst:43205" version="1" comment="1" state_operator="AND">
+      <ind:object object_ref="oval:test.appleios.stig:obj:43205"/>
+      <ind:state state_ref="oval:test.appleios.stig:ste:432051"/>
+      <ind:state state_ref="oval:test.appleios.stig:ste:432052"/>
+    </ind:variable_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43230" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43230"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43229" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43229"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:passcode_policy_test check="at least one" id="oval:test.appleios.stig:tst:43207" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:2001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43207"/>
+    </apple-ios:passcode_policy_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43218" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43218"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43215" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43215"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43216" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43216"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43217" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43217"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43219" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43219"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43231" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43231"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43220" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43220"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43221" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43221"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43212" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43212"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43213" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43213"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43222" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43222"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43223" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43223"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43232" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43232"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43233" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43233"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:global_restrictions_test check="at least one" id="oval:test.appleios.stig:tst:43224" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:1001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43224"/>
+    </apple-ios:global_restrictions_test>
+    <apple-ios:passcode_policy_test check="at least one" id="oval:test.appleios.stig:tst:43820" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:2001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43820"/>
+    </apple-ios:passcode_policy_test>
+    <apple-ios:passcode_policy_test check="at least one" id="oval:test.appleios.stig:tst:43209" version="1" comment="1">
+      <apple-ios:object object_ref="oval:test.appleios.stig:obj:2001"/>
+      <apple-ios:state state_ref="oval:test.appleios.stig:ste:43209"/>
+    </apple-ios:passcode_policy_test>
+  </tests>
+  <objects>
+    <apple-ios:global_restrictions_object id="oval:test.appleios.stig:obj:1001" version="1"/>
+    <apple-ios:passcode_policy_object id="oval:test.appleios.stig:obj:2001" version="1"/>
+    <apple-ios:profile_object id="oval:test.appleios.stig:obj:3001" version="1">
+      <apple-ios:identifier operation="pattern match">^.*$</apple-ios:identifier>
+      <apple-ios:uuid operation="pattern match">^.*$</apple-ios:uuid>
+    </apple-ios:profile_object>
+    <ind:variable_object id="oval:test.appleios.stig:obj:43205" version="1" comment="Object holds sum of max_grace_period and max_inactivity time">
+      <ind:var_ref>oval:test.appleios.stig:var:43205</ind:var_ref>
+    </ind:variable_object>
+  </objects>
+  <states>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43217" version="1">
+      <allow_cloud_keychain_sync datatype="boolean" operation="equals">false</allow_cloud_keychain_sync>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43219" version="1">
+      <allow_shared_stream datatype="boolean" operation="equals">false</allow_shared_stream>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43231" version="1">
+      <force_limit_ad_tracking datatype="boolean" operation="equals">true</force_limit_ad_tracking>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43220" version="1">
+      <allow_lock_screen_notifications_view datatype="boolean" operation="equals">false</allow_lock_screen_notifications_view>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43221" version="1">
+      <allow_lock_screen_today_view datatype="boolean" operation="equals">false</allow_lock_screen_today_view>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43212" version="1">
+      <allow_assistant datatype="boolean" operation="equals">false</allow_assistant>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43213" version="1">
+      <allow_voice_dialing datatype="boolean" operation="equals">false</allow_voice_dialing>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43222" version="1">
+      <allow_fingerprint_for_unlock datatype="boolean" operation="equals">false</allow_fingerprint_for_unlock>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43223" version="1">
+      <allow_open_from_managed_to_unmanaged datatype="boolean" operation="equals">false</allow_open_from_managed_to_unmanaged>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43232" version="1">
+      <allow_open_from_unmanaged_to_managed datatype="boolean" operation="equals">false</allow_open_from_unmanaged_to_managed>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43233" version="1">
+      <safari_allow_auto_fill datatype="boolean" operation="equals">false</safari_allow_auto_fill>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43224" version="1">
+      <force_encrypted_backup datatype="boolean" operation="equals">true</force_encrypted_backup>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43230" version="1">
+      <allow_diagnostic_submission datatype="boolean" operation="equals">false</allow_diagnostic_submission>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43229" version="1">
+      <allow_screen_shot datatype="boolean" operation="equals">false</allow_screen_shot>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:passcode_policy_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43207" version="1">
+      <min_length datatype="int" operation="greater than or equal">6</min_length>
+    </apple-ios:passcode_policy_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43218" version="1">
+      <allow_photo_stream datatype="boolean" operation="equals">false</allow_photo_stream>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43215" version="1">
+      <allow_cloud_backup datatype="boolean" operation="equals">false</allow_cloud_backup>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:global_restrictions_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43216" version="1">
+      <allow_cloud_document_sync datatype="boolean" operation="equals">false</allow_cloud_document_sync>
+    </apple-ios:global_restrictions_state>
+    <apple-ios:passcode_policy_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43820" version="1">
+      <allow_simple datatype="boolean" operation="equals">false</allow_simple>
+    </apple-ios:passcode_policy_state>
+    <apple-ios:passcode_policy_state xmlns="http://oval.mitre.org/XMLSchema/x-apple-ios-definitions" id="oval:test.appleios.stig:ste:43209" version="1">
+      <max_failed_attempts datatype="int" operation="less than or equal">10</max_failed_attempts>
+    </apple-ios:passcode_policy_state>
+    <ind:variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:test.appleios.stig:ste:432051" version="1">
+      <value datatype="int" operation="greater than or equal">1</value>
+    </ind:variable_state>
+    <ind:variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:test.appleios.stig:ste:432052" version="1">
+      <value datatype="int" operation="less than or equal">15</value>
+    </ind:variable_state>
+  </states>
+  <variables>
+    <local_variable id="oval:test.appleios.stig:var:43205" version="2" comment="Add maximum auto-lock time and grace period for device lock" datatype="int">
+      <arithmetic arithmetic_operation="add">
+        <object_component item_field="max_inactivity" object_ref="oval:test.appleios.stig:obj:2001"/>
+        <object_component item_field="max_grace_period" object_ref="oval:test.appleios.stig:obj:2001"/>
+      </arithmetic>
+    </local_variable>
+  </variables>
+</oval_definitions>
