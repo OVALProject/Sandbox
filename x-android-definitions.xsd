@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:android-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" elementFormDefault="qualified" version="5.10">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:android-def="http://oval.mitre.org/XMLSchema/x-android-definitions" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/x-android-definitions" elementFormDefault="qualified" version="5.10">
   <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
   <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
   <xsd:annotation>
@@ -8,10 +8,10 @@
     <xsd:appinfo>
       <schema>Android Definition</schema>
       <version>5.10</version>
-      <date>1/3/2014 12:38:01 PM</date>
-      <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+      <date>4/8/2014 08:13:00 PM</date>
+      <terms_of_use>Copyright (c) 2002-2014, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
       <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
-      <sch:ns prefix="android-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#android"/>
+      <sch:ns prefix="android-def" uri="http://oval.mitre.org/XMLSchema/x-android-definitions"/>
       <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
     </xsd:appinfo>
   </xsd:annotation>
@@ -26,7 +26,7 @@
           <oval:test>app_manager_test</oval:test>
           <oval:object>app_manager_object</oval:object>
           <oval:state>app_manager_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">app_manager_item</oval:item>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-android-system-characteristics">app_manager_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
@@ -63,7 +63,7 @@
             <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
             <sch:let name="state_name" value="local-name($reffed_state)"/>
             <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
-            <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#android') and ($state_name='app_manager_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+            <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/x-android-definitions') and ($state_name='app_manager_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -113,7 +113,7 @@
             </xsd:element>
             <xsd:element name="gid" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="unbounded">
               <xsd:annotation>
-                <xsd:documentation>One element for each group id that the application belongs to</xsd:documentation>
+                <xsd:documentation>One element for each group id that the application belongs to.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="package_name" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
@@ -133,17 +133,17 @@
             </xsd:element>
             <xsd:element name="current_status" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>True if the application is enabled</xsd:documentation>
+                <xsd:documentation>True if the application is enabled.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="permission" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>One element for each permission requested by the application</xsd:documentation>
+                <xsd:documentation>One element for each permission granted to the application.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="native_lib_dir" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Directory where the application's native libraries (if any) have been installed</xsd:documentation>
+                <xsd:documentation>Directory where the application's native libraries (if any) have been installed.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="signing_certificate" type="oval-def:EntityStateBinaryType" minOccurs="0" maxOccurs="unbounded">
@@ -182,7 +182,7 @@
           <oval:test>bluetooth_test</oval:test>
           <oval:object>bluetooth_object</oval:object>
           <oval:state>bluetooth_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">bluetooth_item</oval:item>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-android-system-characteristics">bluetooth_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
@@ -227,17 +227,12 @@
           <xsd:sequence>
             <xsd:element name="discoverable" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>true if Bluetooth is in discoverable mode, otherwise false</xsd:documentation>
+                <xsd:documentation>True if device Bluetooth is currently in discoverable mode.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="current_status" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>true if Bluetooth is enabled, otherwise false</xsd:documentation>
-              </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="discoverability_timeout" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
-              <xsd:annotation>
-                <xsd:documentation>The amount of time in seconds the device will stay in discoverable mode when discoverability is turned on. This value can be modified by the user through the device settings.</xsd:documentation>
+                <xsd:documentation>True if device Bluetooth is currently enabled.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>
@@ -250,13 +245,13 @@
   <!-- =============================================================================== -->
   <xsd:element name="camera_test" substitutionGroup="oval-def:test">
     <xsd:annotation>
-      <xsd:documentation>The camera_test is used to check if Camera is enabled on the device. </xsd:documentation>
+      <xsd:documentation>The camera_test is used to check camera-related information.</xsd:documentation>
       <xsd:appinfo>
         <oval:element_mapping>
           <oval:test>camera_test</oval:test>
           <oval:object>camera_object</oval:object>
           <oval:state>camera_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">camera_item</oval:item>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-android-system-characteristics">camera_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
@@ -301,7 +296,7 @@
           <xsd:sequence>
             <xsd:element name="camera_disabled_policy" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>If true, then a policy is being enforced disabling use of the camera. The policy is only available in Android 4.0 and up (and potentially on older Android devices if specifically added by the device vendor in an extension).</xsd:documentation>
+                <xsd:documentation>If true, then a policy is being enforced disabling use of the camera. The policy is only available in Android 4.0 and up (and potentially on older Android devices if specifically added by the device vendor).</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>
@@ -320,7 +315,7 @@
           <oval:test>certificate_test</oval:test>
           <oval:object>certificate_object</oval:object>
           <oval:state>certificate_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">certificate_item</oval:item>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-android-system-characteristics">certificate_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
@@ -374,75 +369,6 @@
     </xsd:complexType>
   </xsd:element>
   <!-- =============================================================================== -->
-  <!-- ===============================  DEVICE ACCESS TEST  ========================== -->
-  <!-- =============================================================================== -->
-  <xsd:element name="device_access_test" substitutionGroup="oval-def:test">
-    <xsd:annotation>
-      <xsd:documentation>The device_access_test is used to check the device accessibility information. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a device_access_object and the optional state element specifies the data to check.</xsd:documentation>
-      <xsd:appinfo>
-        <oval:element_mapping>
-          <oval:test>device_access_test</oval:test>
-          <oval:object>device_access_object</oval:object>
-          <oval:state>device_access_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">device_access_item</oval:item>
-        </oval:element_mapping>
-      </xsd:appinfo>
-      <xsd:appinfo>
-        <sch:pattern id="android-def_device_access_test">
-          <sch:rule context="android-def:device_access_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:device_access_object/@id"><sch:value-of select="../@id"/> - the object child element of an device_access_test must reference an device_access_object</sch:assert>
-          </sch:rule>
-          <sch:rule context="android-def:device_access_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:device_access_state/@id"><sch:value-of select="../@id"/> - the state child element of an device_access_test must reference an device_access_state</sch:assert>
-          </sch:rule>
-        </sch:pattern>
-      </xsd:appinfo>
-    </xsd:annotation>
-    <xsd:complexType>
-      <xsd:complexContent>
-        <xsd:extension base="oval-def:TestType">
-          <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType"/>
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
-          </xsd:sequence>
-        </xsd:extension>
-      </xsd:complexContent>
-    </xsd:complexType>
-  </xsd:element>
-  <xsd:element name="device_access_object" substitutionGroup="oval-def:object">
-    <xsd:annotation>
-      <xsd:documentation>The device_access_object element is used by a device access test to define those objects to evaluated based on a specified state. Any OVAL Test written to check device accessibility will reference the same device_access_object which is basically an empty object element.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:complexType>
-      <xsd:complexContent>
-        <xsd:extension base="oval-def:ObjectType"/>
-      </xsd:complexContent>
-    </xsd:complexType>
-  </xsd:element>
-  <xsd:element name="device_access_state" substitutionGroup="oval-def:state">
-    <xsd:annotation>
-      <xsd:documentation>The device_access_state element defines the accessibility information.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:complexType>
-      <xsd:complexContent>
-        <xsd:extension base="oval-def:StateType">
-          <xsd:sequence>
-            <xsd:element name="screen_lock_timeout" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
-              <xsd:annotation>
-                <xsd:documentation>The current policy for the highest screen lock timeout the user is allowed to specify. (The user may still specify lower values in the device settings.)</xsd:documentation>
-              </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="keyguard_disabled_features" type="android-def:EntityStateKeyguardDisabledFeaturesType" minOccurs="0" maxOccurs="1">
-              <xsd:annotation>
-                <xsd:documentation>The current policy for lockscreen widgets as retrieved by DevicePolicyManager.getKeyguardDisabledFeatures. May be set to one of KEYGUARD_DISABLE_FEATURES_ALL, KEYGUARD_DISABLED_FEATURES_NONE, KEYGUARD_DISABLE_SECURE_CAMERA, or KEYGUARD_DISABLE_WIDGETS_ALL. Only available in Android 4.2 and up.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:element>
-          </xsd:sequence>
-        </xsd:extension>
-      </xsd:complexContent>
-    </xsd:complexType>
-  </xsd:element>
-  <!-- =============================================================================== -->
   <!-- =============================== DEVICE SETTINGS TEST  ======================== -->
   <!-- =============================================================================== -->
   <xsd:element name="device_settings_test" substitutionGroup="oval-def:test">
@@ -453,7 +379,7 @@
           <oval:test>device_settings_test</oval:test>
           <oval:object>device_settings_object</oval:object>
           <oval:state>device_settings_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">device_settings_item</oval:item>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-android-system-characteristics">device_settings_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
@@ -531,16 +457,6 @@
                 <xsd:documentation>True if USB mass storage is enabled on the device, otherwise false.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
-            <xsd:element name="selinux_enabled" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
-              <xsd:annotation>
-                <xsd:documentation>True if SELinux is enabled on the device, otherwise false.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="selinux_enforcing" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
-              <xsd:annotation>
-                <xsd:documentation>True if SELinux is in enforcing mode, otherwise false.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:element>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -557,7 +473,7 @@
           <oval:test>encryption_test</oval:test>
           <oval:object>encryption_object</oval:object>
           <oval:state>encryption_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">encryption_item</oval:item>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-android-system-characteristics">encryption_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
@@ -616,80 +532,6 @@
     </xsd:complexType>
   </xsd:element>
   <!-- =============================================================================== -->
-  <!-- ===============================  EXTERNAL STORAGE TEST  ======================= -->
-  <!-- =============================================================================== -->
-  <xsd:element name="external_storage_test" substitutionGroup="oval-def:test">
-    <xsd:annotation>
-      <xsd:documentation>The location_service_test is used to check the status of location based services. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a location_service_object and the optional state element specifies the data to check.</xsd:documentation>
-      <xsd:appinfo>
-        <oval:element_mapping>
-          <oval:test>external_storage_test</oval:test>
-          <oval:object>external_storage_object</oval:object>
-          <oval:state>external_storage_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">external_storage_item</oval:item>
-        </oval:element_mapping>
-      </xsd:appinfo>
-      <xsd:appinfo>
-        <sch:pattern id="android-def_external_storage_test">
-          <sch:rule context="android-def:external_storage_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:external_storage_object/@id"><sch:value-of select="../@id"/> - the object child element of an external_storage_test must reference an external_storage_object</sch:assert>
-          </sch:rule>
-          <sch:rule context="android-def:external_storage_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:external_storage_state/@id"><sch:value-of select="../@id"/> - the state child element of an external_storage_test must reference an external_storage_state</sch:assert>
-          </sch:rule>
-        </sch:pattern>
-      </xsd:appinfo>
-    </xsd:annotation>
-    <xsd:complexType>
-      <xsd:complexContent>
-        <xsd:extension base="oval-def:TestType">
-          <xsd:sequence>
-            <xsd:element name="object" type="oval-def:ObjectRefType"/>
-            <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
-          </xsd:sequence>
-        </xsd:extension>
-      </xsd:complexContent>
-    </xsd:complexType>
-  </xsd:element>
-  <xsd:element name="external_storage_object" substitutionGroup="oval-def:object">
-    <xsd:annotation>
-      <xsd:documentation>The external_storage_object element is used by an external storage test to define those objects to evaluated based on a specified state. Any OVAL Test written to check external storage status will reference the same external_storage_object which is basically an empty object element.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:complexType>
-      <xsd:complexContent>
-        <xsd:extension base="oval-def:ObjectType"/>
-      </xsd:complexContent>
-    </xsd:complexType>
-  </xsd:element>
-  <xsd:element name="external_storage_state" substitutionGroup="oval-def:state">
-    <xsd:annotation>
-      <xsd:documentation>The external_storage_state element defines the external storage status.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:complexType>
-      <xsd:complexContent>
-        <xsd:extension base="oval-def:StateType">
-          <xsd:sequence>
-            <xsd:element name="external_storage_state" type="android-def:EntityStateExternalStorageType" minOccurs="0" maxOccurs="1">
-              <xsd:annotation>
-                <xsd:documentation>State of the external storage.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="external_storage_removable" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
-              <xsd:annotation>
-                <xsd:documentation>True if the external storage is physically removable</xsd:documentation>
-              </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="path" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
-              <xsd:annotation>
-                <xsd:documentation>The mount path</xsd:documentation>
-              </xsd:annotation>
-            </xsd:element>
-          </xsd:sequence>
-        </xsd:extension>
-      </xsd:complexContent>
-    </xsd:complexType>
-  </xsd:element>
-  <!-- =============================================================================== -->
   <!-- ===============================  LOCATION SERVICE TEST  ======================= -->
   <!-- =============================================================================== -->
   <xsd:element name="location_service_test" substitutionGroup="oval-def:test">
@@ -700,7 +542,7 @@
           <oval:test>location_service_test</oval:test>
           <oval:object>location_service_object</oval:object>
           <oval:state>location_service_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">location_service_item</oval:item>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-android-system-characteristics">location_service_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
@@ -769,7 +611,7 @@
           <oval:test>network_test</oval:test>
           <oval:object>network_object</oval:object>
           <oval:state>network_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">network_item</oval:item>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-android-system-characteristics">network_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
@@ -814,22 +656,12 @@
           <xsd:sequence>
             <xsd:element name="airplane_mode" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>True if airplane mode is enabled, otherwise false</xsd:documentation>
+                <xsd:documentation>True if airplane mode is enabled on the device.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="nfc_enabled" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>True if NFC is enabled on the device, otherwise false.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="tether_supported" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
-              <xsd:annotation>
-                <xsd:documentation>True if tethering is supported, otherwise false.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="tether_active" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
-              <xsd:annotation>
-                <xsd:documentation>True if device is currently tethering, otherwise false.</xsd:documentation>
+                <xsd:documentation>True if NFC is enabled on the device.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>
@@ -842,13 +674,13 @@
   <!-- =============================================================================== -->
   <xsd:element name="password_test" substitutionGroup="oval-def:test">
     <xsd:annotation>
-      <xsd:documentation>The password test is used to check specific policy associated with passwords. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a password_object and the optional state element specifies the metadata to check.</xsd:documentation>
+      <xsd:documentation>The password test is used to check specific policy associated with passwords and the device screen lock. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a password_object and the optional state element specifies the metadata to check.</xsd:documentation>
       <xsd:appinfo>
         <oval:element_mapping>
           <oval:test>password_test</oval:test>
           <oval:object>password_object</oval:object>
           <oval:state>password_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">password_item</oval:item>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-android-system-characteristics">password_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
@@ -885,7 +717,7 @@
   </xsd:element>
   <xsd:element name="password_state" substitutionGroup="oval-def:state">
     <xsd:annotation>
-      <xsd:documentation>The password_state element specifies the various policies associated with passwords. A password test will reference a specific instance of this state that defines the exact settings that need to be evaluated.</xsd:documentation>
+      <xsd:documentation>The password_state element specifies the various policies associated with passwords and the device screen lock. A password test will reference a specific instance of this state that defines the exact settings that need to be evaluated.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
@@ -908,7 +740,7 @@
             </xsd:element>
             <xsd:element name="password_min_length" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Minimum length characters password must have.</xsd:documentation>
+                <xsd:documentation>Minimum length of characters password must have.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="password_min_letters" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
@@ -941,11 +773,6 @@
                 <xsd:documentation>Minimum number of upper case letters password must have.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
-            <xsd:element name="password_max_repeated_characters" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
-              <xsd:annotation>
-                <xsd:documentation>Maximum number of repeated characters allowed by policy. NOTE: This policy is not currently supported by stock Android so this item will likely not be populated in many cases. We put this in here to support any Android devices with policies extended by the OEM or for future use.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:element>
             <xsd:element name="password_expiration_timeout" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
                 <xsd:documentation>Gets the current password expiration timeout policy, in milliseconds. Zero means there is no policy in place.</xsd:documentation>
@@ -966,6 +793,16 @@
                 <xsd:documentation>The number of times the user has failed at entering a password since the last successful password entry.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
+            <xsd:element name="screen_lock_timeout" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>The current policy for the highest screen lock timeout the user is allowed to specify. (The user may still specify lower values in the device settings.)</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="keyguard_disabled_features" type="android-def:EntityStateKeyguardDisabledFeaturesType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>The current policy for lockscreen widgets as retrieved by DevicePolicyManager.getKeyguardDisabledFeatures. May be set to one of KEYGUARD_DISABLE_FEATURES_ALL, KEYGUARD_DISABLED_FEATURES_NONE, KEYGUARD_DISABLE_SECURE_CAMERA, or KEYGUARD_DISABLE_WIDGETS_ALL. Only available in Android 4.2 and up.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
           </xsd:sequence>
         </xsd:extension>
       </xsd:complexContent>
@@ -982,7 +819,7 @@
           <oval:test>system_details_test</oval:test>
           <oval:object>system_details_object</oval:object>
           <oval:state>system_details_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">system_details_item</oval:item>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-android-system-characteristics">system_details_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
@@ -1090,13 +927,13 @@
   <!-- =============================================================================== -->
   <xsd:element name="wifi_test" substitutionGroup="oval-def:test">
     <xsd:annotation>
-      <xsd:documentation>The wifi_test is used to check the status of general WIFI settings on the device. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a wifi_object and the optional state element specifies the data to check.</xsd:documentation>
+      <xsd:documentation>The wifi_test is used to check the status of general Wi-Fi settings on the device. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a wifi_object and the optional state element specifies the data to check.</xsd:documentation>
       <xsd:appinfo>
         <oval:element_mapping>
           <oval:test>wifi_test</oval:test>
           <oval:object>wifi_object</oval:object>
           <oval:state>wifi_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">wifi_item</oval:item>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-android-system-characteristics">wifi_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
@@ -1141,12 +978,12 @@
           <xsd:sequence>
             <xsd:element name="wifi_status" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Is WIFI enabled.</xsd:documentation>
+                <xsd:documentation>True if Wi-Fi is currently enabled on the device.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="network_availability_notification" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>A boolean value indicating WIFI network availability notification setting.</xsd:documentation>
+                <xsd:documentation>True if the Wi-Fi network availability notification setting is currently enabled on the device.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>
@@ -1157,24 +994,24 @@
   <!-- =============================================================================== -->
   <!-- =============================== WIFI SECURITY TEST  =========================== -->
   <!-- =============================================================================== -->
-  <xsd:element name="wifi_security_test" substitutionGroup="oval-def:test">
+  <xsd:element name="wifi_network_test" substitutionGroup="oval-def:test">
     <xsd:annotation>
-      <xsd:documentation>The wifi_security_test is used to check the status of general WIFI security settings on the device. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a wifi_security_object and the optional state element specifies the data to check.</xsd:documentation>
+      <xsd:documentation>The wifi_network_test is used to check information about the configured Wi-Fi networks on the device. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a wifi_network_object and the optional state element specifies the data to check.</xsd:documentation>
       <xsd:appinfo>
         <oval:element_mapping>
-          <oval:test>wifi_security_test</oval:test>
-          <oval:object>wifi_security_object</oval:object>
-          <oval:state>wifi_security_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">wifi_security_item</oval:item>
+          <oval:test>wifi_network_test</oval:test>
+          <oval:object>wifi_network_object</oval:object>
+          <oval:state>wifi_network_state</oval:state>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-android-system-characteristics">wifi_network_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
-        <sch:pattern id="android-def_wifi_security_test">
-          <sch:rule context="android-def:wifi_security_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:wifi_security_object/@id"><sch:value-of select="../@id"/> - the object child element of an wifi_security_test must reference an wifi_security_object</sch:assert>
+        <sch:pattern id="android-def_wifi_network_test">
+          <sch:rule context="android-def:wifi_network_test/android-def:object">
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:wifi_network_object/@id"><sch:value-of select="../@id"/> - the object child element of an wifi_network_test must reference an wifi_network_object</sch:assert>
           </sch:rule>
-          <sch:rule context="android-def:wifi_security_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:wifi_security_state/@id"><sch:value-of select="../@id"/> - the state child element of an wifi_security_test must reference an wifi_security_state</sch:assert>
+          <sch:rule context="android-def:wifi_network_test/android-def:state">
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:wifi_network_state/@id"><sch:value-of select="../@id"/> - the state child element of an wifi_network_test must reference an wifi_network_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -1190,19 +1027,19 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="wifi_security_object" substitutionGroup="oval-def:object">
+  <xsd:element name="wifi_network_object" substitutionGroup="oval-def:object">
     <xsd:annotation>
-      <xsd:documentation>The wifi_security_object element is used by a wifi_security_test to define the SSID of the WIFI to verify security settings. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information.</xsd:documentation>
+      <xsd:documentation>The wifi_network_object element is used by a wifi_network_test to define the SSID of the Wi-Fi to verify security settings. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information.</xsd:documentation>
       <xsd:appinfo>
-        <sch:pattern id="android-def_wifi_security_object_verify_filter_state">
-          <sch:rule context="android-def:wifi_security_object//oval-def:filter">
-            <sch:let name="parent_object" value="ancestor::android-def:wifi_security_object"/>
+        <sch:pattern id="android-def_wifi_network_object_verify_filter_state">
+          <sch:rule context="android-def:wifi_network_object//oval-def:filter">
+            <sch:let name="parent_object" value="ancestor::android-def:wifi_network_object"/>
             <sch:let name="parent_object_id" value="$parent_object/@id"/>
             <sch:let name="state_ref" value="."/>
             <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
             <sch:let name="state_name" value="local-name($reffed_state)"/>
             <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
-            <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#android') and ($state_name='wifi_security_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+            <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/x-android-definitions') and ($state_name='wifi_network_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -1227,9 +1064,9 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="wifi_security_state" substitutionGroup="oval-def:state">
+  <xsd:element name="wifi_network_state" substitutionGroup="oval-def:state">
     <xsd:annotation>
-      <xsd:documentation>The wifi_security_state element defines the wifi security settings status.</xsd:documentation>
+      <xsd:documentation>The wifi_network_state element defines the Wi-Fi network settings status.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
@@ -1306,7 +1143,7 @@
           <oval:test>telephony_test</oval:test>
           <oval:object>telephony_object</oval:object>
           <oval:state>telephony_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">telephony_item</oval:item>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-android-system-characteristics">telephony_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
@@ -1708,60 +1545,6 @@
         <xsd:enumeration value="DISABLED">
           <xsd:annotation>
             <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
-          </xsd:annotation>
-        </xsd:enumeration>
-      </xsd:restriction>
-    </xsd:simpleContent>
-  </xsd:complexType>
-  <xsd:complexType name="EntityStateExternalStorageType">
-    <xsd:annotation>
-      <xsd:documentation>The EntityStateExternalStorageType complex type restricts a string value to a specific set of values.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:simpleContent>
-      <xsd:restriction base="oval-def:EntityStateStringType">
-        <xsd:enumeration value="MEDIA_BAD_REMOVAL">
-          <xsd:annotation>
-            <xsd:documentation>The media was removed before it was unmounted.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:enumeration>
-        <xsd:enumeration value="MEDIA_CHECKING">
-          <xsd:annotation>
-            <xsd:documentation>The media is present and being disk-checked.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:enumeration>
-        <xsd:enumeration value="MEDIA_MOUNTED">
-          <xsd:annotation>
-            <xsd:documentation>The media is present and mounted at its mount point with read/write access.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:enumeration>
-        <xsd:enumeration value="MEDIA_MOUNTED_READ_ONLY">
-          <xsd:annotation>
-            <xsd:documentation>The media is present and mounted at its mount point with read only access.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:enumeration>
-        <xsd:enumeration value="MEDIA_NOFS">
-          <xsd:annotation>
-            <xsd:documentation>The media is present but is blank or is using an unsupported filesystem.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:enumeration>
-        <xsd:enumeration value="MEDIA_REMOVED">
-          <xsd:annotation>
-            <xsd:documentation>The media is not present.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:enumeration>
-        <xsd:enumeration value="MEDIA_SHARED">
-          <xsd:annotation>
-            <xsd:documentation>The media is present not mounted, and shared via USB mass storage.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:enumeration>
-        <xsd:enumeration value="MEDIA_UNMOUNTABLE">
-          <xsd:annotation>
-            <xsd:documentation>The media is present but cannot be mounted. Typically this happens if the file system on the media is corrupted.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:enumeration>
-        <xsd:enumeration value="MEDIA_UNMOUNTED">
-          <xsd:annotation>
-            <xsd:documentation>The media is present but not mounted.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
