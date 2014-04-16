@@ -1,7 +1,7 @@
 //
 //
 //****************************************************************************************//
-// Copyright (c) 2002-2013, The MITRE Corporation
+// Copyright (c) 2002-2014, The MITRE Corporation
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without modification, are
@@ -30,21 +30,15 @@
 
 package org.mitre.oval.androidsc;
 
-import java.math.BigInteger;
-
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.CollectedObjectsType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.EntityItemBoolType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.FlagEnumeration;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.ItemType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.ObjectType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.ReferenceType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.SystemDataType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.CameraItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.CameraItemDocument.CameraItem;
-
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.CameraItemDocument.CameraItem;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.admin.DevicePolicyManager;
-import android.content.Context;
+import android.os.Build;
 
+@SuppressLint("NewApi")
+@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class ICSGatherer extends HoneycombGatherer {
 	public void camera(CameraItem ci, DevicePolicyManager dpm) {
 

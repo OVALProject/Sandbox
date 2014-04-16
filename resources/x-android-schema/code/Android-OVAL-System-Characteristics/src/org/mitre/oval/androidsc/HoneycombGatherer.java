@@ -1,7 +1,7 @@
 //
 //
 //****************************************************************************************//
-// Copyright (c) 2002-2013, The MITRE Corporation
+// Copyright (c) 2002-2014, The MITRE Corporation
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without modification, are
@@ -32,18 +32,18 @@ package org.mitre.oval.androidsc;
 
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.EntityItemBoolType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.EntityItemIntType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.EntityItemStringType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.CameraItemDocument.CameraItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.DeviceSettingsItemDocument.DeviceSettingsItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EncryptionItemDocument.EncryptionItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemEncryptionStatusType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.PasswordItemDocument.PasswordItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.SystemDetailsItemDocument.SystemDetailsItem;
-
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.CameraItemDocument.CameraItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.DeviceSettingsItemDocument.DeviceSettingsItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.EncryptionItemDocument.EncryptionItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.EntityItemEncryptionStatusType;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.PasswordItemDocument.PasswordItem;
+import android.annotation.TargetApi;
 import android.app.admin.DevicePolicyManager;
 import android.content.Context;
+import android.os.Build;
 import android.provider.Settings;
 
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class HoneycombGatherer extends Gatherer {
 	void deviceSettings(DeviceSettingsItem dsi, Context c)
 	{
