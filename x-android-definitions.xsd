@@ -740,37 +740,37 @@
             </xsd:element>
             <xsd:element name="password_min_length" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Minimum length of characters password must have.</xsd:documentation>
+                <xsd:documentation>Minimum length of characters password must have. This constraint is only imposed if the password quality is one of PASSWORD_QUALITY_NUMERIC, PASSWORD_QUALITY_ALPHABETIC, PASSWORD_QUALITY_ALPHANUMERIC, or PASSWORD_QUALITY_COMPLEX.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="password_min_letters" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Minimum number of letters password must have.</xsd:documentation>
+                <xsd:documentation>Minimum number of letters password must have. This constraint is only imposed if the password quality is PASSWORD_QUALITY_COMPLEX.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="password_min_lower_case_letters" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Minimum number of lower case letters password must have.</xsd:documentation>
+                <xsd:documentation>Minimum number of lower case letters password must have. This constraint is only imposed if the password quality is PASSWORD_QUALITY_COMPLEX.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="password_min_non_letters" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Minimum number of non-letter characters password must have.</xsd:documentation>
+                <xsd:documentation>Minimum number of non-letter characters password must have. This constraint is only imposed if the password quality is PASSWORD_QUALITY_COMPLEX.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="password_min_numeric" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Minimum number of numeric characters password must have.</xsd:documentation>
+                <xsd:documentation>Minimum number of numeric characters password must have. This constraint is only imposed if the password quality is PASSWORD_QUALITY_COMPLEX.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="password_min_symbols" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Minimum number of symbol characters password must have.</xsd:documentation>
+                <xsd:documentation>Minimum number of symbol characters password must have. This constraint is only imposed if the password quality is PASSWORD_QUALITY_COMPLEX.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="password_min_upper_case_letters" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Minimum number of upper case letters password must have.</xsd:documentation>
+                <xsd:documentation>Minimum number of upper case letters password must have. This constraint is only imposed if the password quality is PASSWORD_QUALITY_COMPLEX.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="password_expiration_timeout" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
