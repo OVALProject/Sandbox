@@ -147,8 +147,7 @@ public class GenerateAndroidSC {
 				hex.append(separator);
 		}
 		String out = hex.toString();
-		return out.toString().substring(0, out.length() - 1);
-
+		return out;
 	}
 
 	static void generate(Context c, String inputFile, String outputFile) {
