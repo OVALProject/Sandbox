@@ -96,7 +96,7 @@
     <encryption_object id="oval:android.test:obj:6001" version="1" comment="encryption" xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" />
     <app_manager_object id="oval:android.test:obj:8001" version="1" comment="app_manager" xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions">
       <package_name operation="pattern match">^.*$</package_name>
-      <signing_certificates operation="pattern match">^.*$</signing_certificates>
+      <signing_certificate datatype="binary" operation="not equal">FFFFFF</signing_certificate> 
     </app_manager_object>
     <location_service_object id="oval:android.test:obj:9001" version="1" comment="location" xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" />
     <wifi_object id="oval:android.test:obj:10001" version="1" comment="wifi" xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" />
@@ -106,8 +106,8 @@
     <bluetooth_object id="oval:android.test:obj:12001" version="1" comment="bluetooth" xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" />
     <device_settings_object id="oval:android.test:obj:13001" version="1" comment="device settings" xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" />
     <network_object id="oval:android.test:obj:14001" version="1" comment="network object" xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" />
-    <certificate_object id="oval:android:testobj:15001" version="1" comment="certificate_object" xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" />
-    <telephony_object id="oval:android:testobj:16001" version="1" comment="telephony_object" xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" />
+    <certificate_object id="oval:android.test:obj:15001" version="1" comment="certificate_object" xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" />
+    <telephony_object id="oval:android.test:obj:16001" version="1" comment="telephony_object" xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" />
   </objects>
   <states>
     <system_details_state id="oval:android.test:ste:3003" version="1" comment="This state represents a android system_details_state item that match the regular expression '.*'." xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions">
