@@ -2,11 +2,11 @@
 <classpath>
 	<classpathentry exported="true" kind="lib" path="xbean22.jar"/>
 	<classpathentry exported="true" kind="lib" path="jsr173-2.jar"/>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-	<classpathentry exported="true" kind="lib" path="androidsc.jar"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry exported="true" kind="lib" path="androidsc.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

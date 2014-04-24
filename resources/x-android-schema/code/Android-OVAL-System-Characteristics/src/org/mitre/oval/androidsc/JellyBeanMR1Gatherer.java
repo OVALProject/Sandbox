@@ -1,7 +1,7 @@
 //
 //
 //****************************************************************************************//
-// Copyright (c) 2002-2013, The MITRE Corporation
+// Copyright (c) 2002-2014, The MITRE Corporation
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without modification, are
@@ -30,13 +30,15 @@
 
 package org.mitre.oval.androidsc;
 
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.DeviceAccessItemDocument.DeviceAccessItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemKeyguardDisabledFeaturesType;
-
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.PasswordItemDocument.PasswordItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.EntityItemKeyguardDisabledFeaturesType;
+import android.annotation.TargetApi;
 import android.app.admin.DevicePolicyManager;
+import android.os.Build;
 
+@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 public class JellyBeanMR1Gatherer extends ICSGatherer {
-	void device_access(DeviceAccessItem dai, DevicePolicyManager dpm) {
+	void password(PasswordItem dai, DevicePolicyManager dpm) {
 		int keyguard = dpm.getKeyguardDisabledFeatures(null);
 		EntityItemKeyguardDisabledFeaturesType ei1 = EntityItemKeyguardDisabledFeaturesType.Factory.newInstance();
 		if(keyguard == DevicePolicyManager.KEYGUARD_DISABLE_FEATURES_ALL) {

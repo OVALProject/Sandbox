@@ -1,7 +1,7 @@
 //
 //
 //****************************************************************************************//
-// Copyright (c) 2002-2013, The MITRE Corporation
+// Copyright (c) 2002-2014, The MITRE Corporation
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without modification, are
@@ -36,8 +36,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -45,7 +43,6 @@ import java.net.SocketException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.BitSet;
@@ -53,9 +50,6 @@ import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.List;
 
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
 import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -68,7 +62,6 @@ import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.EntityItemBinaryType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.EntityItemBoolType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.EntityItemIntType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.EntityItemStringType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.EntityItemVersionType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.FlagEnumeration;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.InterfaceType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.InterfacesType;
@@ -79,45 +72,40 @@ import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.ReferenceType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.SystemDataType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.SystemInfoType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.OvalSystemCharacteristicsDocument.OvalSystemCharacteristics;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.AppManagerItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.AppManagerItemDocument.AppManagerItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.BluetoothItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.BluetoothItemDocument.BluetoothItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.CameraItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.CameraItemDocument.CameraItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.CertificateItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.CertificateItemDocument.CertificateItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.DeviceAccessItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.DeviceAccessItemDocument.DeviceAccessItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.DeviceSettingsItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.DeviceSettingsItemDocument.DeviceSettingsItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EncryptionItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EncryptionItemDocument.EncryptionItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemExternalStorageType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemNetworkType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemPasswordQualityType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemWifiAuthAlgorithmType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemWifiCurrentStatusType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemWifiGroupCipherType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemWifiKeyMgmtType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemWifiPairwiseCipherType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.EntityItemWifiProtocolType;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.ExternalStorageItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.ExternalStorageItemDocument.ExternalStorageItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.LocationServiceItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.LocationServiceItemDocument.LocationServiceItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.NetworkItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.NetworkItemDocument.NetworkItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.PasswordItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.PasswordItemDocument.PasswordItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.SystemDetailsItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.SystemDetailsItemDocument.SystemDetailsItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.TelephonyItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.TelephonyItemDocument.TelephonyItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.WifiItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.WifiItemDocument.WifiItem;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.WifiSecurityItemDocument;
-import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5Android.WifiSecurityItemDocument.WifiSecurityItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.AppManagerItemDocument;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.AppManagerItemDocument.AppManagerItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.BluetoothItemDocument;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.BluetoothItemDocument.BluetoothItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.CameraItemDocument;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.CameraItemDocument.CameraItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.CertificateItemDocument;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.CertificateItemDocument.CertificateItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.DeviceSettingsItemDocument;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.DeviceSettingsItemDocument.DeviceSettingsItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.EncryptionItemDocument;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.EncryptionItemDocument.EncryptionItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.EntityItemNetworkType;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.EntityItemPasswordQualityType;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.EntityItemWifiAuthAlgorithmType;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.EntityItemWifiCurrentStatusType;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.EntityItemWifiGroupCipherType;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.EntityItemWifiKeyMgmtType;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.EntityItemWifiPairwiseCipherType;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.EntityItemWifiProtocolType;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.LocationServiceItemDocument;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.LocationServiceItemDocument.LocationServiceItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.NetworkItemDocument;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.NetworkItemDocument.NetworkItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.PasswordItemDocument;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.PasswordItemDocument.PasswordItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.SystemDetailsItemDocument;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.SystemDetailsItemDocument.SystemDetailsItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.TelephonyItemDocument;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.TelephonyItemDocument.TelephonyItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.WifiItemDocument;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.WifiItemDocument.WifiItem;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.WifiNetworkItemDocument;
+import org.mitre.oval.xmlSchema.xAndroidSystemCharacteristics.WifiNetworkItemDocument.WifiNetworkItem;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -133,13 +121,11 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.location.LocationManager;
-import android.net.ConnectivityManager;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.nfc.NfcAdapter;
 import android.os.Build;
 import android.os.Environment;
-import android.os.storage.StorageManager;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -161,8 +147,11 @@ public class GenerateAndroidSC {
 				hex.append(separator);
 		}
 		String out = hex.toString();
-		return out.toString().substring(0, out.length() - 1);
-
+		if(separator == null) {
+			return out;
+		} else {
+			return out.toString().substring(0, out.length() - 1);
+		}
 	}
 
 	static void generate(Context c, String inputFile, String outputFile) {
@@ -296,18 +285,13 @@ public class GenerateAndroidSC {
 											current_item_ref, c);
 									current_item_ref++;
 								} else if (objectName
-										.equals("device_access_object")) {
-									generateDeviceAccessItem(co, sd, id,
-											current_item_ref, c);
-									current_item_ref++;
-								} else if (objectName
 										.equals("app_manager_object")) {
 									// Temporarily for now: Match all apps
 									current_item_ref = generateAppManagerItems(
 											co, sd, id, current_item_ref, c);
 								} else if (objectName
-										.equals("wifi_security_object")) {
-									current_item_ref = generateWifiSecurityItems(
+										.equals("wifi_network_object")) {
+									current_item_ref = generateWifiNetworkItems(
 											co, sd, id, current_item_ref, c);
 								} else if (objectName.equals("bluetooth_object")) {
 									generateBluetoothItem(co, sd, id, current_item_ref, c);
@@ -327,8 +311,6 @@ public class GenerateAndroidSC {
 								} else if (objectName.equals("certificate_object")) {
 									generateCertificateItem(co, sd, id, current_item_ref, c);
 									current_item_ref++;
-								} else if (objectName.equals("external_storage_object")) {
-									current_item_ref = generateExternalStorageItem(co, sd, id, current_item_ref, c);
 								} else if (objectName.equals("telephony_object")) {
 									generateTelephonyItem(co, sd, id, current_item_ref, c);
 									current_item_ref++;
@@ -358,7 +340,7 @@ public class GenerateAndroidSC {
 							"schemaLocation"),
 					"http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd "
 							+ "http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd "
-							+ "http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android x-android-system-characteristics.xsd");
+							+ "http://oval.mitre.org/XMLSchema/x-android-system-characteristics x-android-system-characteristics.xsd");
 		}
 
 		Log.d("AndroidSC", "SchemaLocation set");
@@ -594,6 +576,11 @@ public class GenerateAndroidSC {
 		//EntityItemIntType ei14 = EntityItemIntType.Factory.newInstance();
 		//ei14.setStringValue(String.valueOf(dpm.getCurrentFailedPasswordAttempts()));
 		//pi.setCurrentFailedPasswordAttempts(ei14); // API Level 8
+
+		EntityItemIntType ei13 = EntityItemIntType.Factory.newInstance();
+		ei13.setStringValue(String.valueOf(dpm.getMaximumTimeToLock(null)));
+		ei13.setDatatype("int");
+		pi.setScreenLockTimeout(ei1);
 		
 		int sdk = Build.VERSION.SDK_INT;
 		if(sdk >= 11) {
@@ -601,6 +588,12 @@ public class GenerateAndroidSC {
 			Gatherer g = new HoneycombGatherer();
 			g.password(pi, dpm);
 		}
+
+		if(sdk >= 17) {
+			Gatherer g = new JellyBeanMR1Gatherer();
+			g.password(pi, dpm);
+		}
+		
 	}
 
 	public static void generateBluetoothItem(CollectedObjectsType co,
@@ -628,16 +621,9 @@ public class GenerateAndroidSC {
 		int bluetoothOn = Settings.System.getInt(c.getContentResolver(),
 				Settings.System.BLUETOOTH_ON, 0);
 
-		//int bluetoothDiscover = Settings.System.getInt(c.getContentResolver(),
-			//	Settings.System.BLUETOOTH_DISCOVERABILITY, 0);
-
 		BluetoothAdapter bAdapter = BluetoothAdapter.getDefaultAdapter();
 		int scanMode = bAdapter.getScanMode();
-		
-		String bluetoothTimeout = Settings.System.getString(c.getContentResolver(),
-				Settings.System.BLUETOOTH_DISCOVERABILITY_TIMEOUT);
 	
-		
 		// Android doesn't appear to populate BLUETOOTH_DISCOVERABILITY and BLUETOOTH_DISCOVERABILITY_TIMEOUT
 		//
 		// Reported to Google here: https://code.google.com/p/android/issues/detail?id=56589
@@ -663,28 +649,6 @@ public class GenerateAndroidSC {
 		}
 		ei2.setDatatype("boolean");
 		bi.setDiscoverable(ei2);
-				
-		if(bluetoothTimeout != null) {
-			EntityItemIntType ei3 = EntityItemIntType.Factory.newInstance();
-			ei3.setStringValue(bluetoothTimeout);
-			ei3.setDatatype("int");
-			bi.setDiscoverabilityTimeout(ei3);
-		} else { // Attempt to obtain through reflection on BluetoothAdapter
-			try {
-				Method[] baMethods = bAdapter.getClass().getDeclaredMethods();
-				for(Method method : baMethods) {
-					if(method.getName().equals("getDiscoverableTimeout")) {
-						Integer dTimeout = (Integer) method.invoke(bAdapter);
-						if(dTimeout != null && dTimeout.intValue() >= 0) {
-							EntityItemIntType ei3 = EntityItemIntType.Factory.newInstance();
-							ei3.setStringValue(dTimeout.toString());
-							ei3.setDatatype("int");
-							bi.setDiscoverabilityTimeout(ei3);
-						}
-					}
-				}
-			} catch (Exception e) {}
-		}
 	}
 
 
@@ -717,44 +681,6 @@ public class GenerateAndroidSC {
 			Gatherer g = new HoneycombGatherer();
 			g.encryption(ei, dpm);
 		}
-	}
-
-	public static void generateDeviceAccessItem(CollectedObjectsType co,
-			SystemDataType sd, String id, int item_ref, Context c) {
-		// Doesn't do anything yet - not sure how to gather timeout value
-
-		ObjectType ot = co.addNewObject();
-		ot.setComment("Retrieve device_access_item");
-		ot.setFlag(FlagEnumeration.COMPLETE); // Fix
-		ot.setId(id);
-		ot.setVersion(BigInteger.ONE); // Fix
-
-		ReferenceType rt = ot.addNewReference();
-		rt.setItemRef(BigInteger.valueOf(item_ref));
-
-		ItemType it2 = sd.addNewItem();
-
-		DeviceAccessItem dai = (DeviceAccessItem) it2.substitute(
-				DeviceAccessItemDocument.type.getDocumentElementName(),
-				DeviceAccessItem.type);
-		dai.setId(BigInteger.valueOf(item_ref)); // Needs to match setItemRef
-													// value above
-		
-		DevicePolicyManager dpm = (DevicePolicyManager) c.getSystemService(Context.DEVICE_POLICY_SERVICE); 
-		if (dpm == null)
-			return;
-		 
-		EntityItemIntType ei1 = EntityItemIntType.Factory.newInstance();
-		ei1.setStringValue(String.valueOf(dpm.getMaximumTimeToLock(null)));
-		ei1.setDatatype("int");
-		dai.setScreenLockTimeout(ei1);
-		
-		int sdk = Build.VERSION.SDK_INT;
-		if(sdk >= 17) {
-			Gatherer g = new JellyBeanMR1Gatherer();
-			g.device_access(dai, dpm);
-		}
-
 	}
 
 	// LocationServiceItem
@@ -840,158 +766,8 @@ public class GenerateAndroidSC {
 			nfcBool.setStringValue("false");
 		}
 		nfcBool.setDatatype("boolean");
-		ni.setNfcEnabled(nfcBool);
-		
-		EntityItemBoolType tetherBool = EntityItemBoolType.Factory.newInstance();
-		EntityItemBoolType tetherActiveBool = EntityItemBoolType.Factory.newInstance();
-		
-		ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
-		
-		try {
-			Method[] cmMethods = cm.getClass().getDeclaredMethods();
-			for(Method method : cmMethods) {
-				if(method.getName().equals("isTetheringSupported")) {
-					boolean isTetherSupt = (Boolean) method.invoke(cm);
-					if(isTetherSupt == true) {
-						tetherBool.setStringValue("true");
-						tetherBool.setDatatype("boolean");
-						ni.setTetherSupported(tetherBool);
-					} if(isTetherSupt == false) {
-						tetherBool.setStringValue("false");
-						tetherBool.setDatatype("boolean");
-						ni.setTetherSupported(tetherBool);
-					}
-				}
-				if(method.getName().equals("getTetheredIfaces")) {
-					String[] tethered = (String[]) method.invoke(cm);
-					if(tethered != null && tethered.length == 0) {
-						tetherActiveBool.setStringValue("false");
-						tetherActiveBool.setDatatype("boolean");
-						ni.setTetherActive(tetherActiveBool);
-					} else if (tethered != null && tethered.length > 0) {
-						tetherActiveBool.setStringValue("true");
-						tetherActiveBool.setDatatype("boolean");
-						ni.setTetherActive(tetherActiveBool);
-					}
-				}
-			}
-			
-		} catch (Exception e) {}
-		
-		
-		
+		ni.setNfcEnabled(nfcBool);	
 	}
-	
-	public static int generateExternalStorageItem(CollectedObjectsType co,
-			SystemDataType sd, String id, int item_ref, Context c) {
-		ObjectType ot = co.addNewObject();
-		ot.setComment("Retrieve external_storage_item");
-		ot.setFlag(FlagEnumeration.COMPLETE); // Fix
-		ot.setId(id);
-		ot.setVersion(BigInteger.ONE); // Fix
-
-		StorageManager sm = (StorageManager) c.getSystemService(Context.STORAGE_SERVICE);
-		
-		// need to call getVolumeList on sm, which returns StorageVolume[], but
-		// we don't have either available to us..
-		try {
-			
-			Method[] smMethods = sm.getClass().getDeclaredMethods();
-			Method getVolumeState = null;
-			
-			for(Method method3: smMethods)
-				if(method3.getName().equals("getVolumeState")) {
-					getVolumeState = method3;
-				}
-			
-			for(Method method: smMethods)
-				if(method.getName().equals("getVolumeList")) {
-					Object[] storageVolumes = (Object[]) method.invoke(sm);
-				
-					for(Object storageVolume : storageVolumes) {
-						ReferenceType rt = ot.addNewReference();
-						rt.setItemRef(BigInteger.valueOf(item_ref));
-						ItemType it2 = sd.addNewItem();
-						ExternalStorageItem esi = (ExternalStorageItem) it2.substitute(
-								ExternalStorageItemDocument.type.getDocumentElementName(), ExternalStorageItem.type);
-						esi.setId(BigInteger.valueOf(item_ref));
-						item_ref++;
-						
-						Method[] svMethods = storageVolume.getClass().getDeclaredMethods();
-						for(Method method2: svMethods) {
-							if(method2.getName().equals("isRemovable")) {
-								boolean removable = (Boolean) method2.invoke(storageVolume);
-								if(removable == true) {
-									EntityItemBoolType esi2 = EntityItemBoolType.Factory.newInstance();
-									esi2.setStringValue("true");
-									esi2.setDatatype("boolean");
-									esi.setExternalStorageRemovable(esi2);
-								} else if (removable == false) {
-									EntityItemBoolType esi2 = EntityItemBoolType.Factory.newInstance();
-									esi2.setStringValue("false");
-									esi2.setDatatype("boolean");
-									esi.setExternalStorageRemovable(esi2);
-								}
-							}
-							if(method2.getName().equals("getPath")) {
-								String path = (String) method2.invoke(storageVolume);
-								EntityItemStringType path2 = EntityItemStringType.Factory.newInstance();
-								path2.setStringValue(path);
-								esi.setPath(path2);
-								
-								if(getVolumeState != null) {
-									EntityItemExternalStorageType esi1 = EntityItemExternalStorageType.Factory.newInstance();
-									String storageState = (String) getVolumeState.invoke(sm, path);
-									if(storageState.equals(Environment.MEDIA_BAD_REMOVAL)) {
-										esi1.setStringValue("MEDIA_BAD_REMOVAL");
-										esi.setExternalStorageState(esi1);
-									}
-									else if(storageState.equals(Environment.MEDIA_CHECKING)) {
-										esi1.setStringValue("MEDIA_CHECKING");
-										esi.setExternalStorageState(esi1);
-									}
-									else if(storageState.equals(Environment.MEDIA_MOUNTED)) {
-										esi1.setStringValue("MEDIA_MOUNTED");
-										esi.setExternalStorageState(esi1);
-									}
-									else if(storageState.equals(Environment.MEDIA_MOUNTED_READ_ONLY)) {
-										esi1.setStringValue("MEDIA_MOUNTED_READ_ONLY");
-										esi.setExternalStorageState(esi1);
-									}
-									else if(storageState.equals(Environment.MEDIA_NOFS)) {
-										esi1.setStringValue("MEDIA_NOFS");
-										esi.setExternalStorageState(esi1);
-									}
-									else if(storageState.equals(Environment.MEDIA_REMOVED)) {
-										esi1.setStringValue("MEDIA_REMOVED");
-										esi.setExternalStorageState(esi1);
-									}
-									else if(storageState.equals(Environment.MEDIA_SHARED)) {
-										esi1.setStringValue("MEDIA_SHARED");
-										esi.setExternalStorageState(esi1);
-									}
-									else if(storageState.equals(Environment.MEDIA_UNMOUNTABLE)) {
-										esi1.setStringValue("MEDIA_UNMOUNTABLE");
-										esi.setExternalStorageState(esi1);
-									}
-									else if(storageState.equals(Environment.MEDIA_UNMOUNTED)) {
-										esi1.setStringValue("MEDIA_UNMOUNTED");
-										esi.setExternalStorageState(esi1);
-									}
-									
-								}
-							}
-						}
-					}
-					
-				}
-		} catch (Exception e) {
-			Log.d("GenerateAndroidSC", "EXTERNAL STORAGE " + e.getMessage());
-		}
-		return item_ref;
-		
-	}
-	
 	
 	public static void generateWifiItem(CollectedObjectsType co,
 			SystemDataType sd, String id, int item_ref, Context c) {
@@ -1033,11 +809,11 @@ public class GenerateAndroidSC {
 		wi.setNetworkAvailabilityNotification(ei3);
 	}
 
-	// WifiSecurityItem
-	public static int generateWifiSecurityItems(CollectedObjectsType co,
+	// WifiNetworkItem
+	public static int generateWifiNetworkItems(CollectedObjectsType co,
 			SystemDataType sd, String id, int item_ref, Context c) {
 		ObjectType ot = co.addNewObject();
-		ot.setComment("Retrieve wifi_security_item");
+		ot.setComment("Retrieve wifi_network_item");
 		ot.setFlag(FlagEnumeration.COMPLETE); // Fix
 		ot.setId(id);
 		ot.setVersion(BigInteger.ONE); // Fix
@@ -1055,9 +831,9 @@ public class GenerateAndroidSC {
 			rt.setItemRef(BigInteger.valueOf(item_ref));
 		
 			ItemType it2 = sd.addNewItem();
-			WifiSecurityItem wsi = (WifiSecurityItem) it2.substitute(
-					WifiSecurityItemDocument.type.getDocumentElementName(),
-					WifiSecurityItem.type);
+			WifiNetworkItem wsi = (WifiNetworkItem) it2.substitute(
+					WifiNetworkItemDocument.type.getDocumentElementName(),
+					WifiNetworkItem.type);
 			wsi.setId(BigInteger.valueOf(item_ref)); // Needs to match
 														// setItemRef
 														// value above
@@ -1075,8 +851,6 @@ public class GenerateAndroidSC {
 			ei2.setStringValue(wc.SSID);
 			wsi.setSsid(ei2);
 
-			EntityItemStringType ei3 = EntityItemStringType.Factory
-					.newInstance();
 			BitSet wifiauth = wc.allowedAuthAlgorithms;
 			
 			if(wifiauth.get(WifiConfiguration.AuthAlgorithm.OPEN))
@@ -1481,59 +1255,6 @@ public class GenerateAndroidSC {
 			usbMassStorage.setStringValue("false");
 		usbMassStorage.setDatatype("boolean");
 		dsi.setUsbMassStorageEnabled(usbMassStorage);
-		
-		try {
-			Class<?> c1 = Class.forName("android.os.SELinux");
-			Method[] allMethods = c1.getDeclaredMethods();
-			
-			for(Method m : allMethods) {
-				String mname = m.getName();
-				if(mname.equals("isSELinuxEnabled")) {
-					Object o = m.invoke(null, (Object[]) null);
-					EntityItemBoolType selinuxEnabled = EntityItemBoolType.Factory.newInstance();
-					selinuxEnabled.setDatatype("boolean");
-					if(((Boolean) o).booleanValue() == true)
-					{
-						selinuxEnabled.setStringValue("true");
-					} else {
-						selinuxEnabled.setStringValue("false");
-					}
-					dsi.setSelinuxEnabled(selinuxEnabled);
-				}
-				
-				// SELinux enforcement check may not always work properly, as the SELinux
-				// policies may prevent 'untrusted apps' from checking enforcement status,
-				// resulting in this always returning false, because in
-				// frameworks/base/core/jni/android_os_SELinux.cpp,
-				// isSELinuxEnforced returns true if (security_getenforce() == 1) otherwise
-				// returns false, but security_getenforce in external/libselinux/src/getenforce.c
-				// returns -1 if the enforcement status cannot be obtained.
-				if(mname.equals("isSELinuxEnforced")) {
-					Object o = m.invoke(null, (Object[]) null);
-					EntityItemBoolType selinuxEnforcing = EntityItemBoolType.Factory.newInstance();
-					selinuxEnforcing.setDatatype("boolean");
-					if(((Boolean) o).booleanValue() == true)
-					{
-						selinuxEnforcing.setStringValue("true");
-					} else {
-						selinuxEnforcing.setStringValue("false");
-					}
-					dsi.setSelinuxEnforcing(selinuxEnforcing);
-				}
-			}
-		// In the exception cases, should we assume SELinux is not present
-		// and set both values to false?
-		} catch (ClassNotFoundException e) {
-
-		} catch (IllegalArgumentException e) {
-
-		} catch (IllegalAccessException e) {
-
-		} catch (InvocationTargetException e) {
-
-		}
-		
-		
 	}		
 	
 	public static void generateTelephonyItem(CollectedObjectsType co,
