@@ -376,7 +376,7 @@
             </xsd:element>
             <xsd:element name="screen_lock_timeout" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>The current policy for the highest screen lock timeout the user is allowed to specify. (The user may still specify lower values in the device settings.)</xsd:documentation>
+                <xsd:documentation>The current policy for the highest screen lock timeout the user is allowed to specify. 0 indicates no restriction. (The user may still specify lower values in the device settings.)</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="keyguard_disabled_features" type="android-sc:EntityItemKeyguardDisabledFeaturesType" minOccurs="0" maxOccurs="1">
