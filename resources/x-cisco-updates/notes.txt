@@ -1,0 +1,20 @@
+# Cisco OVAL Proposals
+
+3/14/2014 - For review of Cisco proposals on OVAL-Developer List
+- FOR REVIEW: CISCO IOS SOFTWARE Proposal Form
+http://making-security-measurable.1364806.n2.nabble.com/FOR-REVIEW-CISCO-IOS-SOFTWARE-Proposal-Form-tt7582905.html
+- FOR REVIEW: CISCO ASA SOFTWARE OVAL SCHEMA Proposal Form
+http://making-security-measurable.1364806.n2.nabble.com/FOR-REVIEW-CISCO-ASA-SOFTWARE-OVAL-SCHEMA-Proposal-Form-tt7582907.html
+-FOR REVIEW: CISCO IOS-XE SOFTWARE OVAL SCHEMA Proposal Form
+http://making-security-measurable.1364806.n2.nabble.com/FOR-REVIEW-CISCO-IOS-XE-SOFTWARE-OVAL-SCHEMA-Proposal-Form-tt7582906.html
+
+
+10/17/2013 - FEEDBACK REQUESTED: Migrate the Cisco IOS Tests from the Sandbox to Official Release (Deadline October 31st)
+http://making-security-measurable.1364806.n2.nabble.com/FEEDBACK-REQUESTED-Migrate-the-Cisco-IOS-Tests-from-the-Sandbox-to-Official-Release-Deadline-October-tt7581328.html#a7581332
+
+
+Developer Days Slides 
+http://oval.mitre.org/community/docs/Developer_Days_2013_OVAL_Session_Slides.zip
+
+Developer Days Minutes
+http://oval.mitre.org/community/docs/Developer_Days_2013_OVAL_Session_Minutes.pdf
