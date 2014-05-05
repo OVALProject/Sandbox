@@ -1,0 +1,3 @@
+Relevant oval-developer-list Posts
+http://making-security-measurable.1364806.n2.nabble.com/Proposal-for-OVAL-5-11-systemd-test-tp7583274.html
+http://making-security-measurable.1364806.n2.nabble.com/FOR-REVIEW-systemd-tests-Proposal-Form-tp7583411.html

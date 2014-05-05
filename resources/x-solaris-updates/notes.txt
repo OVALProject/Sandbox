@@ -9,3 +9,4 @@ http://making-security-measurable.1364806.n2.nabble.com/OVAL-schema-for-Solaris-
 http://making-security-measurable.1364806.n2.nabble.com/Solaris-SMF-OVAL-Schema-tp7579742.html
 http://making-security-measurable.1364806.n2.nabble.com/Solaris-IPS-Package-Schema-in-OVAL-Sandbox-td7580502.html
 http://making-security-measurable.1364806.n2.nabble.com/Example-OVAL-for-Solaris-NDD-tp7581017.html
+http://making-security-measurable.1364806.n2.nabble.com/FOR-REVIEW-IPS-and-SMF-Updates-for-Solaris-11-tp7583263.html
