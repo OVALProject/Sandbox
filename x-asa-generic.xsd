@@ -4,6 +4,10 @@
   <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd" />
   <xsd:annotation>
     <xsd:documentation>The following is a proposal for the experimental asa-def:global_test, asa-def:line_test and asa-def:version_test that will support checking the output lines and versionsconfigurations on Cisco ASA 5500 Series Adaptive Security Appliances</xsd:documentation>
+<<<<<<< HEAD
+=======
+    <xsd:documentation>Thanks to Omar Santos and Panos Kampanakis of Cisco for providing this test.</xsd:documentation>
+>>>>>>> c635df0d10504d69535e46994a7288298af9f4ad
     <xsd:appinfo>
       <schema>Experimental Schema for Cisco ASA 5500 Series Security Appliances generic tests.</schema>
       <version>5.11</version>
@@ -193,4 +197,69 @@
                   </xsd:complexContent>
             </xsd:complexType>
       </xsd:element>
+<<<<<<< HEAD
+=======
+      <!-- =============================================================================== -->
+      <!-- =============================  LINE ITEM   ==================================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="line_item" substitutionGroup="oval-sc:item">
+            <xsd:annotation>
+                  <xsd:documentation>Stores the configuration information associated with the evaluation of a SHOW sub-command on Cisco ASA. This includes the name of ths sub-command and the corresponding config line.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-sc:ItemType">
+                              <xsd:sequence>
+                                    <xsd:element name="show_subcommand" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The name of the SHOW sub-command.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="config_line" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The value returned from by the specified SHOW sub-command.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- ================================  VERSION ITEM  =============================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="version_item" substitutionGroup="oval-sc:item">
+            <xsd:annotation>
+                  <xsd:documentation>Stores the version information held within a Cisco ASA software release. The asa_release element specifies the whole ASA version information. The asa_major_release, asa_minor_release and asa_build elements specify seperated parts of ASA software version information. For instance, if the ASA version is 8.4(2.3)49, then asa_release is 8.4(2.3)49, asa_major_release is 8.4, asa_minor_release is 2.3 and asa_build is 49. See the SHOW VERSION command within ASA for more information.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-sc:ItemType">
+                              <xsd:sequence>
+                                    <xsd:element name="asa_release" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The asa_release element specifies the whole ASA version information.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="asa_major_release" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The asa_major_release is the dotted version that starts a version string. For example the asa_release 8.4(2.3)49 has a asa_major_release of 8.4.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="asa_minor_release" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The asa_minor_release is the dotted version that starts a version string. For example the asa_release 8.4(2.3)49 has a asa_minor_release of 2.3.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="asa_build" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The asa_build is an integer. For example the asa_release 8.4(2.3)49 has a asa_build of 49.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+>>>>>>> c635df0d10504d69535e46994a7288298af9f4ad
 </xsd:schema>

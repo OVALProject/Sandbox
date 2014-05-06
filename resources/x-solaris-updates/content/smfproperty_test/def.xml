@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris solaris-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-solaris-smfproperty x-solaris-smfproperty.xsd" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+    <generator>
+        <oval:product_name>The OVAL Sandbox</oval:product_name>
+        <oval:schema_version>5.11</oval:schema_version>
+        <oval:timestamp>2013-07-14T14:06:41.489-04:00</oval:timestamp>
+    </generator>
+    <definitions>
+        <definition id="oval:sample:def:1" version="0" class="inventory">
+            <metadata>
+                <title>Check to see if the sendmail local_only property is set to ‘true’</title>
+                <affected family="unix">
+                    <platform>Sun Solaris 11</platform>
+                </affected>
+                <description>This definition checks to see if the sendmail local_only property is set to ‘true’.</description>
+            </metadata>
+            <criteria>
+                <criterion comment="Check to see if the sendmail local_only property is set to ‘true’." test_ref="oval:sample:tst:1"/>
+            </criteria>
+        </definition>
+    </definitions>
+    <tests>
+        <smfproperty_test id="oval:sample:tst:1" version="0" comment="Check to see if the sendmail local_only property is set to ‘true’." check_existence="at_least_one_exists" check="all" xmlns="http://oval.mitre.org/XMLSchema/x-solaris-smfproperty">
+            <object object_ref="oval:sample:obj:1"/>
+            <state state_ref="oval:sample:ste:1"/>
+        </smfproperty_test>
+    </tests>
+    <objects>
+        <smfproperty_object id="oval:sample:obj:1" comment="Retrieve the config/local_only property of the sendmail service." version="0" xmlns="http://oval.mitre.org/XMLSchema/x-solaris-smfproperty">
+            <service>network/smtp</service>
+            <instance>sendmail</instance>
+            <property>config/local_only</property>
+        </smfproperty_object>
+    </objects>
+    <states>
+        <smfproperty_state id="oval:sample:ste:1" comment="The value of the SMF property is true." version="0" xmlns="http://oval.mitre.org/XMLSchema/x-solaris-smfproperty">
+            <value datatype="boolean">true</value>
+        </smfproperty_state>
+    </states>
+</oval_definitions>

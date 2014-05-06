@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris solaris-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-solaris-facet x-solaris-facet.xsd" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <generator>
+    <oval:product_name>The OVAL Repository</oval:product_name>
+    <oval:schema_version>5.11</oval:schema_version>
+    <oval:timestamp>2013-07-14T14:06:41.489-04:00</oval:timestamp>
+  </generator>
+  <definitions>
+    <definition id="oval:sample:def:1" version="0" class="compliance">
+      <metadata>
+        <title>Make sure PDF documentation, associated with packages, is not installed on the system.</title>
+        <affected family="unix">
+          <platform>Sun Solaris 11</platform>
+        </affected>
+        <description>This definition checks the doc.pdf facet, on a system's images, to ensure PDF documentation is not installed.</description>
+      </metadata>
+      <criteria>
+          <criterion comment="Check to see if the doc.pdf facet is set to 'false' on all images." test_ref="oval:sample:tst:1"/>
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <facet_test id="oval:sample:tst:1" version="0" comment="Check to see if the doc.pdf facet is set to 'false' on all images." check_existence="at_least_one_exists" check="all" xmlns="http://oval.mitre.org/XMLSchema/x-solaris-facet">
+      <object object_ref="oval:sample:obj:1"/>
+      <state state_ref="oval:sample:ste:1"/>
+    </facet_test>
+  </tests>
+  <objects>
+    <facet_object id="oval:sample:obj:1" version="0" comment="Collect the doc.pdf facet property for all images on the system." xmlns="http://oval.mitre.org/XMLSchema/x-solaris-facet">
+      <path operation="pattern match">.*</path>
+      <name>facet.doc.pdf</name>
+    </facet_object>
+  </objects>
+  <states>
+    <facet_state id="oval:sample:ste:1" version="0" comment="The value of the facet is set to 'false'." xmlns="http://oval.mitre.org/XMLSchema/x-solaris-facet">
+      <value datatype="boolean">false</value>
+    </facet_state>
+  </states>
+</oval_definitions>

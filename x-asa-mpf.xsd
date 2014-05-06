@@ -251,7 +251,11 @@
                         </xsd:element>
                         <xsd:element name="used_in" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
+<<<<<<< HEAD
                                 <xsd:documentation>The name of policy-map that includes the policy-map('policy-map type inspect' in this case) or the serice-policy that applies the policy-map (non 'type inspect' in this case). For example, the former could be when a http inspection policy-map policymapnameX is used in a policy-map policymapnameY as its 'inspect http policymapnameX' command. The latter could be when policymapnameY is applied globally with 'service-policy policymapnameY global'. There is no chance where a policy-map can be used in both a policy-map and a service policy at the same time.</xsd:documentation>
+=======
+                                <xsd:documentation>The name of policy-map that includes the policy-map('policy-map type inspect' in this case) or the service-policy that applies the policy-map (non 'type inspect' in this case). For example, the former could be when a http inspection policy-map policymapnameX is used in a policy-map policymapnameY as its 'inspect http policymapnameX' command. The latter could be when policymapnameY is applied globally with 'service-policy policymapnameY global'. There is no chance where a policy-map can be used in both a policy-map and a service policy at the same time.</xsd:documentation>
+>>>>>>> c635df0d10504d69535e46994a7288298af9f4ad
                             </xsd:annotation>
                         </xsd:element>
                     </xsd:sequence>

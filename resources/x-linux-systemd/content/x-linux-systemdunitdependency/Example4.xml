@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-linux-systemdunitproperty x-linux-systemdunitproperty.xsd http://oval.mitre.org/XMLSchema/x-linux-systemdunitdependency x-linux-systemdunitdependency.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">
+  <generator>
+    <oval:schema_version>5.11</oval:schema_version>
+    <oval:timestamp>2009-01-12T10:41:00-05:00</oval:timestamp>
+    <terms_of_use>Copyright (c) 2002-2012, The MITRE Corporation. All rights reserved. The contents of this file are subject to the license described in terms.txt.</terms_of_use>
+  </generator>
+  <definitions>
+    <definition id="oval:sample:def:1" version="1" class="miscellaneous">
+      <metadata>
+        <title>...</title>
+        <description>...</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Check if all units that are a dependency of default.target are active." test_ref="oval:sample:tst:1"/>
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <systemdunitproperty_test id="oval:sample:tst:1" version="1" comment="Check if all units that are a dependency of default.target are active." check_existence="at_least_one_exists" check="all" xmlns="http://oval.mitre.org/XMLSchema/x-linux-systemdunitproperty">
+      <object object_ref="oval:sample:obj:1"/>
+      <state state_ref="oval:sample:ste:1"/>
+    </systemdunitproperty_test>
+  </tests>
+  <objects>
+    <systemdunitproperty_object id="oval:sample:obj:1" version="1" comment="Collect the ActiveState property of all dependencies of default.target." xmlns="http://oval.mitre.org/XMLSchema/x-linux-systemdunitproperty">
+      <unit var_ref="oval:sample:var:1" var_check="at least one"/>
+      <property>ActiveState</property>
+    </systemdunitproperty_object>
+    <systemdunitdependency_object id="oval:sample:obj:2" version="1" comment="Collect all units that may be started as part of default.target." xmlns="http://oval.mitre.org/XMLSchema/x-linux-systemdunitdependency">
+      <unit>default.target</unit>
+    </systemdunitdependency_object>
+  </objects>
+  <states>
+    <systemdunitproperty_state id="oval:sample:ste:1" version="1" comment="This state represents a unit that is currently active." xmlns="http://oval.mitre.org/XMLSchema/x-linux-systemdunitproperty">
+      <value>active</value>
+    </systemdunitproperty_state>
+  </states>
+  <variables>
+    <local_variable id="oval:sample:var:1" version="1" datatype="string" comment="Get all dependencies of default.target.">
+      <object_component object_ref="oval:sample:obj:2" item_field="dependency"/>
+    </local_variable>
+  </variables>
+</oval_definitions>

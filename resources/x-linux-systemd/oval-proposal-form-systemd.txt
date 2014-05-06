@@ -1,0 +1,217 @@
+-------------------------------------------------------------------------------------
+OVAL Proposal Form
+-------------------------------------------------------------------------------------
+The OVAL Proposal Form is used by members of the community to prepare proposals for 
+migration into an official release of OVAL. The form will be critical in helping the 
+members of the community understand, review, and vet proposals.
+
+Once an OVAL Proposal Form is submitted to the oval-developer-list, the OVAL 
+Moderator will review and verify the proposal for completeness at which point it will 
+be ready for community review and discussion. 
+
+When a new proposal is introduced to the community, the OVAL Moderator will work with 
+the OVAL Board to determine the impact of the proposal. If the proposal is deemed a 
+high impact change, it must be developed in the OVAL Sandbox which will require the 
+completion of this form as well as an OVAL Board vote before it is migrated into an 
+official release. More information about the OVAL Board Voting Process can be found 
+at [1]. If the proposal is deemed a low impact change, the proposed change can be 
+made directly to an official OVAL release.
+
+Please direct any questions or concerns to MITRE at oval@mitre.org.
+
+-------------------------------------------------------------------------------------
+Steps to Take
+-------------------------------------------------------------------------------------
+1) Review the OVAL Language Sandbox page [2] and the Requesting Changes to the OVAL 
+   Language page [3].
+
+2) Complete the form provided below.
+
+3) Email the completed form to the oval-developer-list at 
+   oval-developer-list@lists.mitre.org with a subject of 
+   "FOR REVIEW: <Proposal Name> Proposal Form".
+
+4) Revise the proposal, as needed, based on community discussion and feedback.
+
+-------------------------------------------------------------------------------------
+Contact Information
+-------------------------------------------------------------------------------------
+1) Name:
+    Tomas Heinrich
+    Martin Preisler
+
+2) Email Address:
+    theinric@redhat.com
+    mpreisle@redhat.com
+
+3) Phone Number (optional):
+    -
+
+-------------------------------------------------------------------------------------
+Introduction to Proposal
+-------------------------------------------------------------------------------------
+1) What is the new capability?
+
+systemdunitproperty test, systemdunitdependency test and related OVAL structures.
+
+2) Why is the new capability needed?
+
+A number of Linux based distributions have switched their init system from SysVinit
+to systemd. The systemd init system is different from the old SysVinit style in that
+it does not have a concept of a runlevel, but instead has targets and various forms
+of service activation. For example, it can start a service based on achieving
+a target (e.g. graphical), time of day, connection to a socket, or a number of
+other ways. Please see http://www.freedesktop.org/wiki/Software/systemd/ for more
+information.
+
+3) What is the version of the targeted official OVAL release?
+
+5.11
+
+-------------------------------------------------------------------------------------
+Benefits of Proposal
+-------------------------------------------------------------------------------------
+1) How does the proposal relate to existing OVAL use cases [4]?
+
+This new functionality provides replacement for the runlevel test on systems that
+use systemd instead of sysvinit or compatible init system.
+
+2) What does this proposal enable that cannot currently be accomplished in the OVAL 
+   Language?
+
+Reasonably convenient way to query systemd unit properties and dependencies.
+
+3) What alternative approaches for supporting these use cases were considered and 
+   why is this one the best?
+
+This functionality can be "emulated" in a number of ways in OVAL. None of these are
+robust or convenient to write.
+
+For example the content writer could check the unit files for regex patterns using
+the textfilecontent test. This way unit properties can be queried. Or the content
+writer could check symlinks in /etc/systemd/$unit_path/$unit.wants to figure out
+one level of dependencies.
+
+Both of these approaches have shortcomings. In the first case the unit file may not be
+the final file that is used. There are multiple unit files on the system and there are
+rules regarding how they are used.
+
+$ locate default.target
+/etc/systemd/system/default.target
+/etc/systemd/system/default.target.wants
+/etc/systemd/system/default.target.wants/systemd-readahead-collect.service
+/etc/systemd/system/default.target.wants/systemd-readahead-replay.service
+/usr/lib/systemd/system/default.target
+/usr/lib/systemd/system/default.target.wants
+/usr/lib/systemd/user/default.target
+
+In the second case the user wants all transitive dependencies but can only query
+the immediate one level dependencies.
+
+-------------------------------------------------------------------------------------
+Impacts of Proposal
+-------------------------------------------------------------------------------------
+1) Which existing OVAL schemas are affected by this proposal?
+
+linux-definitions-schema.xsd
+linux-system-characteristics-schema.xsd
+
+2) Does the proposal break backward compatibility with previous versions?  Please 
+   see OVAL Versioning Policy [5] for more information.
+
+No.
+
+2) How will the proposed changes impact OVAL content authors?
+
+It will provide a new feature for content authors to leverage when checking platforms
+that use the systemd init system.
+
+No impact for content targeted at sysvinit platforms.
+
+3) How will the proposed changes impact OVAL content consumers?
+
+If the content consumer supports Linux, support for systemd tests should be added
+if the tool supports OVAL 5.11 or later.
+
+4) How will the proposed changes impact existing OVAL content?
+
+No impact.
+
+Content emulating these systemd tests using other OVAL features may be migrated
+to the new functionality.
+
+5) How will the proposed changes impact existing OVAL implementations?
+
+Existing OVAL implementations that want to upgrade to support 5.11 will have to
+implement the 2 tests proposed.
+
+6) Are there any concerns regarding this proposal (e.g., undocumented APIs, etc.)? 
+   If so, are there any mitigating factors?
+
+systemd has no stable C API to leverage. The best choice right now is to look at what
+systemctl does and write similar code. This code uses dbus to communicate with
+the systemd daemon.
+
+For offline scans where dbus and systemd are not available, the best choice seems
+to be "augeas" - http://augeas.net
+
+-------------------------------------------------------------------------------------
+Technical Review
+-------------------------------------------------------------------------------------
+1) Do the schema changes follow the accepted naming and design conventions?
+
+Yes.
+
+2) Do the schema changes satisfy the requirements specified in the Requesting Changes 
+   to the OVAL Language page [3]?
+
+Yes.
+
+3) Do the schema changes align with the targeted official release (e.g., changes that 
+   break backward compatibility should not target a minor release)? Please see the 
+   OVAL Versioning Policy [5] for more information.
+
+Yes.
+
+4) Have the new capabilities been successfully implemented and tested with sample 
+   content?
+
+No.
+
+-------------------------------------------------------------------------------------
+Resource Information
+-------------------------------------------------------------------------------------
+1) Provide URLs for relevant OVAL Sandbox Issues:
+
+https://github.com/OVALProject/Sandbox/tree/master/resources/x-linux-systemd
+
+2) Provide URLs for OVAL Sandbox schemas that exemplify the proposed changes:
+
+https://github.com/OVALProject/Sandbox/blob/master/x-linux-systemdunitproperty.xsd
+https://github.com/OVALProject/Sandbox/blob/master/x-linux-systemdunitdependency.xsd
+
+3) Provide URLs for the location of sample OVAL Definitions, OVAL System 
+   Characteristics, and OVAL Results that exemplify the proposed changes:
+
+https://github.com/OVALProject/Sandbox/tree/master/resources/x-linux-systemd/content/x-linux-systemdunitdependency
+https://github.com/OVALProject/Sandbox/tree/master/resources/x-linux-systemd/content/x-linux-systemdunitproperty
+
+4) Provide URLs for products or tools that implement the proposed changes:
+
+-
+
+5) Provide URLs to any other resources that may be relevant to reviewing and verifying 
+   the proposal:
+
+http://www.freedesktop.org/wiki/Software/systemd/
+http://www.freedesktop.org/wiki/Software/dbus/
+http://augeas.net
+
+-------------------------------------------------------------------------------------
+References
+-------------------------------------------------------------------------------------
+[1] http://oval.mitre.org/community/board/voting.html
+[2] http://oval.mitre.org/language/sandbox.html
+[3] http://oval.mitre.org/language/about/change_requests.html
+[4] http://oval.mitre.org/adoption/usecasesguide.html
+[5] http://oval.mitre.org/language/about/versioning.html

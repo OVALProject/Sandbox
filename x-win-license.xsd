@@ -48,7 +48,7 @@
                         <xsd:choice>
                             <xsd:element ref="oval-def:set"/>
                             <xsd:sequence>
-                                <xsd:element name="name" type="oval-def:EntityObjectStringType" nillable="true">
+                                <xsd:element name="name" type="oval-def:EntityObjectStringType">
                                     <xsd:annotation>
                                         <xsd:documentation>The name entity provides the address of a UNICODE_STRING structure for the name of the value for which data is desired, for example, TabletPCPlatformInput-core-EnableTouchUI.</xsd:documentation>
                                     </xsd:annotation>
@@ -98,7 +98,7 @@
             <xsd:complexContent>
                 <xsd:extension base="oval-sc:ItemType">
                     <xsd:sequence>
-                        <xsd:element name="name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1" nillable="true">
+                        <xsd:element name="name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
                                 <xsd:documentation>This element describes the name of a license entry.</xsd:documentation>
                             </xsd:annotation>

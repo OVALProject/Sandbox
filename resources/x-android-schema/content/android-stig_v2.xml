@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<oval_definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-android-definitions x-android-definitions.xsd">
+  <generator>
+    <oval:schema_version>5.10.1</oval:schema_version>
+    <oval:timestamp>2013-05-07T01:02:03-05:00</oval:timestamp>
+    <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved. The contents of this file are subject to the license described in terms.txt.</terms_of_use>
+  </generator>
+  <definitions>
+    <definition id="oval:android.stig:def:36029" version="1" class="compliance">
+      <metadata>
+        <title>V-36029: The MDM server must be capable of scanning the hardware version of managed mobile devices and alert if unsupported versions are found.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36029" ref_url="http://www.stigviewer.com/check/V-36029"/>
+        <description>Approved versions of devices have gone though all required phases of testing, approval, etc., and are able to support required security features. Using non-approved versions of mobile device hardware could compromise the security baseline of the mobile system, since some required security features may not be supported.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Alert on unsupported hardware versions" test_ref="oval:android.stig:tst:36029"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36085" version="1" class="compliance">
+      <metadata>
+        <title>V-36085: The MDM server must prevent the installation of applications that are not digitally signed with an organizationally accepted private key.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36085" ref_url="http://www.stigviewer.com/check/V-36085"/>
+        <description>Any additions of applications can potentially have significant effects on the overall security of the system. Digital signatures on code provide assurance that the code comes from a known source and has not been modified. This feature is a key malware control on mobile devices.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="All apps must be signed by authorized key" test_ref="oval:android.stig:tst:36085"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36086" version="1" class="compliance">
+      <metadata>
+        <title>V-36086: The MDM server must be configured to provide the administrative functionality to transmit a remote Data Wipe command, including removable media cards, to a managed mobile device.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36086" ref_url="http://www.stigviewer.com/check/V-36086"/>
+        <description>Without a Data Wipe capability, the data on the mobile device can be compromised in the event of a lost or stolen device.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Must have data wipe capability" test_ref="oval:android.stig:tst:36086"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36088" version="1" class="compliance">
+      <metadata>
+        <title>V-36088, V-36132: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Perform a Data Wipe function whereby all data stored in user addressable memory on the mobile device and the removable memory card is erased when the maximum number of incorrect passwords for device unlock has been reached. The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Set the number of incorrect password attempts before a data wipe procedure is initiated (minimum requirement is 3-10).
+                </title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36088" ref_url="http://www.stigviewer.com/check/V-36088"/>
+        <reference source="STIG" ref_id="V-36132" ref_url="http://www.stigviewer.com/check/V-36132"/>
+        <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately. Data wipe could be accomplished by deleting the data-at-rest encryption key (data obfuscation). Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Must perform data wipe after certain # of incorrect password tries" test_ref="oval:android.stig:tst:36088"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36090" version="1" class="compliance">
+      <metadata>
+        <title>V-36090: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Enable or disable data-at-rest encryption on the mobile device.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36090" ref_url="http://www.stigviewer.com/check/V-36090"/>
+        <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Enable/disable DAR encryption policy on device" test_ref="oval:android.stig:tst:36090"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36091" version="1" class="compliance">
+      <metadata>
+        <title>V-36091: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Enable or disable device unlock password.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36091" ref_url="http://www.stigviewer.com/check/V-36091"/>
+        <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Device unlock password policy" test_ref="oval:android.stig:tst:36091"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36093" version="1" class="compliance">
+      <metadata>
+        <title>V-36093: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Minimum password length for the device unlock password is configured to the organizationally defined value when DoD sensitive data is being protected.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36093" ref_url="http://www.stigviewer.com/check/V-36093"/>
+        <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Minimum password length" test_ref="oval:android.stig:tst:36093"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36095" version="1" class="compliance">
+      <metadata>
+        <title>V-36095: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Device inactivity timeout whereby the user must reenter their user password or Smart Card PIN to unlock the device.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36095" ref_url="http://www.stigviewer.com/check/V-36095"/>
+        <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Device inactivity timeout" test_ref="oval:android.stig:tst:36095"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36096" version="1" class="compliance">
+      <metadata>
+        <title>V-36096: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Set the device inactivity timeout (the following settings must be available, at a minimum: Disable (no timeout), 15 minutes, and 60 minutes).</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36096" ref_url="http://www.stigviewer.com/check/V-36096"/>
+        <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Device inactivity timeout" test_ref="oval:android.stig:tst:36096"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36100" version="1" class="compliance">
+      <metadata>
+        <title>V-36100: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Enable or disable the Bluetooth discoverable mode.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36100" ref_url="http://www.stigviewer.com/check/V-36100"/>
+        <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Enable/disable Bluetooth discoverable mode" test_ref="oval:android.stig:tst:36100"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36107" version="1" class="compliance">
+      <metadata>
+        <title>V-36107: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Enable or disable Wi-Fi.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36107" ref_url="http://www.stigviewer.com/check/V-36107"/>
+        <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Enable/disable Wi-Fi" test_ref="oval:android.stig:tst:36107"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36110" version="1" class="compliance">
+      <metadata>
+        <title>V-36110: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Enable or disable the GPS receiver.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36110" ref_url="http://www.stigviewer.com/check/V-36110"/>
+        <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Check location_service_item gps_enabled (and network_enabled).  " test_ref="oval:android.stig:tst:36110"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36111" version="1" class="compliance">
+      <metadata>
+        <title>V-36111: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Enable or disable the near-field communications (NFC) radio.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36111" ref_url="http://www.stigviewer.com/check/V-36111"/>
+        <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Check if NFC is disabled" test_ref="oval:android.stig:tst:36111"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36112" version="1" class="compliance">
+      <metadata>
+        <title>V-36112: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Enable or disable the all cameras.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36112" ref_url="http://www.stigviewer.com/check/V-36112"/>
+        <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="enable/disable all cameras" test_ref="oval:android.stig:tst:36112"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36115" version="1" class="compliance">
+      <metadata>
+        <title>V-36115: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Enable or disable the mobile device users access to an application store or repository.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36115" ref_url="http://www.stigviewer.com/check/V-36115"/>
+        <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Enable/disable access to app store" test_ref="oval:android.stig:tst:36115"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36119" version="1" class="compliance">
+      <metadata>
+        <title>V-36119: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Enable or disable location services.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36119" ref_url="http://www.stigviewer.com/check/V-36119"/>
+        <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Enable/disable location services – similar to V-36110." test_ref="oval:android.stig:tst:36119"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36120" version="1" class="compliance">
+      <metadata>
+        <title>V-36120: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Enable or disable the video recorder.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36120" ref_url="http://www.stigviewer.com/check/V-36120"/>
+        <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Probably covered by V-36112" test_ref="oval:android.stig:tst:36120"/>
+      </criteria>
+    </definition>
+    <definition id="oval:android.stig:def:36121" version="1" class="compliance">
+      <metadata>
+        <title>V-36121: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Enable or disable the USB Port mass storage mode.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36121" ref_url="http://www.stigviewer.com/check/V-36121"/>
+        <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Enable/disable USB port mass storage mode." test_ref="oval:android.stig:tst:36121"/>
+      </criteria>
+    </definition>
+    <!-- <definition id="oval:android.stig:def:36122" version="1" class="compliance">
+            <metadata>
+                <title>V-36122: The MDM server must have the administrative functionality to centrally manage the following security policy rule on managed mobile devices: Enable or disable tethering (Wi-Fi, Bluetooth, or USB).</title>
+                <affected family="unix">
+                    <platform>Android</platform>
+                </affected>
+                <reference source="STIG" ref_id="V-36122" ref_url="http://www.stigviewer.com/check/V-36122"/>
+                <description>Security-related parameters are those parameters impacting the security state of the system and include parameters related to the implementation of other IA controls. If these controls are not implemented, the system may be vulnerable to a variety of attacks. The use of an MDM server allows an organization to assign values to Security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced, and that the device user or an adversary has not modified or disabled the controls. It also greatly increases efficiency and manageability of devices in a large scale environment relative to an environment in which each device must be configured separately.</description>
+            </metadata>
+            <criteria operator="AND">
+                <criterion comment="Centrally manage policy: Enable/disable tethering (Wi-Fi, Bluetooth, USB etc.)" test_ref="oval:android.stig:tst:36122"/>
+            </criteria>
+        </definition> -->
+    <definition id="oval:android.stig:def:36150" version="1" class="compliance">
+      <metadata>
+        <title>V-36150: The MDM server must provide the administrative functionality to specify a list of approved applications that must be installed on the mobile device and cannot be removed by the user.</title>
+        <affected family="unix">
+          <platform>Android</platform>
+        </affected>
+        <reference source="STIG" ref_id="V-36150" ref_url="http://www.stigviewer.com/check/V-36150"/>
+        <description>DoD can perform due diligence on sources of software to mitigate the risk that malicious software is introduced to those sources. Therefore, if software is downloaded from a DoD approved source, then it is less likely to be malicious than if it is downloaded from an unapproved source. To prevent access to unapproved sources, the operating system in most cases can be configured to disable user access to public application stores. In some cases, some applications are required for secure operation of the mobile devices controlled by the MDM server. In these cases, the ability for users to remove the application is needed as to ensure proper secure operations of the device.</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Confirm that required applications are installed." test_ref="oval:android.stig:tst:36150"/>
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <system_details_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36029" version="1" comment="Alert on unsupported hardware versions" check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:3002"/>
+      <state state_ref="oval:android.stig:ste:36029"/>
+    </system_details_test>
+    <app_manager_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36085" version="1" comment="All apps must be signed by authorized key" check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:8001"/>
+      <state state_ref="oval:android.stig:ste:36085"/>
+    </app_manager_test>
+    <device_settings_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36086" version="1" comment="Must have data wipe capability" check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:13001"/>
+      <state state_ref="oval:android.stig:ste:36086"/>
+    </device_settings_test>
+    <password_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36088" version="1" comment="Must perform data wipe after certain # of incorrect password tries" check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:4001"/>
+      <state state_ref="oval:android.stig:ste:36088"/>
+    </password_test>
+    <encryption_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36090" version="1" comment="Enable/disable DAR encryption policy on device" check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:6001"/>
+      <state state_ref="oval:android.stig:ste:36090"/>
+    </encryption_test>
+    <password_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36091" version="1" comment="Device unlock password policy" check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:4001"/>
+      <state state_ref="oval:android.stig:ste:36091"/>
+    </password_test>
+    <password_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36093" version="1" comment="Minimum password length" check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:4001"/>
+      <state state_ref="oval:android.stig:ste:36093"/>
+    </password_test>
+    <password_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36095" version="1" comment="Device inactivity timeout" check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:4001"/>
+      <state state_ref="oval:android.stig:ste:36095"/>
+    </password_test>
+    <password_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36096" version="1" comment="Device inactivity timeout" check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:4001"/>
+      <state state_ref="oval:android.stig:ste:36096"/>
+    </password_test>
+    <bluetooth_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36100" version="1" comment="Enable/disable Bluetooth discoverable mode" check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:12001"/>
+      <state state_ref="oval:android.stig:ste:36100"/>
+    </bluetooth_test>
+    <!--<device_access_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36105" version="1" comment="Enable/disable MMS" check_existence="all_exist" check="all">
+            <object object_ref="oval:android.stig:obj:36105"/>
+            <state state_ref="oval:android.stig:ste:36105"/>
+        </device_access_test>-->
+    <wifi_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36107" version="1" comment="Enable/disable Wi-Fi" check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:10001"/>
+      <state state_ref="oval:android.stig:ste:36107"/>
+    </wifi_test>
+    <location_service_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36110" version="1" comment="Check location_service_item gps_enabled (and network_enabled).  " check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:9001"/>
+      <state state_ref="oval:android.stig:ste:36110"/>
+    </location_service_test>
+    <network_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36111" version="1" comment="nfc disabled" check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:14001"/>
+      <state state_ref="oval:android.stig:ste:36111"/>
+    </network_test>
+    <camera_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36112" version="1" comment="enable/disable all cameras" check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:5001"/>
+      <state state_ref="oval:android.stig:ste:36112"/>
+    </camera_test>
+    <!--<removable_media_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36113" version="1" comment="Enable/disable memory card port" check_existence="all_exist" check="all">
+            <object object_ref="oval:android.stig:obj:36113"/>
+            <state state_ref="oval:android.stig:ste:36113"/>
+        </removable_media_test>-->
+    <device_settings_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36115" version="1" comment="Enable/disable access to app store" check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:13001"/>
+      <state state_ref="oval:android.stig:ste:36115"/>
+    </device_settings_test>
+    <location_service_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36119" version="1" comment="Enable/disable location services – similar to V-36110." check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:9001"/>
+      <state state_ref="oval:android.stig:ste:36119"/>
+    </location_service_test>
+    <camera_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36120" version="1" comment="Probably covered by V-36112" check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:5001"/>
+      <state state_ref="oval:android.stig:ste:36120"/>
+    </camera_test>
+    <device_settings_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36121" version="1" comment="Enable/disable USB port mass storage mode." check_existence="all_exist" check="all">
+      <object object_ref="oval:android.test:obj:13001"/>
+      <state state_ref="oval:android.stig:ste:36121"/>
+    </device_settings_test>
+    <app_manager_test xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:tst:36150" version="1" comment="Confirm that required applications are installed." check_existence="all_exist" check="all" state_operator="AND">
+      <object object_ref="oval:android.test:obj:8001"/>
+      <state state_ref="oval:android.stig:ste:36150001"/>
+      <state state_ref="oval:android.stig:ste:36150002"/>
+      <state state_ref="oval:android.stig:ste:36150003"/>
+    </app_manager_test>
+  </tests>
+  <objects>
+    <system_details_object xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.test:obj:3002" version="1" comment="Retrieve the system details."/>
+    <app_manager_object xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.test:obj:8001" version="1" comment="Retrieve all app package details.">
+      <package_name operation="pattern match">^.*$</package_name>
+      <signing_certificate datatype="binary" operation="not equal"/>
+    </app_manager_object>
+    <device_settings_object xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.test:obj:13001" version="1" comment="Retrieve the device settings."/>
+    <password_object xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.test:obj:4001" version="1" comment="Retrieve the password policy settings."/>
+    <encryption_object xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.test:obj:6001" version="1" comment="Retrieve the encryption policy settings."/>
+    <bluetooth_object xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.test:obj:12001" version="1" comment="Retrieve the Bluetooth settings."/>
+    <wifi_object xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.test:obj:10001" version="1" comment="Retrieve the Wi-Fi settings."/>
+    <location_service_object xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.test:obj:9001" version="1" comment="Retrieve the location services settings."/>
+    <network_object xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.test:obj:14001" version="1" comment="Retrieve the network preference settings."/>
+    <camera_object xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.test:obj:5001" version="1" comment="Retreive the camera policy settings."/>
+  </objects>
+  <states>
+    <system_details_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36029" version="1" comment="Match only whitelisted system_details_item entity values.">
+      <hardware var_check="all" var_ref="oval:android.stig:var:1"/>
+      <manufacturer var_check="all" var_ref="oval:android.stig:var:2"/>
+      <model var_check="all" var_ref="oval:android.stig:var:3"/>
+      <product var_check="all" var_ref="oval:android.stig:var:4"/>
+      <cpu_abi var_check="all" var_ref="oval:android.stig:var:5"/>
+    </system_details_state>
+    <app_manager_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36085" version="1" comment="Match only whitelisted app_manager_item entity values.">
+      <signing_certificate datatype="binary" var_check="all" var_ref="oval:android.stig:var:6"/>
+    </app_manager_state>
+    <device_settings_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36086" version="1" comment="Match a whitelisted device_admin MDM app value.">
+      <device_admin var_check="at least one" var_ref="oval:android.stig:var:7" operation="pattern match"/>
+    </device_settings_state>
+    <password_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36088" version="1" comment="Require a wipe policy be set.">
+      <max_num_failed_user_auth datatype="int" operation="greater than or equal" var_check="all" var_ref="oval:android.stig:var:8"/>
+    </password_state>
+    <encryption_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36090" version="1" comment="Require data-at-rest encryption is enabled and active">
+      <encryption_policy_enabled datatype="boolean" operation="equals">true</encryption_policy_enabled>
+      <encryption_status>ENCRYPTION_STATUS_ACTIVE</encryption_status>
+    </encryption_state>
+    <password_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36091" version="1" comment="Require a password policy.">
+      <password_quality operation="not equal">PASSWORD_QUALITY_UNSPECIFIED</password_quality>
+    </password_state>
+    <password_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36093" version="1" comment="Require a minimum password length of 8.">
+      <password_min_length datatype="int" operation="greater than or equal">8</password_min_length>
+    </password_state>
+    <password_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36095" version="1" comment="Require timeout period of more than 0 to ensure re-authentication.">
+      <screen_lock_timeout datatype="int" operation="greater than">0</screen_lock_timeout>
+    </password_state>
+    <password_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36096" version="1" comment="Require device inactivity timeout to 60 minutes (in ms).">
+      <screen_lock_timeout datatype="int">3600000</screen_lock_timeout>
+    </password_state>
+    <bluetooth_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36100" version="1" comment="Require Bluetooth settings to be disabled and non-discoverable.">
+      <discoverable datatype="boolean">false</discoverable>
+      <current_status datatype="boolean">false</current_status>
+    </bluetooth_state>
+    <wifi_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36107" version="1" comment="Require Wi-Fi to be disabled">
+      <wifi_status datatype="boolean">false</wifi_status>
+    </wifi_state>
+    <location_service_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36110" version="1" comment="Require Wi-Fi to be disabled">
+      <gps_enabled datatype="boolean">false</gps_enabled>
+    </location_service_state>
+    <network_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36111" version="1" comment="No NFC settings in current schema.">
+      <nfc_enabled datatype="boolean">false</nfc_enabled>
+    </network_state>
+    <camera_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36112" version="1" comment="Require the camera to be disabled">
+      <camera_disabled_policy datatype="boolean">true</camera_disabled_policy>
+    </camera_state>
+    <device_settings_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36115" version="1" comment="Require policy to disallow non-Market apps to be installed.">
+      <install_non_market_apps datatype="boolean">false</install_non_market_apps>
+    </device_settings_state>
+    <location_service_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36119" version="1" comment="Require network location services to be disabled.">
+      <network_enabled datatype="boolean">false</network_enabled>
+    </location_service_state>
+    <camera_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36120" version="1" comment="Require the video camera to be disabled">
+      <camera_disabled_policy datatype="boolean">true</camera_disabled_policy>
+    </camera_state>
+    <device_settings_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36121" version="1" comment="Require USB mass storage to be disabled.">
+      <usb_mass_storage_enabled datatype="boolean">false</usb_mass_storage_enabled>
+    </device_settings_state>
+    <!-- <network_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36122" version="1" comment="Require tethering to be disabled.">
+            <tether_active datatype="boolean">false</tether_active>
+        </network_state> -->
+    <app_manager_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36150001" version="1" comment="Match the required application 'Android System'.">
+      <application_name entity_check="at least one">Android System</application_name>
+      <signing_certificate datatype="binary" entity_check="at least one">308203c6308202aea00302010202021445300d06092a864886f70d01010505003076310b30090603550406130255533111300f06035504081308496c6c696e6f6973311530130603550407130c4c69626572747976696c6c653111300f060355040a13084d6f746f726f6c61310c300a060355040b13034d4462311c301a060355040313134d41503420506c6174666f726d203436362d31301e170d3131303730383137333634325a170d3336303730383137333634325a3079310b30090603550406130255533111300f06035504081308496c6c696e6f6973311530130603550407130c4c69626572747976696c6c653111300f060355040a13084d6f746f726f6c61310c300a060355040b13034d4d49311f301d060355040313164d41503420506c6174666f726d203436362d312d313030820122300d06092a864886f70d01010105000382010f003082010a028201010086a19227c5a83edb39087bf65645fd6fe32e4531bb5323ca141930ea6913c63050c991a67a3584b98d95271b59d61de0d84567a661ea6bf6d8193cbdf882a97e75d50296615948e27feac2fba740c0a45c4a719bc57a6a482d544ca349f02edf658a8cbef44ebca3750090b584b069568142df37dd0e036d594b29906a8deff491c92f5c7e82335e105af1c6dcc4f8eff9b2f85d598c0a3941dd789f1af01fd445c9c3cfc7e711949c8f246e2f3f2fa7754df6494f4a8e89d2525a16f95cffdfeba8af333f54a8ef96aa002dfd6bfd0e8ce1e594be24ca3754e0f5aece73124275d48014f23558bf5558e9850327eed154643833f85aaeb7886257994e982a510203010001a35b3059301f0603551d23041830168014a4b3e27d57c49a05b1c5578d791e7779aea18ebb301106096086480186f8420101040403020410300e0603551d0f0101ff0404030205e030130603551d25040c300a06082b06010505070303300d06092a864886f70d0101050500038201010082e39271332230caa2775321f76ed8f5da20f09efde27ac1fdfa3d5ccf280e326c15a90f7b32360dab4eddc49eecf7c1ba3c28650db829757914a7716526fb485d4e615c760ca4b5b7b69db1d67027ae69ba7e9d3eeb0bb1e5a576ec5f6628549c7c54c58befa4592aea91d01a64a95d5ecb63360971953c671b5001b3fdfc2b22792417114a9ce6c373da4df31d9bc254b9bf554781e4396149ec6344f4cd3b88d959ab8721e6607f7ea3f0278ea3644c3de099345dc2d1d4611d4cea48e5b80aaf561ae11cc55843de47c785b4381168f59a028a2ae2a19ab121cef2ff35766b0f2ed6bebf2fb1440c0967f6b134b8c0c8decb837a39deffb7af19714cd73f</signing_certificate>
+    </app_manager_state>
+    <app_manager_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36150002" version="1" comment="Match the required application 'Settings'.">
+      <application_name entity_check="at least one">Settings</application_name>
+      <signing_certificate datatype="binary" entity_check="at least one">308203c6308202aea00302010202021445300d06092a864886f70d01010505003076310b30090603550406130255533111300f06035504081308496c6c696e6f6973311530130603550407130c4c69626572747976696c6c653111300f060355040a13084d6f746f726f6c61310c300a060355040b13034d4462311c301a060355040313134d41503420506c6174666f726d203436362d31301e170d3131303730383137333634325a170d3336303730383137333634325a3079310b30090603550406130255533111300f06035504081308496c6c696e6f6973311530130603550407130c4c69626572747976696c6c653111300f060355040a13084d6f746f726f6c61310c300a060355040b13034d4d49311f301d060355040313164d41503420506c6174666f726d203436362d312d313030820122300d06092a864886f70d01010105000382010f003082010a028201010086a19227c5a83edb39087bf65645fd6fe32e4531bb5323ca141930ea6913c63050c991a67a3584b98d95271b59d61de0d84567a661ea6bf6d8193cbdf882a97e75d50296615948e27feac2fba740c0a45c4a719bc57a6a482d544ca349f02edf658a8cbef44ebca3750090b584b069568142df37dd0e036d594b29906a8deff491c92f5c7e82335e105af1c6dcc4f8eff9b2f85d598c0a3941dd789f1af01fd445c9c3cfc7e711949c8f246e2f3f2fa7754df6494f4a8e89d2525a16f95cffdfeba8af333f54a8ef96aa002dfd6bfd0e8ce1e594be24ca3754e0f5aece73124275d48014f23558bf5558e9850327eed154643833f85aaeb7886257994e982a510203010001a35b3059301f0603551d23041830168014a4b3e27d57c49a05b1c5578d791e7779aea18ebb301106096086480186f8420101040403020410300e0603551d0f0101ff0404030205e030130603551d25040c300a06082b06010505070303300d06092a864886f70d0101050500038201010082e39271332230caa2775321f76ed8f5da20f09efde27ac1fdfa3d5ccf280e326c15a90f7b32360dab4eddc49eecf7c1ba3c28650db829757914a7716526fb485d4e615c760ca4b5b7b69db1d67027ae69ba7e9d3eeb0bb1e5a576ec5f6628549c7c54c58befa4592aea91d01a64a95d5ecb63360971953c671b5001b3fdfc2b22792417114a9ce6c373da4df31d9bc254b9bf554781e4396149ec6344f4cd3b88d959ab8721e6607f7ea3f0278ea3644c3de099345dc2d1d4611d4cea48e5b80aaf561ae11cc55843de47c785b4381168f59a028a2ae2a19ab121cef2ff35766b0f2ed6bebf2fb1440c0967f6b134b8c0c8decb837a39deffb7af19714cd73f</signing_certificate>
+    </app_manager_state>
+    <app_manager_state xmlns="http://oval.mitre.org/XMLSchema/x-android-definitions" id="oval:android.stig:ste:36150003" version="1" comment="Match the required application 'Setup Wizard'.">
+      <application_name entity_check="at least one">Setup Wizard</application_name>
+      <signing_certificate datatype="binary" entity_check="at least one">308204433082032ba003020102020900c2e08746644a308d300d06092a864886f70d01010405003074310b3009060355040613025553311330110603550408130a43616c69666f726e6961311630140603550407130d4d6f756e7461696e205669657731143012060355040a130b476f6f676c6520496e632e3110300e060355040b1307416e64726f69643110300e06035504031307416e64726f6964301e170d3038303832313233313333345a170d3336303130373233313333345a3074310b3009060355040613025553311330110603550408130a43616c69666f726e6961311630140603550407130d4d6f756e7461696e205669657731143012060355040a130b476f6f676c6520496e632e3110300e060355040b1307416e64726f69643110300e06035504031307416e64726f696430820120300d06092a864886f70d01010105000382010d00308201080282010100ab562e00d83ba208ae0a966f124e29da11f2ab56d08f58e2cca91303e9b754d372f640a71b1dcb130967624e4656a7776a92193db2e5bfb724a91e77188b0e6a47a43b33d9609b77183145ccdf7b2e586674c9e1565b1f4c6a5955bff251a63dabf9c55c27222252e875e4f8154a645f897168c0b1bfc612eabf785769bb34aa7984dc7e2ea2764cae8307d8c17154d7ee5f64a51a44a602c249054157dc02cd5f5c0e55fbef8519fbe327f0b1511692c5a06f19d18385f5c4dbc2d6b93f68cc2979c70e18ab93866b3bd5db8999552a0e3b4c99df58fb918bedc182ba35e003c1b4b10dd244a8ee24fffd333872ab5221985edab0fc0d0b145b6aa192858e79020103a381d93081d6301d0603551d0e04160414c77d8cc2211756259a7fd382df6be398e4d786a53081a60603551d2304819e30819b8014c77d8cc2211756259a7fd382df6be398e4d786a5a178a4763074310b3009060355040613025553311330110603550408130a43616c69666f726e6961311630140603550407130d4d6f756e7461696e205669657731143012060355040a130b476f6f676c6520496e632e3110300e060355040b1307416e64726f69643110300e06035504031307416e64726f6964820900c2e08746644a308d300c0603551d13040530030101ff300d06092a864886f70d010104050003820101006dd252ceef85302c360aaace939bcff2cca904bb5d7a1661f8ae46b2994204d0ff4a68c7ed1a531ec4595a623ce60763b167297a7ae35712c407f208f0cb109429124d7b106219c084ca3eb3f9ad5fb871ef92269a8be28bf16d44c8d9a08e6cb2f005bb3fe2cb96447e868e731076ad45b33f6009ea19c161e62641aa99271dfd5228c5c587875ddb7f452758d661f6cc0cccb7352e424cc4365c523532f7325137593c4ae341f4db41edda0d0b1071a7c440f0fe9ea01cb627ca674369d084bd2fd911ff06cdbf2cfa10dc0f893ae35762919048c7efc64c7144178342f70581c9de573af55b390dd7fdb9418631895d5f759f30112687ff621410c069308a</signing_certificate>
+    </app_manager_state>
+  </states>
+  <variables>
+    <constant_variable id="oval:android.stig:var:1" version="1" datatype="string" comment="Whitelist of allowed hardware values for V-36029">
+      <value>mapphone_cdma</value>
+    </constant_variable>
+    <constant_variable id="oval:android.stig:var:2" version="1" datatype="string" comment="Whitelist of allowed manufacturer values for V-36029">
+      <value>motorola</value>
+    </constant_variable>
+    <constant_variable id="oval:android.stig:var:3" version="1" datatype="string" comment="Whitelist of allowed model values for V-36029">
+      <value>DROID RAZR</value>
+    </constant_variable>
+    <constant_variable id="oval:android.stig:var:4" version="1" datatype="string" comment="Whitelist of allowed product values for V-36029">
+      <value>spyder_vzw</value>
+    </constant_variable>
+    <constant_variable id="oval:android.stig:var:5" version="1" datatype="string" comment="Whitelist of allowed cpu_abi values for V-36029">
+      <value>armeabi-v7a</value>
+      <value>armeabi</value>
+    </constant_variable>
+    <constant_variable id="oval:android.stig:var:6" version="1" datatype="binary" comment="Whitelist of allowed application signer values for V-36085">
+      <value>308203c6308202aea00302010202021445300d06092a864886f70d01010505003076310b30090603550406130255533111300f06035504081308496c6c696e6f6973311530130603550407130c4c69626572747976696c6c653111300f060355040a13084d6f746f726f6c61310c300a060355040b13034d4462311c301a060355040313134d41503420506c6174666f726d203436362d31301e170d3131303730383137333634325a170d3336303730383137333634325a3079310b30090603550406130255533111300f06035504081308496c6c696e6f6973311530130603550407130c4c69626572747976696c6c653111300f060355040a13084d6f746f726f6c61310c300a060355040b13034d4d49311f301d060355040313164d41503420506c6174666f726d203436362d312d313030820122300d06092a864886f70d01010105000382010f003082010a028201010086a19227c5a83edb39087bf65645fd6fe32e4531bb5323ca141930ea6913c63050c991a67a3584b98d95271b59d61de0d84567a661ea6bf6d8193cbdf882a97e75d50296615948e27feac2fba740c0a45c4a719bc57a6a482d544ca349f02edf658a8cbef44ebca3750090b584b069568142df37dd0e036d594b29906a8deff491c92f5c7e82335e105af1c6dcc4f8eff9b2f85d598c0a3941dd789f1af01fd445c9c3cfc7e711949c8f246e2f3f2fa7754df6494f4a8e89d2525a16f95cffdfeba8af333f54a8ef96aa002dfd6bfd0e8ce1e594be24ca3754e0f5aece73124275d48014f23558bf5558e9850327eed154643833f85aaeb7886257994e982a510203010001a35b3059301f0603551d23041830168014a4b3e27d57c49a05b1c5578d791e7779aea18ebb301106096086480186f8420101040403020410300e0603551d0f0101ff0404030205e030130603551d25040c300a06082b06010505070303300d06092a864886f70d0101050500038201010082e39271332230caa2775321f76ed8f5da20f09efde27ac1fdfa3d5ccf280e326c15a90f7b32360dab4eddc49eecf7c1ba3c28650db829757914a7716526fb485d4e615c760ca4b5b7b69db1d67027ae69ba7e9d3eeb0bb1e5a576ec5f6628549c7c54c58befa4592aea91d01a64a95d5ecb63360971953c671b5001b3fdfc2b22792417114a9ce6c373da4df31d9bc254b9bf554781e4396149ec6344f4cd3b88d959ab8721e6607f7ea3f0278ea3644c3de099345dc2d1d4611d4cea48e5b80aaf561ae11cc55843de47c785b4381168f59a028a2ae2a19ab121cef2ff35766b0f2ed6bebf2fb1440c0967f6b134b8c0c8decb837a39deffb7af19714cd73f</value>
+      <value>308203c2308202aaa00302010202021481300d06092a864886f70d01010505003074310b30090603550406130255533111300f06035504081308496c6c696e6f6973311530130603550407130c4c69626572747976696c6c653111300f060355040a13084d6f746f726f6c61310c300a060355040b13034d4462311a3018060355040313114d41503420536861726564203436362d33301e170d3131303730383138333830335a170d3336303730383138333830335a3077310b30090603550406130255533111300f06035504081308496c6c696e6f6973311530130603550407130c4c69626572747976696c6c653111300f060355040a13084d6f746f726f6c61310c300a060355040b13034d4d49311d301b060355040313144d41503420536861726564203436362d332d313030820122300d06092a864886f70d01010105000382010f003082010a0282010100b667c2682e95ac62847e7977928c1da772edc2c4a717218cc31bf436908a94689879dd12dd1f45d68f877e3ceb1edb11c79f6a918182c8963a717919dcace799ff028106ed01f4e86286e9cd0f80e7327c88166135ea5a9310b77c20cf73eb30002e3deded6f25318966592ed3efb54130ccf451c15e8a279d937d2107929918a01f5b720d07b3603538a7450ede62c234e48938a2e02cdc5ff18bfe3d4ff47676d30d4c5873f971acb38c999d40f0e1276239b67231afbef0509a862de3698ecca1c267ae86c933303045cf14343ea880eca5ff50c36b4932c4670fb713f286f8ae423cc46b0590e68b9cd94bff44a94c07d2d4e7eb14887345d81188ccc4570203010001a35b3059301f0603551d230418301680149d24061d14a49cac4281def596d680011e97c644301106096086480186f8420101040403020410300e0603551d0f0101ff0404030205e030130603551d25040c300a06082b06010505070303300d06092a864886f70d0101050500038201010037bfc717852e26cc14c9c51864cdaf5b7e4f7f867b57b74ee47bc72cd87e8a8e77c4280d886714cce96a99143dae5e3de12da63b91537b6e1c530136bb329f964ae962ac4c804cde828a8e10261aa59c93d68409eaf67c6162c490e45edfef0115fec595cca0b2891efafab968a113f87af5b4c1a01656580fb46b7487c13a46db223cac233c2ae8dfd59e646a2dd23f7bd26e21b1e52dee5c41d4cdc31691e9fcc34ac052db5f7083a75c138a031a941bf3f56a6473bfb1063498bead9f1da193056816233fc1f68bce2814e268080315207f4cb8a1daacdae456c32f54cfe9a7436f039f0582034783db065943aee71c286b9125f4ad19b97bd1eb5ca46953</value>
+      <value>308203c0308202a8a0030201020202149f300d06092a864886f70d01010505003073310b30090603550406130255533111300f06035504081308496c6c696e6f6973311530130603550407130c4c69626572747976696c6c653111300f060355040a13084d6f746f726f6c61310c300a060355040b13034d446231193017060355040313104d415034204f74686572203436362d35301e170d3131303730383139313135305a170d3336303730383139313135305a3076310b30090603550406130255533111300f06035504081308496c6c696e6f6973311530130603550407130c4c69626572747976696c6c653111300f060355040a13084d6f746f726f6c61310c300a060355040b13034d4d49311c301a060355040313134d415034204f74686572203436362d352d313030820122300d06092a864886f70d01010105000382010f003082010a0282010100c71ed3d2551e7b78649e179f8818604bc7e4296128051b1c36cca35e13c867733baf1e828503f63af8aae3d7ec78970a1addfb0a87c7881fe1940dbd95e649c6d6ba62996718c2f9799da0113df17ed9d622c7946fe9a39de2a8cfbfe198bf8abebcbf7bfe749e4a15e0110d14593f73760b37555f7e26e1442950a5d0a31bc727841de4cc5e14db16c5768260cdaa9c1900961c29998e9cd32554169f757fd9d1403884751d6797489aefd33e900d81ccb1499b64ad9a14a891bdaa5060d9e7066a7b331d371eb5f881c47d97cf96220745ccff385987fbc179b68ba096a4a6eb731f49ae52e1afc87e392921f86645e2bd8f6cb575953aabfcdf89075772710203010001a35b3059301f0603551d230418301680140e8edde64350c887f6a044f49672953e5163a111301106096086480186f8420101040403020410300e0603551d0f0101ff0404030205e030130603551d25040c300a06082b06010505070303300d06092a864886f70d010105050003820101008b2863b3120213b7cbe0b5553fce906366c0bd863d9e2836e489a55e24f72b62e0549531788c6657066132b363e97adfa690cab97cc7e7c383df6cc0b0deb09cb4e89d4985aae276ad3f82d1ebbeb92ef8e61d4184befd314674a52bdacc7ae74593783f253eb42219449c042021185cae4448c57542abfc99fe464c5cb2213df3bf673215637db6d2d3f35fe62a3147d9b43b3c45211db6b3cf5605dca0fff5d0172a6acc756298f9860f8fd370811bd1df3bfb8c6a026a536fde46623f1419843f7a53d151c517e5e9ae55be1efa40f9ff236ad3402ce0ebb61fb6448c3e5f22b42aa4edec2d3b1cc6ff1e84c636ab7cb9816128a4829f105af4b110893c96</value>
+      <value>308204433082032ba003020102020900c2e08746644a308d300d06092a864886f70d01010405003074310b3009060355040613025553311330110603550408130a43616c69666f726e6961311630140603550407130d4d6f756e7461696e205669657731143012060355040a130b476f6f676c6520496e632e3110300e060355040b1307416e64726f69643110300e06035504031307416e64726f6964301e170d3038303832313233313333345a170d3336303130373233313333345a3074310b3009060355040613025553311330110603550408130a43616c69666f726e6961311630140603550407130d4d6f756e7461696e205669657731143012060355040a130b476f6f676c6520496e632e3110300e060355040b1307416e64726f69643110300e06035504031307416e64726f696430820120300d06092a864886f70d01010105000382010d00308201080282010100ab562e00d83ba208ae0a966f124e29da11f2ab56d08f58e2cca91303e9b754d372f640a71b1dcb130967624e4656a7776a92193db2e5bfb724a91e77188b0e6a47a43b33d9609b77183145ccdf7b2e586674c9e1565b1f4c6a5955bff251a63dabf9c55c27222252e875e4f8154a645f897168c0b1bfc612eabf785769bb34aa7984dc7e2ea2764cae8307d8c17154d7ee5f64a51a44a602c249054157dc02cd5f5c0e55fbef8519fbe327f0b1511692c5a06f19d18385f5c4dbc2d6b93f68cc2979c70e18ab93866b3bd5db8999552a0e3b4c99df58fb918bedc182ba35e003c1b4b10dd244a8ee24fffd333872ab5221985edab0fc0d0b145b6aa192858e79020103a381d93081d6301d0603551d0e04160414c77d8cc2211756259a7fd382df6be398e4d786a53081a60603551d2304819e30819b8014c77d8cc2211756259a7fd382df6be398e4d786a5a178a4763074310b3009060355040613025553311330110603550408130a43616c69666f726e6961311630140603550407130d4d6f756e7461696e205669657731143012060355040a130b476f6f676c6520496e632e3110300e060355040b1307416e64726f69643110300e06035504031307416e64726f6964820900c2e08746644a308d300c0603551d13040530030101ff300d06092a864886f70d010104050003820101006dd252ceef85302c360aaace939bcff2cca904bb5d7a1661f8ae46b2994204d0ff4a68c7ed1a531ec4595a623ce60763b167297a7ae35712c407f208f0cb109429124d7b106219c084ca3eb3f9ad5fb871ef92269a8be28bf16d44c8d9a08e6cb2f005bb3fe2cb96447e868e731076ad45b33f6009ea19c161e62641aa99271dfd5228c5c587875ddb7f452758d661f6cc0cccb7352e424cc4365c523532f7325137593c4ae341f4db41edda0d0b1071a7c440f0fe9ea01cb627ca674369d084bd2fd911ff06cdbf2cfa10dc0f893ae35762919048c7efc64c7144178342f70581c9de573af55b390dd7fdb9418631895d5f759f30112687ff621410c069308a</value>
+    </constant_variable>
+    <constant_variable id="oval:android.stig:var:7" version="1" datatype="string" comment="Whitelist of allowed MDM apps for V-36086">
+      <value>(?:,|^)Good(?:,|$)</value>
+    </constant_variable>
+    <constant_variable id="oval:android.stig:var:8" version="1" datatype="int" comment="Minimum number of allowed incorrect password attempts before device wipe for V-36088, V-36132">
+      <value>5</value>
+    </constant_variable>
+  </variables>
+</oval_definitions>

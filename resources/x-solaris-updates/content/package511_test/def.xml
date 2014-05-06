@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris solaris-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-solaris-package511 x-solaris-package511.xsd" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <generator>
+    <oval:product_name>The OVAL Sandbox</oval:product_name>
+    <oval:schema_version>5.11</oval:schema_version>
+    <oval:timestamp>2013-07-14T14:06:41.489-04:00</oval:timestamp>
+  </generator>
+  <definitions>
+    <definition id="oval:sample:def:1" version="0" class="inventory">
+      <metadata>
+        <title>Check to see if GNU Zip 1.4 is installed</title>
+        <affected family="unix">
+          <platform>Sun Solaris 11</platform>
+        </affected>
+        <description>This definition checks to see if GNU Zip is installed and at version 1.4.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="GNU Zip 1.4 is installed." test_ref="oval:sample:tst:1"/>
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <package511_test id="oval:sample:tst:1" version="0" comment="GNU Zip 1.4 is installed." check_existence="at_least_one_exists" check="all" xmlns="http://oval.mitre.org/XMLSchema/x-solaris-package511">
+      <object object_ref="oval:sample:obj:1"/>
+    </package511_test>
+  </tests>
+  <objects>
+    <package511_object id="oval:sample:obj:1" version="0" xmlns="http://oval.mitre.org/XMLSchema/x-solaris-package511">
+      <publisher>solaris</publisher>
+      <name>compress/gzip</name>
+      <version datatype="version">1.4,5.11-0.175.1.0.0.24.0</version>
+      <timestamp operation="pattern match">.*</timestamp>
+    </package511_object>
+  </objects>
+</oval_definitions>

@@ -15,26 +15,35 @@
         </xsd:appinfo>
     </xsd:annotation>
     <!-- ====================================================================== -->
-    <!-- ============================  JUNOS GLOBAL ITEM  ============================ -->
+    <!-- =======================  JUNOS XML CONFIG ITEM  ====================== -->
     <!-- ====================================================================== -->
-    <xsd:element name="global_item" substitutionGroup="oval-sc:item">
+    <xsd:element name="xml_config_item" substitutionGroup="oval-sc:item">
         <xsd:annotation>
-            <xsd:documentation>Stores information about the existence of a particular line in the JunOS config file, under the global context.</xsd:documentation>
+            <xsd:documentation>Stores information about the existence of a particular XPATH query result from the JunOS XML config file.</xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
             <xsd:complexContent>
                 <xsd:extension base="oval-sc:ItemType">
                     <xsd:sequence>
-                        <xsd:element name="global_command" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
+                        <xsd:element name="xpath" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>An XPATH 1.0 expression that was evaluated against the XML config file.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="value_of" type="oval-sc:EntityItemAnySimpleType" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>The result of the evaluation of the XPATH expression against the XML config file.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
                     </xsd:sequence>
                 </xsd:extension>
             </xsd:complexContent>
         </xsd:complexType>
     </xsd:element>
     <!-- ==================================================================== -->
-    <!-- ============================  JUNOS LINE ITEM  ============================ -->
+    <!-- ==========================  JUNOS SHOW ITEM  ======================= -->
     <!-- ==================================================================== -->
-    <xsd:element name="line_item" substitutionGroup="oval-sc:item">
+    <xsd:element name="show_item" substitutionGroup="oval-sc:item">
         <xsd:annotation>
             <xsd:documentation>Stores the resulting configuration data provided by the execution of a specific show command.</xsd:documentation>
         </xsd:annotation>
@@ -42,15 +51,23 @@
             <xsd:complexContent>
                 <xsd:extension base="oval-sc:ItemType">
                     <xsd:sequence>
-                        <xsd:element name="show_subcommand" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
-                        <xsd:element name="config_line" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
+                        <xsd:element name="subcommand" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The name of the SHOW sub-command.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="value" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The value returned from by the specified SHOW sub-command. This may consist of multiple lines of information.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
                     </xsd:sequence>
                 </xsd:extension>
             </xsd:complexContent>
         </xsd:complexType>
     </xsd:element>
     <!-- ======================================================================= -->
-    <!-- ============================  JUNOS VERSION ITEM  ============================ -->
+    <!-- ========================  JUNOS VERSION ITEM  ========================= -->
     <!-- ======================================================================= -->
     <xsd:element name="version_item" substitutionGroup="oval-sc:item">
         <xsd:annotation>
@@ -60,19 +77,79 @@
             <xsd:complexContent>
                 <xsd:extension base="oval-sc:ItemType">
                     <xsd:sequence>
-                        <xsd:element name="component" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
-                        <xsd:element name="release" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1"/>
-                        <xsd:element name="builder" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
-                        <xsd:element name="build_date" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1"/>
+                        <xsd:element name="component" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The name of the JunOS component whose version should be retrieved.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="raw_release" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The raw release version string for the component.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="major_version" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The part of the release version of the component corresponding to the [year].[quarter] in which the release occurred. For example, the major_version for 12.2R6.1 would be 12.2.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="release_type" type="junos-sc:EntityItemJunosReleaseTypeType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The release type embedded in the version of the component.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="revision" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The revision and build number (AKA spin number) information of the component's version. For example, the revision for 12.2R6.1 would be 6.1.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="builder" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The string identifying the builder of the component.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="build_date" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The build date of the component, specified in milliseconds since the Epoch (midnight, January 1, 1970 GMT).</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
                     </xsd:sequence>
                 </xsd:extension>
             </xsd:complexContent>
         </xsd:complexType>
     </xsd:element>
+    <xsd:complexType name="EntityItemJunosReleaseTypeType">
+        <xsd:annotation>
+            <xsd:documentation>The EntityItemJunosReleaseTypeType complex type defines the different values that are valid for the release_type entity of a system_metric state. These values describe the release type specified in the raw version string.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:restriction base="oval-sc:EntityItemStringType">
+                <xsd:enumeration value="R">
+                    <xsd:annotation>
+                        <xsd:documentation>Indicates a normal release.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="S">
+                    <xsd:annotation>
+                        <xsd:documentation>Indicates a service release.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="B">
+                    <xsd:annotation>
+                        <xsd:documentation>Indicates a beta release.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="X">
+                    <xsd:annotation>
+                        <xsd:documentation>Indicates a release of the SRX branch.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+            </xsd:restriction>
+        </xsd:simpleContent>
+    </xsd:complexType>
     <!-- ======================================================================= -->
-    <!-- ============================  JUNOS XML LINE ITEM  ============================ -->
+    <!-- =======================  JUNOS XML SHOW ITEM  ========================= -->
     <!-- ======================================================================= -->
-    <xsd:element name="xml_line_item" substitutionGroup="oval-sc:item">
+    <xsd:element name="xml_show_item" substitutionGroup="oval-sc:item">
         <xsd:annotation>
             <xsd:documentation>Stores the result of the application of an XPATH query applied to the JunOS configuration data provided by the execution of a specific show command, which has been piped to "display xml".</xsd:documentation>
         </xsd:annotation>
@@ -80,9 +157,21 @@
             <xsd:complexContent>
                 <xsd:extension base="oval-sc:ItemType">
                     <xsd:sequence>
-                        <xsd:element name="show_subcommand" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
-                        <xsd:element name="xpath" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1"/>
-                        <xsd:element name="value_of" type="oval-sc:EntityItemAnySimpleType" minOccurs="0" maxOccurs="unbounded"/>
+                        <xsd:element name="subcommand" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The name of a SHOW sub-command to be tested.</xsd:documentation>
+                            </xsd:annotation> 
+                        </xsd:element>
+                        <xsd:element name="xpath" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>An XPATH 1.0 expression that should be evaluated against the XML data resulting from the XML show subcommand.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="value_of" type="oval-sc:EntityItemAnySimpleType" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>The result of the evaluation of the XPATH expression against the XML data returned from the XML show subcommand.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
                     </xsd:sequence>
                 </xsd:extension>
             </xsd:complexContent>

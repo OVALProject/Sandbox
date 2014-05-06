@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions
+  xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+  <generator>
+    <oval:schema_version>5.10.1</oval:schema_version>
+    <oval:timestamp>2013-03-20T08:01:51-05:00</oval:timestamp>
+  </generator>
+  <definitions>
+    <definition id="oval:mil.ssclant.oval.test:def:38" version="1" class="miscellaneous">
+      <metadata>
+        <title>Evaluate to true if the win-def:ntuser_test is properly supported.</title>
+        <description>This definition is intended to evalutate to true if the interpreter properly supports the win-def:ntuser_test.</description>
+      </metadata>
+      <notes>
+        <note>It is important to note that the values used in this test definition are specific to a particular machine, and may not necessarily apply to your system. As a result, in order to have the
+          definition return a result of 'true', you must either change these values to the ones found on your particular system, or you must configure your system to use these values.</note>
+        <note>Information regarding the registry on your particular machine can be found by navigating to Start->Run... and by typing 'regedit'.</note>
+      </notes>
+      <criteria>
+        <criterion comment="Test if a ntuser_object with a key is supported." test_ref="oval:mil.ssclant.oval.test:tst:1000"/>
+        <criterion comment="Test if a ntuser_object with a key, and name is supported." test_ref="oval:mil.ssclant.oval.test:tst:1001"/>
+        <criterion comment="Test if a ntuser_object with a key, and name pattern match is supported." test_ref="oval:mil.ssclant.oval.test:tst:1002"/>
+        <criterion comment="Test if a ntuser_object with a key pattern match and name pattern match is supported." test_ref="oval:mil.ssclant.oval.test:tst:1003"/>
+        <criterion comment="Test if a ntuser_object with a key pattern match, and name is supported." test_ref="oval:mil.ssclant.oval.test:tst:1004"/>
+        <criterion comment="Test if a ntuser_object with a key pattern match and name with an empty string is supported." test_ref="oval:mil.ssclant.oval.test:tst:1005"/>
+        <criterion comment="Test that the max_depth behavior is supported with a limited depth of recursion." test_ref="oval:mil.ssclant.oval.test:tst:1006"/>
+        <criterion comment="Test that the max_depth behavior is supported with a unlimited depth of recursion." test_ref="oval:mil.ssclant.oval.test:tst:1007"/>
+        <criterion comment="Test that the recurse_direction behavior is supported in the 'up' direction." test_ref="oval:mil.ssclant.oval.test:tst:1008"/>
+        <criterion comment="Test if a ntuser.dat file has been modified in last 90 days using seconds_since_epoch" test_ref="oval:mil.ssclant.oval.test:tst:1009"/>
+        <criterion comment="Test if a ntuser.dat file has been modified in last 90 days using seconds_since_epoch for only enabled accounts." test_ref="oval:mil.ssclant.oval.test:tst:1010"/>
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1000" version="1" comment="Test if a ntuser_object with a  key is supported." check_existence="at_least_one_exists" check="at least one"
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:mil.ssclant.oval.test:obj:223"/>
+      <state state_ref="oval:mil.ssclant.oval.test:ste:944"/>
+    </ntuser_test>
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1001" version="1" comment="Test if a ntuser_object with a  key, and name is supported." check_existence="at_least_one_exists" check="at least one"
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:mil.ssclant.oval.test:obj:563"/>
+      <state state_ref="oval:mil.ssclant.oval.test:ste:1256"/>
+    </ntuser_test>
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1002" version="1" comment="Test if a ntuser_object with a  key, and name pattern match is supported." check_existence="at_least_one_exists"
+      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:mil.ssclant.oval.test:obj:713"/>
+      <state state_ref="oval:mil.ssclant.oval.test:ste:947"/>
+    </ntuser_test>
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1003" version="1" comment="Test if a ntuser_object with a  key pattern match, and name pattern match is supported."
+      check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:mil.ssclant.oval.test:obj:342"/>
+      <state state_ref="oval:mil.ssclant.oval.test:ste:1211"/>
+    </ntuser_test>
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1004" version="1" comment="Test if a ntuser_object with a  key pattern match, and name is supported." check_existence="at_least_one_exists"
+      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:mil.ssclant.oval.test:obj:428"/>
+      <state state_ref="oval:mil.ssclant.oval.test:ste:1148"/>
+    </ntuser_test>
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1005" version="1" comment="Test if a ntuser_object is supported with a empty string for a registry key name." check_existence="at_least_one_exists"
+      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:mil.ssclant.oval.test:obj:185"/>
+      <state state_ref="oval:mil.ssclant.oval.test:ste:287"/>
+    </ntuser_test>
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1006" version="1" comment="Test that the max_depth behavior is supported with a limited depth of recursion" check_existence="at_least_one_exists"
+      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:mil.ssclant.oval.test:obj:479"/>
+      <state state_ref="oval:mil.ssclant.oval.test:ste:1256"/>
+    </ntuser_test>
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1007" version="1" comment="Test that the max_depth behavior is supported with a unlimited depth of recursion." check_existence="at_least_one_exists"
+      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:mil.ssclant.oval.test:obj:288"/>
+      <state state_ref="oval:mil.ssclant.oval.test:ste:1256"/>
+    </ntuser_test>
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1008" version="1" comment="Test that the recurse_direction behavior is supported in the 'up' direction." check_existence="at_least_one_exists"
+      check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:mil.ssclant.oval.test:obj:711"/>
+      <state state_ref="oval:mil.ssclant.oval.test:ste:1256"/>
+    </ntuser_test>
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1009" version="1" comment="Test if a ntuser.dat file has been modified in last 90 days using seconds_since_epoch" check_existence="all_exist"
+      check="all" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:mil.ssclant.oval.test:obj:1009"/>
+      <state state_ref="oval:mil.ssclant.oval.test:ste:1009"/>
+    </ntuser_test>
+    <ntuser_test id="oval:mil.ssclant.oval.test:tst:1010" version="1" comment="Test if a ntuser.dat file has been modified in last 90 days using seconds_since_epoch for only enabled accounts."
+      check_existence="all_exist" check="all" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:mil.ssclant.oval.test:obj:1010"/>
+      <state state_ref="oval:mil.ssclant.oval.test:ste:1010"/>
+    </ntuser_test>
+  </tests>
+  <objects>
+    <ntuser_object id="oval:mil.ssclant.oval.test:obj:223" version="1" comment="Retrieve a ntuser_object  key equal to 'Control Panel\Desktop'."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <key>Control Panel\Desktop</key>
+      <name xsi:nil="true"/>
+    </ntuser_object>
+    <ntuser_object id="oval:mil.ssclant.oval.test:obj:563" version="1" comment="Retrieve a ntuser_object with a  key equal to 'Control Panel\Desktop', and name equal to 'ScreenSaveActive'."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <key>Control Panel\Desktop</key>
+      <name>ScreenSaveActive</name>
+    </ntuser_object>
+    <ntuser_object id="oval:mil.ssclant.oval.test:obj:713" version="1" comment="Retrieve a ntuser_object with a  key equal to 'Control Panel\Desktop', and name matches a regular expression'."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <key>Control Panel\Desktop</key>
+      <name operation="pattern match">ScreenSaveActi.*</name>
+    </ntuser_object>
+    <ntuser_object id="oval:mil.ssclant.oval.test:obj:342" version="1"
+      comment="Retrieve a ntuser_object with a key pattern matches a regular expressoin, and name pattern matches a regular expression'."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <key operation="pattern match">Control Panel\\Deskt.*</key>
+      <name operation="pattern match">ScreenSaveActi.*</name>
+    </ntuser_object>
+    <ntuser_object id="oval:mil.ssclant.oval.test:obj:428" version="1" comment="Retrieve a ntuser_object with a  key pattern matches a regular expression, and name equals 'ScreenSaveActive'."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <key operation="pattern match">Control Panel\\Deskt.*</key>
+      <name>ScreenSaveActive</name>
+    </ntuser_object>
+    <ntuser_object id="oval:mil.ssclant.oval.test:obj:185" version="1" comment="Retrieve a ntuser_object with a key equal to 'Control Panel', and name equal to ''."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <key>Control Panel\Desktop</key>
+      <name/>
+    </ntuser_object>
+    <ntuser_object id="oval:mil.ssclant.oval.test:obj:479" version="1"
+      comment="Retrieve a ntuser_object with a  key equal to 'Control Panel\Desktop', recursing down one level, and name equal to 'ScreenSaveActive'."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <behaviors max_depth="1" recurse_direction="down"/>
+      <key>Control Panel\Desktop</key>
+      <name>ScreenSaveActive</name>
+    </ntuser_object>
+    <ntuser_object id="oval:mil.ssclant.oval.test:obj:288" version="1"
+      comment="Retrieve a ntuser_object with a  key equal to 'Control Panel\Desktop', recursing down infinitely, and name equal to 'ScreenSaveActive'."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <behaviors max_depth="-1" recurse_direction="down"/>
+      <key>Control Panel\Desktop</key>
+      <name>ScreenSaveActive</name>
+    </ntuser_object>
+    <ntuser_object id="oval:mil.ssclant.oval.test:obj:711" version="1"
+      comment="Retrieve a ntuser_object with a  key equal to ''Control Panel\Desktop', recursing up one level, and name equal to 'ScreenSaveActive'."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <behaviors max_depth="1" recurse_direction="up"/>
+      <key>Control Panel\Desktop</key>
+      <name>ScreenSaveActive</name>
+    </ntuser_object>
+    <ntuser_object id="oval:mil.ssclant.oval.test:obj:1009" version="1" comment="Test if a ntuser.dat file has been modified in last 90 days"
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <key>Control Panel\Desktop</key>
+      <name>ScreenSaveActive</name>
+    </ntuser_object>
+    <ntuser_object id="oval:mil.ssclant.oval.test:obj:1010" version="1" comment="Test if a ntuser.dat file has been modified in last 90 days for only enabled accounts."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <key>Control Panel\Desktop</key>
+      <name>ScreenSaveActive</name>
+      <oval-def:filter action="include">oval:mil.ssclant.oval.test:ste:17725</oval-def:filter>
+    </ntuser_object>
+  </objects>
+
+  <states>
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:944" version="1" comment="This ntuser_state represents a ntuser_object  key equal to 'Control Panel\Desktop'."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <key>Control Panel\Desktop</key>
+    </ntuser_state>
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:1256" version="1"
+      comment="This ntuser_state represents a ntuser_object with a  key equal to 'Control Panel\Desktop', and name equal to 'CurrentVersion'."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <key>Control Panel\Desktop</key>
+      <name>ScreenSaveActive</name>
+    </ntuser_state>
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:947" version="1"
+      comment="This ntuser_state represents a ntuser_object with a  key equal to 'Control Panel\Desktop', and name pattern matches a regular expression."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <key>Control Panel\Desktop</key>
+      <name operation="pattern match">ScreenSaveAct.*</name>
+      <sid operation="pattern match">.*</sid>
+    </ntuser_state>
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:1211" version="1"
+      comment="This ntuser_state represents a ntuser_object with a key pattern matches a regular expression, and name pattern matches a regular expression."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <key operation="pattern match">Control Panel\\Deskt.*</key>
+      <name operation="pattern match">.*</name>
+      <username operation="pattern match">.*</username>
+    </ntuser_state>
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:1148" version="1"
+      comment="This ntuser_state represents a ntuser_object with a  key pattern matches a regular expression, and name equals 'CurrentVersion'."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <key operation="pattern match">Control Panel\\Deskt.*</key>
+      <name>ScreenSaveActive</name>
+    </ntuser_state>
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:287" version="1" comment="This ntuser_state represents a ntuser_object with a  key equal to 'Control Panel', and name equal to ''."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <key>Control Panel\Desktop</key>
+      <name/>
+    </ntuser_state>
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:17721" version="1" comment="domain account" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <account_type>domain</account_type>
+    </ntuser_state>
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:17722" version="1" comment="local account" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <account_type>local</account_type>
+    </ntuser_state>
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:17725" version="1" comment="Verify user account is enabled." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <enabled datatype="boolean">true</enabled>
+    </ntuser_state>
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:1009" version="1" comment="Test if a ntuser.dat file has been modified in last 90 days using seconds_since_epoch"
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <date_modified datatype="int" operation="greater than or equal" var_ref="oval:mil.ssclant.oval.test:var:78"/>
+    </ntuser_state>
+    <ntuser_state id="oval:mil.ssclant.oval.test:ste:1010" version="1" comment="Test if a ntuser.dat file has been modified with in the last 90 days."
+      xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <days_since_modified datatype="int" operation="less than or equal">90</days_since_modified>
+    </ntuser_state>
+  </states>
+  <variables>
+    <local_variable id="oval:mil.ssclant.oval.test:var:78" version="1"
+      comment="A single time difference value that is equal to the difference between the current timedate value and a seconds_since_epoch timedate value." datatype="int">
+      <time_difference format_2="seconds_since_epoch">
+        <!-- default is 7776000 (90 days in EPOCH), other common values would be 86400  (1 day), 2592000 (30 days) -->
+        <literal_component datatype="int">7776000</literal_component>
+      </time_difference>
+    </local_variable>
+  </variables>
+</oval_definitions>

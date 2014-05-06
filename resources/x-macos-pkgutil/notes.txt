@@ -1,0 +1,3 @@
+The experimental x-macos-pkgutil schema and content has been replaced by the experimental 
+x-macos-pkginfo schema and content.  The experimental x-macos-pkgutil schema and content will be
+removed from the sandbox in the near future.

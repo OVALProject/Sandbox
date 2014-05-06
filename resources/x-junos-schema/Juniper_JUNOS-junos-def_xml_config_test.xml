@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oval_results xmlns:xmldsig="http://www.w3.org/2000/09/xmldsig#" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:aix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#aix" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:linux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:ns8="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" xmlns:netconf-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#netconf" xmlns:hpux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux" xmlns:esx-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#esx" xmlns:macos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" xmlns:junos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#junos" xmlns:sharepoint-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint" xmlns:pixos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#pixos" xmlns:catos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#catos" xmlns:ios-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xmlns:apache-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#apache" xmlns:freebsd-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#freebsd" xmlns:solaris-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:aix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#aix" xmlns:esx-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#esx" xmlns:apache-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apache" xmlns:sharepoint-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#sharepoint" xmlns:ns27="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android" xmlns:junos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#junos" xmlns:netconf-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#netconf" xmlns:unix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix" xmlns:solaris-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris" xmlns:linux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux" xmlns:ios-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:ind-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent" xmlns:hpux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#hpux" xmlns:catos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#catos" xmlns:macos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#macos" xmlns:pixos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#pixos" xmlns:freebsd-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#freebsd" xmlns="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#esx esx-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux linux-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#netconf netconf-system-characteristics-schema.xsd http://www.w3.org/2000/09/xmldsig# xmldsig-core-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#macos macos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios ios-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#aix aix-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris solaris-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#junos junos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#pixos pixos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#hpux hpux-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix unix-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent independent-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apache apache-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows windows-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#freebsd freebsd-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#sharepoint sharepoint-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#catos catos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint sharepoint-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux hpux-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#apache apache-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#esx esx-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris solaris-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#pixos pixos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#ios ios-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#netconf netconf-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#catos catos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#aix aix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#macos macos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#junos junos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#freebsd freebsd-definitions-schema.xsd">
+    <generator>
+        <oval:product_name>jOVAL(tm) SDK</oval:product_name>
+        <oval:product_version>5.10.1.2_dev</oval:product_version>
+        <oval:schema_version>5.10.1</oval:schema_version>
+        <oval:timestamp>2013-09-20T11:52:18.273-05:00</oval:timestamp>
+    </generator>
+    <directives include_source_definitions="true">
+        <definition_true content="full" reported="true"/>
+        <definition_false content="full" reported="true"/>
+        <definition_unknown content="full" reported="true"/>
+        <definition_error content="full" reported="true"/>
+        <definition_not_evaluated content="full" reported="true"/>
+        <definition_not_applicable content="full" reported="true"/>
+    </directives>
+    <oval-def:oval_definitions>
+        <oval-def:generator>
+            <oval:schema_version>5.9</oval:schema_version>
+            <oval:timestamp>2009-01-12T10:41:00-05:00</oval:timestamp>
+        </oval-def:generator>
+        <oval-def:definitions>
+            <oval-def:definition class="miscellaneous" version="1" id="oval:org.joval.junos.test:def:1">
+                <oval-def:metadata>
+                    <oval-def:title>Evaluate whether all the JUNOS xml config test type is supported</oval-def:title>
+                    <oval-def:description>This definition is intended to evalutate to version if the interpreter properly supports all the junos-def:XXX_test types and all of their valid operations.</oval-def:description>
+                </oval-def:metadata>
+                <oval-def:notes>
+                    <oval-def:note>It is important to note that the values used in this test definition are specific to a particular machine, and may not necessarily apply to your system. As a result, in order to have the definition return a result of 'true', you must either change these values to the ones found on your particular system, or you must configure your system to use these values.</oval-def:note>
+                </oval-def:notes>
+                <oval-def:criteria operator="AND">
+                    <oval-def:criterion comment="Test that the xml_config_object is supported." test_ref="oval:org.joval.junos.test:tst:1"/>
+                </oval-def:criteria>
+            </oval-def:definition>
+        </oval-def:definitions>
+        <oval-def:tests>
+            <junos-def:xml_config_test comment="Test that the xml_config_object is supported." check="at least one" check_existence="at_least_one_exists" version="1" id="oval:org.joval.junos.test:tst:1">
+                <junos-def:object object_ref="oval:org.joval.junos.test:obj:1"/>
+            </junos-def:xml_config_test>
+        </oval-def:tests>
+        <oval-def:objects>
+            <junos-def:xml_config_object version="1" id="oval:org.joval.junos.test:obj:1">
+                <junos-def:xpath>//host-name/text()</junos-def:xpath>
+            </junos-def:xml_config_object>
+        </oval-def:objects>
+    </oval-def:oval_definitions>
+    <results>
+        <system>
+            <definitions>
+                <definition result="true" class="miscellaneous" version="1" definition_id="oval:org.joval.junos.test:def:1">
+                    <criteria result="true" negate="false" operator="AND">
+                        <criterion result="true" negate="false" test_ref="oval:org.joval.junos.test:tst:1"/>
+                    </criteria>
+                </definition>
+            </definitions>
+            <tests>
+                <test result="true" state_operator="AND" check="at least one" check_existence="at_least_one_exists" test_id="oval:org.joval.junos.test:tst:1">
+                    <tested_item result="not evaluated" item_id="0"/>
+                </test>
+            </tests>
+            <oval-sc:oval_system_characteristics>
+                <oval-sc:generator>
+                    <oval:product_name>jOVAL(tm) SDK</oval:product_name>
+                    <oval:product_version>5.10.1.2_dev</oval:product_version>
+                    <oval:schema_version>5.10.1</oval:schema_version>
+                    <oval:timestamp>2013-09-20T11:52:18.152-05:00</oval:timestamp>
+                </oval-sc:generator>
+                <oval-sc:system_info>
+                    <oval-sc:os_name>Juniper JunOS</oval-sc:os_name>
+                    <oval-sc:os_version>8.5R1.14</oval-sc:os_version>
+                    <oval-sc:architecture>olive</oval-sc:architecture>
+                    <oval-sc:primary_host_name>olive</oval-sc:primary_host_name>
+                    <oval-sc:interfaces>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>.local..0</oval-sc:interface_name>
+                            <oval-sc:ip_address>192.168.0.54</oval-sc:ip_address>
+                            <oval-sc:mac_address>Unspecified</oval-sc:mac_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>.local..2</oval-sc:interface_name>
+                            <oval-sc:ip_address>127.0.0.1</oval-sc:ip_address>
+                            <oval-sc:mac_address>Unspecified</oval-sc:mac_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>em0.0</oval-sc:interface_name>
+                            <oval-sc:ip_address>192.168.0.54</oval-sc:ip_address>
+                            <oval-sc:mac_address>08:00:27:d8:47:22</oval-sc:mac_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>lo0.16384</oval-sc:interface_name>
+                            <oval-sc:ip_address>127.0.0.1</oval-sc:ip_address>
+                            <oval-sc:mac_address>Unspecified</oval-sc:mac_address>
+                        </oval-sc:interface>
+                    </oval-sc:interfaces>
+                </oval-sc:system_info>
+                <oval-sc:collected_objects>
+                    <oval-sc:object flag="complete" version="1" id="oval:org.joval.junos.test:obj:1">
+                        <oval-sc:reference item_ref="0"/>
+                    </oval-sc:object>
+                </oval-sc:collected_objects>
+                <oval-sc:system_data>
+                    <junos-sc:xml_config_item id="0">
+                        <junos-sc:xpath>//host-name/text()</junos-sc:xpath>
+                        <junos-sc:value_of>olive</junos-sc:value_of>
+                    </junos-sc:xml_config_item>
+                </oval-sc:system_data>
+            </oval-sc:oval_system_characteristics>
+        </system>
+    </results>
+</oval_results>

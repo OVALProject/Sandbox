@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/x-solaris-smfproperty x-solaris-smfproperty.xsd">
+
+    <generator>
+        <oval:product_name>cpe:/a:mitre:ovaldi:5.10.1.5</oval:product_name>
+        <oval:product_version>5.10.1 Build: 5</oval:product_version>
+        <oval:schema_version>5.11</oval:schema_version>
+        <oval:timestamp>2013-10-15T15:11:15</oval:timestamp>
+        <vendor>The MITRE Corporation</vendor>
+    </generator>
+
+    <system_info>
+        <os_name>SunOS</os_name>
+        <os_version>11.1</os_version>
+        <architecture>i86pc</architecture>
+        <primary_host_name>solaris.example.com</primary_host_name>
+        <interfaces>
+            <interface>
+                <interface_name>net0</interface_name>
+                <ip_address>123.123.123.123</ip_address>
+                <mac_address>11-11-11-11-11-11</mac_address>
+            </interface>
+        </interfaces>
+    </system_info>
+
+    <collected_objects>
+        <object comment="Retrieve the config/local_only property of the sendmail service." flag="complete" id="oval:sample:obj:1" version="1">
+            <reference item_ref="1"/>
+        </object>
+    </collected_objects>
+
+    <system_data>
+        <smfproperty_item id="1" xmlns="http://oval.mitre.org/XMLSchema/x-solaris-smfproperty">
+            <service>network/smtp</service>
+            <instance>sendmail</instance>
+            <property>config/local_only</property>
+            <fmri>svc:/network/smtp:sendmail/:properties/config/local_only</fmri>
+            <value datatype="boolean">true</value>
+        </smfproperty_item>
+    </system_data>
+
+</oval_system_characteristics>

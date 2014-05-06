@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-linux-systemdunitdependency x-linux-systemdunitdependency.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">
+  <generator>
+    <oval:schema_version>5.11</oval:schema_version>
+    <oval:timestamp>2009-01-12T10:41:00-05:00</oval:timestamp>
+    <terms_of_use>Copyright (c) 2002-2012, The MITRE Corporation. All rights reserved. The contents of this file are subject to the license described in terms.txt.</terms_of_use>
+  </generator>
+  <definitions>
+    <definition id="oval:sample:def:1" version="1" class="miscellaneous">
+      <metadata>
+        <title>...</title>
+        <description>...</description>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Check to see if there are any units that have a dependency on cupsd.service." test_ref="oval:sample:tst:1"/>
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <systemdunitdependency_test id="oval:sample:tst:1" version="1" comment="Check to see if there are any units that have a dependency on cupsd.service." check_existence="at_least_one_exists" check="all" xmlns="http://oval.mitre.org/XMLSchema/x-linux-systemdunitdependency">
+      <object object_ref="oval:sample:obj:1"/>
+    </systemdunitdependency_test>
+  </tests>
+  <objects>
+    <systemdunitdependency_object id="oval:sample:obj:1" version="1" comment="Collect all units and dependencies, but, only keep those that have a dependency on cupsd.service." xmlns="http://oval.mitre.org/XMLSchema/x-linux-systemdunitdependency">
+      <unit operation="pattern match">.*</unit>
+      <oval-def:filter action="include">oval:sample:ste:1</oval-def:filter>
+    </systemdunitdependency_object>
+  </objects>
+  <states>
+    <systemdunitdependency_state id="oval:sample:ste:1" version="1" comment="This state represents a unit that has a dependency on cupsd.service." xmlns="http://oval.mitre.org/XMLSchema/x-linux-systemdunitdependency">
+      <dependency entity_check="at least one">cupsd.service</dependency>
+    </systemdunitdependency_state>
+  </states>
+</oval_definitions>

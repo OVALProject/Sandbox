@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 ﻿<?xml version="1.0" encoding="utf-8"?>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+>>>>>>> c635df0d10504d69535e46994a7288298af9f4ad
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:asa-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#asa" xmlns:asa-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#asa" xmlns:x-asa-acl="http://oval.mitre.org/XMLSchema/x-asa-acl" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/x-asa-acl" elementFormDefault="qualified" version="5.11">
   <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd" />
   <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd" />
   <xsd:annotation>
     <xsd:documentation>The following is a proposal for the experimental asa-def:interface_test and asa-sc:interface_item that will support checking the output lines of interface configurations on Cisco ASA 5500 Series Adaptive Security Appliances</xsd:documentation>
+<<<<<<< HEAD
+=======
+    <xsd:documentation>Thanks to Omar Santos and Panos Kampanakis of Cisco for providing this test.</xsd:documentation>
+>>>>>>> c635df0d10504d69535e46994a7288298af9f4ad
     <xsd:appinfo>
       <schema>Experimental Schema for Cisco ASA 5500 Series Security Appliances interface Tests</schema>
       <version>5.11</version>
