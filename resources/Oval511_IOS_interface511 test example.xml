@@ -24,7 +24,7 @@
 	<interface511_test comment="Returns true if interface Gig0/0 is shutdown or has cryptomap crypto-example applied to it" check="at least one " id="oval:cisco.oval:tst:345" version="1">
 		<interface511_object object_ref="oval:cisco.oval:obj:2"/>
 		<interface511_state state_ref="oval:cisco.oval:ste:57839"/>
-		<interface511_state state_ref="oval:cisco.oval:ste:57840"/>
+ 		<interface511_state state_ref="oval:cisco.oval:ste:57840"/>
 	</interface511_test>
 </tests>
 
