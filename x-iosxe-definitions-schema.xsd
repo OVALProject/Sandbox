@@ -112,7 +112,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="line_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>The line test is used to check the properties of specific output lines from a SHOW command, such as show running-config. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a line_object and the optional state element specifies the data to check.</xsd:documentation>
+                  <xsd:documentation>The line test is used to check the properties of specific output lines from a SHOW command, such as 'show running-config'. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a line_object and the optional state element specifies the data to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>line_test</oval:test>
@@ -146,7 +146,7 @@
       <xsd:element name="line_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
                   <xsd:documentation>The line_object element is used by a line test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
-                  <xsd:documentation>A line object consists of a show_subcommand entity that is the name of a SHOW sub-command to be tested.</xsd:documentation>
+                  <xsd:documentation>A line object consists of a show_subcommand entity that is the name of a SHOW sub-command to be tested. The whole show command should be used. For example, 'show running-config'.</xsd:documentation>
                   <xsd:appinfo>
                         <sch:pattern id="x-iosxe-def_line_object_verify_filter_state">
                               <sch:rule context="x-iosxe-def:line_object//oval-def:filter">
@@ -170,7 +170,7 @@
                                           <xsd:sequence>
                                                 <xsd:element name="show_subcommand" type="oval-def:EntityObjectStringType">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>The name of a SHOW sub-command.</xsd:documentation>
+                                                            <xsd:documentation>The name of the SHOW sub-command. The whole show command should be used. For example, 'show running-config'. This element is optional. The line_object usually defines the show sub-command whose output is matched against a line_state.</xsd:documentation>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
@@ -183,7 +183,7 @@
       </xsd:element>
       <xsd:element name="line_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
-                  <xsd:documentation>The line_state element defines the different information that can be used to evaluate the result of a specific SHOW sub-command. This includes the name of ths sub-command and the corresponding config line. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:documentation>The line_state element defines the different information that can be used to evaluate the result of a specific SHOW sub-command. This includes the whole name of the command and the corresponding config line. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -191,7 +191,7 @@
                               <xsd:sequence>
                                     <xsd:element name="show_subcommand" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The name of the SHOW sub-command.</xsd:documentation>
+                                                <xsd:documentation>The name of the SHOW sub-command. The whole show command should be used. For example, 'show running-config'. This element is optional. When used in a line_test the line_object usually defines the show sub-command and the line_state tests against the 'config-line' matched in the show output.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="config_line" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
