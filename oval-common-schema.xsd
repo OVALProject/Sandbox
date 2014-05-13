@@ -488,6 +488,11 @@ at_least_one_exists  ||  0   |  0+  |  1+  |  0+  ||  Error
                          <xsd:documentation>The ios value describes the Cisco IOS operating system.</xsd:documentation>
                     </xsd:annotation>
                </xsd:enumeration>
+               <xsd:enumeration value="ios_xe">
+                    <xsd:annotation>
+                         <xsd:documentation>The ios_xe value describes the Cisco IOS XE operating system.</xsd:documentation>
+                    </xsd:annotation>
+               </xsd:enumeration>
                <xsd:enumeration value="macos">
                     <xsd:annotation>
                          <xsd:documentation>The macos value describes the Mac operating system.</xsd:documentation>
@@ -496,6 +501,11 @@ at_least_one_exists  ||  0   |  0+  |  1+  |  0+  ||  Error
                <xsd:enumeration value="pixos">
                     <xsd:annotation>
                          <xsd:documentation>The pixos value describes the Cisco PIX operating system.</xsd:documentation>
+                    </xsd:annotation>
+               </xsd:enumeration>
+               <xsd:enumeration value="asa">
+                    <xsd:annotation>
+                         <xsd:documentation>The asa value describes the Cisco ASA operating system.</xsd:documentation>
                     </xsd:annotation>
                </xsd:enumeration>
                <xsd:enumeration value="undefined">
