@@ -388,7 +388,11 @@
     </xsd:complexType>
     <xsd:complexType name="EntityStateSNMPPrivStringType">
         <xsd:annotation>
+<<<<<<< HEAD
+            <xsd:documentation>The EntityStateSNMPPrivStringType complex type restricts a string value to a specific set of values: DES, 3DES, AES. These values describe the encryption algorithm in a Cisco ASA SNMPv3 related configurations.</xsd:documentation>
+=======
             <xsd:documentation>The EntityStateSNMPPrivStringType complex type restricts a string value to a specific set of values: DES, 3DES, AES128, AES192, and AES256. These values describe the encryption algorithm in a Cisco ASA SNMPv3 related configurations.</xsd:documentation>
+>>>>>>> c635df0d10504d69535e46994a7288298af9f4ad
         </xsd:annotation>
         <xsd:simpleContent>
             <xsd:restriction base="oval-def:EntityStateStringType">
@@ -495,7 +499,11 @@
     <!-- =============================================================================== -->
     <xsd:element name="snmp_group_item" substitutionGroup="oval-sc:item">
         <xsd:annotation>
+<<<<<<< HEAD
+            <xsd:documentation>Stores information about an SNMP group configuration in ASA. That information includes the group name, the SNMP version, the IPv4 or IPv6 ACL it is applied toand the read, write and/or notify views applied to the group.</xsd:documentation>
+=======
             <xsd:documentation>Stores information about an SNMP group configuration in ASA. That information includes the group name, the SNMP version, the IPv4 or IPv6 ACL it is applied to and the read, write and/or notify views applied to the group.</xsd:documentation>
+>>>>>>> c635df0d10504d69535e46994a7288298af9f4ad
         </xsd:annotation>
         <xsd:complexType>
             <xsd:complexContent>
@@ -557,7 +565,11 @@
     </xsd:complexType>
     <xsd:complexType name="EntityItemSNMPPrivStringType">
         <xsd:annotation>
+<<<<<<< HEAD
+            <xsd:documentation>The EntityItemSNMPPrivStringType complex type restricts a string value to a specific set of values: DES, 3DES, AES. These values describe the encryption algorithm in a Cisco ASA SNMPv3 related configurations.</xsd:documentation>
+=======
             <xsd:documentation>The EntityItemSNMPPrivStringType complex type restricts a string value to a specific set of values: DES, 3DES, AES128, AES192, and AES256. These values describe the encryption algorithm in a Cisco ASA SNMPv3 related configurations.</xsd:documentation>
+>>>>>>> c635df0d10504d69535e46994a7288298af9f4ad
         </xsd:annotation>
         <xsd:simpleContent>
             <xsd:restriction base="oval-sc:EntityItemStringType">

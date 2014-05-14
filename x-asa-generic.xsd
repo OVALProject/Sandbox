@@ -4,7 +4,10 @@
   <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd" />
   <xsd:annotation>
     <xsd:documentation>The following is a proposal for the experimental asa-def:global_test, asa-def:line_test and asa-def:version_test that will support checking the output lines and versionsconfigurations on Cisco ASA 5500 Series Adaptive Security Appliances</xsd:documentation>
+<<<<<<< HEAD
+=======
     <xsd:documentation>Thanks to Omar Santos and Panos Kampanakis of Cisco for providing this test.</xsd:documentation>
+>>>>>>> c635df0d10504d69535e46994a7288298af9f4ad
     <xsd:appinfo>
       <schema>Experimental Schema for Cisco ASA 5500 Series Security Appliances generic tests.</schema>
       <version>5.11</version>
@@ -194,6 +197,8 @@
                   </xsd:complexContent>
             </xsd:complexType>
       </xsd:element>
+<<<<<<< HEAD
+=======
       <!-- =============================================================================== -->
       <!-- =============================  LINE ITEM   ==================================== -->
       <!-- =============================================================================== -->
@@ -256,4 +261,5 @@
                   </xsd:complexContent>
             </xsd:complexType>
       </xsd:element>
+>>>>>>> c635df0d10504d69535e46994a7288298af9f4ad
 </xsd:schema>

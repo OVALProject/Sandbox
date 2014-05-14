@@ -1,0 +1,47 @@
+<oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#ios ios-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-ios-interface511 x-ios-interface511.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">
+    <generator>
+        <oval:product_name>PSIRT OVAL Definition Generator</oval:product_name>
+        <oval:product_version>0.1</oval:product_version>
+        <oval:schema_version>5.11</oval:schema_version>
+        <oval:timestamp>2014-05-02T20:51:51.4311028+00:00</oval:timestamp>
+    </generator>
+    <definitions>
+        <definition class="compliance" id="oval:cisco.oval:def:364" version="1">
+            <metadata>
+                <title>IOS interface511 test example</title>
+                <affected family="ios">
+                    <platform>Cisco IOS</platform>
+                </affected>
+                <description>Tests if an IOS interface GigabitEthernet0/0 us shutdown or if crypto map crypto-example is applied to it. Returns true if either is True.</description>
+            </metadata>
+            <criteria comment=" " operator="AND">
+                <criterion test_ref="oval:cisco.oval:tst:345" negate="true" comment=" "/>
+            </criteria>
+        </definition>
+    </definitions>
+    
+    <tests>
+        <interface511_test comment="Returns true if interface Gig0/0 is shutdown or has cryptomap crypto-example applied to it" check="at least one" id="oval:cisco.oval:tst:345" version="1"  xmlns="http://oval.mitre.org/XMLSchema/x-ios-interface511">
+            <object object_ref="oval:cisco.oval:obj:2"/>
+            <state state_ref="oval:cisco.oval:ste:57839"/>
+            <state state_ref="oval:cisco.oval:ste:57840"/>
+        </interface511_test>
+    </tests>
+    
+    <objects>
+        <interface511_object id="oval:cisco.oval:obj:2" version="1" xmlns="http://oval.mitre.org/XMLSchema/x-ios-interface511">
+            <name>GigabitEthernet0/0</name>
+        </interface511_object>
+    </objects>
+    
+    <states>
+        <interface511_state id="oval:cisco.oval:ste:57839" version="1" xmlns="http://oval.mitre.org/XMLSchema/x-ios-interface511">
+            <shutdown datatype="boolean">true</shutdown>
+        </interface511_state>
+        <interface511_state id="oval:cisco.oval:ste:57840" version="1" xmlns="http://oval.mitre.org/XMLSchema/x-ios-interface511">
+            <crypto_map>crypto-example</crypto_map>
+        </interface511_state>
+    </states>
+    
+</oval_definitions>
+

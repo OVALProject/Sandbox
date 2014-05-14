@@ -141,7 +141,11 @@
                                                 <xsd:documentation>The uRPF command under the interface.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
+<<<<<<< HEAD
+                                    <xsd:element name="switchport_trunk_encapsulation" type="x-ios-interface511:EntityStateTrunkEncapType" minOccurs="0" maxOccurs="1">
+=======
                                    <xsd:element name="switchport_trunk_encapsulation" type="x-ios-interface511:EntityStateTrunkEncapType" minOccurs="0" maxOccurs="1">
+>>>>>>> c635df0d10504d69535e46994a7288298af9f4ad
                                           <xsd:annotation>
                                                 <xsd:documentation>The switchport trunk encapsulation option configured on the interface (if applicable).</xsd:documentation>
                                           </xsd:annotation>
@@ -181,6 +185,35 @@
                   </xsd:complexContent>
             </xsd:complexType>
       </xsd:element>
+  <!-- =============================================================================== -->
+  <!-- ============================= IOS STATE TYPES  ================================= -->
+  <!-- =============================================================================== -->
+  <xsd:complexType name="EntityStateTrunkEncapType">
+    <xsd:annotation>
+      <xsd:documentation>The EntityStateTrunkEncapType complex type restricts a string value to a specific set of values: DOT1Q, ISL, NEGOTIATE. These values describe the interface trunk encapsulation types on an interfaces in IOS.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="oval-def:EntityStateStringType">
+        <xsd:enumeration value="DOT1Q" />
+        <xsd:enumeration value="ISL" />
+        <xsd:enumeration value="NEGOTIATE" />
+      </xsd:restriction>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="EntityStateSwitchportModeType">
+    <xsd:annotation>
+      <xsd:documentation>The EntityObjectRoutingProtocolType complex type restricts a string value to a specific set of values: DYNAMIC, TRUNK, ACCESS. These values describe the interface switchport mode types in IOS.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="oval-def:EntityStateStringType">
+        <xsd:enumeration value="DYNAMIC" />
+        <xsd:enumeration value="TRUNK" />
+        <xsd:enumeration value="ACCESS" />
+      </xsd:restriction>
+    </xsd:simpleContent>
+  </xsd:complexType>  
+
+
       <!-- =============================================================================== -->
       <!-- ============================= IOS STATE TYPES  ================================ -->
       <!-- =============================================================================== -->
@@ -316,6 +349,37 @@
                   </xsd:complexContent>
             </xsd:complexType>
       </xsd:element>
+<<<<<<< HEAD
+
+  <!-- =============================================================================== -->
+  <!-- ============================= IOS ITEM TYPES  ================================= -->
+  <!-- =============================================================================== -->
+  <xsd:complexType name="EntityItemTrunkEncapType">
+    <xsd:annotation>
+      <xsd:documentation>The EntityItemTrunkEncapType complex type restricts a string value to a specific set of values: DOT1Q, ISL, NEGOTIATE. These values describe the interface trunk encapsulation types on an interfaces in IOS.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="oval-sc:EntityItemStringType">
+        <xsd:enumeration value="DOT1Q" />
+        <xsd:enumeration value="ISL" />
+        <xsd:enumeration value="NEGOTIATE" />
+      </xsd:restriction>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="EntityItemSwitchportModeType">
+    <xsd:annotation>
+      <xsd:documentation>The EntityObjectRoutingProtocolType complex type restricts a string value to a specific set of values: DYNAMIC, TRUNK, ACCESS. These values describe the interface switchport mode types in IOS.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:restriction base="oval-sc:EntityItemStringType">
+        <xsd:enumeration value="DYNAMIC" />
+        <xsd:enumeration value="TRUNK" />
+        <xsd:enumeration value="ACCESS" />
+      </xsd:restriction>
+    </xsd:simpleContent>
+  </xsd:complexType>
+</xsd:schema>	  
+=======
       
       <!-- =============================================================================== -->
       <!-- ============================= IOS ITEM TYPES  ================================= -->
@@ -345,3 +409,4 @@
             </xsd:simpleContent>
       </xsd:complexType>  
 </xsd:schema>
+>>>>>>> c635df0d10504d69535e46994a7288298af9f4ad

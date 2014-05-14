@@ -1,0 +1,44 @@
+<oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#ios ios-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-ios-acl x-ios-acl.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">
+<generator>
+	<oval:product_name>PSIRT OVAL Definition Generator</oval:product_name>
+	<oval:product_version>0.1</oval:product_version>
+	<oval:schema_version>5.11</oval:schema_version>
+	<oval:timestamp>2014-05-02T20:51:51.4311028+00:00</oval:timestamp>
+</generator>
+<definitions>
+	<definition class="compliance" id="oval:cisco.oval:def:364" version="1">
+		<metadata>
+			<title>Example ASA ACL test</title>
+			<affected family="asa">
+				<platform>Cisco ASA</platform>
+			</affected>
+			<description>Tests if ASA ACL test-acl is applied on the inbound direction on any interface.</description>
+		</metadata>
+		<criteria comment=" " operator="AND">
+			<criterion test_ref="oval:cisco.oval:tst:344" negate="true" comment=" "/>
+		</criteria>
+	</definition>
+</definitions>
+
+<tests>
+	<acl_test comment="Returns true if test-acl ACL is applied inbound on an interface" check="all" id="oval:cisco.oval:tst:344" version="1" xmlns="http://oval.mitre.org/XMLSchema/x-ios-acl">
+		<object object_ref="oval:cisco.oval:obj:1"/>
+		<state state_ref="oval:cisco.oval:ste:57838"/>
+	</acl_test>
+</tests>
+
+<objects>
+	<acl_object id="oval:cisco.oval:obj:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/x-ios-acl">
+		<name>test-acl</name>
+		<ip_version>IPV4</ip_version>
+	</acl_object>
+</objects>
+
+<states>
+	<acl_state id="oval:cisco.oval:ste:57838" version="1" xmlns="http://oval.mitre.org/XMLSchema/x-ios-acl">
+		<interface_direction>IN</interface_direction>
+	</acl_state>
+</states>
+	
+</oval_definitions>
+
