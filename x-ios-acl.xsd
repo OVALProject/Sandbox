@@ -278,6 +278,7 @@
                     <xsd:enumeration value="INTERFACE"/>
                     <xsd:enumeration value="CLASS_MAP_MATCH"/>
                     <xsd:enumeration value="ROUTE_MAP_MATCH"/>
+                    <xsd:enumeration value="CRYPTO_MAP_MATCH"/>
                     <xsd:enumeration value="IGMP_FILTER"/>
                     <xsd:enumeration value="NONE"/>
                </xsd:restriction>
