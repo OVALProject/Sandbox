@@ -493,9 +493,9 @@ at_least_one_exists  ||  0   |  0+  |  1+  |  0+  ||  Error
                          <xsd:documentation>The ios value describes the Cisco IOS operating system.</xsd:documentation>
                     </xsd:annotation>
                </xsd:enumeration>
-			<xsd:enumeration value="iosxe">
+			<xsd:enumeration value="ios-xe">
                     <xsd:annotation>
-                         <xsd:documentation>The ios value describes the Cisco IOS XE operating system.</xsd:documentation>
+                         <xsd:documentation>The ios-xe value describes the Cisco IOS XE operating system.</xsd:documentation>
                     </xsd:annotation>
                </xsd:enumeration>
                <xsd:enumeration value="macos">
