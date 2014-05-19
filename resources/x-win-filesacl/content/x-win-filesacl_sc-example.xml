@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:x-win-filesacl="http://oval.mitre.org/XMLSchema/x-win-filesacl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows windows-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/x-win-filesacl x-win-filesacl.xsd">
+    
+    <generator>
+        <oval:product_name>cpe:/a:mitre:ovaldi:5.10.1.5</oval:product_name>
+        <oval:product_version>5.10.1 Build: 5</oval:product_version>
+        <oval:schema_version>5.10.1</oval:schema_version>
+        <oval:timestamp>2013-08-05T11:53:51</oval:timestamp>
+        <vendor>The MITRE Corporation</vendor>
+    </generator>
+    
+    <system_info>
+        <os_name>Microsoft Windows 7 Professional Service Pack 1</os_name>
+        <os_version>6.1.7601</os_version>
+        <architecture>AMD64</architecture>
+        <primary_host_name>COMPUTER.MITRE.ORG</primary_host_name>
+        <interfaces>
+            <interface>
+                <interface_name>Ethernet 1</interface_name>
+                <ip_address>10.0.0.100</ip_address>
+                <mac_address>11-22-33-44-55-66</mac_address>
+            </interface>
+        </interfaces>
+    </system_info>
+    
+    <collected_objects>
+        <object flag="complete" id="oval:org.mitre.expm:obj:1" version="1">
+            <reference item_ref="1"/>
+        </object>
+        <object flag="complete" id="oval:org.mitre.expm:obj:2" version="1">
+            <reference item_ref="1"/>
+            <reference item_ref="2"/>
+        </object>
+    </collected_objects>
+    
+    <system_data>
+        <filesacl_item id="1" xmlns="http://oval.mitre.org/XMLSchema/x-win-filesacl">
+            <filepath>C:\testdir</filepath>
+            <path>C:\testdir</path>
+            <filename status="not collected"></filename>
+            <trustee_sid>S-1-1-0</trustee_sid>
+            <ace_order datatype="int">2</ace_order>
+            <ace_type>AUDIT_FAILURE</ace_type>
+            <ace_inherited_from status="does not exist"/>
+            <inherited_ace datatype="boolean">0</inherited_ace>
+            <inherit_only_ace datatype="boolean">0</inherit_only_ace>
+            <container_inherit_ace datatype="boolean">1</container_inherit_ace>
+            <object_inherit_ace datatype="boolean">1</object_inherit_ace>
+            <no_propagate_inherit_ace datatype="boolean">0</no_propagate_inherit_ace>
+            <generic_read datatype="boolean">1</generic_read>
+            <generic_write datatype="boolean">1</generic_write>
+            <generic_execute datatype="boolean">1</generic_execute>
+            <generic_all datatype="boolean">1</generic_all>
+            <standard_synchronize datatype="boolean">1</standard_synchronize>
+            <standard_write_owner datatype="boolean">1</standard_write_owner>            
+            <standard_write_dac datatype="boolean">1</standard_write_dac>
+            <standard_read_control datatype="boolean">1</standard_read_control>
+            <standard_delete datatype="boolean">1</standard_delete>
+            <file_write_attributes datatype="boolean">1</file_write_attributes>
+            <file_read_attributes datatype="boolean">1</file_read_attributes>
+            <file_delete_child datatype="boolean">1</file_delete_child>
+            <file_execute datatype="boolean">1</file_execute>
+            <file_write_ea datatype="boolean">1</file_write_ea>
+            <file_read_ea datatype="boolean">1</file_read_ea>
+            <file_append_data datatype="boolean">1</file_append_data>            
+            <file_write_data datatype="boolean">1</file_write_data>
+            <file_read_data datatype="boolean">1</file_read_data>
+            <windows_view>64_bit</windows_view>
+        </filesacl_item>
+        <filesacl_item id="2" xmlns="http://oval.mitre.org/XMLSchema/x-win-filesacl">
+            <filepath>C:\testdir</filepath>
+            <path>C:\testdir</path>
+            <filename status="not collected"></filename>
+            <trustee_sid>S-1-5-32-545</trustee_sid>
+            <ace_order datatype="int">2</ace_order>
+            <ace_type>AUDIT_SUCCESS_FAILURE</ace_type>
+            <ace_inherited_from status="does not exist"/>
+            <inherited_ace datatype="boolean">0</inherited_ace>
+            <inherit_only_ace datatype="boolean">0</inherit_only_ace>
+            <container_inherit_ace datatype="boolean">1</container_inherit_ace>
+            <object_inherit_ace datatype="boolean">1</object_inherit_ace>
+            <no_propagate_inherit_ace datatype="boolean">0</no_propagate_inherit_ace>
+            <generic_read datatype="boolean">1</generic_read>
+            <generic_write datatype="boolean">1</generic_write>
+            <generic_execute datatype="boolean">1</generic_execute>
+            <generic_all datatype="boolean">1</generic_all>
+            <standard_synchronize datatype="boolean">1</standard_synchronize>
+            <standard_write_owner datatype="boolean">1</standard_write_owner>            
+            <standard_write_dac datatype="boolean">1</standard_write_dac>
+            <standard_read_control datatype="boolean">1</standard_read_control>
+            <standard_delete datatype="boolean">1</standard_delete>
+            <file_write_attributes datatype="boolean">1</file_write_attributes>
+            <file_read_attributes datatype="boolean">1</file_read_attributes>
+            <file_delete_child datatype="boolean">1</file_delete_child>
+            <file_execute datatype="boolean">1</file_execute>
+            <file_write_ea datatype="boolean">1</file_write_ea>
+            <file_read_ea datatype="boolean">1</file_read_ea>
+            <file_append_data datatype="boolean">1</file_append_data>            
+            <file_write_data datatype="boolean">1</file_write_data>
+            <file_read_data datatype="boolean">1</file_read_data>
+            <windows_view>64_bit</windows_view>
+        </filesacl_item>
+    </system_data>
+    
+</oval_system_characteristics>
+
+

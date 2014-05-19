@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:x-win-filesacl="http://oval.mitre.org/XMLSchema/x-win-filesacl"
+      xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/x-win-filesacl" elementFormDefault="qualified" version="5.11">
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" schemaLocation="windows-definitions-schema.xsd"/>
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" schemaLocation="windows-system-characteristics-schema.xsd"/>
+      <xsd:annotation>
+            <xsd:documentation>The following is a proposal for the win-def:filesacl_test and win-def:filesacl_item that will support checking the Discretionary Access Control Lists and the ACEs they contain within the file security descriptor.</xsd:documentation>
+            <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+            <xsd:appinfo>
+                  <schema>Experimental Schema for the Windows File SACL Tests</schema>
+                  <version>5.11</version>
+                  <date>8/2/2013 8:27:00 AM</date>
+                  <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+                  <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
+                  <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
+                  <sch:ns prefix="win-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+                  <sch:ns prefix="win-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows"/>
+                  <sch:ns prefix="x-win-filesacl" uri="http://oval.mitre.org/XMLSchema/x-win-filesacl"/>
+                  <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
+            </xsd:appinfo>
+      </xsd:annotation>
+      <!-- =============================================================================== -->
+      <!-- ==============================  File SACL Definition ========================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="filesacl_test" substitutionGroup="oval-def:test">
+            <xsd:annotation>
+                  <xsd:documentation>The file SACL test is used to check the Discretionary Access Control Lists (SACLs) associated with Windows files and directories. This test will report each of the Access Control Entries (ACEs) for a file or directory. The filesacl_test element extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a filesacl_object and the optional
+                        state element specifies the metadata to check.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:element_mapping>
+                              <oval:test>filesacl_test</oval:test>
+                              <oval:object>filesacl_object</oval:object>
+                              <oval:state>filesacl_state</oval:state>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-win-filesacl">filesacl_item</oval:item>
+                        </oval:element_mapping>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
+                        <sch:pattern id="x-win-filesacl_filesacl_tst">
+                              <sch:rule context="x-win-filesacl:filesacl_test/x-win-filesacl:object">
+                                    <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/x-win-filesacl:filesacl_object/@id"><sch:value-of select="../@id"/> - the object child element of a filesacl_test must reference a filesacl_object</sch:assert>
+                              </sch:rule>
+                              <sch:rule context="x-win-filesacl:filesacl_test/x-win-filesacl:state">
+                                    <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/x-win-filesacl:filesacl_state/@id"><sch:value-of select="../@id"/> - the state child element of a filesacl_test must reference a filesacl_state</sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:TestType">
+                              <xsd:sequence>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- ==============================  File SACL Object ============================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="filesacl_object" substitutionGroup="oval-def:object">
+            <xsd:annotation>
+                  <xsd:documentation>The filesacl_object element is used by a file SACL test to define the objects used to evalutate against the specified state. The filesacl_object will collect directories and all Windows file types (FILE_TYPE_CHAR, FILE_TYPE_DISK, FILE_TYPE_PIPE, FILE_TYPE_REMOTE, and FILE_TYPE_UNKNOWN). Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set
+                        element allows complex objects to be created using filters and set logic.</xsd:documentation>
+                  <xsd:documentation>A filesacl_object is defined as a combination of a Windows file or directory and a trustee SID. The file or directory represents the file or directory to be evaluated while the trustee SID represents the account (SID) to check permissions of. If multiple files/directories or SIDs are matched by either reference, then each possible combination of files/directories or SIDs results in a matching file SACL object. In addition, a number
+                        of behaviors may be provided that help guide the collection of objects.</xsd:documentation>
+                  <xsd:documentation>The set of files or directories to be evaluated may be identified with either a complete filepath OR a path and filename. Only one of these options may be selected.</xsd:documentation>
+                  <xsd:documentation>It is important to note that the 'max_depth' and 'recurse_direction' attributes of the 'behaviors' element do not apply to the 'filepath' element, only to the 'path' and 'filename' elements.  This is because the 'filepath' element represents an absolute path to a particular file and it is not possible to recurse over a file.</xsd:documentation>
+                  <xsd:appinfo>
+                        <sch:pattern id="x-win-filesacl_filesacl_obj_verify_filter_state">
+                              <sch:rule context="x-win-filesacl:filesacl_object//oval-def:filter">
+                                    <sch:let name="parent_object" value="ancestor::x-win-filesacl:filesacl_object"/>
+                                    <sch:let name="parent_object_id" value="$parent_object/@id"/>
+                                    <sch:let name="state_ref" value="."/>
+                                    <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+                                    <sch:let name="state_name" value="local-name($reffed_state)"/>
+                                    <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+                                    <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/x-win-filesacl') and ($state_name='filesacl_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:ObjectType">
+                              <xsd:sequence>
+                                    <xsd:choice>
+                                          <xsd:element ref="oval-def:set"/>
+                                          <xsd:sequence>
+                                                <xsd:element name="behaviors" type="x-win-filesacl:FileSACLBehaviors" minOccurs="0"/>
+                                                <xsd:choice>
+                                                      <xsd:element name="filepath" type="oval-def:EntityObjectStringType">
+                                                            <xsd:annotation>
+                                                                  <xsd:documentation>The filepath element specifies the absolute path for a file or directory on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
+                                                                  <xsd:appinfo>
+                                                                        <sch:pattern id="x-win-filesacl_filesacl_obj_filepath">
+                                                                              <sch:rule context="x-win-filesacl:filesacl_object/x-win-filesacl:filepath">
+                                                                                    <sch:assert test="not(preceding-sibling::x-win-filesacl:behaviors[@max_depth or @recurse_direction])"><sch:value-of select="../@id"/> - the max_depth and recurse_direction behaviors are not allowed with a filepath entity</sch:assert>
+                                                                              </sch:rule>
+                                                                        </sch:pattern>
+                                                                        <sch:pattern id="x-win-filesacl_filesacl_obj_filepath2">
+                                                                              <sch:rule context="x-win-filesacl:filesacl_object/x-win-filesacl:filepath[not(@operation='equals' or not(@operation))]">
+                                                                                    <sch:assert test="not(preceding-sibling::x-win-filesacl:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a filepath entity.</sch:assert>
+                                                                              </sch:rule>
+                                                                        </sch:pattern>
+                                                                  </xsd:appinfo>
+                                                            </xsd:annotation>
+                                                      </xsd:element>
+                                                      <xsd:sequence>
+                                                            <xsd:element name="path" type="oval-def:EntityObjectStringType">
+                                                                  <xsd:annotation>
+                                                                        <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
+                                                                        <xsd:appinfo>
+                                                                              <sch:pattern id="x-win-filesacl_filesacl_obj_path">
+                                                                                    <sch:rule context="x-win-filesacl:filesacl_object/x-win-filesacl:path[not(@operation='equals' or not(@operation))]">
+                                                                                          <sch:assert test="not(preceding-sibling::x-win-filesacl:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a path entity.</sch:assert>
+                                                                                          <sch:assert test="not(preceding-sibling::x-win-filesacl:behaviors[@max_depth])"><sch:value-of select="../@id"/> - the max_depth behavior MUST not be used when a pattern match is used with a path entity.</sch:assert>
+                                                                                          <sch:assert test="not(preceding-sibling::x-win-filesacl:behaviors[@recurse_direction])"><sch:value-of select="../@id"/> - the recurse_direction behavior MUST not be used when a pattern match is used with a path entity.</sch:assert>
+                                                                                    </sch:rule>
+                                                                              </sch:pattern>
+                                                                        </xsd:appinfo>
+                                                                  </xsd:annotation>
+                                                            </xsd:element>
+                                                            <xsd:element name="filename" type="oval-def:EntityObjectStringType" nillable="true">
+                                                                  <xsd:annotation>
+                                                                        <xsd:documentation>The filename element specifies the name of a file to evaluate. If the xsi:nil attribute is set to true, then the object being specified is the higher level directory object (not all the files in the directory). In this case, the filename element should not be used during collection and would result in the unique set of items being the directories themselves. For example, one would set xsi:nil to true if
+                                                                              the desire was to test the attributes or permissions associated with a directory. Setting xsi:nil equal to true is different than using a .* pattern match, which says to collect every file under a given path.</xsd:documentation>
+                                                                        <xsd:appinfo>
+                                                                              <sch:pattern id="x-win-filesacl_filesacl_obj_filename">
+                                                                                    <sch:rule context="x-win-filesacl:filesacl_object/x-win-filesacl:filename">
+                                                                                          <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? &gt; | </sch:assert>
+                                                                                          <sch:assert test="(@var_ref and .='') or ((@xsi:nil='1' or @xsi:nil='true') and .='') or not(.='') or (.='' and @operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
+                                                                                    </sch:rule>
+                                                                              </sch:pattern>
+                                                                        </xsd:appinfo>
+                                                                  </xsd:annotation>
+                                                            </xsd:element>
+                                                      </xsd:sequence>
+                                                </xsd:choice>
+                                                <xsd:element name="trustee_sid" type="oval-def:EntityObjectStringType">
+                                                      <xsd:annotation>
+                                                            <xsd:documentation>The trustee_sid entity identifies a unique SID associated with a user, group, system, or program (such as a Windows service). If an operation other than equals is used to identify matching trustees (i.e. not equal, or a pattern match) then the resulting matches shall be limited to only the trustees referenced in the file's Security Descriptor. The scope is limited here to avoid unnecessarily resource intensive
+                                                                        searches for trustees. Note that the larger scope of all known trustees may be obtained through the use of variables.</xsd:documentation>
+                                                      </xsd:annotation>
+                                                </xsd:element>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                          </xsd:sequence>
+                                    </xsd:choice>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- ==============================  File SACL State =============================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="filesacl_state" substitutionGroup="oval-def:state">
+            <xsd:annotation>
+                  <xsd:documentation>The filesacl_state element defines the different audit permissions (ACEs) that can be associated with a given filesacl_object. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:documentation>More than on ACE for the same account may be reported in some cases. When this occurs, the first ACE generally applies to the object itself, while the second ACE applies to any descendant objects (though in complicated permissions cases this may not always be true). This does occur with some default permissions and the previous statement holds true in those cases. It also occurs when permissions for the current directory are different from the permissions for the child objects it contains. For directories, there is the possibility of having three (or more) ACEs when you define permissions separate for the directory itself, for the subdirectories, and for the files.</xsd:documentation>
+                  <xsd:documentation>When attempting to decipher a scenario where more than one ACE occurs for the same account, pay particular attention to the combination of ACE flags used and this will help determine how things are applied and why they are split. The following table can be used as a guide for files and directories. Make note of the differences when flags are combined, especially with IO.</xsd:documentation>
+                  <xsd:documentation>
+                        Output(SDDL) 		            ACE applies to
+                        -----------------------------------------------------------------------
+                        inherited_ace(ID)                   ACE is inherited from a parent (by itself means that it applies only to the directory itself)
+                        No flags                            This directory only (ACE has been defined on the directory itself)
+                        object_inherit_ace(OI)              This directory and files (subdirectories not included)
+                        container_inherit_ace(CI)		This directory and subdirectories (files not included)
+                        inherit_only_ace(IO)			Inherit only. The ACE does not apply to the current directory. This ACE would not be used by an access control check on the directory where it is defined. It only applies to children of the object where it is defined.
+                        no_propagate_inherit_ace(NP)        Do not propagate permissions beyond immediate children. A child object of the directory where this is defined will inherit the ACE defined, but will remove this flag and the inheritance flags so that propogation or inheritance does not continue to the grandchildren.
+                        (OI)(CI)(ID)                        This directory, subdirectories and files - inherited from a parent
+                        (OI)(CI)		                  This directory, subdirectories and files
+                        (OI)(CI)(IO)	                  subdirectories and files only
+                        (CI)(IO)		                  subdirectories only
+                        (OI)(IO)		                  Files only
+                        (OI)(CI)(NP)                        This directory, subdirectories and files - Inheritance stops at immediate children and does not continue. Child object ACEs only have (ID) flag.
+                  </xsd:documentation>
+                  <xsd:documentation>The following table lists the standard and file specific permissions along with the Windows UI name and SDDL shortname. The OVAL entity names are the Windows internal names for each permission. In some cases they match up with the Windows UI but in others it can be unclear (Windows 7 names are used, the names may vary across different versions of Windows).
+                        OVAL entity name        SDDL  Windows 7 UI Name
+                        -------------------------------------------------------------------------
+                        file_execute	      WP	Traverse folder / execute file
+                        file_read_data	      CC	List folder / read data
+                        file_read_attributes    LO	Read attributes
+                        file_read_ea	      SW	Read extended attributes
+                        file_write_data	      DC	Create files / write data
+                        file_append_data	      LC	Create folders / append data
+                        file_write_attributes	CR	Write attributes
+                        file_write_ea	      RP	Write extended attributes
+                        file_delete_child	      DT	Delete child
+                        standard_delete	      SD	Delete
+                        standard_read_control	RC	Read permissions **Note that this is NOT permissions to read a file or directory, but the right to read/view the SACL permissions. 
+                        standard_write_dac	WD	Change permissions
+                        standard_write_owner	WO	Take ownership
+                        standard_synchronize		*Hidden*
+                  </xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:StateType">
+                              <xsd:sequence>
+                                    <xsd:element name="filepath" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="path" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="filename" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The filename element specifies the name of the file.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <sch:pattern id="x-win-filesacl_filesacl_ste_filename">
+                                                            <sch:rule context="x-win-filesacl:filesacl_state/x-win-filesacl:filename">
+                                                                  <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? &gt; | </sch:assert>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="trustee_sid" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The trustee_sid element is the unique SID that associated a user, group, system, or program (such as a Windows service).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ace_order" type="oval-def:EntityStateIntType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The number that represents the position of the permission (ACE) in the SACL starting from 1 at the top. This is the order used by the OS to determine whether to allow or deny access to the object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ace_type" type="win-def:EntityStateAuditType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The audit (ACE) type. This can be one of three values: AUDIT_SUCCESS, AUDIT_FAILURE, or AUDIT_SUCCESS_FAILURE.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ace_inherited_from" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The parent directory that this target inherited the ACE from. If the ACE is NOT inherited and is explicit, the entity's status value should be "does not exist". Name obtained using GetInheritanceSource().</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="inherited_ace" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE has been inherited from a parent directory. Security Descriptor ACEStringType = ID.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="inherit_only_ace" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE applies ONLY to child objects and not the directory where it is defined (e.g., Full control for CREATOR OWNER for all files in a directory but not for the directory itself). Sometimes there may be more than one ACE within a SACL for a directory for the same account. This is sometimes an indication that there are different permissions specified for the directory than there are for the files and subdirectories it contains. The first ACE will be for the directory itself, and the second ACE will apply to any files or directories it contains. Security Descriptor ACEStringType = IO.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="container_inherit_ace" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE will be propagated (inherited) to all child/descendant directories (container objects). Does not affect files (noncontainer objects). The ACE will propagate recursively until a NO_PROPAGATE_INHERIT_ACE is encountered or there are no more directories. Security Descriptor ACEStringType = CI.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="object_inherit_ace" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE will be propagated (inherited) to all child/descendant files (noncontainer objects). Does not affect directories (container objects). The ACE will propagate recursively until a NO_PROPAGATE_INHERIT_ACE is encountered or there are no more files. Security Descriptor ACEStringType = OI.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="no_propagate_inherit_ace" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE is propagated ONLY to immediate child/descendant objects. This flag clears the object and container inheritance flags from the ACEs inherited by the immediate child fiels and directories so that inheritance will NOT continue recursively. Security Descriptor ACEStringType = NP.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_read" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>**Basic read access to the object. This is a specific combination of special permissions.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_write" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>**Basic write access to the object. This is a specific combination of special permissions.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_execute" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>**Basic execute access to the object. This is a specific combination of special permissions.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_all" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A basic/generic permission that includes all special (standard and object specific) permissions. Also know as File All (FA) or Generic All (GA).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="access_system_security" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Indicates access to a system access control list (SACL). See http://msdn.microsoft.com/en-us/library/windows/desktop/aa379321(v=vs.85).aspx.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_synchronize" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission to designate use the object for synchronization. This enables a thread to wait until the object is in the signaled state. Some object types do not support this access permission.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_write_owner" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies taking ownership of a file or directory. The owner of a file or directory has complete control over the object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_write_dac" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies changing the discretionary access control list (SACL) of a file or directory.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_read_control" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies reading or viewing the discretionary access control list (SACL) of a file or directory.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_delete" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies deleting the file or directory. Can be overridden if the parent directory allows or denies the Delete subfolders and files permission.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_write_attributes" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (file object specific) permission that allows or denies changing the NTFS attributes of a file or directory, such as read-only and hidden.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_read_attributes" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (file object specific) permission that allows or denies viewing the NTFS attributes of a file or directory, such as read-only and hidden.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_delete_child" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (file object specific) permission that applies to directories only and allows or denies deleting child files or directories. This permission applies to child files and directories even when the Delete special permission is not granted on the child file or directory itself.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_execute" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (file object specific) permission that applies differently to directories versus files. When set on a directory, this special permission allows or denies moving through directories to reach other child files and directories. This permission can be overridden by the Bypass Traverse Checking user right which is granted to the Everyone special group by default. When set on a file, this special permission allows or denies execution of the file.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_write_ea" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>&gt;A special (file object specific) permission that allows or denies changing the extended attributes of a file or directory. Extended attributes are attributes defined by applications.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_read_ea" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>&gt;A special (file object specific) permission that allows or denies viewing the extended attributes of a file or directory. Extended attributes are attributes defined by applications.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_append_data" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (file object specific) permission that applies differently to directories versus files. When set on a directory, this special permission allows or denies creating subdirectories within the directory. When set on a file, this special permission allows or denies making changes to the end of the file but not changing, deleting, or overwriting exisiting content.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_write_data" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (file object specific) permission that applies differently to directories versus files. When set on a directory, this special permission allows or denies creating files within the directory. When set on a file, this special permission allows or denies making changing changes or overwriting the file content.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_read_data" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>&gt;A special (file object specific) permission that applies differently to directories versus files. When set on a directory, this special permission allows or denies viewing file names and subdirectory names within the directory. When set on a file, this special permission allows or denies viewing the contents of the file.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="windows_view" type="win-def:EntityStateWindowsViewType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The windows view value to which this was targeted. This is used to indicate which view (32-bit or 64-bit), the associated State applies to.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- ==============================  File SACL Behaviors =========================== -->
+      <!-- =============================================================================== -->
+      <xsd:complexType name="FileSACLBehaviors">
+            <xsd:annotation>
+                  <xsd:documentation>The FileSACLBehaviors complex type defines a number of behaviors that allow a more detailed definition of the filesacl_object being specified.  Note that using these behaviors may result in some unique results.  For example, a double negative type condition might be created where an object entity says include everything except a specific item, but a behavior is used that might then add that item back in.</xsd:documentation>
+                  <xsd:documentation>It is important to note that the 'max_depth' and 'recurse_direction' attributes of the 'behaviors' element do not apply to the 'filepath' element, only to the 'path' and 'filename' elements.  This is because the 'filepath' element represents an absolute path to a particular file and it is not possible to recurse over a file.</xsd:documentation>
+                  <xsd:documentation>The FileSACLBehaviors extend the x-win-filesacl:FileBehaviors and therefore include the behaviors defined by that type.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexContent>
+                  <xsd:extension base="win-def:FileBehaviors"/>
+            </xsd:complexContent>
+      </xsd:complexType>
+      <!-- =============================================================================== -->
+      <!-- ==============================  File SACL Item ================================ -->
+      <!-- =============================================================================== -->
+      <xsd:element name="filesacl_item" substitutionGroup="oval-sc:item">
+            <xsd:annotation>
+                  <xsd:documentation>The filesacl_item element defines the different rights that can be associated with a given filesacl_item. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:documentation>More than on ACE for the same account may be reported in some cases. When this occurs, the first ACE generally applies to the object itself, while the second ACE applies to any descendant objects (though in complicated permissions cases this may not always be true). This does occur with some default permissions and the previous statement holds true in those cases. It also occurs when permissions for the current directory are different from the permissions for the child objects it contains. For directories, there is the possibility of having three (or more) ACEs when you define permissions separate for the directory itself, for the subdirectories, and for the files.</xsd:documentation>
+                  <xsd:documentation>When attempting to decipher a scenario where more than one ACE occurs for the same account, pay particular attention to the combination of ACE flags used and this will help determine how things are applied and why they are split. The following table can be used as a guide for files and directories. Make note of the differences when flags are combined, especially with IO.</xsd:documentation>
+                  <xsd:documentation>
+                        Output(SDDL) 		            ACE applies to
+                        -----------------------------------------------------------------------
+                        inherited_ace(ID)                   ACE is inherited from a parent (by itself means that it applies only to the directory itself)
+                        No flags                            This directory only (ACE has been defined on the directory itself)
+                        object_inherit_ace(OI)              This directory and files (subdirectories not included)
+                        container_inherit_ace(CI)		This directory and subdirectories (files not included)
+                        inherit_only_ace(IO)			Inherit only. The ACE does not apply to the current directory. This ACE would not be used by an access control check on the directory where it is defined. It only applies to children of the object where it is defined.
+                        no_propagate_inherit_ace(NP)        Do not propagate permissions beyond immediate children. A child object of the directory where this is defined will inherit the ACE defined, but will remove this flag and the inheritance flags so that propogation or inheritance does not continue to the grandchildren.
+                        (OI)(CI)(ID)                        This directory, subdirectories and files - inherited from a parent
+                        (OI)(CI)		                  This directory, subdirectories and files
+                        (OI)(CI)(IO)	                  subdirectories and files only
+                        (CI)(IO)		                  subdirectories only
+                        (OI)(IO)		                  Files only
+                        (OI)(CI)(NP)                        This directory, subdirectories and files - Inheritance stops at immediate children and does not continue. Child object ACEs only have (ID) flag.
+                  </xsd:documentation>
+                  <xsd:documentation>The following table lists the standard and file specific permissions along with the Windows UI name and SDDL shortname. The OVAL entity names are the Windows internal names for each permission. In some cases they match up with the Windows UI but in others it can be unclear (Windows 7 names are used, the names may vary across different versions of Windows).
+                        OVAL entity name        SDDL  Windows 7 UI Name
+                        -------------------------------------------------------------------------
+                        file_execute	      WP	Traverse folder / execute file
+                        file_read_data	      CC	List folder / read data
+                        file_read_attributes    LO	Read attributes
+                        file_read_ea	      SW	Read extended attributes
+                        file_write_data	      DC	Create files / write data
+                        file_append_data	      LC	Create folders / append data
+                        file_write_attributes	CR	Write attributes
+                        file_write_ea	      RP	Write extended attributes
+                        file_delete_child	      DT	Delete child
+                        standard_delete	      SD	Delete
+                        standard_read_control	RC	Read permissions **Note that this is NOT permissions to read a file or directory, but the right to read/view the SACL permissions. 
+                        standard_write_dac	WD	Change permissions
+                        standard_write_owner	WO	Take ownership
+                        standard_synchronize		*Hidden*
+                  </xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-sc:ItemType">
+                              <xsd:sequence>
+                                    <xsd:element name="filepath" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="path" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="filename" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The filename element specifies the name of the file.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <sch:pattern id="x-win-filesacl_filesacl_item_filename">
+                                                            <sch:rule context="x-win-filesacl:filesacl_state/x-win-filesacl:filename">
+                                                                  <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? &gt; | </sch:assert>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="trustee_sid" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The trustee_sid element is the unique SID that is associated with a user, group, system, or program (such as a Windows service).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ace_order" type="oval-sc:EntityItemIntType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The number that represents the position of the permission (ACE) in the SACL starting from 1 at the top. This is the order used by the OS to determine whether to allow or deny access to the object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ace_type" type="win-sc:EntityItemAuditType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The audit (ACE) type. This can be one of three values: AUDIT_SUCCESS, AUDIT_FAILURE, or AUDIT_SUCCESS_FAILURE.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ace_inherited_from" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The parent directory that this target inherited the ACE from. If the ACE is NOT inherited and is explicit, the entity's status value should be "does not exist". Name obtained using GetInheritanceSource().</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="inherited_ace" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE has been inherited from a parent directory. Security Descriptor ACEStringType = ID.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="inherit_only_ace" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE applies ONLY to child objects and not the object where it is defined (e.g., Full control for CREATOR OWNER for all files in a directory but not for the directory itself). Sometimes there may be more than one ACE within a SACL for a directory for the same account. This is generally an indication that there are different permissions specified for the directory than there are for the files and subdirectories it contains. The first ACE will be for the directory itself, and the second ACE will apply to any files or directories it contains. Security Descriptor ACEStringType = IO.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="container_inherit_ace" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE will be propagated (inherited) to all child/descendant directories (container objects). Does not affect files (noncontainer objects). The ACE will propagate recursively until a NO_PROPAGATE_INHERIT_ACE is encountered or there are no more directories. Security Descriptor ACEStringType = CI.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="object_inherit_ace" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE will be propagated (inherited) to all child/descendant files (noncontainer objects). Does not affect directories (container objects). The ACE will propagate recursively until a NO_PROPAGATE_INHERIT_ACE is encountered or there are no more files. Security Descriptor ACEStringType = OI.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="no_propagate_inherit_ace" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE is propagated to immediate child/descendant objects. This flag clears the object and container inheritance flags from the ACEs inherited by the immediate child fiels and directories so that inheritance will NOT continue recursively. Security Descriptor ACEStringType = NP.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_read" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>**Basic read access to the object. This is a specific combination of special permissions.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_write" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>**Basic write access to the object. This is a specific combination of special permissions.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_execute" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>**Basic execute access to the object. This is a specific combination of special permissions.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_all" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A basic/generic permission that includes all special (standard and object specific) permissions. Also know as File All (FA) or Generic All (GA).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="access_system_security" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Indicates access to a system access control list (SACL). See http://msdn.microsoft.com/en-us/library/windows/desktop/aa379321(v=vs.85).aspx.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_synchronize" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission to designate use the object for synchronization. This enables a thread to wait until the object is in the signaled state. Some object types do not support this access permission.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_write_owner" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies taking ownership of a file or directory. The owner of a file or directory has complete control over the object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_write_dac" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies changing the discretionary access control list (SACL) of a file or directory.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_read_control" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies reading or viewing the discretionary access control list (SACL) of a file or directory.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_delete" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies deleting the file or directory. Can be overridden if the parent directory allows or denies the Delete subfolders and files permission.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_write_attributes" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (file object specific) permission that allows or denies changing the NTFS attributes of a file or directory, such as read-only and hidden.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_read_attributes" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (file object specific) permission that allows or denies viewing the NTFS attributes of a file or directory, such as read-only and hidden.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_delete_child" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (file object specific) permission that applies to directories only and allows or denies deleting child files or directories. This permission applies to child files and directories even when the Delete special permission is not granted on the child file or directory itself.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_execute" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (file object specific) permission that applies differently to directories versus files. When set on a directory, this special permission allows or denies moving through directories to reach other child files and directories. This permission can be overridden by the Bypass Traverse Checking user right which is granted to the Everyone special group by default. When set on a file, this special permission allows or denies execution of the file.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_write_ea" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>&gt;A special (file object specific) permission that allows or denies changing the extended attributes of a file or directory. Extended attributes are attributes defined by applications.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_read_ea" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>&gt;A special (file object specific) permission that allows or denies viewing the extended attributes of a file or directory. Extended attributes are attributes defined by applications.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_append_data" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (file object specific) permission that applies differently to directories versus files. When set on a directory, this special permission allows or denies creating subdirectories within the directory. When set on a file, this special permission allows or denies making changes to the end of the file but not changing, deleting, or overwriting exisiting content.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_write_data" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (file object specific) permission that applies differently to directories versus files. When set on a directory, this special permission allows or denies creating files within the directory. When set on a file, this special permission allows or denies making changing changes or overwriting the file content.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_read_data" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>&gt;A special (file object specific) permission that applies differently to directories versus files. When set on a directory, this special permission allows or denies viewing file names and subdirectory names within the directory. When set on a file, this special permission allows or denies viewing the contents of the file.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="windows_view" type="win-sc:EntityItemWindowsViewType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The windows view value to which this was targeted. This is used to indicate which view (32-bit or 64-bit), the associated State applies to.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+</xsd:schema>
