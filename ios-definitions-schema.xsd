@@ -7,9 +7,9 @@
             <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
             <xsd:appinfo>
                   <schema>IOS Definition</schema>
-                  <version>5.10.1</version>
-                  <date>1/27/2012 1:22:32 PM</date>
-                  <terms_of_use>Copyright (c) 2002-2012, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+                  <version>5.11 Draft 1</version>
+                  <date>3/19/2012 5:48:32 PM</date>
+                  <terms_of_use>Copyright (c) 2002-2014, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                    <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
                   <sch:ns prefix="ios-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios"/>
                   <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -107,7 +107,7 @@
             </xsd:complexType>
       </xsd:element>
       <!-- =============================================================================== -->
-      <!-- =======================  INTERFACE TEST (deprecated)  ========================= -->
+      <!-- ============================== INTERFACE TEST  ================================ -->
       <!-- =============================================================================== -->
       <xsd:element name="interface_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
@@ -119,18 +119,6 @@
                               <oval:state>interface_state</oval:state>
                               <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios">interface_item</oval:item>
                         </oval:element_mapping>
-                  </xsd:appinfo>
-                  <xsd:appinfo>
-                        <oval:deprecated_info>
-                              <oval:version>5.11</oval:version>
-                              <oval:reason>The interface test, object, state, and item have been deprecated because some of the desired improvements for this test would break backwards compatibility with existing content. As a result, this test has been deprecated in favor of the interface511_test. Please see the interface511_test for more information.</oval:reason>
-                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
-                        </oval:deprecated_info>
-                        <sch:pattern id="ios-def_interfacetst_dep">
-                              <sch:rule context="ios-def:interface_test">
-                                    <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
-                              </sch:rule>
-                        </sch:pattern>
                   </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="ios-def_interfacetst">
@@ -157,18 +145,6 @@
       <xsd:element name="interface_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
                   <xsd:documentation/>
-                  <xsd:appinfo>
-                        <oval:deprecated_info>
-                              <oval:version>5.11</oval:version>
-                              <oval:reason>The interface test, object, state, and item have been deprecated because some of the desired improvements for this test would break backwards compatibility with existing content. As a result, this object has been deprecated in favor of the interface511_object. Please see the interface511_object for more information.</oval:reason>
-                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
-                        </oval:deprecated_info>
-                        <sch:pattern id="ios-def_interfaceobj_dep">
-                              <sch:rule context="ios-def:interface_object">
-                                    <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
-                              </sch:rule>
-                        </sch:pattern>                        
-                  </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="ios-def_interface_object_verify_filter_state">
                               <sch:rule context="ios-def:interface_object//oval-def:filter">
@@ -206,18 +182,6 @@
       <xsd:element name="interface_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
                   <xsd:documentation/>
-                  <xsd:appinfo>
-                        <oval:deprecated_info>
-                              <oval:version>5.11</oval:version>
-                              <oval:reason>The interface test, object, state, and item have been deprecated because some of the desired improvements for this test would break backwards compatibility with existing content. As a result, this state has been deprecated in favor of the interface511_state. Please see the interface511_state for more information.</oval:reason>
-                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
-                        </oval:deprecated_info>
-                        <sch:pattern id="ios-def_interfaceste_dep">
-                              <sch:rule context="ios-def:interface_state">
-                                    <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
-                              </sch:rule>
-                        </sch:pattern>                        
-                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -225,27 +189,151 @@
                               <xsd:sequence>
                                     <xsd:element name="name" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation/>
+                                                <xsd:documentation>The interface name on the device.  Typically an Ethernet interface but depending on the hardware it may be of another type. </xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="ip_directed_broadcast_command" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="ip_directed_broadcast_command" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation/>
+                                                <xsd:documentation>Directed broadcast command enabled on the interface. The default is false.</xsd:documentation>
                                           </xsd:annotation>
+                                          <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                      <xsd:restriction base="oval-def:EntityStateAnySimpleType">
+                                                            <xsd:attribute name="datatype" use="optional" default="boolean">
+                                                                  <xsd:simpleType>
+                                                                        <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                                              <xsd:enumeration value="string"/>
+                                                                              <xsd:enumeration value="boolean"/>
+                                                                        </xsd:restriction>
+                                                                  </xsd:simpleType>
+                                                            </xsd:attribute>
+                                                      </xsd:restriction>
+                                                </xsd:simpleContent>
+                                          </xsd:complexType>
                                     </xsd:element>
                                     <xsd:element name="no_ip_directed_broadcast_command" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation/>
+                                                <xsd:documentation>The Cisco IOS the command 'no ip directed-broadcast' is used to disable IP directed broadcast to the interface. The no_ip_directed_broadcast_command entity is replaced by the ip_directed_broadcast_command entity.  The ip_directed_broadcast_command supports the boolean type to indicate the presence of the command.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <oval:deprecated_info>
+                                                            <oval:version>5.11</oval:version>
+                                                            <oval:reason>The no_ip_directed_broadcast_command item entity can not be collected as implemented, and has become irrelevant.</oval:reason>
+                                                            <oval:comment>This item entity has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                                                      </oval:deprecated_info>
+                                                      <sch:pattern id="ios-def_interfacesteno_ip_directed_broadcast_command_dep">
+                                                            <sch:rule context="ios-def:interface_state/ios-def:no_ip_directed_broadcast_command">
+                                                                  <sch:report test="true()">DEPRECATED ELEMENT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="proxy_arp_command" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="proxy_arp_command" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation/>
+                                                <xsd:documentation>Proxy arp enabled on the interface. The default is true.</xsd:documentation>
+                                          </xsd:annotation>
+                                          <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                      <xsd:restriction base="oval-def:EntityStateAnySimpleType">
+                                                            <xsd:attribute name="datatype" use="optional" default="boolean">
+                                                                  <xsd:simpleType>
+                                                                        <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                                              <xsd:enumeration value="string"/>
+                                                                              <xsd:enumeration value="boolean"/>
+                                                                        </xsd:restriction>
+                                                                  </xsd:simpleType>
+                                                            </xsd:attribute>
+                                                      </xsd:restriction>
+                                                </xsd:simpleContent>
+                                          </xsd:complexType>
+                                    </xsd:element>
+                                    <xsd:element name="shutdown_command" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Interface is shut down.</xsd:documentation>
+                                          </xsd:annotation>
+                                          <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                      <xsd:restriction base="oval-def:EntityStateAnySimpleType">
+                                                            <xsd:attribute name="datatype" use="optional" default="boolean">
+                                                                  <xsd:simpleType>
+                                                                        <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                                              <xsd:enumeration value="string"/>
+                                                                              <xsd:enumeration value="boolean"/>
+                                                                        </xsd:restriction>
+                                                                  </xsd:simpleType>
+                                                            </xsd:attribute>
+                                                      </xsd:restriction>
+                                                </xsd:simpleContent>
+                                          </xsd:complexType>
+                                    </xsd:element>
+                                    <xsd:element name="hardware_addr" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The interface hardware (MAC) address.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="shutdown_command" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="ipv4_address" type="oval-def:EntityStateIPAddressStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation/>
+                                                <xsd:documentation>The interface IPv4 address and mask. This element should only allow 'ipv4_address' of the oval:SimpleDatatypeEnumeration.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ipv6_address" type="oval-def:EntityStateIPAddressStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The interface IPv6 address and mask. This element should only allow 'ipv6_address' of the oval:SimpleDatatypeEnumeration.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ipv4_access_list" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The ingress or egress IPv4 ACL name applied on the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ipv6_access_list" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The ingress or egress IPv6 ACL name applied on the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="crypto_map" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The crypto map name applied to the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="urpf_command" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The uRPF command under the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_trunk_encapsulation" type="ios-def:EntityStateTrunkEncapType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The switchport trunk encapsulation option configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_mode" type="ios-def:EntityStateSwitchportModeType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The switchport mode option configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_native_vlan" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The trunk native vlan configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_access_vlan" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The access vlan configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_trunked_vlans" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The vlans that are trunked configured on the interface (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_pruned_vlans" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The vlans that are pruned from the trunk (if applicable).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="switchport_port_security" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The switchport port-security commands configured on the interface (if applicable).</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                               </xsd:sequence>
@@ -782,4 +870,28 @@
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
+      <xsd:complexType name="EntityStateTrunkEncapType">
+            <xsd:annotation>
+                  <xsd:documentation>The EntityStateTrunkEncapType complex type restricts a string value to a specific set of values: DOT1Q, ISL, NEGOTIATE. These values describe the interface trunk encapsulation types on an interfaces in IOS.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-def:EntityStateStringType">
+                        <xsd:enumeration value="DOT1Q" />
+                        <xsd:enumeration value="ISL" />
+                        <xsd:enumeration value="NEGOTIATE" />
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>
+      <xsd:complexType name="EntityStateSwitchportModeType">
+            <xsd:annotation>
+                  <xsd:documentation>The EntityObjectRoutingProtocolType complex type restricts a string value to a specific set of values: DYNAMIC, TRUNK, ACCESS. These values describe the interface switchport mode types in IOS.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-def:EntityStateStringType">
+                        <xsd:enumeration value="DYNAMIC" />
+                        <xsd:enumeration value="TRUNK" />
+                        <xsd:enumeration value="ACCESS" />
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>  
 </xsd:schema>
