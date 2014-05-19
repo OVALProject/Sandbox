@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:x-win-secdesc="http://oval.mitre.org/XMLSchema/x-win-secdesc" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows windows-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/x-win-secdesc x-win-secdesc.xsd">
+
+  <generator>
+    <oval:product_name>cpe:/a:mitre:ovaldi:5.11</oval:product_name>
+    <oval:product_version>5.11</oval:product_version>
+    <oval:schema_version>5.11</oval:schema_version>
+    <oval:timestamp>2014-02-25T12:53:07</oval:timestamp>
+    <vendor>The MITRE Corporation</vendor>
+  </generator>
+
+  <system_info>
+    <os_name>Microsoft Windows 7 Professional Service Pack 1</os_name>
+    <os_version>6.1.7601</os_version>
+    <architecture>AMD64</architecture>
+    <primary_host_name>TEST-PC.MITRE.ORG</primary_host_name>
+    <interfaces>
+      <interface>
+        <interface_name>Intel(R) Centrino(R) Ultimate-N 6300 AGN</interface_name>
+        <ip_address>123.123.123.123</ip_address>
+        <mac_address>11-22-33-44-55-66</mac_address>
+      </interface>
+    </interfaces>
+  </system_info>
+
+  <collected_objects>
+    <object flag="complete" id="oval:org.mitre.expm:obj:1" version="1">
+      <reference item_ref="1"/>
+      <reference item_ref="2"/>
+    </object>
+  </collected_objects>
+
+  <system_data>
+    <securitydescriptor_item  id="1" xmlns="http://oval.mitre.org/XMLSchema/x-win-secdesc">
+      <objectpath>C:\Users\jsmith\Documents\test.xls</objectpath>
+      <path>C:\Users\jsmith\Documents</path>
+      <objectname>test.xls</objectname>
+      <object_type>SE_FILE_OBJECT</object_type>
+      <dacl_ace_count datatype="int">-1</dacl_ace_count>
+      <sacl_ace_count datatype="int">0</sacl_ace_count>
+      <object_owner>S-1-5-21-1111111111-2222222222-3333333333-1000</object_owner>
+      <object_group>S-1-5-21-1111111111-2222222222-3333333333-1001</object_group>
+      <se_owner_defaulted datatype="boolean">0</se_owner_defaulted>
+      <se_group_defaulted datatype="boolean">0</se_group_defaulted>
+      <se_dacl_auto_inherited datatype="boolean">1</se_dacl_auto_inherited>
+      <se_dacl_auto_inherit_req datatype="boolean">0</se_dacl_auto_inherit_req>
+      <se_dacl_defaulted datatype="boolean">0</se_dacl_defaulted>
+      <se_dacl_present datatype="boolean">1</se_dacl_present>
+      <se_dacl_protected datatype="boolean">1</se_dacl_protected>
+      <se_sacl_auto_inherited datatype="boolean">0</se_sacl_auto_inherited>
+      <se_sacl_auto_inherit_req datatype="boolean">0</se_sacl_auto_inherit_req>
+      <se_sacl_defaulted datatype="boolean">0</se_sacl_defaulted>
+      <se_sacl_present datatype="boolean">0</se_sacl_present>
+      <se_sacl_protected datatype="boolean">0</se_sacl_protected>
+    </securitydescriptor_item>
+    <securitydescriptor_item  id="2" xmlns="http://oval.mitre.org/XMLSchema/x-win-secdesc">
+      <objectpath>C:\Users\djohnson\Documents\temp.doc</objectpath>
+      <path>C:\Users\djohnson\Documents</path>
+      <objectname>temp.doc</objectname>
+      <object_type>SE_FILE_OBJECT</object_type>
+      <dacl_ace_count datatype="int">-1</dacl_ace_count>
+      <sacl_ace_count datatype="int">0</sacl_ace_count>
+      <object_owner>S-1-5-21-1111111111-2222222222-3333333333-1002</object_owner>
+      <object_group>S-1-5-21-1111111111-2222222222-3333333333-1003</object_group>
+      <se_owner_defaulted datatype="boolean">0</se_owner_defaulted>
+      <se_group_defaulted datatype="boolean">0</se_group_defaulted>
+      <se_dacl_auto_inherited datatype="boolean">1</se_dacl_auto_inherited>
+      <se_dacl_auto_inherit_req datatype="boolean">0</se_dacl_auto_inherit_req>
+      <se_dacl_defaulted datatype="boolean">0</se_dacl_defaulted>
+      <se_dacl_present datatype="boolean">1</se_dacl_present>
+      <se_dacl_protected datatype="boolean">1</se_dacl_protected>
+      <se_sacl_auto_inherited datatype="boolean">0</se_sacl_auto_inherited>
+      <se_sacl_auto_inherit_req datatype="boolean">0</se_sacl_auto_inherit_req>
+      <se_sacl_defaulted datatype="boolean">0</se_sacl_defaulted>
+      <se_sacl_present datatype="boolean">0</se_sacl_present>
+      <se_sacl_protected datatype="boolean">0</se_sacl_protected>
+    </securitydescriptor_item>
+  </system_data>
+
+</oval_system_characteristics>

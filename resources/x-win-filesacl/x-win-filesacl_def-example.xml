@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions
+    xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-win-filesacl x-win-filesacl.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:x-win-filesacl="http://oval.mitre.org/XMLSchema/x-win-filesacl">
+  <generator>
+    <oval:schema_version>5.11</oval:schema_version>
+    <oval:timestamp>2013-08-02T12:00:00-05:00</oval:timestamp>
+  </generator>
+  <definitions>
+    <definition id="oval:org.mitre.expm:def:1" version="1" class="compliance">
+      <metadata>
+        <title>Verify SACL auditing on C:\testdir</title>
+        <description>SACL auditing should be set to: Everyone - Failed Access - Full control</description>
+      </metadata>
+      <criteria>
+        <criterion test_ref="oval:org.mitre.expm:tst:1" comment="C:\testdir: Everyone - Failed Access - Full control - Not Inherited"/>
+        <criterion test_ref="oval:org.mitre.expm:tst:2" comment="C:\testdir: no auditing for others"/>
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <filesacl_test id="oval:org.mitre.expm:tst:1" version="1" comment="C:\testdir: Everyone - Failed Access - Full control - Not Inherited" check_existence="at_least_one_exists" check="all"
+          xmlns="http://oval.mitre.org/XMLSchema/x-win-filesacl">
+          <object object_ref="oval:org.mitre.expm:obj:1"/>
+          <state state_ref="oval:org.mitre.expm:ste:1"/>
+    </filesacl_test>
+    <filesacl_test id="oval:org.mitre.expm:tst:2" version="1" comment="C:\testdir: no auditing for others" check_existence="none_exist" check="all" xmlns="http://oval.mitre.org/XMLSchema/x-win-filesacl">
+      <object object_ref="oval:org.mitre.expm:obj:2"/>
+    </filesacl_test>
+  </tests>
+  <objects>
+    <filesacl_object id="oval:org.mitre.expm:obj:1" version="1" comment="Retrieve Everyone auditing on C:\testdir"
+          xmlns="http://oval.mitre.org/XMLSchema/x-win-filesacl">
+      <filepath>C:\testdir</filepath>
+      <trustee_sid>S-1-1-0</trustee_sid> 
+    </filesacl_object>
+    <filesacl_object id="oval:org.mitre.expm:obj:2" version="1" comment="Retrieve auditing on C:\testdir but filter expected account (Everyone)" xmlns="http://oval.mitre.org/XMLSchema/x-win-filesacl">
+      <set xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <object_reference>oval:org.mitre.expm:obj:3</object_reference>
+        <filter>oval:org.mitre.expm:ste:4</filter>
+      </set>
+    </filesacl_object>
+    <filesacl_object id="oval:org.mitre.expm:obj:3" version="1" comment="Retrieve all auditing on C:\testdir" xmlns="http://oval.mitre.org/XMLSchema/x-win-filesacl">
+      <filepath>C:\testdir</filepath>
+      <trustee_sid operation="pattern match">.*</trustee_sid>
+    </filesacl_object>
+  </objects>
+  <states>
+    <filesacl_state id="oval:org.mitre.expm:ste:1" version="1"
+      comment="Full control auditing - not inherited"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filesacl">
+      <ace_type>Failure</ace_type>
+      <inherited_ace datatype="boolean">0</inherited_ace>
+      <container_inherit_ace datatype="boolean">1</container_inherit_ace>
+      <object_inherit_ace datatype="boolean">1</object_inherit_ace>
+      <generic_read datatype="boolean">1</generic_read>
+      <generic_write datatype="boolean">1</generic_write>
+      <generic_execute datatype="boolean">1</generic_execute>
+      <generic_all datatype="boolean">1</generic_all>
+      <standard_synchronize datatype="boolean">1</standard_synchronize>
+      <standard_write_owner datatype="boolean">1</standard_write_owner>
+      <standard_write_dac datatype="boolean">1</standard_write_dac>
+      <standard_read_control datatype="boolean">1</standard_read_control>      
+      <standard_delete datatype="boolean">1</standard_delete>
+      <file_write_attributes datatype="boolean">1</file_write_attributes>
+      <file_read_attributes datatype="boolean">1</file_read_attributes>
+      <file_delete_child datatype="boolean">1</file_delete_child>
+      <file_execute datatype="boolean">1</file_execute>
+      <file_write_ea datatype="boolean">1</file_write_ea>
+      <file_read_ea datatype="boolean">1</file_read_ea>
+      <file_append_data datatype="boolean">1</file_append_data>
+      <file_write_data datatype="boolean">1</file_write_data>      
+      <file_read_data datatype="boolean">1</file_read_data>
+    </filesacl_state>
+    <filesacl_state id="oval:org.mitre.expm:ste:4" version="1"
+      comment="Everyone account"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filesacl">
+      <trustee_sid>S-1-1-0</trustee_sid>
+    </filesacl_state>
+  </states>
+</oval_definitions>

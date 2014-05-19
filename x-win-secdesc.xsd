@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:x-win-secdesc="http://oval.mitre.org/XMLSchema/x-win-secdesc"
+      xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/x-win-secdesc" elementFormDefault="qualified" version="5.11">
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" schemaLocation="windows-definitions-schema.xsd"/>
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" schemaLocation="windows-system-characteristics-schema.xsd"/>
+      <xsd:annotation>
+            <xsd:documentation>The following is a proposal for the win-def:securitydescriptor_test that will support checking Windows security descriptors for all securable objects.</xsd:documentation>
+            <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+            <xsd:appinfo>
+                  <schema>Experimental Schema for the Windows Security Descriptor Test</schema>
+                  <version>5.11</version>
+                  <date>2/20/2014 12:00:00 AM</date>
+                  <terms_of_use>Copyright (c) 2002-2014, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+                  <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
+                  <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
+                  <sch:ns prefix="win-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+                  <sch:ns prefix="win-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows"/>
+                  <sch:ns prefix="x-win-secdesc" uri="http://oval.mitre.org/XMLSchema/x-win-secdesc"/>
+                  <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
+            </xsd:appinfo>
+      </xsd:annotation>
+      <!-- =============================================================================== -->
+      <!-- ======================  Security Descriptor Definition ======================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="securitydescriptor_test" substitutionGroup="oval-def:test">
+            <xsd:annotation>
+                  <xsd:documentation>The security descriptor test is used to check security descriptors associated with Windows securable objects (files, directories, services, etc). The securitydescriptor_test element extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a securitydescriptor_object and the optional
+                        state element specifies the metadata to check.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:element_mapping>
+                              <oval:test>securitydescriptor_test</oval:test>
+                              <oval:object>securitydescriptor_object</oval:object>
+                              <oval:state>securitydescriptor_state</oval:state>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-win-secdesc">securitydescriptor_item</oval:item>
+                        </oval:element_mapping>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
+                        <sch:pattern id="x-win-secdesc_securitydescriptor_tst">
+                              <sch:rule context="x-win-secdesc:securitydescriptor_test/x-win-secdesc:object">
+                                    <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/x-win-secdesc:securitydescriptor_object/@id"><sch:value-of select="../@id"/> - the object child element of a securitydescriptor_test must reference a securitydescriptor_object</sch:assert>
+                              </sch:rule>
+                              <sch:rule context="x-win-secdesc:securitydescriptor_test/x-win-secdesc:state">
+                                    <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/x-win-secdesc:securitydescriptor_state/@id"><sch:value-of select="../@id"/> - the state child element of a securitydescriptor_test must reference a securitydescriptor_state</sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:TestType">
+                              <xsd:sequence>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- ====================  Security Descriptor Object ============================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="securitydescriptor_object" substitutionGroup="oval-def:object">
+            <xsd:annotation>
+                  <xsd:documentation>The securitydescriptor_object element is used by a Security Descriptor test to define the objects used to evalutate against the specified state. The securitydescriptor_object will collect the security descriptor from any Windows securable objects. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set
+                        element allows complex objects to be created using filters and set logic.</xsd:documentation>
+                  <xsd:documentation>A securitydescriptor_object is defined by the object type, object and path (if applicable), and the object owner. In addition, a number of behaviors may be provided that help guide the collection of objects.</xsd:documentation>
+                  <xsd:documentation>The object to be evaluated may be identified with either a complete objectpath or a path and objectname. Only one of these options may be selected. In some cases, the securable object will not have a path.</xsd:documentation>
+                  <xsd:documentation>It is important to note that the 'max_depth' and 'recurse_direction' attributes of the 'behaviors' element do not apply to the 'objectpath' element, only to the 'path' and 'objectname' elements.  This is because the 'objectpath' element represents an absolute path to a particular object and it is not possible to recurse over an object.</xsd:documentation>
+                  <xsd:appinfo>
+                        <sch:pattern id="x-win-secdesc_securitydescriptor_obj_verify_filter_state">
+                              <sch:rule context="x-win-secdesc:securitydescriptor_object//oval-def:filter">
+                                    <sch:let name="parent_object" value="ancestor::x-win-secdesc:securitydescriptor_object"/>
+                                    <sch:let name="parent_object_id" value="$parent_object/@id"/>
+                                    <sch:let name="state_ref" value="."/>
+                                    <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+                                    <sch:let name="state_name" value="local-name($reffed_state)"/>
+                                    <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+                                    <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/x-win-secdesc') and ($state_name='securitydescriptor_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:ObjectType">
+                              <xsd:sequence>
+                                    <xsd:choice>
+                                          <xsd:element ref="oval-def:set"/>
+                                          <xsd:sequence>
+                                                <xsd:element name="behaviors" type="x-win-secdesc:securitydescriptorBehaviors" minOccurs="0"/>
+                                                <xsd:choice>
+                                                      <xsd:element name="objectpath" type="oval-def:EntityObjectStringType">
+                                                            <xsd:annotation>
+                                                                  <xsd:documentation>The objectpath element specifies the absolute path for a securable object on the machine. A container object (e.g., Windows directory) cannot be specified as an objectpath.</xsd:documentation>
+                                                                  <xsd:appinfo>
+                                                                        <sch:pattern id="x-win-secdesc_securitydescriptor_obj_objectpath">
+                                                                              <sch:rule context="x-win-secdesc:securitydescriptor_object/x-win-secdesc:objectpath">
+                                                                                    <sch:assert test="not(preceding-sibling::x-win-secdesc:behaviors[@max_depth or @recurse_direction])"><sch:value-of select="../@id"/> - the max_depth and recurse_direction behaviors are not allowed with an objectpath entity</sch:assert>
+                                                                              </sch:rule>
+                                                                        </sch:pattern>
+                                                                        <sch:pattern id="x-win-secdesc_securitydescriptor_obj_objectpath2">
+                                                                              <sch:rule context="x-win-secdesc:securitydescriptor_object/x-win-secdesc:objectpath[not(@operation='equals' or not(@operation))]">
+                                                                                    <sch:assert test="not(preceding-sibling::x-win-secdesc:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_system behavior MUST not be set to 'defined' when a pattern match is used with an objectpath entity.</sch:assert>
+                                                                              </sch:rule>
+                                                                        </sch:pattern>
+                                                                  </xsd:appinfo>
+                                                            </xsd:annotation>
+                                                      </xsd:element>
+                                                      <xsd:sequence>
+                                                            <xsd:element name="path" type="oval-def:EntityObjectStringType">
+                                                                  <xsd:annotation>
+                                                                        <xsd:documentation>The path element specifies the absolute path to a securable object on the machine.</xsd:documentation>
+                                                                        <xsd:appinfo>
+                                                                              <sch:pattern id="x-win-secdesc_securitydescriptor_obj_path">
+                                                                                    <sch:rule context="x-win-secdesc:securitydescriptor_object/x-win-secdesc:path[not(@operation='equals' or not(@operation))]">
+                                                                                          <sch:assert test="not(preceding-sibling::x-win-secdesc:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_system behavior MUST not be set to 'defined' when a pattern match is used with a path entity.</sch:assert>
+                                                                                          <sch:assert test="not(preceding-sibling::x-win-secdesc:behaviors[@max_depth])"><sch:value-of select="../@id"/> - the max_depth behavior MUST not be used when a pattern match is used with a path entity.</sch:assert>
+                                                                                          <sch:assert test="not(preceding-sibling::x-win-secdesc:behaviors[@recurse_direction])"><sch:value-of select="../@id"/> - the recurse_direction behavior MUST not be used when a pattern match is used with a path entity.</sch:assert>
+                                                                                    </sch:rule>
+                                                                              </sch:pattern>
+                                                                        </xsd:appinfo>
+                                                                  </xsd:annotation>
+                                                            </xsd:element>
+                                                            <xsd:element name="objectname" type="oval-def:EntityObjectStringType" nillable="true">
+                                                                  <xsd:annotation>
+                                                                        <xsd:documentation>The objectname element specifies the name of a securable object to evaluate. If the xsi:nil attribute is set to true, then the object being specified is the higher level container object (not all the children in the container). In this case, the objectname element should not be used during collection and would result in the unique set of items being the containers themselves. For example, one would set xsi:nil to true if
+                                                                              the desire was to test the attributes or permissions associated with a container. Setting xsi:nil equal to true is different than using a .* pattern match, which says to collect every child object under a given path.</xsd:documentation>
+                                                                        <xsd:appinfo>
+                                                                              <sch:pattern id="x-win-secdesc_securitydescriptor_obj_filename">
+                                                                                    <sch:rule context="x-win-secdesc:securitydescriptor_object/x-win-secdesc:filename">
+                                                                                          <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - objectname entity cannot contain the characters / \ : * ? &gt; | </sch:assert>
+                                                                                          <sch:assert test="(@var_ref and .='') or ((@xsi:nil='1' or @xsi:nil='true') and .='') or not(.='') or (.='' and @operation='pattern match')"><sch:value-of select="../@id"/> - objectname entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
+                                                                                    </sch:rule>
+                                                                              </sch:pattern>
+                                                                        </xsd:appinfo>
+                                                                  </xsd:annotation>
+                                                            </xsd:element>
+                                                      </xsd:sequence>
+                                                </xsd:choice>
+                                                <xsd:element name="object_type" type="x-win-secdesc:EntityObjectStateSecurableObjectType">
+                                                      <xsd:annotation>
+                                                            <xsd:documentation>The object_type specifies the type of Windows securable object to evaluate.</xsd:documentation>
+                                                      </xsd:annotation>
+                                                </xsd:element>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                          </xsd:sequence>
+                                    </xsd:choice>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- =======================  Security Descriptor State ============================ -->
+      <!-- =============================================================================== -->
+      <xsd:element name="securitydescriptor_state" substitutionGroup="oval-def:state">
+            <xsd:annotation>
+                  <xsd:documentation>The securitydescriptor_state element defines the different parameters that can be associated with a given securitydescriptor_object. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:documentation>When attempting to find NULL DACLs, use the dacl_ace_count entity. A value of '-1' represents a NULL DACL in the security descriptor. A dacl_ace_count value of '0' represents an empty DACL.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:StateType">
+                              <xsd:sequence>
+                                    <xsd:element name="objectpath" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The objectpath element specifies the absolute path for a securable object on the machine. A container object (e.g., Windows directory) cannot be specified as an objectpath.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="path" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The path element specifies the absolute path to a securable object on the machine.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="objectname" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>>The objectname element specifies the name of the securable object.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <sch:pattern id="x-win-secdesc_securitydescriptor_ste_filename">
+                                                            <sch:rule context="x-win-secdesc:securitydescriptor_state/x-win-secdesc:objectname">
+                                                                  <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - objectname entity cannot contain the characters / \ : * ? &gt; | </sch:assert>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="object_type" type="x-win-secdesc:EntityObjectStateSecurableObjectType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The object_type specifies the type of Windows securable object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="dacl_ace_count" type="oval-def:EntityStateIntType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The DACL ace count element represnts the number of Access Control Entries (ACEs) found within the DACL of a security descriptor. A value of '-1' represents a NULL DACL in the security descriptor. A dacl_ace_count value of '0' represents an empty DACL. A NULL DACL specifies that EVERYONE has FULL CONTROL of the object while an empty DACL specifies that EVERYONE is denied all access to the object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="sacl_ace_count" type="oval-def:EntityStateIntType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The SACL ace count element represnts the number of Access Control Entries (ACEs) found within the SACL of a security descriptor. A value of '-1' represents a NULL SACL in the security descriptor. A sacl_ace_count value of '0' represents an empty SACL. Both of these situations result in no auditing for the securable object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="object_owner" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The object owner element is the SID that specifies the object’s owner. The owner can modify permissions and give other users the right to take ownership.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="object_group" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The object group element is the SID that specifies the primary group (owner) of the object. It is provided to support the POSIX compatibility system and is not used by Windows itself. The group owner of an object may be used when running services for UNIX and Macintosh. </xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_owner_defaulted" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The owner defaulted element specifies that the owner SID was provided by a default mechanism. In most situations, the default owner is the individual user that is represented by the access token. When the SID in the Default Owner field of the subject’s access token is copied to the Owner field of an object’s security descriptor, SE_OWNER_DEFAULTED is set in the security descriptor’s control flags.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_group_defaulted" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>>The group defaulted element specifies that the primary group SID was provided by a default mechanism. When the SID in the Primary Group field of the subject’s access token is copied to the Primary Group field of an object’s security descriptor, SE_GROUP_DEFAULTED is set in the security descriptor’s control flags.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_dacl_auto_inherited" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The DACL auto inherited element specifies that the DACL uses the Windows NT 5.0 inheritance mechanism (Windows 2000 and later) and inheritable DACL ACEs are automatically propogated to child objects. Modern APIs for setting DACLs automatically set this bit to true.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_dacl_auto_inherit_req" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The DACL auto inherit required element specifies that the DACL uses the legacy Windows NT 4.0 inheritance mechanism (Windows NT 4.0) and that inheritance propogation from parent to child is required. </xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_dacl_defaulted" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The DACL defaulted element specifies that the DACL was provided by a default mechanism. This flag can affect how the operating system treats the DACL with respect to inheritance. The operating system ignores this flag if SE_DACL_PRESENT is not set.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_dacl_present" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The DACL present element specifies that the a DACL is defined and present within the security descriptor. If this flag is not set (that is, if the security descriptor has no DACL), SE_DACL_PROTECTED must be set. Otherwise, the operating system considers the security descriptor to be invalid.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_dacl_protected" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The DACL protected element specifies that the DACL DOES NOT inherit permissions from the parent object. A true value means that inheritance has been turned off at this object and custom permissions have been defined. If this flag is not set, the security descriptor inherits information from the security descriptor of the parent object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_sacl_auto_inherited" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The SACL auto inherited element specifies that the SACL uses the Windows NT 5.0 inheritance mechanism (Windows 2000 and later) and inheritable SACL ACEs are automatically propogated to child objects. Modern APIs for setting SACLs automatically set this bit to true.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_sacl_auto_inherit_req" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The SACL auto inherit required element specifies that the SACL uses the legacy Windows NT 4.0 inheritance mechanism (Windows NT 4.0) and that inheritance propogation from parent to child is required.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_sacl_defaulted" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The SACL defaulted element specifies that the SACL was provided by a default mechanism. This flag can affect how the operating system treats the SACL with respect to inheritance. The operating system ignores this flag if SE_SACL_PRESENT is not set.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_sacl_present" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The SACL present element specifies that the a SACL is defined and present within the security descriptor.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_sacl_protected" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The SACL protected element specifies that the SACL DOES NOT inherit permissions from the parent object. A true value means that inheritance has been turned off at this object and custom permissions have been defined. If this flag is not set, the security descriptor inherits information from the security descriptor of the parent object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- =======================  Security Descriptor Behaviors ======================== -->
+      <!-- =============================================================================== -->
+      <xsd:complexType name="securitydescriptorBehaviors">
+            <xsd:annotation>
+                  <xsd:documentation>The securitydescriptorBehaviors complex type defines a number of behaviors that allow a more detailed definition of the securitydescriptor_object being specified.  Note that using these behaviors may result in some unique results.  For example, a double negative type condition might be created where an object entity says include everything except a specific item, but a behavior is used that might then add that item back in.</xsd:documentation>
+                  <xsd:documentation>It is important to note that the 'max_depth' and 'recurse_direction' attributes of the 'behaviors' element do not apply to the 'objectpath' element, only to the 'path' and 'objectname' elements.  This is because the 'objectpath' element represents an absolute path to a particular object and it is not possible to recurse over an object.</xsd:documentation>
+                  <xsd:documentation>The securitydescriptorBehaviors extend the win-def:FileBehaviors and therefore include the behaviors defined by that type.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexContent>
+                  <xsd:extension base="win-def:FileBehaviors"/>                  
+            </xsd:complexContent>
+      </xsd:complexType>
+      <!-- =============================================================================== -->
+      <!-- =========================  Security Descriptor Item =========================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="securitydescriptor_item" substitutionGroup="oval-sc:item">
+            <xsd:annotation>
+                  <xsd:documentation>The securitydescriptor_item element defines the different parameters that can be associated with a given securitydescriptor_item. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:documentation>When attempting to find NULL DACLs, use the dacl_ace_count entity. A value of '-1' represents a NULL DACL in the security descriptor. A dacl_ace_count value of '0' represents an empty DACL.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-sc:ItemType">
+                              <xsd:sequence>
+                                    <xsd:element name="objectpath" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The objectpath element specifies the absolute path for a securable object on the machine. A container object (e.g., Windows directory) cannot be specified as an objectpath.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="path" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The path element specifies the absolute path to a securable object on the machine.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="objectname" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The objectname element specifies the name of the securable object.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <sch:pattern id="x-win-secdesc_securitydescriptor_item_filename">
+                                                            <sch:rule context="x-win-secdesc:securitydescriptor_item/x-win-secdesc:itemname">
+                                                                  <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - itemname entity cannot contain the characters / \ : * ? &gt; | </sch:assert>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="object_type" type="x-win-secdesc:EntityItemSecurableObjectType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The object_type specifies the type of Windows securable object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="dacl_ace_count" type="oval-sc:EntityItemIntType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The DACL ace count element represnts the number of Access Control Entries (ACEs) found within the DACL of a security descriptor. A value of '-1' represents a NULL DACL in the security descriptor. A dacl_ace_count value of '0' represents an empty DACL. A NULL DACL specifies that EVERYONE has FULL CONTROL of the object while an empty DACL specifies that EVERYONE is denied all access to the object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="sacl_ace_count" type="oval-sc:EntityItemIntType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The SACL ace count element represnts the number of Access Control Entries (ACEs) found within the SACL of a security descriptor. A value of '-1' represents a NULL SACL in the security descriptor. A sacl_ace_count value of '0' represents an empty SACL. Both of these situations result in no auditing for the securable object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="object_owner" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The object owner element is the SID that specifies the object’s owner. The owner can modify permissions and give other users the right to take ownership.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="object_group" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The object group element is the SID that specifies the primary group (owner) of the object. It is provided to support the POSIX compatibility system and is not used by Windows itself. The group owner of an object may be used when running services for UNIX and Macintosh. </xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_owner_defaulted" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The owner defaulted element specifies that the owner SID was provided by a default mechanism. In most situations, the default owner is the individual user that is represented by the access token. When the SID in the Default Owner field of the subject’s access token is copied to the Owner field of an object’s security descriptor, SE_OWNER_DEFAULTED is set in the security descriptor’s control flags.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_group_defaulted" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>>The group defaulted element specifies that the primary group SID was provided by a default mechanism. When the SID in the Primary Group field of the subject’s access token is copied to the Primary Group field of an object’s security descriptor, SE_GROUP_DEFAULTED is set in the security descriptor’s control flags.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_dacl_auto_inherited" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The DACL auto inherited element specifies that the DACL uses the Windows NT 5.0 inheritance mechanism (Windows 2000 and later) and inheritable DACL ACEs are automatically propogated to child objects. Modern APIs for setting DACLs automatically set this bit to true.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_dacl_auto_inherit_req" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The DACL auto inherit required element specifies that the DACL uses the legacy Windows NT 4.0 inheritance mechanism (Windows NT 4.0) and that inheritance propogation from parent to child is required. </xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_dacl_defaulted" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The DACL defaulted element specifies that the DACL was provided by a default mechanism. This flag can affect how the operating system treats the DACL with respect to inheritance. The operating system ignores this flag if SE_DACL_PRESENT is not set.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_dacl_present" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The DACL present element specifies that the a DACL is defined and present within the security descriptor. If this flag is not set (that is, if the security descriptor has no DACL), SE_DACL_PROTECTED must be set. Otherwise, the operating system considers the security descriptor to be invalid.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_dacl_protected" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The DACL protected element specifies that the DACL DOES NOT inherit permissions from the parent object. A true value means that inheritance has been turned off at this object and custom permissions have been defined. If this flag is not set, the security descriptor inherits information from the security descriptor of the parent object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_sacl_auto_inherited" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The SACL auto inherited element specifies that the SACL uses the Windows NT 5.0 inheritance mechanism (Windows 2000 and later) and inheritable SACL ACEs are automatically propogated to child objects. Modern APIs for setting SACLs automatically set this bit to true.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_sacl_auto_inherit_req" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The SACL auto inherit required element specifies that the SACL uses the legacy Windows NT 4.0 inheritance mechanism (Windows NT 4.0) and that inheritance propogation from parent to child is required.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_sacl_defaulted" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The SACL defaulted element specifies that the SACL was provided by a default mechanism. This flag can affect how the operating system treats the SACL with respect to inheritance. The operating system ignores this flag if SE_SACL_PRESENT is not set.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_sacl_present" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The SACL present element specifies that the a SACL is defined and present within the security descriptor.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="se_sacl_protected" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The SACL protected element specifies that the SACL DOES NOT inherit permissions from the parent object. A true value means that inheritance has been turned off at this object and custom permissions have been defined. If this flag is not set, the security descriptor inherits information from the security descriptor of the parent object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- =======================  Security Descriptor Enumerations ===================== -->
+      <!-- =============================================================================== -->
+      <xsd:complexType name="EntityObjectStateSecurableObjectType">
+            <xsd:annotation>
+                  <xsd:documentation>The EntityStateSecurableObjectType complex type restricts a string value to a list of Windows securable object types.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-def:EntityStateStringType">
+                        <xsd:enumeration value="SE_UNKNOWN_OBJECT_TYPE">
+                              <xsd:annotation>
+                                    <xsd:documentation>An unknown object type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_FILE_OBJECT">
+                              <xsd:annotation>
+                                    <xsd:documentation>A file or directory object. Absolute or UNC formats can be used.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SERVICE">
+                              <xsd:annotation>
+                                    <xsd:documentation>A printer object. A printer object can be a local printer, such as PrinterName, or a remote printer, such as \\ComputerName\PrinterName.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_REGISTRY_KEY">
+                              <xsd:annotation>
+                                    <xsd:documentation>A registry key object. A registry key object is restricted to the local registry, such as CLASSES_ROOT\SomePath. The names of registry keys must use the following literal strings to identify the predefined registry keys: "CLASSES_ROOT", "CURRENT_USER", "MACHINE", and "USERS".</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_LMSHARE">
+                              <xsd:annotation>
+                                    <xsd:documentation>A network share object. A share object can be local, such as ShareName, or remote, such as \\ComputerName\ShareName.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_KERNEL_OBJECT">
+                              <xsd:annotation>
+                                    <xsd:documentation>A local kernel object.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_WINDOW_OBJECT">
+                              <xsd:annotation>
+                                    <xsd:documentation>A window station or desktop object on the local computer.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>                        
+                        <xsd:enumeration value="SE_DS_OBJECT">
+                              <xsd:annotation>
+                                    <xsd:documentation>A directory service object or a property set or property of a directory service object. The name string for a directory service object must be in X.500 form, for example: CN=SomeObject,OU=ou2,OU=ou1,DC=DomainName,DC=CompanyName,DC=com,O=internet.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_DS_OBJECT_ALL">
+                              <xsd:annotation>
+                                    <xsd:documentation>A directory service object and all of its property sets and properties.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_PROVIDER_DEFINED_OBJECT">
+                              <xsd:annotation>
+                                    <xsd:documentation>A provider-defined object.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_WMIGUID_OBJECT">
+                              <xsd:annotation>
+                                    <xsd:documentation>A WMI object.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_REGISTRY_WOW64_32KEY">
+                              <xsd:annotation>
+                                    <xsd:documentation>An object for a registry entry under WOW64.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>
+      <xsd:complexType name="EntityItemSecurableObjectType">
+            <xsd:annotation>
+                  <xsd:documentation>The EntityItemSecurableObjectType complex type restricts a string value to a list of Windows securable object types.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-sc:EntityItemStringType">
+                        <xsd:enumeration value="SE_UNKNOWN_OBJECT_TYPE">
+                              <xsd:annotation>
+                                    <xsd:documentation>An unknown object type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_FILE_OBJECT">
+                              <xsd:annotation>
+                                    <xsd:documentation>A file or directory object. Absolute or UNC formats can be used.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SERVICE">
+                              <xsd:annotation>
+                                    <xsd:documentation>A printer object. A printer object can be a local printer, such as PrinterName, or a remote printer, such as \\ComputerName\PrinterName.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_REGISTRY_KEY">
+                              <xsd:annotation>
+                                    <xsd:documentation>A registry key object. A registry key object is restricted to the local registry, such as CLASSES_ROOT\SomePath. The names of registry keys must use the following literal strings to identify the predefined registry keys: "CLASSES_ROOT", "CURRENT_USER", "MACHINE", and "USERS".</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_LMSHARE">
+                              <xsd:annotation>
+                                    <xsd:documentation>A network share object. A share object can be local, such as ShareName, or remote, such as \\ComputerName\ShareName.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_KERNEL_OBJECT">
+                              <xsd:annotation>
+                                    <xsd:documentation>A local kernel object.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_WINDOW_OBJECT">
+                              <xsd:annotation>
+                                    <xsd:documentation>A window station or desktop object on the local computer.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>                        
+                        <xsd:enumeration value="SE_DS_OBJECT">
+                              <xsd:annotation>
+                                    <xsd:documentation>A directory service object or a property set or property of a directory service object. The name string for a directory service object must be in X.500 form, for example: CN=SomeObject,OU=ou2,OU=ou1,DC=DomainName,DC=CompanyName,DC=com,O=internet.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_DS_OBJECT_ALL">
+                              <xsd:annotation>
+                                    <xsd:documentation>A directory service object and all of its property sets and properties.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_PROVIDER_DEFINED_OBJECT">
+                              <xsd:annotation>
+                                    <xsd:documentation>A provider-defined object.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_WMIGUID_OBJECT">
+                              <xsd:annotation>
+                                    <xsd:documentation>A WMI object.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_REGISTRY_WOW64_32KEY">
+                              <xsd:annotation>
+                                    <xsd:documentation>An object for a registry entry under WOW64.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>
+</xsd:schema>

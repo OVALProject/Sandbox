@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:x-win-regkeydacl="http://oval.mitre.org/XMLSchema/x-win-regkeydacl"
+      xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/x-win-regkeydacl" elementFormDefault="qualified" version="5.11">
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" schemaLocation="windows-definitions-schema.xsd"/>
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" schemaLocation="windows-system-characteristics-schema.xsd"/>
+      <xsd:annotation>
+            <xsd:documentation>The following is a proposal for the win-def:regkeydacl_test and win-def:regkeydacl_item that will support checking the Discretionary Access Control Lists and the ACEs they contain in the security descriptor.</xsd:documentation>
+            <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+            <xsd:appinfo>
+                  <schema>Experimental Schema for the Windows Registry DACL Tests</schema>
+                  <version>5.11</version>
+                  <date>8/2/2013 8:27:00 AM</date>
+                  <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+                  <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
+                  <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
+                  <sch:ns prefix="win-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+                  <sch:ns prefix="win-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows"/>
+                  <sch:ns prefix="x-win-regkeydacl" uri="http://oval.mitre.org/XMLSchema/x-win-regkeydacl"/>
+                  <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
+            </xsd:appinfo>
+      </xsd:annotation>
+      <!-- =============================================================================== -->
+      <!-- ==========================  Registry Key DACL Definition ====================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="regkeydacl_test" substitutionGroup="oval-def:test">
+            <xsd:annotation>
+                  <xsd:documentation>The registry key DACL test is used to check the Discretionary Access Control Lists (DACLs) associated Windows registry keys. This test will report each of the Access Control Entries (ACEs) for a registry key. The regkeydacl_test element extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a regkeydacl_object and the optional state
+                        element specifies the metadata to check.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:element_mapping>
+                              <oval:test>regkeydacl_test</oval:test>
+                              <oval:object>regkeydacl_object</oval:object>
+                              <oval:state>regkeydacl_state</oval:state>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/x-win-regkeydacl">regkeydacl_item</oval:item>
+                        </oval:element_mapping>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
+                        <sch:pattern id="x-win-regkeydacl_regkeydacl_tst">
+                              <sch:rule context="x-win-regkeydacl:regkeydacl_test/x-win-regkeydacl:object">
+                                    <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/x-win-regkeydacl:regkeydacl_object/@id"><sch:value-of select="../@id"/> - the object child element of a regkeydacl_test must reference a regkeydacl_object</sch:assert>
+                              </sch:rule>
+                              <sch:rule context="x-win-regkeydacl:regkeydacl_test/x-win-regkeydacl:state">
+                                    <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/x-win-regkeydacl:regkeydacl_state/@id"><sch:value-of select="../@id"/> - the state child element of a regkeydacl_test must reference a regkeydacl_state</sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:TestType">
+                              <xsd:sequence>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- ==========================  Registry Key DACL Object ========================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="regkeydacl_object" substitutionGroup="oval-def:object">
+            <xsd:annotation>
+                  <xsd:documentation>The regkeydacl_object element is used by a registry key DACL test to define the objects used to evalutate against the specified state. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic.</xsd:documentation>
+                  <xsd:documentation>A regkeydacl_object is defined as a combination of a Windows registry key and trustee name or SID. The key entity represents the registry key to be evaluated while the trustee name or SID represents the account to check permissions of. If multiple registry keys or names/SIDs are matched by either reference, then each possible combination of registry key and name/SID is a matching registry key permissions (ACE) object. In addition, a number of behaviors may be
+                        provided that help guide the collection of objects.</xsd:documentation>
+                  <xsd:appinfo>
+                        <sch:pattern id="x-win-regkeydacl_regkeydacl_obj_verify_filter_state">
+                              <sch:rule context="x-win-regkeydacl:regkeydacl_object//oval-def:filter">
+                                    <sch:let name="parent_object" value="ancestor::x-win-regkeydacl:regkeydacl_object"/>
+                                    <sch:let name="parent_object_id" value="$parent_object/@id"/>
+                                    <sch:let name="state_ref" value="."/>
+                                    <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+                                    <sch:let name="state_name" value="local-name($reffed_state)"/>
+                                    <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+                                    <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/x-win-regkeydacl') and ($state_name='regkeydacl_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:ObjectType">
+                              <xsd:sequence>
+                                    <xsd:choice>
+                                          <xsd:element ref="oval-def:set"/>
+                                          <xsd:sequence>
+                                                <xsd:element name="behaviors" type="x-win-regkeydacl:RegKeyDACLBehaviors" minOccurs="0"/>
+                                                <xsd:element name="hive" type="win-def:EntityObjectRegistryHiveType">
+                                                      <xsd:annotation>
+                                                            <xsd:documentation>The hive that the registry key belongs to. This is restricted to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, and HKEY_USERS.</xsd:documentation>
+                                                      </xsd:annotation>
+                                                </xsd:element>
+                                                <xsd:element name="key" type="oval-def:EntityObjectStringType" nillable="true">
+                                                      <xsd:annotation>
+                                                            <xsd:documentation>The key element describes a registry key to be collected. Note that the hive portion of the string should not be included, as this data should be found under the hive element. If the xsi:nil attribute is set to true, then the object being specified is the higher level hive. In this case, the key element should not be collected or used in analysis. Setting xsi:nil equal to true is different than using a .* pattern
+                                                                  match. A .* pattern match says to collect every key under a given hive.</xsd:documentation>
+                                                            <xsd:appinfo>
+                                                                  <sch:pattern id="x-win-regkeydacl_regkeydacl_obj_key">
+                                                                        <sch:rule context="win-def:regkeydacl_object/win-def:key[not(@operation='equals' or not(@operation))]">
+                                                                              <sch:assert test="not(preceding-sibling::win-def:behaviors[@max_depth])"><sch:value-of select="../@id"/> - the max_depth behavior MUST not be used when a pattern match is used with a key entity.</sch:assert>
+                                                                              <sch:assert test="not(preceding-sibling::win-def:behaviors[@recurse_direction])"><sch:value-of select="../@id"/> - the recurse_direction behavior MUST not be used when a pattern match is used with a key entity.</sch:assert>
+                                                                        </sch:rule>
+                                                                  </sch:pattern>
+                                                            </xsd:appinfo>
+                                                      </xsd:annotation>
+                                                </xsd:element>
+                                                <xsd:element name="trustee_sid" type="oval-def:EntityObjectStringType">
+                                                      <xsd:annotation>
+                                                            <xsd:documentation>The trustee_sid entity identifies a unique SID associated with a user, group, system, or program (such as a Windows service). If an operation other than equals is used to identify matching trustees (i.e. not equal, or a pattern match) then the resulting matches shall be limited to only the trustees referenced in the registry key's Security Descriptor. The scope is limited here to avoid unnecessarily resource
+                                                                        intensive searches for trustees. Note that the larger scope of all known trustees may be obtained through the use of variables.</xsd:documentation>
+                                                      </xsd:annotation>
+                                                </xsd:element>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                          </xsd:sequence>
+                                    </xsd:choice>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- ==========================  Registry Key DACL State =========================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="regkeydacl_state" substitutionGroup="oval-def:state">
+            <xsd:annotation>
+                  <xsd:documentation>The regkeydacl_state element defines the different permissions (ACEs) that can be associated with a given regkeydacl_object. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:documentation>More than on ACE for the same account may be reported in some cases. When this occurs, the first ACE generally applies to the object itself, while the second ACE applies to any descendant objects (though in complicated permissions cases this may not always be true). This does occur with some default permissions and the previous statement holds true in those cases. It also occurs when permissions for the current key are different from the permissions for the child keys it contains.</xsd:documentation>
+                  <xsd:documentation>When attempting to decipher a scenario where more than one ACE occurs for the same account, pay particular attention to the combination of ACE flags used and this will help determine how things are applied and why they are split. The following table can be used as a guide for registry keys. Make note of the differences when flags are combined, especially with IO. Also note that registry key permissions differ from the file system in that permissions can only be applied to registry keys and not their values. This makes registry permission ACE flags a bit less complicated than the file permission ACE flags as there are only container objects and no noncontainer objects.</xsd:documentation>
+                  <xsd:documentation>Registry keys do not support the SYNCHRONIZE standard access right. See http://msdn.microsoft.com/en-us/library/windows/desktop/ms724878(v=vs.85).aspx.</xsd:documentation>
+                  <xsd:documentation>
+                        Output(SDDL) 		            ACE applies to
+                        -----------------------------------------------------------------------
+                        inherited_ace(ID)                   ACE is inherited from a parent (by itself means that it applies only to the key itself)
+                        No flags                            This key only (ACE has been defined on the key itself)
+                        container_inherit_ace(CI)		This key and subkeys
+                        inherit_only_ace(IO)			Inherit only. The ACE does not apply to the current directory. This ACE would not be used by an access control check on the key where it is defined. It only applies to children of the object where it is defined.
+                        no_propagate_inherit_ace(NP)        Do not propagate permissions beyond immediate children. A child key of the key where this is defined will inherit the ACE defined, but will remove this flag and the inheritance flags so that propogation or inheritance does not continue to the grandchildren.
+                        (CI)(ID)                            This key and subkeys - inherited from a parent
+                        (CI)(IO)		                  subkeys only
+                        (CI)(NP)                            This key and subkeys - Inheritance stops at immediate children and does not continue. Imemediate child object ACEs only have (ID) flag.
+                        (CI)(IO)(ID)                        subkeys only - inherited
+                  </xsd:documentation>
+                  <xsd:documentation>The following table lists the standard and registry specific permissions along with the Windows UI name and SDDL shortname. The OVAL entity names are the Windows internal names for each permission. In some cases they match up with the Windows UI but in others it can be unclear (Windows 7 names are used, the names may vary across different versions of Windows).
+                        OVAL entity name        SDDL  Windows 7 UI Name
+                        -------------------------------------------------------------------------
+                        key_query_value	      CC	Query Value
+                        key_set_value	      DC	Set Value
+                        key_create_sub_key      LC	Create Subkey
+                        key_enumerate_sub_keys	SW	Enumerate Subkeys
+                        key_notify	            RP	Notify
+                        key_create_link	      WP	Create Link
+                        key_wow64_64key	      CR	N/A
+                        key_wow64_32key	      	N/A
+                        key_wow64_res	      	N/A
+                        standard_delete	      SD	Delete
+                        standard_read_control	RC	Read Control 
+                        standard_write_dac	WD	Write DAC
+                        standard_write_owner	WO	Write Owner
+                  </xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:StateType">
+                              <xsd:sequence>
+                                    <xsd:element name="hive" type="win-def:EntityStateRegistryHiveType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This element specifies the hive of a registry key on the machine from which to retrieve the DACL.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="key" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This element specifies a registry key on the machine from which to retrieve the DACL. Note that the hive portion of the string should not be inclueded, as this data should be found under the hive element.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="trustee_sid" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The trustee_sid element is the unique SID that associated a user, group, system, or program (such as a Windows service).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ace_order" type="oval-def:EntityStateIntType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The number that represents the position of the permission (ACE) in the DACL starting from 1 at the top. This is the order used by the OS to determine whether to allow or deny access to the object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ace_type" type="x-win-regkeydacl:EntityStatePermissionType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The permission (ACE) type. This can be one of two values: Allow or Deny. In the case that no ACEs are defined in the DACL at all, this item will report NO_ACCESS_CONTROL.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ace_inherited_from" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The parent hive or key that this target inherited the ACE from. If the ACE is NOT inherited and is explicit, the entity's status value should be "does not exist". Name obtained using GetInheritanceSource().</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="inherited_ace" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE has been inherited from a parent hive or key. Security Descriptor ACEStringType = ID.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="inherit_only_ace" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE applies ONLY to subkeys and not the key where it is defined (e.g., Full control for CREATOR OWNER for all files in a directory but not for the directory itself). In some cases there may be more than one ACE specified for a key with the same account. In these cases, the first ACE applies to the key itself, while the second ACE applies to the subkeys it contains. Security Descriptor ACEStringType = IO.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="container_inherit_ace" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE will be propagated (inherited) to all child/descendant subkeys (container objects). The ACE will propagate recursively until a NO_PROPAGATE_INHERIT_ACE is encountered or there are no more keys. Security Descriptor ACEStringType = CI.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="no_propagate_inherit_ace" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE is propagated ONLY to immediate child/descendant subkeys. This flag clears the object and container inheritance flags from the ACEs inherited by the immediate child subkeys so that inheritance will NOT continue recursively. Security Descriptor ACEStringType = NP.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_read" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>**A basic permission that includes Query Value, Enumerate Subkeys, Notify, and Read Control.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_write" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>**Basic write access to the object. This is a specific combination of special permissions.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_execute" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>**Basic execute access to the object. This is a specific combination of special permissions.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_all" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A basic/generic permission that includes all special (standard and object specific) permissions. Also know as Key All (KA) or Generic All (GA).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="access_system_security" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Indicates access to a system access control list (SACL).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_write_owner" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies taking ownership of a registry key. The owner of a registry key has complete control over the object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_write_dac" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies changing the discretionary access control list (DACL) of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_read_control" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies reading or viewing the discretionary access control list (DACL) of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_delete" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies deleteing of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="key_create_link" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (registry object specific) permission that allows or denies creating a symbolic link of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="key_notify" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (registry object specific) permission that allows or denies requesting change notifications for subkeys of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="key_enumerate_sub_keys" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (registry object specific) permission that allows or denies enumerating the subkeys of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="key_create_sub_key" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (registry object specific) permission that allows or denies creating a subkey of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="key_set_value" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (registry object specific) permission that allows or denies creating, deleting, or setting the values of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="key_query_value" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (registry object specific) permission that allows or denies querying the values of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="windows_view" type="win-def:EntityStateWindowsViewType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The windows view value to which this was targeted. This is used to indicate which view (32-bit or 64-bit), the associated State applies to.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- ==========================  Registry Key DACL Behaviors ======================= -->
+      <!-- =============================================================================== -->
+      <xsd:complexType name="RegKeyDACLBehaviors">
+            <xsd:annotation>
+                  <xsd:documentation>The RegKeyDACLBehaviors complex type defines a number of behaviors that allow a more detailed definition of the regkeydacl_object being specified.  Note that using these behaviors may result in some unique results.  For example, a double negative type condition might be created where an object entity says include everything except a specific item, but a behavior is used that might then add that item back in.</xsd:documentation>
+                  <xsd:documentation>The RegKeyDACLBehaviors extend the win-def:RegistryBehaviors and therefore include the behaviors defined by that type.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexContent>
+                  <xsd:extension base="win-def:RegistryBehaviors"/>
+            </xsd:complexContent>
+      </xsd:complexType>
+      <!-- =============================================================================== -->
+      <!-- ==========================  Regsitry Key DACL Item ============================ -->
+      <!-- =============================================================================== -->
+      <xsd:element name="regkeydacl_item" substitutionGroup="oval-sc:item">
+            <xsd:annotation>
+                  <xsd:documentation>The regkeydacl_item element defines the different permissions (ACEs) that can be associated with a given regkeydacl_item. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:documentation>More than on ACE for the same account may be reported in some cases. When this occurs, the first ACE generally applies to the object itself, while the second ACE applies to any descendant objects (though in complicated permissions cases this may not always be true). This does occur with some default permissions and the previous statement holds true in those cases. It also occurs when permissions for the current key are different from the permissions for the child keys it contains.</xsd:documentation>
+                  <xsd:documentation>When attempting to decipher a scenario where more than one ACE occurs for the same account, pay particular attention to the combination of ACE flags used and this will help determine how things are applied and why they are split. The following table can be used as a guide for registry keys. Make note of the differences when flags are combined, especially with IO. Also note that registry key permissions differ from the file system in that permissions can only be applied to registry keys and not their values. This makes registry permission ACE flags a bit less complicated than the file permission ACE flags as there are only container objects and no noncontainer objects.</xsd:documentation>
+                  <xsd:documentation>
+                        Output(SDDL) 		            ACE applies to
+                        -----------------------------------------------------------------------
+                        inherited_ace(ID)                   ACE is inherited from a parent (by itself means that it applies only to the key itself)
+                        No flags                            This key only (ACE has been defined on the key itself)
+                        container_inherit_ace(CI)		This key and subkeys
+                        inherit_only_ace(IO)			Inherit only. The ACE does not apply to the current directory. This ACE would not be used by an access control check on the key where it is defined. It only applies to children of the object where it is defined.
+                        no_propagate_inherit_ace(NP)        Do not propagate permissions beyond immediate children. A child key of the key where this is defined will inherit the ACE defined, but will remove this flag and the inheritance flags so that propogation or inheritance does not continue to the grandchildren.
+                        (CI)(ID)                            This key and subkeys - inherited from a parent
+                        (CI)(IO)		                  subkeys only
+                        (CI)(NP)                            This key and subkeys - Inheritance stops at immediate children and does not continue. Imemediate child object ACEs only have (ID) flag.
+                        (CI)(IO)(ID)                        subkeys only - inherited
+                  </xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-sc:ItemType">
+                              <xsd:sequence>
+                                    <xsd:element name="hive" type="win-sc:EntityItemRegistryHiveType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This element specifies the hive of a registry key on the machine from which to retrieve the DACL.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="key" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This element specifies a registry key on the machine from which to retrieve the DACL. Note that the hive portion of the string should not be inclueded, as this data should be found under the hive element.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="trustee_sid" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The trustee_sid element is the unique SID that associated a user, group, system, or program (such as a Windows service).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ace_order" type="oval-sc:EntityItemIntType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The number that represents the position of the permission (ACE) in the DACL starting from 1 at the top. This is the order used by the OS to determine whether to allow or deny access to the object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ace_type" type="x-win-regkeydacl:EntityItemPermissionType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The permission (ACE) type. This can be one of two values: Allow or Deny. In the case that no ACEs are defined in the DACL at all, this item will report NO_ACCESS_CONTROL.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ace_inherited_from" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The parent hive or key that this target inherited the ACE from. If the ACE is NOT inherited and is explicit, the entity's status value should be "does not exist". Name obtained using GetInheritanceSource().</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="inherited_ace" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE has been inherited from a parent hive or key. Security Descriptor ACEStringType = ID.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="inherit_only_ace" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE applies ONLY to subkeys and not the key where it is defined (e.g., Full control for CREATOR OWNER for all files in a directory but not for the directory itself). In some cases there may be more than one ACE specified for a key with the same account. In these cases, the first ACE applies to the key itself, while the second ACE applies to the subkeys it contains. Security Descriptor ACEStringType = IO.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="container_inherit_ace" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE will be propagated (inherited) to all child/descendant subkeys (container objects). This flag is implied for registry keys and will always exist since there are no ACEs on registry values. The ACE will propagate recursively until a NO_PROPAGATE_INHERIT_ACE is encountered or there are no more keys. Security Descriptor ACEStringType = CI.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="no_propagate_inherit_ace" type="oval-sc:EntityItemStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>If true, specifies that this ACE is propagated ONLY to immediate child/descendant subkeys. This flag clears the object and container inheritance flags from the ACEs inherited by the immediate child subkeys so that inheritance will NOT continue recursively. Security Descriptor ACEStringType = NP.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_read" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>**A basic permission that includes Query Value, Enumerate Subkeys, Notify, and Read Control.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_write" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>**Basic write access to the object. This is a specific combination of special permissions.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_execute" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>**Basic execute access to the object. This is a specific combination of special permissions.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="generic_all" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A basic/generic permission that includes all special (standard and object specific) permissions. Also know as Key All (KA) or Generic All (GA).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="access_system_security" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Indicates access to a system access control list (SACL).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_write_owner" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies taking ownership of a registry key. The owner of a registry key has complete control over the object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_write_dac" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies changing the discretionary access control list (DACL) of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_read_control" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies reading or viewing the discretionary access control list (DACL) of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="standard_delete" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A standard permission that allows or denies deleteing of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="key_create_link" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (registry object specific) permission that allows or denies creating a symbolic link of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="key_notify" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (registry object specific) permission that allows or denies requesting change notifications for subkeys of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="key_enumerate_sub_keys" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (registry object specific) permission that allows or denies enumerating the subkeys of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="key_create_sub_key" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (registry object specific) permission that allows or denies creating a subkey of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="key_set_value" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (registry object specific) permission that allows or denies creating, deleting, or setting the values of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="key_query_value" type="oval-sc:EntityItemBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>A special (registry object specific) permission that allows or denies querying the values of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="windows_view" type="win-sc:EntityItemWindowsViewType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The windows view value to which this was targeted. This is used to indicate which view (32-bit or 64-bit), the associated State applies to.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- ============================  Common DACL Enumerations ======================== -->
+      <!-- =============================================================================== -->
+      <xsd:complexType name="EntityStatePermissionType">
+            <xsd:annotation>
+                  <xsd:documentation>The EntityStatePermissionType complex type restricts a string value to a specific set of values: Allow and Deny</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-def:EntityStateStringType">
+                        <xsd:enumeration value="Allow">
+                              <xsd:annotation>
+                                    <xsd:documentation>Allow permissions</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="Deny">
+                              <xsd:annotation>
+                                    <xsd:documentation>Deny permissions</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="NO_ACCESS_CONTROL">
+                              <xsd:annotation>
+                                    <xsd:documentation>The case where no access control entries (ACEs) are defined within the DACL</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>
+      <xsd:complexType name="EntityItemPermissionType">
+            <xsd:annotation>
+                  <xsd:documentation>The EntityStatePermissionType complex type restricts a string value to a specific set of values: Allow and Deny</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-sc:EntityItemStringType">
+                        <xsd:enumeration value="Allow">
+                              <xsd:annotation>
+                                    <xsd:documentation>Allow permissions</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="Deny">
+                              <xsd:annotation>
+                                    <xsd:documentation>Deny permissions</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="NO_ACCESS_CONTROL">
+                              <xsd:annotation>
+                                    <xsd:documentation>The case where no access control entries (ACEs) are defined within the DACL</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>
+</xsd:schema>
