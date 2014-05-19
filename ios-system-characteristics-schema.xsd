@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:ios-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios" elementFormDefault="qualified" version="5.10.1">
      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
+     <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
      <xsd:annotation>
           <xsd:documentation>The following is a description of the elements, types, and attributes that compose the IOS specific system characteristic items found in Open Vulnerability and Assessment Language (OVAL). Each item is an extension of the standard item element defined in the Core System Characteristic Schema. Through extension, each item inherits a set of elements and attributes that are shared amongst all OVAL Items. Each item is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core System Characteristic Schema is not outlined here.</xsd:documentation>
           <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
@@ -40,49 +41,163 @@
      <!-- =============================================================================== -->
      <xsd:element name="interface_item" substitutionGroup="oval-sc:item">
           <xsd:annotation>
-               <xsd:documentation/>
-              <xsd:appinfo>
-                  <oval:deprecated_info>
-                      <oval:version>5.11</oval:version>
-                      <oval:reason>The interface test, object, state, and item have been deprecated because some of the desired improvements for this test would break backwards compatibility with existing content. As a result, this item has been deprecated in favor of the interface511_item. Please see the interface511_item for more information.</oval:reason>
-                      <oval:comment>This item has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
-                  </oval:deprecated_info>
-                  <sch:pattern id="ios-sc_snmp_item_dep">
-                      <sch:rule context="ios-sc:snmp_item">
-                          <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
-                      </sch:rule>
-                  </sch:pattern>
-              </xsd:appinfo>
+               <xsd:documentation>Stores information about interfaces on an Cisco IOS device.</xsd:documentation>
           </xsd:annotation>
           <xsd:complexType>
                <xsd:complexContent>
                     <xsd:extension base="oval-sc:ItemType">
                          <xsd:sequence>
-                              <xsd:element name="name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
-                                   <xsd:annotation>
-                                        <xsd:documentation/>
-                                   </xsd:annotation>
-                              </xsd:element>
-                              <xsd:element name="ip_directed_broadcast_command" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
-                                   <xsd:annotation>
-                                        <xsd:documentation/>
-                                   </xsd:annotation>
-                              </xsd:element>
-                              <xsd:element name="no_ip_directed_broadcast_command" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
-                                   <xsd:annotation>
-                                        <xsd:documentation/>
-                                   </xsd:annotation>
-                              </xsd:element>
-                              <xsd:element name="proxy_arp_command" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
-                                   <xsd:annotation>
-                                        <xsd:documentation/>
-                                   </xsd:annotation>
-                              </xsd:element>
-                              <xsd:element name="shutdown_command" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
-                                   <xsd:annotation>
-                                        <xsd:documentation/>
-                                   </xsd:annotation>
-                              </xsd:element>
+                             <xsd:element name="name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element with the interface name.</xsd:documentation>
+                                 </xsd:annotation>
+                             </xsd:element>
+                             <xsd:element name="ip_directed_broadcast_command" minOccurs="0" maxOccurs="1">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element that is true if the directed broadcast command is enabled on the interface. The default is false.</xsd:documentation>
+                                 </xsd:annotation>
+                                 <xsd:complexType>
+                                     <xsd:simpleContent>
+                                         <xsd:restriction base="oval-sc:EntityItemAnySimpleType">
+                                             <xsd:attribute name="datatype" use="optional" default="string">
+                                                 <xsd:simpleType>
+                                                     <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                         <xsd:enumeration value="string"/>
+                                                         <xsd:enumeration value="boolean"/>
+                                                     </xsd:restriction>
+                                                 </xsd:simpleType>
+                                             </xsd:attribute>
+                                         </xsd:restriction>
+                                     </xsd:simpleContent>
+                                 </xsd:complexType>
+                             </xsd:element>
+                             <xsd:element name="no_ip_directed_broadcast_command" minOccurs="0" maxOccurs="1">
+                                 <xsd:annotation>
+                                     <xsd:documentation>The Cisco IOS the command 'no ip directed-broadcast' is used to disable IP directed broadcast to the interface. The no_ip_directed_broadcast_command entity is replaced by the ip_directed_broadcast_command entity.  The ip_directed_broadcast_command supports the boolean type to indicate the presence of the command.</xsd:documentation>
+                                 </xsd:annotation>
+                                 <xsd:complexType>
+                                     <xsd:simpleContent>
+                                         <xsd:restriction base="oval-sc:EntityItemAnySimpleType">
+                                             <xsd:attribute name="datatype" use="optional" default="string">
+                                                 <xsd:simpleType>
+                                                     <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                         <xsd:enumeration value="string"/>
+                                                         <xsd:enumeration value="boolean"/>
+                                                     </xsd:restriction>
+                                                 </xsd:simpleType>
+                                             </xsd:attribute>
+                                         </xsd:restriction>
+                                     </xsd:simpleContent>
+                                 </xsd:complexType>
+                             </xsd:element>
+                             <xsd:element name="proxy_arp_command" minOccurs="0" maxOccurs="1">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Proxy arp enabled on the interface. The default is true.</xsd:documentation>
+                                 </xsd:annotation>
+                                 <xsd:complexType>
+                                     <xsd:simpleContent>
+                                         <xsd:restriction base="oval-sc:EntityItemAnySimpleType">
+                                             <xsd:attribute name="datatype" use="optional" default="string">
+                                                 <xsd:simpleType>
+                                                     <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                         <xsd:enumeration value="string"/>
+                                                         <xsd:enumeration value="boolean"/>
+                                                     </xsd:restriction>
+                                                 </xsd:simpleType>
+                                             </xsd:attribute>
+                                         </xsd:restriction>
+                                     </xsd:simpleContent>
+                                 </xsd:complexType>
+                             </xsd:element>
+                             <xsd:element name="shutdown_command" minOccurs="0" maxOccurs="1">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Interface is shut down.</xsd:documentation>
+                                 </xsd:annotation>
+                                 <xsd:complexType>
+                                     <xsd:simpleContent>
+                                         <xsd:restriction base="oval-sc:EntityItemAnySimpleType">
+                                             <xsd:attribute name="datatype" use="optional" default="string">
+                                                 <xsd:simpleType>
+                                                     <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                         <xsd:enumeration value="string"/>
+                                                         <xsd:enumeration value="boolean"/>
+                                                     </xsd:restriction>
+                                                 </xsd:simpleType>
+                                             </xsd:attribute>
+                                         </xsd:restriction>
+                                     </xsd:simpleContent>
+                                 </xsd:complexType>
+                             </xsd:element>
+                             <xsd:element name="hardware_addr" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element with the interface hardware (MAC) address.</xsd:documentation>
+                                 </xsd:annotation>
+                             </xsd:element>
+                             <xsd:element name="ipv4_address" type="oval-sc:EntityItemIPAddressStringType" minOccurs="0" maxOccurs="unbounded">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element with the interface IPv4 address and mask. This element should only allow 'ipv4_address' of the oval:SimpleDatatypeEnumeration.</xsd:documentation>
+                                 </xsd:annotation>
+                             </xsd:element>
+                             <xsd:element name="ipv6_address" type="oval-sc:EntityItemIPAddressStringType" minOccurs="0" maxOccurs="unbounded">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element with the interface IPv6 address and mask. This element should only allow 'ipv6_address' of the oval:SimpleDatatypeEnumeration.</xsd:documentation>
+                                 </xsd:annotation>
+                             </xsd:element>
+                             <xsd:element name="ipv4_access_list" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="2">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element with the ingress or egress IPv4 ACL name applied on the interface.</xsd:documentation>
+                                 </xsd:annotation>
+                             </xsd:element>
+                             <xsd:element name="ipv6_access_list" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="2">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element with the ingress or egress IPv6 ACL name applied on the interface.</xsd:documentation>
+                                 </xsd:annotation>
+                             </xsd:element>
+                             <xsd:element name="crypto_map" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element with the crypto map name applied to the interface.</xsd:documentation>
+                                 </xsd:annotation>
+                             </xsd:element>
+                             <xsd:element name="urpf_command" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element with the uRPF command under the interface.</xsd:documentation>
+                                 </xsd:annotation>
+                             </xsd:element>
+                             <xsd:element name="switchport_trunk_encapsulation" type="ios-sc:EntityItemTrunkEncapType" minOccurs="0" maxOccurs="1">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element with the switchport trunk encapsulation option configured on the interface (if applicable).</xsd:documentation>
+                                 </xsd:annotation>
+                             </xsd:element>
+                             <xsd:element name="switchport_mode" type="ios-sc:EntityItemSwitchportModeType" minOccurs="0" maxOccurs="1">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element with the switchport mode option configured on the interface (if applicable).</xsd:documentation>
+                                 </xsd:annotation>
+                             </xsd:element>
+                             <xsd:element name="switchport_native_vlan" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element with the trunk native vlan configured on the interface (if applicable).</xsd:documentation>
+                                 </xsd:annotation>
+                             </xsd:element>
+                             <xsd:element name="switchport_access_vlan" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element with the access vlan configured on the interface (if applicable).</xsd:documentation>
+                                 </xsd:annotation>
+                             </xsd:element>
+                             <xsd:element name="switchport_trunked_vlans" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element with the vlans that are trunked configured on the interface (if applicable).</xsd:documentation>
+                                 </xsd:annotation>
+                             </xsd:element>
+                             <xsd:element name="switchport_pruned_vlans" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element with the vlans that are pruned from the trunk (if applicable).</xsd:documentation>
+                                 </xsd:annotation>
+                             </xsd:element>
+                             <xsd:element name="switchport_port_security" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                 <xsd:annotation>
+                                     <xsd:documentation>Element with the switchport port-security commands configured on the interface (if applicable).</xsd:documentation>
+                                 </xsd:annotation>
+                             </xsd:element>
                          </xsd:sequence>
                     </xsd:extension>
                </xsd:complexContent>
@@ -101,7 +216,7 @@
                          <xsd:sequence>
                               <xsd:element name="show_subcommand" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The name of the SHOW sub-command.</xsd:documentation>
+                                       <xsd:documentation>The name of the SHOW sub-command. The whole show command should be used. For example, 'show running-config'. This element is optional. When used in a line_test the line_object usually defines the show sub-command and the line_state tests against the 'config-line' matched in the show output.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="config_line" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
@@ -267,4 +382,28 @@
      <!-- =============================================================================== -->
      <!-- =============================================================================== -->
      <!-- =============================================================================== -->
+    <xsd:complexType name="EntityItemTrunkEncapType">
+        <xsd:annotation>
+            <xsd:documentation>The EntityItemTrunkEncapType complex type restricts a string value to a specific set of values: DOT1Q, ISL, NEGOTIATE. These values describe the interface trunk encapsulation types on an interfaces in IOS.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:restriction base="oval-sc:EntityItemStringType">
+                <xsd:enumeration value="DOT1Q" />
+                <xsd:enumeration value="ISL" />
+                <xsd:enumeration value="NEGOTIATE" />
+            </xsd:restriction>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityItemSwitchportModeType">
+        <xsd:annotation>
+            <xsd:documentation>The EntityItemRoutingProtocolType complex type restricts a string value to a specific set of values: DYNAMIC, TRUNK, ACCESS. These values describe the interface switchport mode types in IOS.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:restriction base="oval-sc:EntityItemStringType">
+                <xsd:enumeration value="DYNAMIC" />
+                <xsd:enumeration value="TRUNK" />
+                <xsd:enumeration value="ACCESS" />
+            </xsd:restriction>
+        </xsd:simpleContent>
+    </xsd:complexType>  
 </xsd:schema>
