@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions
+    xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/x-win-filedacl x-win-filedacl.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:x-win-filedacl="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+  <generator>
+    <oval:schema_version>5.11</oval:schema_version>
+    <oval:timestamp>2013-08-02T12:00:00-05:00</oval:timestamp>
+  </generator>
+  <definitions>
+    <definition id="oval:org.mitre.expm:def:1" version="1" class="compliance">
+      <metadata>
+        <title>Verify DACL permissions on C:\Windows\System32\cmd.exe</title>
+        <description>Permissions should be set to: TrustedInstaller - Allow Full control, Administrators - Allow Read &amp; Execute, SYSTEM - Allow Read &amp; Execute, Users - Allow Read &amp; Execute, and Guests - Deny all - Inherited from C:\Windows.</description>
+      </metadata>
+      <criteria>
+        <criterion test_ref="oval:org.mitre.expm:tst:1" comment="C:\Windows\System32\cmd.exe: TrustedInstaller - Allow Full control - Not Inherited"/>
+        <criterion test_ref="oval:org.mitre.expm:tst:2" comment="C:\Windows\System32\cmd.exe: Administrators - Allow Read &amp; execute - Not Inherited"/>
+        <criterion test_ref="oval:org.mitre.expm:tst:3" comment="C:\Windows\System32\cmd.exe: SYSTEM - Allow Read &amp; execute - Not Inherited"/>
+        <criterion test_ref="oval:org.mitre.expm:tst:4" comment="C:\Windows\System32\cmd.exe: Users - Allow Read &amp; execute - Not Inherited"/>
+        <criterion test_ref="oval:org.mitre.expm:tst:5" comment="C:\Windows\System32\cmd.exe: Guests - Deny all - Inherited from C:\Windows"/>
+        <criterion test_ref="oval:org.mitre.expm:tst:6" comment="C:\Windows\System32\cmd.exe: no permissions for others"/>
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <filedacl_test id="oval:org.mitre.expm:tst:1" version="1" comment="C:\Windows\System32\cmd.exe: TrustedInstaller - Allow Full control - Not Inherited" check_existence="at_least_one_exists" check="all"
+          xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+          <object object_ref="oval:org.mitre.expm:obj:1"/>
+          <state state_ref="oval:org.mitre.expm:ste:1"/>
+    </filedacl_test>
+    <filedacl_test id="oval:org.mitre.expm:tst:2" version="1" comment="C:\Windows\System32\cmd.exe: Administrators - Allow Read &amp; execute - Not Inherited" check_existence="at_least_one_exists" check="all"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <object object_ref="oval:org.mitre.expm:obj:2"/>
+      <state state_ref="oval:org.mitre.expm:ste:2"/>
+    </filedacl_test>
+    <filedacl_test id="oval:org.mitre.expm:tst:3" version="1" comment="C:\Windows\System32\cmd.exe: SYSTEM - Allow Read &amp; execute - Not Inherited" check_existence="at_least_one_exists" check="all"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <object object_ref="oval:org.mitre.expm:obj:3"/>
+      <state state_ref="oval:org.mitre.expm:ste:2"/>
+    </filedacl_test>
+    <filedacl_test id="oval:org.mitre.expm:tst:4" version="1" comment="C:\Windows\System32\cmd.exe: Users - Allow Read &amp; execute - Not Inherited" check_existence="at_least_one_exists" check="all"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <object object_ref="oval:org.mitre.expm:obj:4"/>
+      <state state_ref="oval:org.mitre.expm:ste:2"/>
+    </filedacl_test>
+    <filedacl_test id="oval:org.mitre.expm:tst:5" version="1" comment="C:\Windows\System32\cmd.exe: Guests - Deny all - Inherited from C:\Windows" check_existence="at_least_one_exists" check="all"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <object object_ref="oval:org.mitre.expm:obj:5"/>
+      <state state_ref="oval:org.mitre.expm:ste:3"/>
+    </filedacl_test>
+    <filedacl_test id="oval:org.mitre.expm:tst:6" version="1" comment="C:\Windows\System32\cmd.exe: no permissions for others" check_existence="none_exist" check="all" xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <object object_ref="oval:org.mitre.expm:obj:6"/>
+    </filedacl_test>
+  </tests>
+  <objects>
+    <filedacl_object id="oval:org.mitre.expm:obj:1" version="1" comment="Retrieve TrustedInstaller permissions on C:\Windows\System32\cmd.exe"
+          xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <filepath>C:\Windows\System32\cmd.exe</filepath>
+      <trustee_sid>S-1-5-80-956008885-3418522649-1831038044-1853292631-2271478464</trustee_sid> 
+        <!-- NOTE: TrustedInstaller is a Service SID and will always be the same on any given system since the SID is created based on the Service name. Also note that TrustedInstaller is not returned when using effective rights checks as it is a service account.-->
+    </filedacl_object>
+    <filedacl_object id="oval:org.mitre.expm:obj:2" version="1" comment="Retrieve Administrators permissions on C:\Windows\System32\cmd.exe"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <filepath>C:\Windows\System32\cmd.exe</filepath>
+      <trustee_sid>S-1-5-32-544</trustee_sid>
+    </filedacl_object>
+    <filedacl_object id="oval:org.mitre.expm:obj:3" version="1" comment="Retrieve SYSTEM permissions on C:\Windows\System32\cmd.exe"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <filepath>C:\Windows\System32\cmd.exe</filepath>
+      <trustee_sid>S-1-5-18</trustee_sid>
+    </filedacl_object>
+    <filedacl_object id="oval:org.mitre.expm:obj:4" version="1" comment="Retrieve Users permissions on C:\Windows\System32\cmd.exe"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <filepath>C:\Windows\System32\cmd.exe</filepath>
+      <trustee_sid>S-1-5-32-545</trustee_sid>
+    </filedacl_object>
+    <filedacl_object id="oval:org.mitre.expm:obj:5" version="1" comment="Retrieve Guests permissions on C:\Windows\System32\cmd.exe"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <filepath>C:\Windows\System32\cmd.exe</filepath>
+      <trustee_sid>S-1-5-32-546</trustee_sid>
+    </filedacl_object>
+    <filedacl_object id="oval:org.mitre.expm:obj:6" version="1" comment="Retrieve permissions on C:\Windows\System32\cmd.exe but filter expected accounts." xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <set xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <object_reference>oval:org.mitre.expm:obj:7</object_reference>
+        <filter>oval:org.mitre.expm:ste:4</filter>
+        <filter>oval:org.mitre.expm:ste:5</filter>
+        <filter>oval:org.mitre.expm:ste:6</filter>
+        <filter>oval:org.mitre.expm:ste:7</filter>
+        <filter>oval:org.mitre.expm:ste:8</filter>
+      </set>
+    </filedacl_object>
+    <filedacl_object id="oval:org.mitre.expm:obj:7" version="1" comment="Retrieve all permissions on C:\Windows\System32\cmd.exe" xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <filepath>C:\Windows\System32\cmd.exe</filepath>
+      <trustee_sid operation="pattern match">.*</trustee_sid>
+    </filedacl_object>
+  </objects>
+  <states>
+    <filedacl_state id="oval:org.mitre.expm:ste:1" version="1"
+      comment="Allow Full control permissions - not inherited"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <ace_type>Allow</ace_type>
+      <inherited_ace datatype="boolean">0</inherited_ace>
+      <generic_read datatype="boolean">0</generic_read>
+      <generic_write datatype="boolean">0</generic_write>
+      <generic_execute datatype="boolean">0</generic_execute>
+      <generic_all datatype="boolean">0</generic_all>
+      <standard_synchronize datatype="boolean">1</standard_synchronize>
+      <standard_write_owner datatype="boolean">1</standard_write_owner>
+      <standard_write_dac datatype="boolean">1</standard_write_dac>
+      <standard_read_control datatype="boolean">1</standard_read_control>      
+      <standard_delete datatype="boolean">1</standard_delete>
+      <file_write_attributes datatype="boolean">1</file_write_attributes>
+      <file_read_attributes datatype="boolean">1</file_read_attributes>
+      <file_delete_child datatype="boolean">1</file_delete_child>
+      <file_execute datatype="boolean">1</file_execute>
+      <file_write_ea datatype="boolean">1</file_write_ea>
+      <file_read_ea datatype="boolean">1</file_read_ea>
+      <file_append_data datatype="boolean">1</file_append_data>
+      <file_write_data datatype="boolean">1</file_write_data>      
+      <file_read_data datatype="boolean">1</file_read_data>
+    </filedacl_state>
+    <filedacl_state id="oval:org.mitre.expm:ste:2" version="1"
+      comment="Allow Read &amp; Execute permissions - not inherited"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <ace_type>Allow</ace_type>
+      <ace_permission>Read_&amp;_execute</ace_permission> <!-- If we can obtain or rollup the special permissions to arrive at this value, we wouldn't need to check each special permission. -->
+      <inherited_ace datatype="boolean">0</inherited_ace>
+      <generic_read datatype="boolean">0</generic_read>
+      <generic_write datatype="boolean">0</generic_write>
+      <generic_execute datatype="boolean">0</generic_execute>
+      <generic_all datatype="boolean">0</generic_all>
+      <standard_synchronize datatype="boolean">1</standard_synchronize>
+      <standard_write_owner datatype="boolean">0</standard_write_owner>
+      <standard_write_dac datatype="boolean">0</standard_write_dac>
+      <standard_read_control datatype="boolean">1</standard_read_control>      
+      <standard_delete datatype="boolean">0</standard_delete>
+      <file_write_attributes datatype="boolean">0</file_write_attributes>
+      <file_read_attributes datatype="boolean">1</file_read_attributes>
+      <file_delete_child datatype="boolean">0</file_delete_child>
+      <file_execute datatype="boolean">1</file_execute>
+      <file_write_ea datatype="boolean">0</file_write_ea>
+      <file_read_ea datatype="boolean">1</file_read_ea>
+      <file_append_data datatype="boolean">0</file_append_data>     
+      <file_write_data datatype="boolean">0</file_write_data>
+      <file_read_data datatype="boolean">1</file_read_data>
+     </filedacl_state>
+    <filedacl_state id="oval:org.mitre.expm:ste:3" version="1"
+      comment="Deny Full control permissions - Inherited from C:\Windows"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <ace_type>Deny</ace_type>
+      <ace_permission>Full_control</ace_permission> <!-- If we can obtain or rollup the special permissions to arrive at this value, we wouldn't need to check each special permission. -->
+      <ace_inherited_from>C:\Windows</ace_inherited_from>
+      <inherited_ace datatype="boolean">1</inherited_ace>
+      <generic_read datatype="boolean">0</generic_read>
+      <generic_write datatype="boolean">0</generic_write>
+      <generic_execute datatype="boolean">0</generic_execute>
+      <generic_all datatype="boolean">0</generic_all>
+      <standard_synchronize datatype="boolean">1</standard_synchronize>
+      <standard_write_owner datatype="boolean">1</standard_write_owner>
+      <standard_write_dac datatype="boolean">1</standard_write_dac>
+      <standard_read_control datatype="boolean">1</standard_read_control>      
+      <standard_delete datatype="boolean">1</standard_delete>
+      <file_write_attributes datatype="boolean">1</file_write_attributes>
+      <file_read_attributes datatype="boolean">1</file_read_attributes>
+      <file_delete_child datatype="boolean">1</file_delete_child>
+      <file_execute datatype="boolean">1</file_execute>
+      <file_write_ea datatype="boolean">1</file_write_ea>
+      <file_read_ea datatype="boolean">1</file_read_ea>
+      <file_append_data datatype="boolean">1</file_append_data>
+      <file_write_data datatype="boolean">1</file_write_data>      
+      <file_read_data datatype="boolean">1</file_read_data>
+    </filedacl_state>
+    <filedacl_state id="oval:org.mitre.expm:ste:4" version="1"
+      comment="TrustedInstaller account"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <trustee_sid>S-1-5-80-956008885-3418522649-1831038044-1853292631-2271478464</trustee_sid>
+    </filedacl_state>
+    <filedacl_state id="oval:org.mitre.expm:ste:5" version="1"
+      comment="Administrators group account"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <trustee_sid>S-1-5-32-544</trustee_sid>
+    </filedacl_state>
+    <filedacl_state id="oval:org.mitre.expm:ste:6" version="1"
+      comment="SYSTEM account"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <trustee_sid>S-1-5-18</trustee_sid>
+    </filedacl_state>
+    <filedacl_state id="oval:org.mitre.expm:ste:7" version="1"
+      comment="Users group account"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <trustee_sid>S-1-5-32-545</trustee_sid>
+    </filedacl_state>
+    <filedacl_state id="oval:org.mitre.expm:ste:8" version="1"
+      comment="Guests group account"
+      xmlns="http://oval.mitre.org/XMLSchema/x-win-filedacl">
+      <trustee_sid>S-1-5-32-546</trustee_sid>
+    </filedacl_state>
+  </states>
+</oval_definitions>
