@@ -48,6 +48,7 @@ import java.security.cert.X509Certificate;
 import java.util.BitSet;
 import java.util.Calendar;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.xml.namespace.QName;
@@ -56,6 +57,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.xmlbeans.XmlCursor;
+import org.apache.xmlbeans.XmlOptions;
 import org.mitre.oval.xmlSchema.ovalCommon5.GeneratorType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.CollectedObjectsType;
 import org.mitre.oval.xmlSchema.ovalSystemCharacteristics5.EntityItemBinaryType;
@@ -349,17 +351,19 @@ public class GenerateAndroidSC {
 
 		// if(extDir != null) {
 		try {
-
 			File newFile;
 			if ((outputFile != null) && (outputFile.length() > 0)) {
 				newFile = new File(Environment.getExternalStorageDirectory(),
 						outputFile);
 			} else
 				return;
-			OutputStream out = new FileOutputStream(newFile);
-
-			out.write(oscDoc.toString().getBytes());
-			out.close();
+			XmlOptions xo = new XmlOptions();
+			HashMap<String,String> ns = new HashMap<String,String>();
+			ns.put("http://oval.mitre.org/XMLSchema/x-android-system-characteristics", "x-andsc");
+			xo.setSaveSuggestedPrefixes(ns);
+			xo.setUseDefaultNamespace();
+			xo.setSavePrettyPrint();
+			oscDoc.save(newFile, xo);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -424,14 +428,16 @@ public class GenerateAndroidSC {
 
 		if( (Build.CPU_ABI != null) && !(Build.CPU_ABI.equals("")) )
 		{
-			EntityItemStringType cpuAbi = sdi.addNewCpuAbi();
+			EntityItemStringType cpuAbi = EntityItemStringType.Factory.newInstance();
 			cpuAbi.setStringValue(Build.CPU_ABI);
+			sdi.setCpuAbi(cpuAbi);
 		}
 		
 		if( (Build.CPU_ABI2 != null) && !(Build.CPU_ABI2.equals("")) )
 		{
-			EntityItemStringType cpuAbi = sdi.addNewCpuAbi();
-			cpuAbi.setStringValue(Build.CPU_ABI2);
+			EntityItemStringType cpuAbi2 = EntityItemStringType.Factory.newInstance();
+			cpuAbi2.setStringValue(Build.CPU_ABI2);
+			sdi.setCpuAbi2(cpuAbi2);
 		}
 
 		EntityItemStringType ei3 = EntityItemStringType.Factory.newInstance();
