@@ -428,14 +428,16 @@ public class GenerateAndroidSC {
 
 		if( (Build.CPU_ABI != null) && !(Build.CPU_ABI.equals("")) )
 		{
-			EntityItemStringType cpuAbi = sdi.addNewCpuAbi();
+			EntityItemStringType cpuAbi = EntityItemStringType.Factory.newInstance();
 			cpuAbi.setStringValue(Build.CPU_ABI);
+			sdi.setCpuAbi(cpuAbi);
 		}
 		
 		if( (Build.CPU_ABI2 != null) && !(Build.CPU_ABI2.equals("")) )
 		{
-			EntityItemStringType cpuAbi = sdi.addNewCpuAbi();
-			cpuAbi.setStringValue(Build.CPU_ABI2);
+			EntityItemStringType cpuAbi2 = EntityItemStringType.Factory.newInstance();
+			cpuAbi2.setStringValue(Build.CPU_ABI2);
+			sdi.setCpuAbi2(cpuAbi2);
 		}
 
 		EntityItemStringType ei3 = EntityItemStringType.Factory.newInstance();
