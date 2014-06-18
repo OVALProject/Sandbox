@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions
+	xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+	xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+	xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+	xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-common-5 http://oval.mitre.org/language/download/schema/version5.11/ovaldefinition/complete/oval-common-schema.xsd
+	http://oval.mitre.org/XMLSchema/oval-definitions-5 http://oval.mitre.org/language/download/schema/version5.11/ovaldefinition/complete/oval-definitions-schema.xsd
+	http://oval.mitre.org/XMLSchema/oval-definitions-5#windows http://oval.mitre.org/language/download/schema/version5.11/ovaldefinition/complete/windows-definitions-schema.xsd">
+	<generator>
+		<oval:product_name>SCAP Compliance Checker</oval:product_name>
+		<oval:schema_version>5.11</oval:schema_version>
+		<oval:timestamp>2014-05-19T17:00:00.000-04:00</oval:timestamp>
+	</generator>
+	<definitions>
+		<definition id="oval:test:def:1" version="1" class="compliance">
+			<metadata>
+				<title>SE_BACKUP_NAME Privilege</title>
+				<affected family="windows">
+					<platform>Microsoft Windows 7</platform>
+				</affected>
+				<description>Only Administrators and Backup Operators can have the SE_BACKUP_NAME privilege.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Only Administrators and Backup Operators have the SE_BACKUP_NAME privilege" test_ref="oval:test:tst:1"/>
+			</criteria>
+		</definition>
+	</definitions>
+	<tests>
+		<userright_test id="oval:test:tst:1" version="1" comment="Only Administrators and Backup Operators have the SE_BACKUP_NAME privilege" check_existence="any_exist" check="all">
+			<object object_ref="oval:test:obj:1"/>
+			<state state_ref="oval:test:ste:1"/>
+		</userright_test>
+	</tests>
+	<objects>
+		<userright_object id="oval:test:obj:1" version="1" comment="All security principles that have the SE_BACKUP_NAME privilege">
+			<userright>SE_BACKUP_NAME</userright>
+		</userright_object>
+		<!--
+		Example collected item (notice that there are multiple security_principle item entities):
+		<userright_item status="exists" id="1">
+			<userright>SE_BACKUP_NAME</userright>
+			<security_principle>Backup Operators</security_principle>
+			<security_principle>Administrators</security_principle>
+		</userright_ item >
+		-->
+	</objects>
+	<states>
+		<userright_state id="oval:test:ste:1" version="1" comment="Only Administrators and Backup Operatorsonly have the user right/privilege">
+			<!-- Each collected security_principle item entity is compared against the pattern below. -->
+			<security_principle operation="pattern match" entity_check="all">^(([Bb][Aa][Cc][Kk][Uu][Pp] [Oo][Pp][Ee][Rr][Aa][Tt][Oo][Rr][Ss])|([Aa][Dd][Mm][Ii][Nn][Ii][Ss][Tt][Rr][Aa][Tt][Oo][Rr][Ss]))$</security_principle>
+		</userright_state>
+	</states>
+</oval_definitions>
