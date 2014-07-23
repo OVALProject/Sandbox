@@ -9,7 +9,7 @@
 		<xsd:appinfo>
 			<schema>Experimental schema for the Windows User Right Test.</schema>
 			<version>5.11</version>
-			<date>05/19/2014 12:00:00 PM</date>
+			<date>07/23/2014 12:00:00 PM</date>
 			<sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
 			<sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
 			<sch:ns prefix="win-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
@@ -19,7 +19,7 @@
 	</xsd:annotation>
 	<xsd:element name="userright_test" substitutionGroup="oval-def:test">
 		<xsd:annotation>
-			<xsd:documentation>The userright_test is used to enumerate all of the security principles that have been granted a specific user right/privilege. Security principles include users or groups with either local or domain accounts, and computer accounts created when a computer joins a domain. In Windows, security principles are case-insensitive. As a result, it is recommended that the case-insensitive operations are used for this entity. User rights and permissions to access objects such as Active Directory objects, files, and registry settings are assigned to security principles. In a domain environment, security principles should be identified in the form: "domain\trustee name".  For local security principles use: "computer name\trustee name". For built-in accounts on the system, use the trustee name without a domain.</xsd:documentation>
+			<xsd:documentation>The userright_test is used to enumerate all of the SIDs that have been granted a specific user right/privilege.</xsd:documentation>
 			<xsd:appinfo>
 				<oval:element_mapping>
 					<oval:test>userright_test</oval:test>
@@ -54,7 +54,7 @@
 	</xsd:element>
 	<xsd:element name="userright_object" substitutionGroup="oval-def:object">
 		<xsd:annotation>
-			<xsd:documentation>The userright_object is used to collect the security principles (users, groups, etc.) that have been granted a specific user right/privilege.</xsd:documentation>
+			<xsd:documentation>The userright_object is used to collect the SIDs that have been granted a specific user right/privilege.</xsd:documentation>
 			<xsd:appinfo>
 				<sch:pattern id="win-def_userright_object_verify_filter_state">
 					<sch:rule context="win-def:userright_object//oval-def:filter">
@@ -93,7 +93,7 @@
 	<xsd:element name="userright_state" substitutionGroup="oval-def:state">
 		<xsd:complexType>
 			<xsd:annotation>
-				<xsd:documentation>The userright_state is used to determine if a security principle has been granted a user right/privilege.</xsd:documentation>
+				<xsd:documentation>The userright_state is used to determine if a SID has been granted a user right/privilege.</xsd:documentation>
 			</xsd:annotation>
 			<xsd:complexContent>
 				<xsd:extension base="oval-def:StateType">
@@ -103,9 +103,9 @@
 								<xsd:documentation>The userright entity holds a string that represents the name of a particular user right/privilege.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
-						<xsd:element name="security_principle" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+						<xsd:element name="trustee_sid" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
 							<xsd:annotation>
-								<xsd:documentation>The security_principle element identifies the user or group that has been granted the specified user right/privilege. Security principles include users or groups with either local or domain accounts, and computer accounts created when a computer joins a domain. In Windows, security principles are case-insensitive. As a result, it is recommended that the case-insensitive operations are used for this entity. User rights and permissions to access objects such as Active Directory objects, files, and registry settings are assigned to security principles. In a domain environment, security principles should be identified in the form: "domain\trustee name". For local security principles use: "computer name\trustee name". For built-in accounts on the system, use the trustee name without a domain. The security_principle element can be included multiple times in a system characteristic item in order to record that a user right/privilege has been granted to a number of users/groups. Note that the entity_check attribute associated with EntityStateStringType guides the evaluation of entities like security_principle that refer to items that can occur an unbounded number of times.</xsd:documentation>
+								<xsd:documentation>The trustee_sid element identifies the SID that has been granted the specified user right/privilege. The trustee_sid element can be included multiple times in a system characteristic item in order to record that a user right/privilege has been granted to a number of SIDs. Note that the entity_check attribute associated with EntityStateStringType guides the evaluation of entities like trustee_sid that refer to items that can occur an unbounded number of times.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
@@ -116,7 +116,7 @@
 	<xsd:element name="userright_item" substitutionGroup="oval-sc:item">
 		<xsd:complexType>
 			<xsd:annotation>
-				<xsd:documentation>The userright_item allows security principles (users, groups, etc.) that have been granted a user right/privilege to be collected.</xsd:documentation>
+				<xsd:documentation>The userright_item allows SIDs that have been granted a user right/privilege to be collected.</xsd:documentation>
 			</xsd:annotation>
 			<xsd:complexContent>
 				<xsd:extension base="oval-sc:ItemType">
@@ -126,9 +126,9 @@
 								<xsd:documentation>The userright entity holds a string that represents the name of a particular user right/privilege.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
-						<xsd:element name="security_principle" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="trustee_sid" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>The security_principle element identifies the user or group that has been granted the specified user right/privilege. Security principles include users or groups with either local or domain accounts, and computer accounts created when a computer joins a domain. In Windows, security principles are case-insensitive. As a result, it is recommended that the case-insensitive operations are used for this entity. User rights and permissions to access objects such as Active Directory objects, files, and registry settings are assigned to security principles. In a domain environment, security principles should be identified in the form: "domain\trustee name". For local security principles use: "computer name\trustee name". For built-in accounts on the system, use the trustee name without a domain. The security_principle element can be included multiple times in a system characteristic item in order to record that a user right/privilege has been granted to a number of users/groups. Note that the entity_check attribute associated with EntityStateStringType guides the evaluation of entities like security_principle that refer to items that can occur an unbounded number of times.</xsd:documentation>
+								<xsd:documentation>The trustee_sid element identifies the SID that has been granted the specified user right/privilege. The trustee_sid element can be included multiple times in a system characteristic item in order to record that a user right/privilege has been granted to a number of SIDs. Note that the entity_check attribute associated with EntityStateStringType guides the evaluation of entities like trustee_sid that refer to items that can occur an unbounded number of times.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 					</xsd:sequence>
