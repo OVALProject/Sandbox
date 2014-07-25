@@ -146,7 +146,7 @@
                         </xsd:element>
                         <xsd:element name="value" type="oval-sc:EntityItemAnySimpleType" minOccurs="0" maxOccurs="unbounded">
                             <xsd:annotation>
-                                <xsd:documentation>The value of the property associated with a systemd unit.</xsd:documentation>
+                                <xsd:documentation>The value of the property associated with a systemd unit. Exactly one value shall be used for all property types except dbus arrays - each array element shall be represented by one value.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                     </xsd:sequence>
