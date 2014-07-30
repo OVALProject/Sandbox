@@ -423,7 +423,7 @@
   </xsd:element>
   <xsd:element name="profile_object" substitutionGroup="oval-def:object">
     <xsd:annotation>
-      <xsd:documentation>The profile_object element is used by a profile test to define those objects to be evaluated based on a specified state. Any OVAL Test written to check profile status will reference the same profile_object which is basically an empty object element.</xsd:documentation>
+      <xsd:documentation>The profile_object element is used by a profile test to define those objects to be evaluated based on a specified state. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic.</xsd:documentation>
       <xsd:appinfo>
         <sch:pattern id="apple-ios-def_profile_object_verify_filter_state">
           <sch:rule context="apple-ios-def:profile_object//oval-def:filter">
