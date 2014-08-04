@@ -1,0 +1,263 @@
+-------------------------------------------------------------------------------------
+OVAL Proposal Form for the sql511_test
+-------------------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------------------
+Contact Information
+-------------------------------------------------------------------------------------
+1) Name: Jeff Cockerill
+	
+2) Email Address: jeffrey.c.cockerill@saic.com
+
+3) Phone Number (optional): 843-532-8488
+
+
+
+-------------------------------------------------------------------------------------
+Introduction to Proposal
+-------------------------------------------------------------------------------------
+1) What is the new capability?
+
+SPAWAR is currently researching alternative ways of performing SQL-based configuration scans. Two areas where the sql57_test could be improved are targeting and reporting. The proposed sql511_test attempts to improve these areas.
+
+Targeting
+The content author may not know ahead of time how to write content that will target all installed DBMS instances and the databases within those instances. It would be desirable to write SQL content in a generic manner where the targeting information (connection_string) can remain unknown and be handled by the scanner itself. The sql511_test would enable content authors to write simple, generic content that can target all DBMS instances (and all databases within each instance) on a system without the DBMS instance details being known beforehand. This does require the scanner to detect and target the installed DBMS instances on a machine (outside of any content).
+
+Reporting
+Reporting SQL/DBMS results can be challenging because there can be many potential scan targets on a single system. Multiple DBMS instances can exist at once on a target, each instance containing multiple databases. In certain situations (STIGs), it may be desirable to have detailed reports for each DBMS instance or database separately. Previous OVAL efforts that I'm are of have involved writing content that "loops" over each DBMS instance/database during a single scan. This looping causes individual scan results per DBMS instance/database to be rolled-up into a single pass-fail result. For example, a DBMS instance/installation check is executed on a target system with 3 DBMS instances installed resulting in 2 passes and 1 failure. The end result would be a failure even though 2 of the DBMS instances are compliant. The sql511_test attempts to improve report granularity by generating multiple system elements, one per DBMS instance/database as defined by an object behavior. Note that this method of splitting results, while schema valid, has not been used in OVAL before as far as I am aware. It does differ from the standard OVAL processing model.
+
+The proposed sql511_test changes the sql57_test in the following ways:
+- The "connection_string" entity is not present in the sql511 object, state or item.
+- The entities "instance" and "database" have been added to the object, state and item. These entities allow the content author to be specific about which DBMS instance/database they want to target, while still giving flexibility if the instance/database is unknown. For example, if the object's instance entity is .* then the scanner would determine what DBMS instances are on the target (based on the engine/version entities) and run the query on each instance. The same holds true for pattern match operations on the object's database entity.
+- A "behaviors" entity has been added to the object. The behaviors entity has a single attribute called "result_style" that controls how OVAL results are generated. "result_style" is an enumerated type with the following values:
+	- split_results_on_instance_and_database: Create a system element in the OVAL results file for each DBMS instance/database combination found on the target system. This is useful when reports for each DBMS instance/database combination are desired.
+	- split_results_on_instance: Create a system element in the OVAL results file for each DBMS instance found on the target system. This is useful when reports for each DBMS instance are desired.
+	- do_not_split_results (default): Create a single system element in the OVAL results file. This is the traditional method used by scanners. It is the default value for this behavior.
+
+
+
+2) Why is the new capability needed?
+
+The existing OVAL SQL tests have not gained much traction based on what we (SPAWAR) have seen in the community. The proposed sql511_test may increase the adoption of the test by lessening the targeting burden and improving reporting issues.
+
+
+
+3) What is the version of the targeted official OVAL release?
+
+The targeted OVAL release is version 5.11.
+
+
+
+-------------------------------------------------------------------------------------
+Benefits of Proposal
+-------------------------------------------------------------------------------------
+1) How does the proposal relate to existing OVAL use cases [4]?
+
+The sql511_test would most directly affect the Configuration Management OVAL use case. The research for this proposal was geared specifically for SQL Server and Oracle DISA STIG configuration scanning, but could be applicable for other DBMS types.
+
+
+
+2) What does this proposal enable that cannot currently be accomplished in the OVAL Language?
+
+The sql511_test attempts to simplify DBMS targeting and make results reporting more granular. For example, if multiple DBMS instances are installed then separate reports may be desired for each installed instance instead of combining both instances together and rolling up a single pass/fail result.
+
+
+
+3) What alternative approaches for supporting these use cases were considered and why is this one the best?
+
+One alternative approach would be to create a new language/construct that would sit above OVAL and handle targeting in a more global, elegant manner. The proposed sql511_test could be used as a potential stopgap until a more all-encompassing targeting solution is devised.
+
+
+
+-------------------------------------------------------------------------------------
+Impacts of Proposal
+-------------------------------------------------------------------------------------
+1) Which existing OVAL schemas are affected by this proposal? If a new platform schema is being proposed, is it expected to inherit tests from another schema (e.g. UNIX-based platform schemas typically inherit tests from the UNIX schema)?
+
+The following OVAL component schemas are affected:
+independent-definitions-schema.xsd
+independent-system-characteristics-schema.xsd
+
+
+
+2) Does the proposal break backward compatibility with previous versions?  Please see OVAL Versioning Policy [5] for more information.
+
+This proposal should not break backward compatibility since it only adds a new test, object, state and item.
+
+
+
+3) How will the proposed changes impact OVAL content authors?
+
+The sql511_test would give OVAL content authors a way to write SQL-based configuration content in a generic, reusable way. Content could be reused by others since it would not contain detailed connection information. DBMS instance detection would be left up to the scanner. The sql511_test would also allow for granular reporting.
+
+
+
+4) How will the proposed changes impact OVAL content consumers?
+
+The "result_style" behavior allows for multiple system elements to exist within a single OVAL results file. While this is currently valid according to the OVAL results schema, it is unique enough that it may cause problems up the chain. OVAL results consumers may only be expecting a single system element per results file. XCCDF results that reference OVAL results files with multiple system elements would require multiple TestResult elements, one per OVAL system element. Again, this is valid according to the XCCDF schema but XCCDF results consumers may not be expecting multiple TestResult elements.
+
+
+
+5) How will the proposed changes impact existing OVAL content?
+
+As far as we (SPAWAR) are aware, there is very little OVAL content in existence that uses the existing OVAL SQL tests. If this is the case, then the impact would be minimal.
+
+
+
+6) How will the proposed changes impact existing OVAL implementations?
+
+Existing OVAL implementations would need to be updated to handle the sql511_test.
+
+
+
+7) Are there any concerns regarding this proposal (e.g., undocumented APIs, etc.)? If so, are there any mitigating factors?
+
+This proposal deviates from the standard OVAL processing model. The sql511_test would require that scanners know how to find and enumerate installed DBMS instances and the databases within them. The sql511_test would also require that scanners perform a "pre-check" of the OVAL content to see if the sql511_object's "result_style" behavior is present and if splitting results is required. If it is found and requires that results be split, then scanners would have to process all of the content within the OVAL file multiple times, once per each DBMS instance/database combination. This is possible and has been done in experimental code, but it is different from how OVAL content is typically processed.
+
+The "result_style" behavior allows for multiple system elements to exist within a single OVAL results file. While this is currently valid according to the OVAL results schema, it is unique enough that it may cause problems up the chain. OVAL results consumers may only be expecting a single system element per results file. XCCDF results that reference OVAL files would require multiple TestResult elements, one per OVAL system element. Again, this is valid according to the XCCDF schema but XCCDF results consumers may not be expecting multiple TestResult elements. One possible alternative would be to simply generate separate OVAL results files per scan, one per DBMS instance/database combination as directed by the "result_style" behavior.
+
+
+
+-------------------------------------------------------------------------------------
+Technical Review
+-------------------------------------------------------------------------------------
+1) Do the schema changes follow the accepted naming and design conventions?
+
+This proposal does introduce capabilities to OVAL that might have not been used/seen before. This proposal deviates from the standard OVAL processing model.
+
+
+
+2) Do the schema changes satisfy the requirements specified in the Requesting Changes to the OVAL Language page [3]?
+
+Yes.
+
+
+
+3) Do the schema changes align with the targeted official release (e.g., changes that break backward compatibility should not target a minor release)? Please see the OVAL Versioning Policy [5] for more information.
+
+Yes.
+
+
+
+4) Have the new capabilities been successfully implemented and tested with sample content?
+
+SPAWAR has created an experimental probe and content that explores this concept with SQL Server. The probe detects all installed DBMS instances on a target machine and the databases within each instance. It then generates a single OVAL results file with multiple system elements, one per DBMS instance (split_results_on_instance) or one per DBMS instance/database combination (split_results_on_instance_and_database) depending on the sql511_object's behavior setting. The desired reporting granularity was achieved using this method, but this scanning behavior is different than what has been done in OVAL up to this point.
+
+
+
+5) What will the OVAL object look like?
+
+The following sql511_object will run a query on each database within each DBMS instance on a target machine to determine if the guest account can connect to each database. If there are two SQL Server DBMS instances on the target machine with 5 databases in each instance, then there will be ten system elements in the generated OVAL results file. Each system element will contain separate definition results, test results and system characteristics for each database within each DBMS instance found on the target machine. Each system element will contain results for all of the content within the source OVAL file. So for example, if the source OVAL file had a registry_object and a sql511_object that required the results to be split then each resulting system element would contain the collected registry_item(s).
+
+<sql511_object comment="Connect permission for the guest account in all databases" version="1" id="oval:temp:obj:40007">
+   <behaviors result_style="split_results_on_instance_and_database"></behaviors>
+   <engine>sqlserver</engine>
+   <version>9.0</version>
+   <instance operation="pattern match">.*</instance>
+   <database operation="pattern match">.*</database>
+   <sql>SELECT grantee_principal_id FROM sys.database_permissions WHERE grantee_principal_id = 2 AND state = 'G' AND permission_name = 'CONNECT'</sql>
+</sql511_object>
+
+The "instance" entity allows the user to specify a target DBMS instance (e.g., MSSQLSERVER). All operations are legal (e.g., pattern match, equals, etc.) The "database" entity allows the user to specify a target database within a DBMS instance (e.g., master, tempdb, etc.). All operations are legal (e.g., pattern match, equals, etc.) These two entities allow the content author to be specific about which DBMS instance/database they want to target, while still giving flexibility if the instance/database is unknown. For example, if the object's instance entity is .* then the scanner would determine what DBMS instances are on the target (based on the engine/version entities) and run the query on each instance. The same holds true for pattern match operations on the object's database entity.
+
+The "behaviors" entity has a single attribute called "result_style" that controls how OVAL results are generated. "result_style" is an enumerated type with the following values:
+	- split_results_on_instance_and_database: Create a system element in the OVAL results file for each DBMS instance/database combination found on the target system. This is useful when reports for each DBMS instance/database combination are desired.
+	- split_results_on_instance: Create a system element in the OVAL results file for each DBMS instance found on the target system. This is useful when reports for each DBMS instance are desired.
+	- do_not_split_results (default): Create a single system element in the OVAL results file. This is the traditional method used by scanners.
+
+The "connection_string" entity, present in previous versions of the OVAL SQL objects (sql_object and sql57_object), does not exist in the sql511_object. Since the sql511_object would be a new object, this should not break backwards compatibility.
+
+
+
+6) What will the OVAL state look like?
+
+The sql511_state is identical to the sql57_state with the following exceptions:
+	- The instance and database entities mentioned in the sql511_object section above have been added.
+	- The "connection_string" entity, present in previous versions of the OVAL SQL states (sql_state and sql57_state), does not exist in the sql511_state. Since the sql511_state would be a new state, this should not break backwards compatibility.
+
+
+
+7) What will the OVAL item look like?
+
+The following sql511_items show how the guest account query mentioned above would be collected on a target machine with two SQL Server DBMS instances, each instance containing a single database (in the real world there would at least be 4 databases per instance). Note that there are multiple OVAL system elements, each with their own individual results and system characteristics for each DBMS instance/database combination found on the target machine.
+
+<oval_results>
+	...
+	<results>
+		<system>
+			...
+			<sql511_item status="exists" id="1">
+				<engine>sqlserver</engine>
+				<version>9.0</version>
+				<instance>MSSQLSERVER</instance>
+				<database>msdb</database>
+				<sql>SELECT grantee_principal_id FROM sys.database_permissions WHERE grantee_principal_id = 2 AND state = 'G' AND permission_name = 'CONNECT'</sql>
+				<result datatype="record">
+					<field name="grantee_principal_id">2</field>
+				</result>
+			</sql511_item>
+			...
+		</system>
+		<system>
+			...
+			<sql511_item status="exists" id="1">
+				<engine>sqlserver</engine>
+				<version>9.0</version>
+				<instance>MSSQLSERVER2</instance>
+				<database>tempdb</database>
+				<sql>SELECT grantee_principal_id FROM sys.database_permissions WHERE grantee_principal_id = 2 AND state = 'G' AND permission_name = 'CONNECT'</sql>
+				<result datatype="record">
+					<field name="grantee_principal_id">2</field>
+				</result>
+			</sql511_item>
+			...
+		</system>
+	</results>
+</oval_results>
+
+
+
+-------------------------------------------------------------------------------------
+Resource Information
+-------------------------------------------------------------------------------------
+1) Provide URLs for relevant OVAL Sandbox Issues:
+
+No current issues.
+
+
+
+2) Provide URLs for OVAL Sandbox schemas that exemplify the proposed changes:
+
+The schema is not available at the time of writing (20140725). If needed, it can be created and provided.
+
+
+
+3) Provide URLs for the location of sample OVAL Definitions, OVAL System Characteristics, and OVAL Results that exemplify the proposed changes:
+
+Sample OVAL results files and reports have been posted along with this proposal to the OVAL developer list.
+
+
+
+4) Provide URLs for products or tools that implement the proposed changes:
+
+SCC (SCAP Compliance Checker) has prototype code that implements the proposed changes.
+http://www.public.navy.mil/spawar/Atlantic/ProductsServices/Pages/SCAP.aspx
+
+
+
+5) Provide URLs to any other resources that may be relevant to reviewing and verifying the proposal:
+
+None at this time.
+
+
+
+-------------------------------------------------------------------------------------
+References
+-------------------------------------------------------------------------------------
+[1] http://oval.mitre.org/community/board/voting.html
+[2] http://oval.mitre.org/language/sandbox.html
+[3] http://oval.mitre.org/language/about/change_requests.html
+[4] http://oval.mitre.org/adoption/usecasesguide.html
+[5] http://oval.mitre.org/language/about/versioning.html

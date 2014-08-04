@@ -1,0 +1,214 @@
+-------------------------------------------------------------------------------------
+OVAL Proposal Form
+-------------------------------------------------------------------------------------
+The OVAL Proposal Form is used by members of the community to prepare proposals for 
+migration into an official release of OVAL. The form will be critical in helping the 
+members of the community understand, review, and vet proposals.
+
+Once an OVAL Proposal Form is submitted to the oval-developer-list, the OVAL 
+Moderator will review and verify the proposal for completeness at which point it will 
+be ready for community review and discussion. 
+
+When a new proposal is introduced to the community, the OVAL Moderator will work with 
+the OVAL Board to determine the impact of the proposal. If the proposal is deemed a 
+high impact change, it must be developed in the OVAL Sandbox which will require the 
+completion of this form as well as an OVAL Board vote before it is migrated into an 
+official release. More information about the OVAL Board Voting Process can be found 
+at [1]. If the proposal is deemed a low impact change, the proposed change can be 
+made directly to an official OVAL release.
+
+Please direct any questions or concerns to MITRE at oval@mitre.org.
+
+-------------------------------------------------------------------------------------
+Steps to Take
+-------------------------------------------------------------------------------------
+1) Review the OVAL Language Sandbox page [2] and the Requesting Changes to the OVAL 
+   Language page [3].
+
+2) Complete the form provided below.
+
+3) Email the completed form to the oval-developer-list at 
+   oval-developer-list@lists.mitre.org with a subject of 
+   "FOR REVIEW: <Proposal Name> Proposal Form".
+
+4) Revise the proposal, as needed, based on community discussion and feedback.
+
+-------------------------------------------------------------------------------------
+Contact Information
+-------------------------------------------------------------------------------------
+1) Name: David Solin
+	
+2) Email Address: solin@farnamhallventures.com
+
+3) Phone Number (optional):
+ 
+-------------------------------------------------------------------------------------
+Introduction to Proposal
+-------------------------------------------------------------------------------------
+1) What is the new capability?
+
+The new NETCONF schema provides the ability to assess the configuration of network
+devices that support the NETCONF protocol.
+
+2) Why is the new capability needed?
+
+OVAL currently only supports a limited number of network devices (Cisco IOS, CatOS, and PixOS), 
+however, a number of network devices support NETCONF.  This capability will allow for the
+assessment of any network device that supports NETCONF while specific platform extensions are 
+developed for these unsupported network devices.
+
+3) What is the version of the targeted official OVAL release?
+
+5.11
+
+-------------------------------------------------------------------------------------
+Benefits of Proposal
+-------------------------------------------------------------------------------------
+1) How does the proposal relate to existing OVAL use cases [4]?
+
+This new schema provides capabilities to support the following OVAL use cases:
+
+  * Security Advisory Distribution
+  * Vulnerability Assessment
+  * Configuration Management
+
+2) What does this proposal enable that cannot currently be accomplished in the OVAL 
+   Language?
+
+This test enables the configuration assessment of network devices that support NETCONF, that
+do not currently have their own extensions in the OVAL Language.
+   
+3) What alternative approaches for supporting these use cases were considered and 
+   why is this one the best?
+   
+NETCONF makes it possible to express a device configuration in the form of an XML document.
+It is possible to construct complex filters for a NETCONF/get-config request, to restrict the scope
+of information returned.  But, we felt that supporting an unfiltered get-config request via OVAL
+would be simpler.
+ 
+-------------------------------------------------------------------------------------
+Impacts of Proposal
+-------------------------------------------------------------------------------------
+1) Which existing OVAL schemas are affected by this proposal?  If a new platform 
+   schema is being proposed, is it expected to inherit tests from another schema (e.g.
+   UNIX-based platform schemas typically inherit tests from the UNIX schema)? 
+
+No, the NETCONF schema is not expected to inherit tests from another platform schema.
+   
+2) Does the proposal break backward compatibility with previous versions?  Please 
+   see OVAL Versioning Policy [5] for more information.
+
+This proposal does not break backward compatibility with previous versions of OVAL.
+   
+2) How will the proposed changes impact OVAL content authors?
+
+This will have a positive impact for OVAL content authors since they will be able to
+create new content for network devices that support NETCONF.
+
+3) How will the proposed changes impact OVAL content consumers?
+
+The new capabilities will have a positive impact for OVAL content consumers as they
+will be able to download content for network devices that support NETCONF.
+
+4) How will the proposed changes impact existing OVAL content?
+
+There should not be any impact to existing content.
+
+5) How will the proposed changes impact existing OVAL implementations?
+
+The impact is that existing OVAL tools will need to implement the new capabilities in
+their tools if the proposal is accepted into the OVAL Language and they choose to
+support it.
+
+6) Are there any concerns regarding this proposal (e.g., undocumented APIs, etc.)? 
+   If so, are there any mitigating factors?
+  
+Some concerns have been expressed that this schema requires the collection of data
+using a particular protocol or mechanism.  But this is not necessarily the case, particularly
+because the schema does not support NETCONF filtering.  A device's XML configuration
+data could be collected by a variety of different means, this test merely requires that data
+be formatted as a NETCONF/get-config response message.
+
+
+-------------------------------------------------------------------------------------
+Technical Review
+-------------------------------------------------------------------------------------
+1) Do the schema changes follow the accepted naming and design conventions?
+
+Yes.
+
+2) Do the schema changes satisfy the requirements specified in the Requesting Changes 
+   to the OVAL Language page [3]?
+
+Yes.
+   
+3) Do the schema changes align with the targeted official release (e.g., changes that 
+   break backward compatibility should not target a minor release)? Please see the 
+   OVAL Versioning Policy [5] for more information.
+
+Yes.
+   
+4) Have the new capabilities been successfully implemented and tested with sample 
+   content?
+
+Yes, in jOVAL (http://joval.org/features/juniper/ and http://joval.org/features/cisco-ios/).
+   
+-------------------------------------------------------------------------------------
+Resource Information
+-------------------------------------------------------------------------------------
+1) Provide URLs for relevant OVAL Sandbox Issues:
+
+https://github.com/OVALProject/Sandbox/issues/89
+
+2) Provide URLs for OVAL Sandbox schemas that exemplify the proposed changes:
+
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/x-netconf-definitions-schema.xsd
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/x-netconf-system-characteristics.xsd
+
+3) Provide URLs for the location of sample OVAL Definitions, OVAL System 
+   Characteristics, and OVAL Results that exemplify the proposed changes:
+
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/resources/x-netconf-schema/Juniper_JUNOS-netconf-def_config_test.xml
+   
+4) Provide URLs for products or tools that implement the proposed changes:
+
+http://joval.org/features/cisco-ios/
+http://joval.org/features/juniper/
+
+5) Provide URLs to any other resources that may be relevant to reviewing and verifying 
+   the proposal:
+
+Developer Days Presentations
+http://oval.mitre.org/community/docs/security_automation_developer_days_2012_oval_slides.zip 
+   
+Developer Days Minutes
+http://makingsecuritymeasurable.mitre.org/participation/Security_Automation_Developer_Days_2012_Minutes.pdf
+  
+Developer Days Read-Ahead Material
+http://oval.mitre.org/community/docs/Security_Automation_Developer_Days_2012-OVAL_Read-Ahead_Material.pdf
+-------------------------------------------------------------------------------------
+References
+-------------------------------------------------------------------------------------
+[1] http://oval.mitre.org/community/board/voting.html
+[2] http://oval.mitre.org/language/sandbox.html
+[3] http://oval.mitre.org/language/about/change_requests.html
+[4] http://oval.mitre.org/adoption/usecasesguide.html
+[5] http://oval.mitre.org/language/about/versioning.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To unsubscribe, send an email message to LISTSERV@LISTS.MITRE.ORG with
+SIGNOFF OVAL-DEVELOPER-LIST
+in the BODY of the message.  If you have difficulties, write to OVAL-DEVELOPER-LIST-request@LISTS.MITRE.ORG.

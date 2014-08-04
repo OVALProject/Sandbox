@@ -1,0 +1,223 @@
+-------------------------------------------------------------------------------------
+OVAL Proposal Form
+-------------------------------------------------------------------------------------
+The OVAL Proposal Form is used by members of the community to prepare proposals for 
+migration into an official release of OVAL. The form will be critical in helping the 
+members of the community understand, review, and vet proposals.
+
+Once an OVAL Proposal Form is submitted to the oval-developer-list, the OVAL 
+Moderator will review and verify the proposal for completeness at which point it will 
+be ready for community review and discussion. 
+
+When a new proposal is introduced to the community, the OVAL Moderator will work with 
+the OVAL Board to determine the impact of the proposal. If the proposal is deemed a 
+high impact change, it must be developed in the OVAL Sandbox which will require the 
+completion of this form as well as an OVAL Board vote before it is migrated into an 
+official release. More information about the OVAL Board Voting Process can be found 
+at [1]. If the proposal is deemed a low impact change, the proposed change can be 
+made directly to an official OVAL release.
+
+Please direct any questions or concerns to MITRE at oval@mitre.org.
+
+-------------------------------------------------------------------------------------
+Steps to Take
+-------------------------------------------------------------------------------------
+1) Review the OVAL Language Sandbox page [2] and the Requesting Changes to the OVAL 
+   Language page [3].
+
+2) Complete the form provided below.
+
+3) Email the completed form to the oval-developer-list at 
+   oval-developer-list@lists.mitre.org with a subject of 
+   "FOR REVIEW: <Proposal Name> Proposal Form".
+
+4) Revise the proposal, as needed, based on community discussion and feedback.
+
+-------------------------------------------------------------------------------------
+Contact Information
+-------------------------------------------------------------------------------------
+1) Name: David Solin
+	
+2) Email Address: solin@farnamhallventures.com
+
+3) Phone Number (optional):
+ 
+-------------------------------------------------------------------------------------
+Introduction to Proposal
+-------------------------------------------------------------------------------------
+1) What is the new capability?
+
+The new Juniper JunOS platform schema provides various new capabilities needed to
+assess the configuration of network devices running Juniper JunOS.  Specifically, this
+proposal includes tests for checking XML configuration files, the output of the SHOW
+command, the version of a JunOS operating system, and the output of the XML SHOW command.
+
+A new value (junos) should also be added to the EntityState[Family/Item]Type.
+
+2) Why is the new capability needed?
+
+OVAL does not currently support the assessment of Juniper JunOS network devices.  This
+platform schema would provide the capabilties to support this assessment.
+
+3) What is the version of the targeted official OVAL release?
+
+5.11
+
+-------------------------------------------------------------------------------------
+Benefits of Proposal
+-------------------------------------------------------------------------------------
+1) How does the proposal relate to existing OVAL use cases [4]?
+
+This new platform schema provides capabilities to support the following OVAL use cases:
+
+  * Security Advisory Distribution
+  * Vulnerability Assessment
+  * Configuration Management
+
+2) What does this proposal enable that cannot currently be accomplished in the OVAL 
+   Language?
+   
+The new tests will address limitations in the checking capabilities of Juniper JunOS
+network devices.  Previously, there was no way to directly assess Juniper JunOS devices and
+their configuration states.  Now content authors and tools will be able to assess Juniper
+JunOS network devices by examining the output of the various SHOW commands supported
+by the OS, as well as parsed version information.
+
+3) What alternative approaches for supporting these use cases were considered and 
+   why is this one the best?
+   
+We considered repurposing some of the Cisco IOS tests for use against Juniper devices.  But, it is
+not possible to leverage the built-in XML capabilities of JunOS using this approach, and it is also
+considered to be very useful to have a pre-parsed version information available for the simplicity
+it offers in constructing vulnerability-related definitions.
+
+-------------------------------------------------------------------------------------
+Impacts of Proposal
+-------------------------------------------------------------------------------------
+1) Which existing OVAL schemas are affected by this proposal?  If a new platform 
+   schema is being proposed, is it expected to inherit tests from another schema (e.g.
+   UNIX-based platform schemas typically inherit tests from the UNIX schema)? 
+
+None (apart from the family type in the independent schema).  The Juniper JunOS platform
+schema is not expected to inherit tests from another platform schema.
+
+2) Does the proposal break backward compatibility with previous versions?  Please 
+   see OVAL Versioning Policy [5] for more information.
+
+This proposal does not break backward compatibility with previous versions of OVAL.
+   
+2) How will the proposed changes impact OVAL content authors?
+
+This will have a positive impact for OVAL content authors since they will be able to
+create content for Juniper JunOS network devices using the new tests.
+
+3) How will the proposed changes impact OVAL content consumers?
+
+The new capabilities will have a positive impact for OVAL content consumers as they
+will be able to download content for Juniper JunOS network devices.
+
+4) How will the proposed changes impact existing OVAL content?
+
+There should not be any impact to existing known content.  If any private content was created
+using existing tests, to check Juniper JunOS network devices, that content should probably be
+upgraded to use the new tests.
+
+5) How will the proposed changes impact existing OVAL implementations?
+
+The impact is that existing OVAL tools will need to implement the new capabilities in
+their tools if the proposal is accepted into the OVAL Language and they choose to
+support it.
+
+6) Are there any concerns regarding this proposal (e.g., undocumented APIs, etc.)? 
+   If so, are there any mitigating factors?
+
+No concerns have been brought to the attention of the community.
+   
+-------------------------------------------------------------------------------------
+Technical Review
+-------------------------------------------------------------------------------------
+1) Do the schema changes follow the accepted naming and design conventions?
+
+Yes.
+
+2) Do the schema changes satisfy the requirements specified in the Requesting Changes 
+   to the OVAL Language page [3]?
+
+Yes.
+   
+3) Do the schema changes align with the targeted official release (e.g., changes that 
+   break backward compatibility should not target a minor release)? Please see the 
+   OVAL Versioning Policy [5] for more information.
+   
+Yes.
+
+4) Have the new capabilities been successfully implemented and tested with sample 
+   content?
+   
+Yes, in jOVAL (http://joval.org/features/juniper/).
+
+-------------------------------------------------------------------------------------
+Resource Information
+-------------------------------------------------------------------------------------
+1) Provide URLs for relevant OVAL Sandbox Issues:
+
+N/A
+
+2) Provide URLs for OVAL Sandbox schemas that exemplify the proposed changes:
+
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/x-junos-definitions-schema.xsd
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/x-junos-system-characteristics-schema.xsd
+
+3) Provide URLs for the location of sample OVAL Definitions, OVAL System 
+   Characteristics, and OVAL Results that exemplify the proposed changes:
+
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/resources/x-junos-schema/Juniper_JUNOS-junos-def_show_test.xml
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/resources/x-junos-schema/Juniper_JUNOS-junos-def_version_test.xml
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/resources/x-junos-schema/Juniper_JUNOS-junos-def_xml_config_test.xml
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/resources/x-junos-schema/Juniper_JUNOS-junos-def_xml_show_test.xml
+   
+4) Provide URLs for products or tools that implement the proposed changes:
+
+http://joval.org/features/juniper/
+
+5) Provide URLs to any other resources that may be relevant to reviewing and verifying 
+   the proposal:
+
+Developer Days Presentations
+http://oval.mitre.org/community/docs/security_automation_developer_days_2012_oval_slides.zip
+http://oval.mitre.org/community/docs/Developer_Days_2013_OVAL_Session_Slides.zip
+
+Developer Days Minutes
+http://makingsecuritymeasurable.mitre.org/participation/Security_Automation_Developer_Days_2012_Minutes.pdf
+http://oval.mitre.org/community/docs/Developer_Days_2013_OVAL_Session_Minutes.pdf
+
+Developer Days Read-Ahead Materials
+http://oval.mitre.org/community/docs/Security_Automation_Developer_Days_2012-OVAL_Read-Ahead_Material.pdf
+http://oval.mitre.org/community/docs/Developer_Days_2013_Read-Ahead_Material.pdf
+   
+-------------------------------------------------------------------------------------
+References
+-------------------------------------------------------------------------------------
+[1] http://oval.mitre.org/community/board/voting.html
+[2] http://oval.mitre.org/language/sandbox.html
+[3] http://oval.mitre.org/language/about/change_requests.html
+[4] http://oval.mitre.org/adoption/usecasesguide.html
+[5] http://oval.mitre.org/language/about/versioning.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To unsubscribe, send an email message to LISTSERV@LISTS.MITRE.ORG with
+SIGNOFF OVAL-DEVELOPER-LIST
+in the BODY of the message.  If you have difficulties, write to OVAL-DEVELOPER-LIST-request@LISTS.MITRE.ORG.
