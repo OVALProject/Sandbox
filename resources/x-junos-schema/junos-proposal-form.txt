@@ -194,7 +194,10 @@ http://oval.mitre.org/community/docs/Developer_Days_2013_OVAL_Session_Minutes.pd
 Developer Days Read-Ahead Materials
 http://oval.mitre.org/community/docs/Security_Automation_Developer_Days_2012-OVAL_Read-Ahead_Material.pdf
 http://oval.mitre.org/community/docs/Developer_Days_2013_Read-Ahead_Material.pdf
-   
+
+OVAL Community Discussion Period
+http://making-security-measurable.1364806.n2.nabble.com/FOR-REVIEW-Juniper-JunOS-schema-proposal-tp7584283.html
+
 -------------------------------------------------------------------------------------
 References
 -------------------------------------------------------------------------------------
