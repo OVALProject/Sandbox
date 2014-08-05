@@ -176,7 +176,8 @@ Yes.
 4) Have the new capabilities been successfully implemented and tested with sample 
    content?
 
-No.
+Yes, these new capabilities have been successfully implemented and tested with sample
+content in OpenSCAP.
 
 -------------------------------------------------------------------------------------
 Resource Information
@@ -195,10 +196,14 @@ https://github.com/OVALProject/Sandbox/blob/master/x-linux-systemdunitdependency
 
 https://github.com/OVALProject/Sandbox/tree/master/resources/x-linux-systemd/content/x-linux-systemdunitdependency
 https://github.com/OVALProject/Sandbox/tree/master/resources/x-linux-systemd/content/x-linux-systemdunitproperty
+https://git.fedorahosted.org/cgit/openscap.git/tree/tests/probes/systemdunitdependency/test_probes_systemdunitdependency.xml
+https://git.fedorahosted.org/cgit/openscap.git/tree/tests/probes/systemdunitproperty/test_probes_systemdunitproperty.xml
 
 4) Provide URLs for products or tools that implement the proposed changes:
 
--
+https://git.fedorahosted.org/cgit/openscap.git/tree/src/OVAL/probes/unix/linux/systemdshared.h
+https://git.fedorahosted.org/cgit/openscap.git/tree/src/OVAL/probes/unix/linux/systemdunitdependency.c
+https://git.fedorahosted.org/cgit/openscap.git/tree/src/OVAL/probes/unix/linux/systemdunitproperty.c
 
 5) Provide URLs to any other resources that may be relevant to reviewing and verifying 
    the proposal:
@@ -206,6 +211,12 @@ https://github.com/OVALProject/Sandbox/tree/master/resources/x-linux-systemd/con
 http://www.freedesktop.org/wiki/Software/systemd/
 http://www.freedesktop.org/wiki/Software/dbus/
 http://augeas.net
+
+Also, please see the draft component specification for these new tests in the sandbox.  It can be found at the 
+following link.
+
+https://github.com/OVALProject/Sandbox/blob/master/resources/x-linux-systemd/OVAL-5%2011-systemd-tests.docx?raw=true
+
 
 -------------------------------------------------------------------------------------
 References
