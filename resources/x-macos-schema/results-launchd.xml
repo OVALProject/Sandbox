@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oval-res:oval_results xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:ind-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent" xmlns:sharepoint-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#sharepoint" xmlns:aix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#aix" xmlns:pixos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#pixos" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:esx-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#esx" xmlns:linux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux" xmlns:apache-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apache" xmlns:ios-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios" xmlns:catos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#catos" xmlns:macos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#macos" xmlns:unix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix" xmlns:hpux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#hpux" xmlns:freebsd-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#freebsd" xmlns:solaris-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris" xmlns:xmldsig="http://www.w3.org/2000/09/xmldsig#" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:freebsd-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#freebsd" xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:macos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xmlns:linux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:sharepoint-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint" xmlns:ios-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" xmlns:esx-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#esx" xmlns:apache-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#apache" xmlns:pixos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#pixos" xmlns:aix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#aix" xmlns:solaris-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris" xmlns:catos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#catos" xmlns:hpux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux" xmlns:oval-res="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:x-windows-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-windows" xmlns:x-macos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-macos" xmlns:junos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#junos" xmlns:droid-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" xmlns:netconf-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#netconf" xmlns:ns41="http://oval.mitre.org/XMLSchema/oval-system-characteristics#x-windows" xmlns:droid-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android" xmlns:junos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#junos" xmlns:netconf-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#netconf" xmlns:x-macos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-macos" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/oval-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-windows-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/hpux-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-windows-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/apache-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/oval-results-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-netconf-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/catos-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/esx-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/pixos-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/aix-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/xml/xmldsig-core-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/apache-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-macos-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-android-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/pixos-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/independent-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-junos-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/solaris-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/aix-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/independent-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/oval-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/linux-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-macos-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/sharepoint-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/windows-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/catos-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/macos-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/windows-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-android-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/sharepoint-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-netconf-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/esx-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-junos-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/unix-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/ios-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/solaris-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/hpux-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/linux-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/freebsd-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/macos-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/freebsd-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/ios-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/oval-common-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/unix-system-characteristics-schema.xsd">
+    <oval-res:generator>
+        <oval:product_name>jOVAL Definition Interpreter</oval:product_name>
+        <oval:product_version>5.10.1.2c</oval:product_version>
+        <oval:schema_version>5.10.1</oval:schema_version>
+        <oval:timestamp>2014-08-15T16:23:42.212-05:00</oval:timestamp>
+    </oval-res:generator>
+    <oval-res:directives include_source_definitions="true">
+        <oval-res:definition_true content="full" reported="true"/>
+        <oval-res:definition_false content="full" reported="true"/>
+        <oval-res:definition_unknown content="full" reported="true"/>
+        <oval-res:definition_error content="full" reported="true"/>
+        <oval-res:definition_not_evaluated content="full" reported="true"/>
+        <oval-res:definition_not_applicable content="full" reported="true"/>
+    </oval-res:directives>
+    <oval-def:oval_definitions>
+        <oval-def:generator>
+            <oval:product_name>Testrepo</oval:product_name>
+            <oval:schema_version>5.10.1</oval:schema_version>
+            <oval:timestamp>2011-12-19T01:04:50</oval:timestamp>
+        </oval-def:generator>
+        <oval-def:definitions>
+            <oval-def:definition class="compliance" version="0" id="oval:org.joval.test:def:20002">
+                <oval-def:metadata>
+                    <oval-def:title>Sample definition</oval-def:title>
+                    <oval-def:affected family="macos">
+                        <oval-def:platform>Apple Mac OS X</oval-def:platform>
+                    </oval-def:affected>
+                    <oval-def:description>Check the implementation of macos:launchd_test.</oval-def:description>
+                    <oval-def:oval_repository xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                        <dates>
+                            <submitted xmlns:ns48="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns="" date="2011-12-21T13:53:37">
+<ns48:contributor organization="jOVAL.org">jOVAL.org</ns48:contributor>
+                        </submitted>
+                    </dates>
+                        <status>INITIAL SUBMISSION</status>
+                </oval-def:oval_repository>
+                </metadata>
+                <criteria>
+                    <criterion comment="Check the launchd_test implementation." test_ref="oval:org.joval.test:tst:20002"/>
+                </criteria>
+            </definition>
+        </definitions>
+        <tests>
+            <x-macos-def:launchd_test comment="Check that the launchd_test is implemented." check="all" check_existence="at_least_one_exists" version="0" id="oval:org.joval.test:tst:20002">
+                <x-macos-def:object object_ref="oval:org.joval.test:obj:20002"/>
+            </x-macos-def:launchd_test>
+        </tests>
+        <objects>
+            <x-macos-def:launchd_object comment="All daemon processes initiated by launchd." version="1" id="oval:org.joval.test:obj:20002">
+                <x-macos-def:label operation="pattern match">.*</x-macos-def:label>
+            </x-macos-def:launchd_object>
+        </objects>
+    </oval_definitions>
+    <oval-res:results>
+        <oval-res:system>
+            <oval-res:definitions>
+                <oval-res:definition result="true" class="compliance" version="0" definition_id="oval:org.joval.test:def:20002">
+                    <oval-res:criteria result="true" negate="false" operator="AND">
+                        <oval-res:criterion result="true" negate="false" test_ref="oval:org.joval.test:tst:20002"/>
+                    </oval-res:criteria>
+                </oval-res:definition>
+            </oval-res:definitions>
+            <oval-res:tests>
+                <oval-res:test result="true" state_operator="AND" check="all" check_existence="at_least_one_exists" test_id="oval:org.joval.test:tst:20002">
+                    <oval-res:tested_item result="not evaluated" item_id="0"/>
+                    <oval-res:tested_item result="not evaluated" item_id="1"/>
+                    <oval-res:tested_item result="not evaluated" item_id="2"/>
+                    <oval-res:tested_item result="not evaluated" item_id="3"/>
+                    <oval-res:tested_item result="not evaluated" item_id="4"/>
+                    <oval-res:tested_item result="not evaluated" item_id="5"/>
+                    <oval-res:tested_item result="not evaluated" item_id="6"/>
+                    <oval-res:tested_item result="not evaluated" item_id="7"/>
+                    <oval-res:tested_item result="not evaluated" item_id="8"/>
+                    <oval-res:tested_item result="not evaluated" item_id="9"/>
+                    <oval-res:tested_item result="not evaluated" item_id="10"/>
+                    <oval-res:tested_item result="not evaluated" item_id="11"/>
+                    <oval-res:tested_item result="not evaluated" item_id="12"/>
+                    <oval-res:tested_item result="not evaluated" item_id="13"/>
+                    <oval-res:tested_item result="not evaluated" item_id="14"/>
+                    <oval-res:tested_item result="not evaluated" item_id="15"/>
+                    <oval-res:tested_item result="not evaluated" item_id="17"/>
+                    <oval-res:tested_item result="not evaluated" item_id="16"/>
+                    <oval-res:tested_item result="not evaluated" item_id="19"/>
+                    <oval-res:tested_item result="not evaluated" item_id="18"/>
+                    <oval-res:tested_item result="not evaluated" item_id="21"/>
+                    <oval-res:tested_item result="not evaluated" item_id="20"/>
+                    <oval-res:tested_item result="not evaluated" item_id="23"/>
+                    <oval-res:tested_item result="not evaluated" item_id="22"/>
+                    <oval-res:tested_item result="not evaluated" item_id="25"/>
+                    <oval-res:tested_item result="not evaluated" item_id="24"/>
+                    <oval-res:tested_item result="not evaluated" item_id="27"/>
+                    <oval-res:tested_item result="not evaluated" item_id="26"/>
+                    <oval-res:tested_item result="not evaluated" item_id="29"/>
+                    <oval-res:tested_item result="not evaluated" item_id="28"/>
+                    <oval-res:tested_item result="not evaluated" item_id="31"/>
+                    <oval-res:tested_item result="not evaluated" item_id="30"/>
+                    <oval-res:tested_item result="not evaluated" item_id="34"/>
+                    <oval-res:tested_item result="not evaluated" item_id="35"/>
+                    <oval-res:tested_item result="not evaluated" item_id="32"/>
+                    <oval-res:tested_item result="not evaluated" item_id="33"/>
+                    <oval-res:tested_item result="not evaluated" item_id="38"/>
+                    <oval-res:tested_item result="not evaluated" item_id="39"/>
+                    <oval-res:tested_item result="not evaluated" item_id="36"/>
+                    <oval-res:tested_item result="not evaluated" item_id="37"/>
+                    <oval-res:tested_item result="not evaluated" item_id="42"/>
+                    <oval-res:tested_item result="not evaluated" item_id="43"/>
+                    <oval-res:tested_item result="not evaluated" item_id="40"/>
+                    <oval-res:tested_item result="not evaluated" item_id="41"/>
+                    <oval-res:tested_item result="not evaluated" item_id="46"/>
+                    <oval-res:tested_item result="not evaluated" item_id="47"/>
+                    <oval-res:tested_item result="not evaluated" item_id="44"/>
+                    <oval-res:tested_item result="not evaluated" item_id="45"/>
+                    <oval-res:tested_item result="not evaluated" item_id="51"/>
+                    <oval-res:tested_item result="not evaluated" item_id="50"/>
+                    <oval-res:tested_item result="not evaluated" item_id="49"/>
+                    <oval-res:tested_item result="not evaluated" item_id="48"/>
+                    <oval-res:tested_item result="not evaluated" item_id="55"/>
+                    <oval-res:tested_item result="not evaluated" item_id="54"/>
+                    <oval-res:tested_item result="not evaluated" item_id="53"/>
+                    <oval-res:tested_item result="not evaluated" item_id="52"/>
+                    <oval-res:tested_item result="not evaluated" item_id="59"/>
+                    <oval-res:tested_item result="not evaluated" item_id="58"/>
+                    <oval-res:tested_item result="not evaluated" item_id="57"/>
+                    <oval-res:tested_item result="not evaluated" item_id="56"/>
+                    <oval-res:tested_item result="not evaluated" item_id="63"/>
+                    <oval-res:tested_item result="not evaluated" item_id="62"/>
+                    <oval-res:tested_item result="not evaluated" item_id="61"/>
+                    <oval-res:tested_item result="not evaluated" item_id="60"/>
+                    <oval-res:tested_item result="not evaluated" item_id="68"/>
+                    <oval-res:tested_item result="not evaluated" item_id="69"/>
+                    <oval-res:tested_item result="not evaluated" item_id="70"/>
+                    <oval-res:tested_item result="not evaluated" item_id="71"/>
+                    <oval-res:tested_item result="not evaluated" item_id="64"/>
+                    <oval-res:tested_item result="not evaluated" item_id="65"/>
+                    <oval-res:tested_item result="not evaluated" item_id="66"/>
+                    <oval-res:tested_item result="not evaluated" item_id="67"/>
+                    <oval-res:tested_item result="not evaluated" item_id="76"/>
+                    <oval-res:tested_item result="not evaluated" item_id="72"/>
+                    <oval-res:tested_item result="not evaluated" item_id="73"/>
+                    <oval-res:tested_item result="not evaluated" item_id="74"/>
+                    <oval-res:tested_item result="not evaluated" item_id="75"/>
+                </oval-res:test>
+            </oval-res:tests>
+            <oval-sc:oval_system_characteristics>
+                <oval-sc:generator>
+                    <oval:product_name>jOVAL Definition Interpreter</oval:product_name>
+                    <oval:product_version>5.10.1.2c</oval:product_version>
+                    <oval:schema_version>5.10.1</oval:schema_version>
+                    <oval:timestamp>2014-08-15T16:23:39.559-05:00</oval:timestamp>
+                </oval-sc:generator>
+                <oval-sc:system_info>
+                    <oval-sc:os_name>Darwin</oval-sc:os_name>
+                    <oval-sc:os_version>10.2.0</oval-sc:os_version>
+                    <oval-sc:architecture>i386</oval-sc:architecture>
+                    <oval-sc:primary_host_name>vmacos</oval-sc:primary_host_name>
+                    <oval-sc:interfaces>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>lo0</oval-sc:interface_name>
+                            <oval-sc:ip_address>::1</oval-sc:ip_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>lo0</oval-sc:interface_name>
+                            <oval-sc:ip_address>fe80::1</oval-sc:ip_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>lo0</oval-sc:interface_name>
+                            <oval-sc:ip_address>127.0.0.1</oval-sc:ip_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>en0</oval-sc:interface_name>
+                            <oval-sc:ip_address>fe80::a00:27ff:fef8:7856</oval-sc:ip_address>
+                            <oval-sc:mac_address>08:00:27:f8:78:56</oval-sc:mac_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>en0</oval-sc:interface_name>
+                            <oval-sc:ip_address>192.168.0.52</oval-sc:ip_address>
+                            <oval-sc:mac_address>08:00:27:f8:78:56</oval-sc:mac_address>
+                        </oval-sc:interface>
+                    </oval-sc:interfaces>
+                </oval-sc:system_info>
+                <oval-sc:collected_objects>
+                    <oval-sc:object flag="complete" comment="All daemon processes initiated by launchd." version="1" id="oval:org.joval.test:obj:20002">
+                        <oval-sc:reference item_ref="0"/>
+                        <oval-sc:reference item_ref="1"/>
+                        <oval-sc:reference item_ref="2"/>
+                        <oval-sc:reference item_ref="3"/>
+                        <oval-sc:reference item_ref="4"/>
+                        <oval-sc:reference item_ref="5"/>
+                        <oval-sc:reference item_ref="6"/>
+                        <oval-sc:reference item_ref="7"/>
+                        <oval-sc:reference item_ref="8"/>
+                        <oval-sc:reference item_ref="9"/>
+                        <oval-sc:reference item_ref="10"/>
+                        <oval-sc:reference item_ref="11"/>
+                        <oval-sc:reference item_ref="12"/>
+                        <oval-sc:reference item_ref="13"/>
+                        <oval-sc:reference item_ref="14"/>
+                        <oval-sc:reference item_ref="15"/>
+                        <oval-sc:reference item_ref="17"/>
+                        <oval-sc:reference item_ref="16"/>
+                        <oval-sc:reference item_ref="19"/>
+                        <oval-sc:reference item_ref="18"/>
+                        <oval-sc:reference item_ref="21"/>
+                        <oval-sc:reference item_ref="20"/>
+                        <oval-sc:reference item_ref="23"/>
+                        <oval-sc:reference item_ref="22"/>
+                        <oval-sc:reference item_ref="25"/>
+                        <oval-sc:reference item_ref="24"/>
+                        <oval-sc:reference item_ref="27"/>
+                        <oval-sc:reference item_ref="26"/>
+                        <oval-sc:reference item_ref="29"/>
+                        <oval-sc:reference item_ref="28"/>
+                        <oval-sc:reference item_ref="31"/>
+                        <oval-sc:reference item_ref="30"/>
+                        <oval-sc:reference item_ref="34"/>
+                        <oval-sc:reference item_ref="35"/>
+                        <oval-sc:reference item_ref="32"/>
+                        <oval-sc:reference item_ref="33"/>
+                        <oval-sc:reference item_ref="38"/>
+                        <oval-sc:reference item_ref="39"/>
+                        <oval-sc:reference item_ref="36"/>
+                        <oval-sc:reference item_ref="37"/>
+                        <oval-sc:reference item_ref="42"/>
+                        <oval-sc:reference item_ref="43"/>
+                        <oval-sc:reference item_ref="40"/>
+                        <oval-sc:reference item_ref="41"/>
+                        <oval-sc:reference item_ref="46"/>
+                        <oval-sc:reference item_ref="47"/>
+                        <oval-sc:reference item_ref="44"/>
+                        <oval-sc:reference item_ref="45"/>
+                        <oval-sc:reference item_ref="51"/>
+                        <oval-sc:reference item_ref="50"/>
+                        <oval-sc:reference item_ref="49"/>
+                        <oval-sc:reference item_ref="48"/>
+                        <oval-sc:reference item_ref="55"/>
+                        <oval-sc:reference item_ref="54"/>
+                        <oval-sc:reference item_ref="53"/>
+                        <oval-sc:reference item_ref="52"/>
+                        <oval-sc:reference item_ref="59"/>
+                        <oval-sc:reference item_ref="58"/>
+                        <oval-sc:reference item_ref="57"/>
+                        <oval-sc:reference item_ref="56"/>
+                        <oval-sc:reference item_ref="63"/>
+                        <oval-sc:reference item_ref="62"/>
+                        <oval-sc:reference item_ref="61"/>
+                        <oval-sc:reference item_ref="60"/>
+                        <oval-sc:reference item_ref="68"/>
+                        <oval-sc:reference item_ref="69"/>
+                        <oval-sc:reference item_ref="70"/>
+                        <oval-sc:reference item_ref="71"/>
+                        <oval-sc:reference item_ref="64"/>
+                        <oval-sc:reference item_ref="65"/>
+                        <oval-sc:reference item_ref="66"/>
+                        <oval-sc:reference item_ref="67"/>
+                        <oval-sc:reference item_ref="76"/>
+                        <oval-sc:reference item_ref="72"/>
+                        <oval-sc:reference item_ref="73"/>
+                        <oval-sc:reference item_ref="74"/>
+                        <oval-sc:reference item_ref="75"/>
+                    </oval-sc:object>
+                </oval-sc:collected_objects>
+                <oval-sc:system_data>
+                    <x-macos-sc:launchd_item id="0">
+                        <x-macos-sc:label>com.apple.tiswitcher</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="1">
+                        <x-macos-sc:label>com.apple.warmd_agent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="2">
+                        <x-macos-sc:label>com.apple.CoreLocationAgent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="3">
+                        <x-macos-sc:label>com.apple.unmountassistant.useragent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="4">
+                        <x-macos-sc:label>com.apple.launchctl.Background</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="5">
+                        <x-macos-sc:label>com.apple.PreferenceSyncAgent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="6">
+                        <x-macos-sc:label>com.apple.FileSyncAgent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="7">
+                        <x-macos-sc:label>com.apple.pbs</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="8">
+                        <x-macos-sc:label>com.apple.TrustEvaluationAgent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="9">
+                        <x-macos-sc:label>com.apple.AddressBook.abd</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="10">
+                        <x-macos-sc:label>0x30d130.anonymous.launchctl</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">26931</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="11">
+                        <x-macos-sc:label>com.apple.ATS.FontValidatorConduit</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="12">
+                        <x-macos-sc:label>com.apple.cvmsCompAgent_x86_64</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="13">
+                        <x-macos-sc:label>com.apple.ServerScanner</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="14">
+                        <x-macos-sc:label>com.apple.NetworkDiagnostics</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="15">
+                        <x-macos-sc:label>com.apple.launchctl.Aqua</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="17">
+                        <x-macos-sc:label>com.apple.pictd</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="16">
+                        <x-macos-sc:label>com.apple.ReportPanic</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="19">
+                        <x-macos-sc:label>com.apple.WebKit.PluginAgent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="18">
+                        <x-macos-sc:label>edu.mit.Kerberos.KerberosAgent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="21">
+                        <x-macos-sc:label>com.apple.datadetectors.compiler</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="20">
+                        <x-macos-sc:label>0x30cdd0.anonymous.bash</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">20217</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="23">
+                        <x-macos-sc:label>com.apple.RemoteDesktop.agent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="22">
+                        <x-macos-sc:label>org.openbsd.ssh-agent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="25">
+                        <x-macos-sc:label>com.apple.RemoteUI</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="24">
+                        <x-macos-sc:label>com.apple.Kerberos.renew.plist</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">1</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="27">
+                        <x-macos-sc:label>com.apple.SubmitDiagInfo</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="26">
+                        <x-macos-sc:label>0x304160.anonymous.WindowServer</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">20173</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="29">
+                        <x-macos-sc:label>com.apple.ScreenReaderUIServer</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="28">
+                        <x-macos-sc:label>com.apple.midiserver</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="31">
+                        <x-macos-sc:label>0x303c70.anonymous.securityd</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">19</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="30">
+                        <x-macos-sc:label>com.apple.PubSub.Agent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="34">
+                        <x-macos-sc:label>com.apple.ScreenSharing.server</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="35">
+                        <x-macos-sc:label>com.apple.ATS.FontValidator</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="32">
+                        <x-macos-sc:label>com.apple.UserEventAgent-Aqua</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">20198</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="33">
+                        <x-macos-sc:label>com.apple.scrod</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="38">
+                        <x-macos-sc:label>com.apple.cvmsCompAgent_i386</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="39">
+                        <x-macos-sc:label>com.apple.coredata.externalrecordswriter</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="36">
+                        <x-macos-sc:label>com.apple.parentalcontrols.check</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="37">
+                        <x-macos-sc:label>com.apple.Dock.agent</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">20190</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="42">
+                        <x-macos-sc:label>com.apple.quicklook</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="43">
+                        <x-macos-sc:label>com.apple.AOSNotification</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="40">
+                        <x-macos-sc:label>com.apple.alf.useragent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="41">
+                        <x-macos-sc:label>com.apple.DictionaryPanelHelper</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="46">
+                        <x-macos-sc:label>com.apple.netauth.useragent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="47">
+                        <x-macos-sc:label>com.apple.helpd</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="44">
+                        <x-macos-sc:label>com.apple.ReportCrash.Self</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="45">
+                        <x-macos-sc:label>com.apple.VoiceOver</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="51">
+                        <x-macos-sc:label>com.apple.SystemUIServer.agent</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">20191</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="50">
+                        <x-macos-sc:label>0x30cbc0.anonymous.login</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">20216</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="49">
+                        <x-macos-sc:label>0x30cf80.anonymous.java</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">26918</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="48">
+                        <x-macos-sc:label>com.apple.FontRegistryUIAgent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="55">
+                        <x-macos-sc:label>com.apple.fontd</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">20194</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="54">
+                        <x-macos-sc:label>com.apple.metadata.mdwrite.plist</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="53">
+                        <x-macos-sc:label>0x302770.anonymous.loginwindow</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">20172</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="52">
+                        <x-macos-sc:label>com.apple.familycontrols.useragent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="59">
+                        <x-macos-sc:label>com.apple.pboard</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">20205</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="58">
+                        <x-macos-sc:label>com.apple.syncservices.SyncServer</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="57">
+                        <x-macos-sc:label>[0x0-0xa70a7].com.apple.Terminal</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">20214</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="56">
+                        <x-macos-sc:label>com.apple.KerberosHelper.LKDCHelper</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="63">
+                        <x-macos-sc:label>com.apple.coremedia.videodecoder</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="62">
+                        <x-macos-sc:label>com.apple.isst</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="61">
+                        <x-macos-sc:label>edu.mit.Kerberos.CCacheServer</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="60">
+                        <x-macos-sc:label>com.apple.FontWorker</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="68">
+                        <x-macos-sc:label>com.apple.ReportCrash</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="69">
+                        <x-macos-sc:label>com.apple.syncservices.uihandler</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="70">
+                        <x-macos-sc:label>com.apple.installd.user</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="71">
+                        <x-macos-sc:label>com.apple.cvmsCompAgent_ppc</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="64">
+                        <x-macos-sc:label>com.apple.coreservices.uiagent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="65">
+                        <x-macos-sc:label>0x30c810.anonymous.coreservicesd</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">51</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="66">
+                        <x-macos-sc:label>0x303e40.mach_init.rcd</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="67">
+                        <x-macos-sc:label>com.apple.AirPortBaseStationAgent</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">20204</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="76">
+                        <x-macos-sc:label>com.apple.BezelUIServer</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="72">
+                        <x-macos-sc:label>com.apple.gssd-agent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="73">
+                        <x-macos-sc:label>com.apple.imklaunchagent</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="74">
+                        <x-macos-sc:label>com.apple.Finder</x-macos-sc:label>
+                        <x-macos-sc:pid datatype="int">20192</x-macos-sc:pid>
+                        <x-macos-sc:status status="does not exist" datatype="int"></x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                    <x-macos-sc:launchd_item id="75">
+                        <x-macos-sc:label>com.apple.PCIESlotCheck</x-macos-sc:label>
+                        <x-macos-sc:pid status="does not exist" datatype="int"></x-macos-sc:pid>
+                        <x-macos-sc:status datatype="int">0</x-macos-sc:status>
+                    </x-macos-sc:launchd_item>
+                </oval-sc:system_data>
+            </oval-sc:oval_system_characteristics>
+        </oval-res:system>
+    </oval-res:results>
+</oval-res:oval_results>
