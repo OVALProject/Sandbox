@@ -36,33 +36,28 @@ Steps to Take
 -------------------------------------------------------------------------------------
 Contact Information
 -------------------------------------------------------------------------------------
-1) Name:
-    Tomas Heinrich
-    Martin Preisler
-
-2) Email Address:
-    theinric@redhat.com
-    mpreisle@redhat.com
+1) Name: David Solin
+	
+2) Email Address: solin@farnamhallventures.com
 
 3) Phone Number (optional):
-    -
-
+ 
 -------------------------------------------------------------------------------------
 Introduction to Proposal
 -------------------------------------------------------------------------------------
 1) What is the new capability?
 
-systemdunitproperty test, systemdunitdependency test and related OVAL structures.
+The new Juniper JunOS platform schema provides various new capabilities needed to
+assess the configuration of network devices running Juniper JunOS.  Specifically, this
+proposal includes tests for checking XML configuration files, the output of the SHOW
+command, the version of a JunOS operating system, and the output of the XML SHOW command.
+
+A new value (junos) should also be added to the EntityState[Family/Item]Type.
 
 2) Why is the new capability needed?
 
-A number of Linux based distributions have switched their init system from SysVinit
-to systemd. The systemd init system is different from the old SysVinit style in that
-it does not have a concept of a runlevel, but instead has targets and various forms
-of service activation. For example, it can start a service based on achieving
-a target (e.g. graphical), time of day, connection to a socket, or a number of
-other ways. Please see http://www.freedesktop.org/wiki/Software/systemd/ for more
-information.
+OVAL does not currently support the assessment of Juniper JunOS network devices.  This
+platform schema would provide the capabilties to support this assessment.
 
 3) What is the version of the targeted official OVAL release?
 
@@ -73,88 +68,71 @@ Benefits of Proposal
 -------------------------------------------------------------------------------------
 1) How does the proposal relate to existing OVAL use cases [4]?
 
-This new functionality provides replacement for the runlevel test on systems that
-use systemd instead of sysvinit or compatible init system.
+This new platform schema provides capabilities to support the following OVAL use cases:
+
+  * Security Advisory Distribution
+  * Vulnerability Assessment
+  * Configuration Management
 
 2) What does this proposal enable that cannot currently be accomplished in the OVAL 
    Language?
-
-Reasonably convenient way to query systemd unit properties and dependencies.
+   
+The new tests will address limitations in the checking capabilities of Juniper JunOS
+network devices.  Previously, there was no way to directly assess Juniper JunOS devices and
+their configuration states.  Now content authors and tools will be able to assess Juniper
+JunOS network devices by examining the output of the various SHOW commands supported
+by the OS, as well as parsed version information.
 
 3) What alternative approaches for supporting these use cases were considered and 
    why is this one the best?
-
-This functionality can be "emulated" in a number of ways in OVAL. None of these are
-robust or convenient to write.
-
-For example the content writer could check the unit files for regex patterns using
-the textfilecontent test. This way unit properties can be queried. Or the content
-writer could check symlinks in /etc/systemd/$unit_path/$unit.wants to figure out
-one level of dependencies.
-
-Both of these approaches have shortcomings. In the first case the unit file may not be
-the final file that is used. There are multiple unit files on the system and there are
-rules regarding how they are used.
-
-$ locate default.target
-/etc/systemd/system/default.target
-/etc/systemd/system/default.target.wants
-/etc/systemd/system/default.target.wants/systemd-readahead-collect.service
-/etc/systemd/system/default.target.wants/systemd-readahead-replay.service
-/usr/lib/systemd/system/default.target
-/usr/lib/systemd/system/default.target.wants
-/usr/lib/systemd/user/default.target
-
-In the second case the user wants all transitive dependencies but can only query
-the immediate one level dependencies.
+   
+We considered repurposing some of the Cisco IOS tests for use against Juniper devices.  But, it is
+not possible to leverage the built-in XML capabilities of JunOS using this approach, and it is also
+considered to be very useful to have a pre-parsed version information available for the simplicity
+it offers in constructing vulnerability-related definitions.
 
 -------------------------------------------------------------------------------------
 Impacts of Proposal
 -------------------------------------------------------------------------------------
-1) Which existing OVAL schemas are affected by this proposal?
+1) Which existing OVAL schemas are affected by this proposal?  If a new platform 
+   schema is being proposed, is it expected to inherit tests from another schema (e.g.
+   UNIX-based platform schemas typically inherit tests from the UNIX schema)? 
 
-linux-definitions-schema.xsd
-linux-system-characteristics-schema.xsd
+None (apart from the family type in the independent schema).  The Juniper JunOS platform
+schema is not expected to inherit tests from another platform schema.
 
 2) Does the proposal break backward compatibility with previous versions?  Please 
    see OVAL Versioning Policy [5] for more information.
 
-No.
-
+This proposal does not break backward compatibility with previous versions of OVAL.
+   
 2) How will the proposed changes impact OVAL content authors?
 
-It will provide a new feature for content authors to leverage when checking platforms
-that use the systemd init system.
-
-No impact for content targeted at sysvinit platforms.
+This will have a positive impact for OVAL content authors since they will be able to
+create content for Juniper JunOS network devices using the new tests.
 
 3) How will the proposed changes impact OVAL content consumers?
 
-If the content consumer supports Linux, support for systemd tests should be added
-if the tool supports OVAL 5.11 or later.
+The new capabilities will have a positive impact for OVAL content consumers as they
+will be able to download content for Juniper JunOS network devices.
 
 4) How will the proposed changes impact existing OVAL content?
 
-No impact.
-
-Content emulating these systemd tests using other OVAL features may be migrated
-to the new functionality.
+There should not be any impact to existing known content.  If any private content was created
+using existing tests, to check Juniper JunOS network devices, that content should probably be
+upgraded to use the new tests.
 
 5) How will the proposed changes impact existing OVAL implementations?
 
-Existing OVAL implementations that want to upgrade to support 5.11 will have to
-implement the 2 tests proposed.
+The impact is that existing OVAL tools will need to implement the new capabilities in
+their tools if the proposal is accepted into the OVAL Language and they choose to
+support it.
 
 6) Are there any concerns regarding this proposal (e.g., undocumented APIs, etc.)? 
    If so, are there any mitigating factors?
 
-systemd has no stable C API to leverage. The best choice right now is to look at what
-systemctl does and write similar code. This code uses dbus to communicate with
-the systemd daemon.
-
-For offline scans where dbus and systemd are not available, the best choice seems
-to be "augeas" - http://augeas.net
-
+No concerns have been brought to the attention of the community.
+   
 -------------------------------------------------------------------------------------
 Technical Review
 -------------------------------------------------------------------------------------
@@ -166,57 +144,59 @@ Yes.
    to the OVAL Language page [3]?
 
 Yes.
-
+   
 3) Do the schema changes align with the targeted official release (e.g., changes that 
    break backward compatibility should not target a minor release)? Please see the 
    OVAL Versioning Policy [5] for more information.
-
+   
 Yes.
 
 4) Have the new capabilities been successfully implemented and tested with sample 
    content?
-
-Yes, these new capabilities have been successfully implemented and tested with sample
-content in OpenSCAP.
+   
+Yes, in jOVAL (http://joval.org/features/juniper/).
 
 -------------------------------------------------------------------------------------
 Resource Information
 -------------------------------------------------------------------------------------
 1) Provide URLs for relevant OVAL Sandbox Issues:
 
-https://github.com/OVALProject/Sandbox/tree/master/resources/x-linux-systemd
+N/A
 
 2) Provide URLs for OVAL Sandbox schemas that exemplify the proposed changes:
 
-https://github.com/OVALProject/Sandbox/blob/master/x-linux-systemdunitproperty.xsd
-https://github.com/OVALProject/Sandbox/blob/master/x-linux-systemdunitdependency.xsd
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/x-junos-definitions-schema.xsd
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/x-junos-system-characteristics-schema.xsd
 
 3) Provide URLs for the location of sample OVAL Definitions, OVAL System 
    Characteristics, and OVAL Results that exemplify the proposed changes:
 
-https://github.com/OVALProject/Sandbox/tree/master/resources/x-linux-systemd/content/x-linux-systemdunitdependency
-https://github.com/OVALProject/Sandbox/tree/master/resources/x-linux-systemd/content/x-linux-systemdunitproperty
-https://git.fedorahosted.org/cgit/openscap.git/tree/tests/probes/systemdunitdependency/test_probes_systemdunitdependency.xml
-https://git.fedorahosted.org/cgit/openscap.git/tree/tests/probes/systemdunitproperty/test_probes_systemdunitproperty.xml
-
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/resources/x-junos-schema/Juniper_JUNOS-junos-def_show_test.xml
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/resources/x-junos-schema/Juniper_JUNOS-junos-def_version_test.xml
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/resources/x-junos-schema/Juniper_JUNOS-junos-def_xml_config_test.xml
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/resources/x-junos-schema/Juniper_JUNOS-junos-def_xml_show_test.xml
+   
 4) Provide URLs for products or tools that implement the proposed changes:
 
-https://git.fedorahosted.org/cgit/openscap.git/tree/src/OVAL/probes/unix/linux/systemdshared.h
-https://git.fedorahosted.org/cgit/openscap.git/tree/src/OVAL/probes/unix/linux/systemdunitdependency.c
-https://git.fedorahosted.org/cgit/openscap.git/tree/src/OVAL/probes/unix/linux/systemdunitproperty.c
+http://joval.org/features/juniper/
 
 5) Provide URLs to any other resources that may be relevant to reviewing and verifying 
    the proposal:
 
-http://www.freedesktop.org/wiki/Software/systemd/
-http://www.freedesktop.org/wiki/Software/dbus/
-http://augeas.net
+Developer Days Presentations
+http://oval.mitre.org/community/docs/security_automation_developer_days_2012_oval_slides.zip
+http://oval.mitre.org/community/docs/Developer_Days_2013_OVAL_Session_Slides.zip
 
-Also, please see the draft component specification for these new tests in the sandbox.  It can be found at the 
-following link.
+Developer Days Minutes
+http://makingsecuritymeasurable.mitre.org/participation/Security_Automation_Developer_Days_2012_Minutes.pdf
+http://oval.mitre.org/community/docs/Developer_Days_2013_OVAL_Session_Minutes.pdf
 
-https://github.com/OVALProject/Sandbox/blob/master/resources/x-linux-systemd/OVAL-5%2011-systemd-tests.docx?raw=true
+Developer Days Read-Ahead Materials
+http://oval.mitre.org/community/docs/Security_Automation_Developer_Days_2012-OVAL_Read-Ahead_Material.pdf
+http://oval.mitre.org/community/docs/Developer_Days_2013_Read-Ahead_Material.pdf
 
+OVAL Community Discussion Period
+http://making-security-measurable.1364806.n2.nabble.com/FOR-REVIEW-Juniper-JunOS-schema-proposal-tp7584283.html
 
 -------------------------------------------------------------------------------------
 References
@@ -226,3 +206,21 @@ References
 [3] http://oval.mitre.org/language/about/change_requests.html
 [4] http://oval.mitre.org/adoption/usecasesguide.html
 [5] http://oval.mitre.org/language/about/versioning.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To unsubscribe, send an email message to LISTSERV@LISTS.MITRE.ORG with
+SIGNOFF OVAL-DEVELOPER-LIST
+in the BODY of the message.  If you have difficulties, write to OVAL-DEVELOPER-LIST-request@LISTS.MITRE.ORG.

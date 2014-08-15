@@ -882,11 +882,16 @@
                 <xsd:documentation>The product name, as provided by android.os.Build.PRODUCT using the Android SDK.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
-            <xsd:element name="cpu_abi" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="2">
+            <xsd:element name="cpu_abi" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>The CPU architecture, as provided by android.os.Build.CPU_ABI and android.os.Build.CPU_ABI2 using the Android SDK.</xsd:documentation>
+                <xsd:documentation>The name of the instruction set of native code, as provided by android.os.Build.CPU_ABI using the Android SDK.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
+            <xsd:element name="cpu_abi2" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>The name of the second instruction set of native code, as provided by android.os.Build.CPU_ABI2 using the Android SDK.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>            
             <xsd:element name="build_fingerprint" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
                 <xsd:documentation>Build fingerprint, as provided by android.os.Build.FINGERPRINT using the Android SDK.</xsd:documentation>

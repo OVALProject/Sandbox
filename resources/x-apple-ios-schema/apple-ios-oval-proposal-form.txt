@@ -1,0 +1,231 @@
+--------------------------------------------------------------------------------
+OVAL Proposal Form
+--------------------------------------------------------------------------------
+The OVAL Proposal Form is used by members of the community to prepare proposals 
+for migration into an official release of OVAL. The form will be critical in 
+helping the members of the community understand, review, and vet proposals.
+
+Once an OVAL Proposal Form is submitted to the oval-developer-list, the OVAL 
+Moderator will review and verify the proposal for completeness at which point 
+it will be ready for community review and discussion. 
+
+When a new proposal is introduced to the community, the OVAL Moderator will 
+work with the OVAL Board to determine the impact of the proposal. If the 
+proposal is deemed a high impact change, it must be developed in the OVAL 
+Sandbox which will require the completion of this form as well as an OVAL 
+Board vote before it is migrated into an official release. More information 
+about the OVAL Board Voting Process can be found at [1]. If the proposal is 
+deemed a low impact change, the proposed change can be made directly to an 
+official OVAL release.
+
+Please direct any questions or concerns to MITRE at oval@mitre.org.
+
+--------------------------------------------------------------------------------
+Steps to Take
+--------------------------------------------------------------------------------
+1) Review the OVAL Language Sandbox page [2] and the Requesting Changes to the 
+OVAL Language page [3].
+
+2) Complete the form provided below.
+
+3) Email the completed form to the oval-developer-list at 
+oval-developer-list@lists.mitre.org with a subject of 
+"FOR REVIEW: <Proposal Name> Proposal Form".
+
+4) Revise the proposal, as needed, based on community discussion and feedback.
+
+--------------------------------------------------------------------------------
+Contact Information
+--------------------------------------------------------------------------------
+1) Name: Michael Peck
+	
+2) Email Address: mpeck@mitre.org
+
+3) Phone Number (optional):
+ 
+--------------------------------------------------------------------------------
+Introduction to Proposal
+--------------------------------------------------------------------------------
+1) What is the new capability?
+
+The OVAL schemas for Apple iOS provide a standards-based capability to check 
+Apple iOS device configuration.
+
+2) Why is the new capability needed?
+
+The Apple iOS OVAL schemas are needed to provide a standards-based capability 
+to check Apple iOS device configuration.  
+
+3) What is the version of the targeted official OVAL release?
+
+The targeted OVAL version for this proposal is OVAL 5.11.
+
+--------------------------------------------------------------------------------
+Benefits of Proposal
+--------------------------------------------------------------------------------
+1) How does the proposal relate to existing OVAL use cases [4]?
+The tests provide capabilities to express and assess Apple iOS device 
+configuration for the following OVAL use cases: 
+
+* Configuration Management
+
+2) What does this proposal enable that cannot currently be accomplished in the 
+OVAL Language?
+
+The OVAL Language does not currently include any Apple iOS-specific schemas.  
+
+The OVAL SQL tests could potentially be used to query device state information 
+held by a mobile device management system, but such an approach is not desired 
+because it would require creating customized SQL tests for each particular 
+mobile device management product, and because the storage mechanisms of each 
+mobile device management product are often proprietary.
+ 
+The proposed Apple iOS schema provides the ability to check:
+* Global restrictions in place on the device
+* Passcode policy in place on the device
+* Configuration Profiles installed on the device
+
+3) What alternative approaches for supporting these use cases were considered 
+and why is this one the best?
+
+OVAL SQL tests are an alternative approach, but for the reasons stated above 
+we do not believe that is the optimal approach.
+
+Numerous mobile device management products exist today that provide the 
+ability to assess Apple iOS device configuration.  However, there is currently 
+no standards-based mechanism to:
+* Input to these products the compliance checks to perform, or 
+* Output compliance results to be ingested by other enterprise security systems.
+
+Another alternative approach is for the OVAL Apple iOS schema to solely check 
+the installed configuration profiles, because if an enterprise's configuration 
+profile is installed, they can be assured that the profile's security policies 
+(or better) are being enforced.  We have two concerns with this approach:
+* This approach doesn't provide a standard mechanism to analyze and report on 
+the actual security policies in place on the device.
+* It was unclear to us whether we could reliably determine that an installed 
+configuration profile is in fact the enterprise's profile (as opposed to a 
+fake profile asserting the same identifiers).
+
+--------------------------------------------------------------------------------
+Impacts of Proposal
+--------------------------------------------------------------------------------
+1) Which existing OVAL schemas are affected by this proposal?  
+
+None.
+
+2) Does the proposal break backward compatibility with previous versions?  
+Please see OVAL Versioning Policy [5] for more information.
+
+This proposal does not break backward compatibility.  
+
+2) How will the proposed changes impact OVAL content authors?
+
+This will provide OVAL content authors with the ability to create new 
+content based on the new tests.  We have created proof-of-concept OVAL 
+definitions demonstrating the ability to automate useful compliance checks.  
+
+3) How will the proposed changes impact OVAL content consumers?
+
+No impact to current OVAL content consumers.  These changes will provide 
+an opportunity to use OVAL to create Apple iOS configuration management 
+content.
+
+4) How will the proposed changes impact existing OVAL content?
+
+No impact.
+
+5) How will the proposed changes impact existing OVAL implementations?
+
+The impact will depend on whether the existing OVAL implementations need to 
+implement Apple iOS-specific schema features.  In many cases it will not be 
+necessary.
+
+If mobile device management products choose to implement OVAL support, they
+will need to add the capability to parse Apple iOS OVAL definitions and 
+assess gathered mobile device state information against the definitions.  
+Mobile device management systems typically already include the ability to 
+gather device state information, but they will need to ensure they are 
+collecting the particular information used by the Apple iOS OVAL schema.
+
+6) Are there any concerns regarding this proposal (e.g., undocumented APIs, 
+etc.)? If so, are there any mitigating factors?  
+
+We used information from Apple's public Configuration Profile Key Reference 
+to create the OVAL schemas.
+https://developer.apple.com/library/ios/featuredarticles/iPhoneConfigurationProfileRef/Introduction/Introduction.html 
+
+Apple's proprietary mobile device management protocol is the only supported 
+interface to gather this information from Apple iOS devices.  We don't 
+believe this is a concern because the OVAL schemas themselves abstract the 
+details of how the device state information is gathered.  We expect that 
+commercial mobile device management vendors are already partnering with 
+Apple and have access to their proprietary protocol.  
+
+OVAL provides a standards-based mechanism to assess the information gathered 
+by the mobile device management systems and share the compliance results.
+ 
+--------------------------------------------------------------------------------
+Technical Review
+--------------------------------------------------------------------------------
+1) Do the schema changes follow the accepted naming and design conventions?
+
+Yes.
+
+2) Do the schema changes satisfy the requirements specified in the Requesting 
+Changes to the OVAL Language page [3]?
+
+Yes.
+
+3) Do the schema changes align with the targeted official release (e.g., changes 
+that break backward compatibility should not target a minor release)? Please 
+see the OVAL Versioning Policy [5] for more information.
+
+Yes.
+
+4) Have the new capabilities been successfully implemented and tested with sample 
+content?
+
+Yes.
+
+--------------------------------------------------------------------------------
+Resource Information
+--------------------------------------------------------------------------------
+1) Provide URLs for relevant OVAL Sandbox Issues:
+
+N/A
+
+2) Provide URLs for OVAL Sandbox schemas that exemplify the proposed changes:
+
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/x-apple-ios-system-characteristics.xsd
+
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/x-apple-ios-definitions.xsd
+
+3) Provide URLs for the location of sample OVAL Definitions, 
+OVAL System Characteristics, and OVAL Results that exemplify the proposed 
+changes:
+
+Sample OVAL Definitions:
+https://github.com/OVALProject/Sandbox/blob/master/resources/x-apple-ios-schema/sample-apple-ios-stig-oval-definitions.xml
+
+Sample OVAL System Characteristics:
+https://github.com/OVALProject/Sandbox/blob/master/resources/x-apple-ios-schema/example-apple-ios-system-characteristics.xml
+
+4) Provide URLs for products or tools that implement the proposed changes:
+
+N/A
+
+5) Provide URLs to any other resources that may be relevant to reviewing and 
+verifying the proposal:
+
+N/A
+
+--------------------------------------------------------------------------------
+References
+--------------------------------------------------------------------------------
+[1] http://oval.mitre.org/community/board/voting.html
+[2] http://oval.mitre.org/language/sandbox.html
+[3] http://oval.mitre.org/language/about/change_requests.html
+[4] http://oval.mitre.org/adoption/usecasesguide.html
+[5] http://oval.mitre.org/language/about/versioning.html
+

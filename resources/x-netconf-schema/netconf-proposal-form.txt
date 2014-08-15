@@ -36,33 +36,26 @@ Steps to Take
 -------------------------------------------------------------------------------------
 Contact Information
 -------------------------------------------------------------------------------------
-1) Name:
-    Tomas Heinrich
-    Martin Preisler
-
-2) Email Address:
-    theinric@redhat.com
-    mpreisle@redhat.com
+1) Name: David Solin
+	
+2) Email Address: solin@farnamhallventures.com
 
 3) Phone Number (optional):
-    -
-
+ 
 -------------------------------------------------------------------------------------
 Introduction to Proposal
 -------------------------------------------------------------------------------------
 1) What is the new capability?
 
-systemdunitproperty test, systemdunitdependency test and related OVAL structures.
+The new NETCONF schema provides the ability to assess the configuration of network
+devices that support the NETCONF protocol.
 
 2) Why is the new capability needed?
 
-A number of Linux based distributions have switched their init system from SysVinit
-to systemd. The systemd init system is different from the old SysVinit style in that
-it does not have a concept of a runlevel, but instead has targets and various forms
-of service activation. For example, it can start a service based on achieving
-a target (e.g. graphical), time of day, connection to a socket, or a number of
-other ways. Please see http://www.freedesktop.org/wiki/Software/systemd/ for more
-information.
+OVAL currently only supports a limited number of network devices (Cisco IOS, CatOS, and PixOS), 
+however, a number of network devices support NETCONF.  This capability will allow for the
+assessment of any network device that supports NETCONF while specific platform extensions are 
+developed for these unsupported network devices.
 
 3) What is the version of the targeted official OVAL release?
 
@@ -73,87 +66,69 @@ Benefits of Proposal
 -------------------------------------------------------------------------------------
 1) How does the proposal relate to existing OVAL use cases [4]?
 
-This new functionality provides replacement for the runlevel test on systems that
-use systemd instead of sysvinit or compatible init system.
+This new schema provides capabilities to support the following OVAL use cases:
+
+  * Security Advisory Distribution
+  * Vulnerability Assessment
+  * Configuration Management
 
 2) What does this proposal enable that cannot currently be accomplished in the OVAL 
    Language?
 
-Reasonably convenient way to query systemd unit properties and dependencies.
-
+This test enables the configuration assessment of network devices that support NETCONF, that
+do not currently have their own extensions in the OVAL Language.
+   
 3) What alternative approaches for supporting these use cases were considered and 
    why is this one the best?
-
-This functionality can be "emulated" in a number of ways in OVAL. None of these are
-robust or convenient to write.
-
-For example the content writer could check the unit files for regex patterns using
-the textfilecontent test. This way unit properties can be queried. Or the content
-writer could check symlinks in /etc/systemd/$unit_path/$unit.wants to figure out
-one level of dependencies.
-
-Both of these approaches have shortcomings. In the first case the unit file may not be
-the final file that is used. There are multiple unit files on the system and there are
-rules regarding how they are used.
-
-$ locate default.target
-/etc/systemd/system/default.target
-/etc/systemd/system/default.target.wants
-/etc/systemd/system/default.target.wants/systemd-readahead-collect.service
-/etc/systemd/system/default.target.wants/systemd-readahead-replay.service
-/usr/lib/systemd/system/default.target
-/usr/lib/systemd/system/default.target.wants
-/usr/lib/systemd/user/default.target
-
-In the second case the user wants all transitive dependencies but can only query
-the immediate one level dependencies.
-
+   
+NETCONF makes it possible to express a device configuration in the form of an XML document.
+It is possible to construct complex filters for a NETCONF/get-config request, to restrict the scope
+of information returned.  But, we felt that supporting an unfiltered get-config request via OVAL
+would be simpler.
+ 
 -------------------------------------------------------------------------------------
 Impacts of Proposal
 -------------------------------------------------------------------------------------
-1) Which existing OVAL schemas are affected by this proposal?
+1) Which existing OVAL schemas are affected by this proposal?  If a new platform 
+   schema is being proposed, is it expected to inherit tests from another schema (e.g.
+   UNIX-based platform schemas typically inherit tests from the UNIX schema)? 
 
-linux-definitions-schema.xsd
-linux-system-characteristics-schema.xsd
-
+No, the NETCONF schema is not expected to inherit tests from another platform schema.
+   
 2) Does the proposal break backward compatibility with previous versions?  Please 
    see OVAL Versioning Policy [5] for more information.
 
-No.
-
+This proposal does not break backward compatibility with previous versions of OVAL.
+   
 2) How will the proposed changes impact OVAL content authors?
 
-It will provide a new feature for content authors to leverage when checking platforms
-that use the systemd init system.
-
-No impact for content targeted at sysvinit platforms.
+This will have a positive impact for OVAL content authors since they will be able to
+create new content for network devices that support NETCONF.
 
 3) How will the proposed changes impact OVAL content consumers?
 
-If the content consumer supports Linux, support for systemd tests should be added
-if the tool supports OVAL 5.11 or later.
+The new capabilities will have a positive impact for OVAL content consumers as they
+will be able to download content for network devices that support NETCONF.
 
 4) How will the proposed changes impact existing OVAL content?
 
-No impact.
-
-Content emulating these systemd tests using other OVAL features may be migrated
-to the new functionality.
+There should not be any impact to existing content.
 
 5) How will the proposed changes impact existing OVAL implementations?
 
-Existing OVAL implementations that want to upgrade to support 5.11 will have to
-implement the 2 tests proposed.
+The impact is that existing OVAL tools will need to implement the new capabilities in
+their tools if the proposal is accepted into the OVAL Language and they choose to
+support it.
 
 6) Are there any concerns regarding this proposal (e.g., undocumented APIs, etc.)? 
    If so, are there any mitigating factors?
+  
+Some concerns have been expressed that this schema requires the collection of data
+using a particular protocol or mechanism.  But this is not necessarily the case, particularly
+because the schema does not support NETCONF filtering.  A device's XML configuration
+data could be collected by a variety of different means, this test merely requires that data
+be formatted as a NETCONF/get-config response message.
 
-systemd has no stable C API to leverage. The best choice right now is to look at what
-systemctl does and write similar code. This code uses dbus to communicate with
-the systemd daemon.
-
-For offline scans where dbus and systemd are not available, the best choice seems
-to be "augeas" - http://augeas.net
 
 -------------------------------------------------------------------------------------
 Technical Review
@@ -166,58 +141,51 @@ Yes.
    to the OVAL Language page [3]?
 
 Yes.
-
+   
 3) Do the schema changes align with the targeted official release (e.g., changes that 
    break backward compatibility should not target a minor release)? Please see the 
    OVAL Versioning Policy [5] for more information.
 
 Yes.
-
+   
 4) Have the new capabilities been successfully implemented and tested with sample 
    content?
 
-Yes, these new capabilities have been successfully implemented and tested with sample
-content in OpenSCAP.
-
+Yes, in jOVAL (http://joval.org/features/juniper/ and http://joval.org/features/cisco-ios/).
+   
 -------------------------------------------------------------------------------------
 Resource Information
 -------------------------------------------------------------------------------------
 1) Provide URLs for relevant OVAL Sandbox Issues:
 
-https://github.com/OVALProject/Sandbox/tree/master/resources/x-linux-systemd
+https://github.com/OVALProject/Sandbox/issues/89
 
 2) Provide URLs for OVAL Sandbox schemas that exemplify the proposed changes:
 
-https://github.com/OVALProject/Sandbox/blob/master/x-linux-systemdunitproperty.xsd
-https://github.com/OVALProject/Sandbox/blob/master/x-linux-systemdunitdependency.xsd
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/x-netconf-definitions-schema.xsd
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/x-netconf-system-characteristics.xsd
 
 3) Provide URLs for the location of sample OVAL Definitions, OVAL System 
    Characteristics, and OVAL Results that exemplify the proposed changes:
 
-https://github.com/OVALProject/Sandbox/tree/master/resources/x-linux-systemd/content/x-linux-systemdunitdependency
-https://github.com/OVALProject/Sandbox/tree/master/resources/x-linux-systemd/content/x-linux-systemdunitproperty
-https://git.fedorahosted.org/cgit/openscap.git/tree/tests/probes/systemdunitdependency/test_probes_systemdunitdependency.xml
-https://git.fedorahosted.org/cgit/openscap.git/tree/tests/probes/systemdunitproperty/test_probes_systemdunitproperty.xml
-
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/resources/x-netconf-schema/Juniper_JUNOS-netconf-def_config_test.xml
+   
 4) Provide URLs for products or tools that implement the proposed changes:
 
-https://git.fedorahosted.org/cgit/openscap.git/tree/src/OVAL/probes/unix/linux/systemdshared.h
-https://git.fedorahosted.org/cgit/openscap.git/tree/src/OVAL/probes/unix/linux/systemdunitdependency.c
-https://git.fedorahosted.org/cgit/openscap.git/tree/src/OVAL/probes/unix/linux/systemdunitproperty.c
+http://joval.org/features/cisco-ios/
+http://joval.org/features/juniper/
 
 5) Provide URLs to any other resources that may be relevant to reviewing and verifying 
    the proposal:
 
-http://www.freedesktop.org/wiki/Software/systemd/
-http://www.freedesktop.org/wiki/Software/dbus/
-http://augeas.net
-
-Also, please see the draft component specification for these new tests in the sandbox.  It can be found at the 
-following link.
-
-https://github.com/OVALProject/Sandbox/blob/master/resources/x-linux-systemd/OVAL-5%2011-systemd-tests.docx?raw=true
-
-
+Developer Days Presentations
+http://oval.mitre.org/community/docs/security_automation_developer_days_2012_oval_slides.zip 
+   
+Developer Days Minutes
+http://makingsecuritymeasurable.mitre.org/participation/Security_Automation_Developer_Days_2012_Minutes.pdf
+  
+Developer Days Read-Ahead Material
+http://oval.mitre.org/community/docs/Security_Automation_Developer_Days_2012-OVAL_Read-Ahead_Material.pdf
 -------------------------------------------------------------------------------------
 References
 -------------------------------------------------------------------------------------
@@ -226,3 +194,21 @@ References
 [3] http://oval.mitre.org/language/about/change_requests.html
 [4] http://oval.mitre.org/adoption/usecasesguide.html
 [5] http://oval.mitre.org/language/about/versioning.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To unsubscribe, send an email message to LISTSERV@LISTS.MITRE.ORG with
+SIGNOFF OVAL-DEVELOPER-LIST
+in the BODY of the message.  If you have difficulties, write to OVAL-DEVELOPER-LIST-request@LISTS.MITRE.ORG.

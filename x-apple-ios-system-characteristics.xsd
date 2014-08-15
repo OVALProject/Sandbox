@@ -21,7 +21,7 @@
   <!-- == See public documentation at https://developer.apple.com/library/ios/featuredarticles/iPhoneConfigurationProfileRef/Introduction/Introduction.html -->
   <xsd:element name="global_restrictions_item" substitutionGroup="oval-sc:item">
     <xsd:annotation>
-      <xsd:documentation>Information on global restrictions in place on the device</xsd:documentation>
+      <xsd:documentation>Information on global restrictions in place on the device derived from Apple's public Configuration Profile reference documentation</xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
@@ -187,10 +187,14 @@
                 <xsd:documentation>Optional. When false, automatically rejects untrusted HTTPS certificates without prompting the user. Available in iOS 5.0 and later.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
+            <xsd:element name="allow_voice_dialing" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>Optional. When false, disables voice dialing.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
             <xsd:element name="allow_youtube" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Optional. When false, the YouTube application is disabled and its icon is removed from the Home screen.
-This key is ignored in iOS 6 and later because the YouTube app is not provided.</xsd:documentation>
+                <xsd:documentation>Optional. When false, the YouTube application is disabled and its icon is removed from the Home screen. This key is ignored in iOS 6 and later because the YouTube app is not provided.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="allow_itunes" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
@@ -203,6 +207,11 @@ This key is ignored in iOS 6 and later because the YouTube app is not provided.<
                 <xsd:documentation>Optional. If present, allows the identified apps to autonomously enter Single App Mode. Available only in iOS 7.0 and later.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
+            <xsd:element name="force_encrypted_backup" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>Optional. When true, encrypts all backups.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
             <xsd:element name="force_itunes_store_password_entry" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
                 <xsd:documentation>Optional. When true, forces user to enter their iTunes password for each transaction. Available in iOS 5.0 and later.</xsd:documentation>
@@ -211,6 +220,11 @@ This key is ignored in iOS 6 and later because the YouTube app is not provided.<
             <xsd:element name="force_limit_ad_tracking" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
                 <xsd:documentation>Optional. If true, limits ad tracking. Default is false. Available only in iOS 7.0 and later.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="safari_allow_auto_fill" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                <xsd:documentation>Optional. When false, Safari auto-fill is disabled. Defaults to true.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>
@@ -237,7 +251,7 @@ This key is ignored in iOS 6 and later because the YouTube app is not provided.<
             </xsd:element>
             <xsd:element name="force_pin" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Optional. Default NO. Determines whether the user is forced to set a PIN. Simply setting this value (and not others) forces the user to enter a passcode, without imposing a length or quality.</xsd:documentation>
+                <xsd:documentation>Optional. Default false. Determines whether the user is forced to set a PIN. Simply setting this value (and not others) forces the user to enter a passcode, without imposing a length or quality.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="max_failed_attempts" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
@@ -267,7 +281,7 @@ This key is ignored in iOS 6 and later because the YouTube app is not provided.<
             </xsd:element>
             <xsd:element name="require_alphanumeric" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Optional. Default NO. Specifies whether the user must enter alphabetic characters ("abcd"), or if numbers are sufficient.</xsd:documentation>
+                <xsd:documentation>Optional. Default false. Specifies whether the user must enter alphabetic characters ("abcd"), or if numbers are sufficient.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
             <xsd:element name="pin_history" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
@@ -277,8 +291,7 @@ This key is ignored in iOS 6 and later because the YouTube app is not provided.<
             </xsd:element>
             <xsd:element name="max_grace_period" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
               <xsd:annotation>
-                <xsd:documentation>Optional. The maximum grace period, in minutes, to unlock the phone without entering a passcode. Default is 0, that is no grace period, which requires a passcode immediately. In OS X, this will be translated to screensaver settings.
-</xsd:documentation>
+                <xsd:documentation>Optional. The maximum grace period, in minutes, to unlock the phone without entering a passcode. Default is 0, that is no grace period, which requires a passcode immediately. In OS X, this will be translated to screensaver settings.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>

@@ -1,0 +1,366 @@
+-------------------------------------------------------------------------------------
+OVAL Proposal Form for the userright_test
+-------------------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------------------
+Contact Information
+-------------------------------------------------------------------------------------
+1) Name: Jeff Cockerill
+	
+2) Email Address: jeffrey.c.cockerill@saic.com
+
+3) Phone Number (optional): 843-532-8488
+
+
+
+-------------------------------------------------------------------------------------
+Introduction to Proposal
+-------------------------------------------------------------------------------------
+1) What is the new capability?
+
+The proposed userright_test is an alternative way to collect user right/privilege information on Windows operating systems. The existing accesstoken_test collects user right/privilege information, but it does so in a way that is not scalable in certain situations (e.g., domain controllers).
+
+For example, to collect the users who have the privilege SE_BACKUP_NAME using the existing accesstoken_test, all security principals (users, groups, etc.) must be enumerated on the target system. For each security principal found, all user rights/privileges (not just SE_BACKUP_NAME) must be collected, even if the security principal does not have the user right/privilege. This is usually done by using the pattern match operation on the security_principle object entity with a value of “.*”. This can be an expensive operation, especially on domain controllers with many users. Also, the generated OVAL results can contain many accesstoken_items that can be unwieldy.
+
+
+
+2) Why is the new capability needed?
+
+The proposed userright_test will scale better than the existing accesstoken_test by collecting only the security principals that actually have the specified user right/privilege.
+
+
+
+3) What is the version of the targeted official OVAL release?
+
+The targeted OVAL release is version 5.11.
+
+
+
+4) Why not just revise the existing accesstoken_test (accesstoken11_test)?
+
+The accesstoken_test traditionally uses the LsaEnumerateAccountRights [7] function to perform item collection. The userright_test uses the LsaEnumerateAccountsWithUserRight [6] function. Since both functions behave differently, we deemed it necessary to create a different OVAL test to separate the function behaviors.
+
+
+
+-------------------------------------------------------------------------------------
+Benefits of Proposal
+-------------------------------------------------------------------------------------
+1) How does the proposal relate to existing OVAL use cases [4]?
+
+The userright_test would most directly affect the Configuration Management OVAL use case. By replacing the accesstoken_test with the proposed userright_test in existing Windows configuration benchmarks, scans with those benchmarks could potentially run faster and produce smaller result files.
+
+
+
+2) What does this proposal enable that cannot currently be accomplished in the OVAL Language?
+
+While the existing accesstoken_test test can be used to reach the same result as the proposed userright_test, the userright_test is more scalable in certain situations.
+
+
+
+3) What alternative approaches for supporting these use cases were considered and why is this one the best?
+
+SPAWAR has created experimental code within SCC that tests the userright_test concept. An option was added to SCC that changes the way accesstoken_items are collected. If this option is disabled, then the LsaEnumerateAccountRights [7] function is used for accesstoken_object collection (the default/traditional collection method for accesstoken_items). If this option is enabled, then the LsaEnumerateAccountsWithUserRight [6] function is used for accesstoken_object collection (the proposed method for collecting userright_items). Our internal testing showed that when this option was enabled, there was a significant speed improvement over the traditional collection method. Also the OVAL results were much more concise on domain controllers.
+
+
+
+-------------------------------------------------------------------------------------
+Impacts of Proposal
+-------------------------------------------------------------------------------------
+1) Which existing OVAL schemas are affected by this proposal? If a new platform schema is being proposed, is it expected to inherit tests from another schema (e.g. UNIX-based platform schemas typically inherit tests from the UNIX schema)?
+
+The following OVAL component schemas are affected:
+windows-definitions-schema.xsd
+windows-system-characteristics-schema.xsd
+
+
+
+2) Does the proposal break backward compatibility with previous versions?  Please see OVAL Versioning Policy [5] for more information.
+
+Since this is a new OVAL test, this should not break backward compatibility.
+
+
+
+3) How will the proposed changes impact OVAL content authors?
+
+The userright_test would give OVAL content authors a more efficient way to collect Windows user right information.
+
+
+
+4) How will the proposed changes impact OVAL content consumers?
+
+New and existing OVAL content consumers would need to be updated to handle the userright_test.
+
+
+
+5) How will the proposed changes impact existing OVAL content?
+
+Since this is a new OVAL test, this should not impact existing OVAL content. However, it is recommended that existing Windows configuration content be updated to use the userright_test instead of the accesstoken_test.
+
+
+
+6) How will the proposed changes impact existing OVAL implementations?
+
+Existing OVAL implementations would need to be updated to handle the userright_test.
+
+
+
+7) Are there any concerns regarding this proposal (e.g., undocumented APIs, etc.)? If so, are there any mitigating factors?
+
+No. The userright_test would use the well-documented LsaEnumerateAccountsWithUserRight [6] function.
+
+
+
+-------------------------------------------------------------------------------------
+Technical Review
+-------------------------------------------------------------------------------------
+1) Do the schema changes follow the accepted naming and design conventions?
+
+Yes.
+
+
+
+2) Do the schema changes satisfy the requirements specified in the Requesting Changes to the OVAL Language page [3]?
+
+Yes.
+
+
+
+3) Do the schema changes align with the targeted official release (e.g., changes that break backward compatibility should not target a minor release)? Please see the OVAL Versioning Policy [5] for more information.
+
+Yes.
+
+
+
+4) Have the new capabilities been successfully implemented and tested with sample content?
+
+SPAWAR has created experimental code within SCC that tests the userright_test concept. An option was added to SCC that changes the way accesstoken_items are collected. If this option is disabled, then the LsaEnumerateAccountRights [7] function is used for accesstoken_object collection (the default/traditional collection method for accesstoken_items). If this option is enabled, then the LsaEnumerateAccountsWithUserRight [6] function is used for accesstoken_object collection (the proposed method for collecting userright_items). Our internal testing showed that when this option was enabled, there was a significant speed improvement over the traditional collection method. Also the OVAL results were much more concise on domain controllers.
+
+
+
+5) What will the OVAL object look like?
+
+The following userright_object will collect all SIDs that have been given the SE_BACKUP_NAME privilege. A scanner could use the LsaEnumerateAccountsWithUserRight [7] function to collect the SIDs that have been granted the user right/privilege.
+<userright_object id="oval:test:obj:1" version="1">
+   <userright>SE_BACKUP_NAME</userright>
+</userright_object>
+
+The userright object entity holds a string that represents the name of a particular user right/privilege. The string value is restricted to the enumerated types defined in the User Rights section below. If the xsi:nil attribute is used, then all SIDs in the LSA database of the target system that have any user right/privilege assigned to them will be enumerated (to accomplish this, a scanner could pass NULL in the UserRights parameter for the LsaEnumerateAccountsWithUserRight function). There are no restrictions on operations for the userright entity.
+
+
+
+6) What will the OVAL state look like?
+
+The following userright_state will check that only Backup Operators or Administrators have a given privilege.
+<userright_state id="oval:test:ste:1" version="1">
+   <trustee_sid operation="pattern match" entity_check="all">^(S-1-5-32-551|S-1-5-32-544)$</trustee_sid>
+</userright_ state>
+
+The trustee_sid state entity holds a string that identifies the SID that has been granted the specified user right/privilege. The trustee_sid entity can be included multiple times in a system characteristic item in order to record that a user right/privilege has been granted to a number of users/groups. Note that the entity_check attribute associated with EntityStateStringType guides the evaluation of entities like trustee_sid that refer to items that can occur an unbounded number of times.
+
+
+
+7) What will the OVAL item look like?
+
+The following userright_item shows how SIDs with the SE_BACKUP_NAME privilege would be collected. Note that multiple trustee_sid entities can be collected in a single item.
+<userright_item status="exists" id="1">
+   <userright>SE_BACKUP_NAME</userright>
+   <trustee_sid>S-1-5-32-551</trustee_sid>
+   <trustee_sid>S-1-5-32-544</trustee_sid>
+</userright_ item >
+
+The above examples rely on the entity_check attribute of the trustee_sid state entity to come to a result. The userright item entity holds a string that represents the name of a particular user right/privilege. The string value is restricted to the enumerated types defined in the User Rights section below. The trustee_sid item entity holds a string that identifies the SID that has been granted the specified user right/privilege. Multiple trustee_sid item entities can exist within a single userright_item. The trustee_sid element can be included multiple times in a system characteristic item in order to record that a user right/privilege has been granted to a number of users/groups. Note that the entity_check attribute associated with EntityStateStringType guides the evaluation of entities like trustee_sid that refer to items that can occur an unbounded number of times.
+
+As an alternative to collecting all SIDs within a single userright_item, a userright_item could be created for each trustee_sid entity. This may be required if set/filter logic is needed. 
+
+
+
+-------------------------------------------------------------------------------------
+Resource Information
+-------------------------------------------------------------------------------------
+1) Provide URLs for relevant OVAL Sandbox Issues:
+
+No current issues.
+
+
+
+2) Provide URLs for OVAL Sandbox schemas that exemplify the proposed changes:
+
+The proposed userright_test schema:
+https://github.com/OVALProject/Sandbox/blob/master/x-windows-userright-test_5.11.xsd
+Note that at the time of this writing (20140723), the above file does not align with the changes in this document. The above file uses "security_principle" instead of "trustee_sid".
+
+
+
+3) Provide URLs for the location of sample OVAL Definitions, OVAL System Characteristics, and OVAL Results that exemplify the proposed changes:
+
+An example OVAL definitions file with the userright_test:
+https://github.com/OVALProject/Sandbox/blob/master/resources/x-windows-userright-test_5.11/userright_test-oval.xml
+Note that at the time of this writing (20140723), the above file does not align with the changes in this document. The above file uses "security_principle" instead of "trustee_sid".
+
+
+
+4) Provide URLs for products or tools that implement the proposed changes:
+
+None at this time.
+
+
+
+5) Provide URLs to any other resources that may be relevant to reviewing and verifying the proposal:
+
+http://msdn.microsoft.com/en-us/library/windows/desktop/ms721792(v=vs.85).aspx
+http://msdn.microsoft.com/en-us/library/windows/desktop/ms721790(v=vs.85).aspx
+
+
+
+-------------------------------------------------------------------------------------
+User Rights
+-------------------------------------------------------------------------------------
+SE_ASSIGNPRIMARYTOKEN_NAME
+This privilege is required to assign the primary token of a process.
+
+SE_AUDIT_NAME
+This privilege is required to generate audit-log entries.
+
+SE_BACKUP_NAME
+This privilege is required to perform backup operations.
+
+SE_CHANGE_NOTIFY_NAME
+This privilege is required to receive notifications of changes to files or directories.
+
+SE_CREATE_GLOBAL_NAME
+This privilege is required to create named file mapping objects in the global namespace during Terminal Services sessions.
+
+SE_CREATE_PAGEFILE_NAME
+This privilege is required to create a paging file.
+
+SE_CREATE_PERMANENT_NAME
+This privilege is required to create a permanent object.
+
+SE_CREATE_SYMBOLIC_LINK_NAME
+This privilege is required to create a symbolic link.
+
+SE_CREATE_TOKEN_NAME
+This privilege is required to create a primary token.
+
+SE_DEBUG_NAME
+This privilege is required to debug and adjust the memory of a process owned by another account.
+
+SE_ENABLE_DELEGATION_NAME
+This privilege is required to mark user and computer accounts as trusted for delegation.
+
+SE_IMPERSONATE_NAME
+This privilege is required to impersonate.
+
+SE_INC_BASE_PRIORITY_NAME
+This privilege is required to increase the base priority of a process.
+
+SE_INCREASE_QUOTA_NAME
+This privilege is required to increase the quota assigned to a process.
+
+SE_INC_WORKING_SET_NAME
+This privilege is required to allocate more memory for applications that run in the context of users.
+
+SE_LOAD_DRIVER_NAME
+This privilege is required to load or unload a device driver.
+
+SE_LOCK_MEMORY_NAME
+This privilege is required to lock physical pages in memory.
+
+SE_MACHINE_ACCOUNT_NAME
+This privilege is required to create a computer account.
+
+SE_MANAGE_VOLUME_NAME
+This privilege is required to enable volume management privileges.
+
+SE_PROF_SINGLE_PROCESS_NAME
+This privilege is required to gather profiling information for a single process.
+
+SE_RELABEL_NAME
+This privilege is required to modify the mandatory integrity level of an object.
+
+SE_REMOTE_SHUTDOWN_NAME
+This privilege is required to shut down a system using a network request.
+
+SE_RESTORE_NAME
+This privilege is required to perform restore operations.
+
+SE_SECURITY_NAME
+This privilege is required to perform a number of security-related functions, such as controlling and viewing audit messages.
+
+SE_SHUTDOWN_NAME
+This privilege is required to shut down a local system.
+
+SE_SYNC_AGENT_NAME
+This privilege is required for a domain controller to use the Lightweight Directory Access Protocol directory synchronization services.
+
+SE_SYSTEM_ENVIRONMENT_NAME
+This privilege is required to modify the nonvolatile RAM of systems that use this type of memory to store configuration information.
+
+SE_SYSTEM_PROFILE_NAME
+This privilege is required to gather profiling information for the entire system.
+
+SE_SYSTEMTIME_NAME
+This privilege is required to modify the system time.
+
+SE_TAKE_OWNERSHIP_NAME
+This privilege is required to take ownership of an object without being granted discretionary access.
+
+SE_TCB_NAME
+This privilege identifies its holder as part of the trusted computer base.
+
+SE_TIME_ZONE_NAME
+This privilege is required to adjust the time zone associated with the computer's internal clock.
+
+SE_TRUSTED_CREDMAN_ACCESS_NAME
+This privilege is required to access Credential Manager as a trusted caller.
+
+SE_UNDOCK_NAME
+This privilege is required to undock a laptop.
+
+SE_UNSOLICITED_INPUT_NAME
+This privilege is required to read unsolicited input from a terminal device.
+
+SE_BATCH_LOGON_NAME
+This account right is required for an account to log on using the batch logon type.
+
+SE_DENY_BATCH_LOGON_NAME
+This account right explicitly denies an account the right to log on using the batch logon type.
+
+SE_DENY_INTERACTIVE_LOGON_NAME
+This account right explicitly denies an account the right to log on using the interactive logon type.
+
+SE_DENY_NETWORK_LOGON_NAME
+This account right explicitly denies an account the right to log on using the network logon type.
+
+SE_DENY_REMOTE_INTERACTIVE_LOGON_NAME
+This account right explicitly denies an account the right to log on remotely using the interactive logon type.
+
+SE_DENY_SERVICE_LOGON_NAME
+This account right explicitly denies an account the right to log on using the service logon type.
+
+SE_INTERACTIVE_LOGON_NAME
+This account right is required for an account to log on using the interactive logon type.
+
+SE_NETWORK_LOGON_NAME
+This account right is required for an account to log on using the network logon type.
+
+SE_REMOTE_INTERACTIVE_LOGON_NAME
+This account right is required for an account to log on remotely using the interactive logon type.
+
+SE_SERVICE_LOGON_NAME
+This account right is required for an account to log on using the service logon type.
+
+
+
+-------------------------------------------------------------------------------------
+References
+-------------------------------------------------------------------------------------
+[1] http://oval.mitre.org/community/board/voting.html
+[2] http://oval.mitre.org/language/sandbox.html
+[3] http://oval.mitre.org/language/about/change_requests.html
+[4] http://oval.mitre.org/adoption/usecasesguide.html
+[5] http://oval.mitre.org/language/about/versioning.html
+[6] http://msdn.microsoft.com/en-us/library/windows/desktop/ms721792(v=vs.85).aspx
+[7] http://msdn.microsoft.com/en-us/library/windows/desktop/ms721790(v=vs.85).aspx
