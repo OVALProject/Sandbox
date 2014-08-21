@@ -169,7 +169,7 @@
     <xsd:element name="corestorage_object" substitutionGroup="oval-def:object">
         <xsd:annotation>
             <xsd:documentation>The corestorage_object element is used by an corestorage_test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
-            <xsd:documentation>An corestorage_object consists of a right_name entity that contains the name of the right to be read from the authorization dabatase.  The resulting plist data can be queried using the xpath entity.</xsd:documentation>
+            <xsd:documentation>An corestorage_object consists of a uuid entity that contains the UUID of the volume whose information should be read (i.e., 'diskutil cs info -plist [UUID]').  The resulting plist data can be queried using the xpath entity.</xsd:documentation>
             <xsd:appinfo>
                 <sch:pattern id="x-macos-def_macos_object_verify_filter_state">
                     <sch:rule context="x-macos-def:macos_object//oval-def:filter">
@@ -191,6 +191,11 @@
                         <xsd:choice>
                             <xsd:element ref="oval-def:set"/>
                             <xsd:sequence>
+                                <xsd:element name="uuid" type="oval-def:EntityObjectStringType">
+                                    <xsd:annotation>
+                                        <xsd:documentation>Specifies the UUID of the volume about which the plist information should be retrieved.</xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
                                 <xsd:element name="xpath" type="oval-def:EntityObjectStringType">
                                     <xsd:annotation>
                                         <xsd:documentation>Specifies an Xpath expression describing the text node(s) or attribute(s) to look at. Any valid Xpath 1.0 statement is usable with one exception, at most one field may be identified in the Xpath. This is because the value_of element in the data section is only designed to work against a single field. The only valid operator for xpath is equals since there is an infinite number of possible xpaths and determinining all those that do not equal a given xpath would be impossible.</xsd:documentation>
@@ -219,6 +224,11 @@
             <xsd:complexContent>
                 <xsd:extension base="oval-def:StateType">
                     <xsd:sequence>
+                        <xsd:element name="uuid" type="oval-def:EntityStateStringType">
+                            <xsd:annotation>
+                                <xsd:documentation>Specifies the UUID of the volume about which the plist information was retrieved.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
                         <xsd:element name="xpath" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
                                 <xsd:documentation>Specifies an Xpath expression describing the text node(s) or attribute(s) to look at.</xsd:documentation>
