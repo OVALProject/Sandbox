@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oval-res:oval_results xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:ind-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent" xmlns:sharepoint-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#sharepoint" xmlns:aix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#aix" xmlns:pixos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#pixos" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:esx-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#esx" xmlns:linux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux" xmlns:apache-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apache" xmlns:ios-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios" xmlns:catos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#catos" xmlns:macos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#macos" xmlns:unix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix" xmlns:hpux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#hpux" xmlns:freebsd-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#freebsd" xmlns:solaris-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris" xmlns:xmldsig="http://www.w3.org/2000/09/xmldsig#" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:freebsd-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#freebsd" xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:macos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xmlns:linux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:sharepoint-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint" xmlns:ios-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" xmlns:esx-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#esx" xmlns:apache-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#apache" xmlns:pixos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#pixos" xmlns:aix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#aix" xmlns:solaris-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris" xmlns:catos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#catos" xmlns:hpux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux" xmlns:oval-res="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:x-windows-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-windows" xmlns:x-macos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-macos" xmlns:junos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#junos" xmlns:droid-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" xmlns:netconf-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#netconf" xmlns:ns41="http://oval.mitre.org/XMLSchema/oval-system-characteristics#x-windows" xmlns:droid-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android" xmlns:junos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#junos" xmlns:netconf-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#netconf" xmlns:x-macos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-macos" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/oval-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-windows-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/hpux-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-windows-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/apache-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/oval-results-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-netconf-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/catos-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/esx-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/pixos-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/aix-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/xml/xmldsig-core-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/apache-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-macos-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-android-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/pixos-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/independent-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-junos-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/solaris-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/aix-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/independent-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/oval-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/linux-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-macos-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/sharepoint-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/windows-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/catos-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/macos-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/windows-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-android-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/sharepoint-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-netconf-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/esx-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scapx/schemas/x-junos-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/unix-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/ios-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/solaris-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/hpux-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/linux-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/freebsd-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/macos-definitions-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/freebsd-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/ios-system-characteristics-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/oval-common-schema.xsd jar:file:/Users/solind/macos-test/jOVAL-Agent.jar!/scap/schemas/oval-5.10.1/unix-system-characteristics-schema.xsd">
+    <oval-res:generator>
+        <oval:product_name>jOVAL Definition Interpreter</oval:product_name>
+        <oval:product_version>5.10.1.2c</oval:product_version>
+        <oval:schema_version>5.10.1</oval:schema_version>
+        <oval:timestamp>2014-08-15T16:24:58.813-05:00</oval:timestamp>
+    </oval-res:generator>
+    <oval-res:directives include_source_definitions="true">
+        <oval-res:definition_true content="full" reported="true"/>
+        <oval-res:definition_false content="full" reported="true"/>
+        <oval-res:definition_unknown content="full" reported="true"/>
+        <oval-res:definition_error content="full" reported="true"/>
+        <oval-res:definition_not_evaluated content="full" reported="true"/>
+        <oval-res:definition_not_applicable content="full" reported="true"/>
+    </oval-res:directives>
+    <oval-def:oval_definitions>
+        <oval-def:generator>
+            <oval:product_name>Testrepo</oval:product_name>
+            <oval:schema_version>5.10.1</oval:schema_version>
+            <oval:timestamp>2011-12-19T01:04:50</oval:timestamp>
+        </oval-def:generator>
+        <oval-def:definitions>
+            <oval-def:definition class="compliance" version="0" id="oval:org.joval.test:def:20002">
+                <oval-def:metadata>
+                    <oval-def:title>Sample definition</oval-def:title>
+                    <oval-def:affected family="macos">
+                        <oval-def:platform>Apple Mac OS X</oval-def:platform>
+                    </oval-def:affected>
+                    <oval-def:description>Check the implementation of macos:softwareupdate_test.</oval-def:description>
+                    <oval-def:oval_repository xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                        <dates>
+                            <submitted xmlns:ns48="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns="" date="2011-12-21T13:53:37">
+<ns48:contributor organization="jOVAL.org">jOVAL.org</ns48:contributor>
+                        </submitted>
+                    </dates>
+                        <status>INITIAL SUBMISSION</status>
+                </oval-def:oval_repository>
+                </metadata>
+                <criteria>
+                    <criterion comment="Check the launchd_test implementation." test_ref="oval:org.joval.test:tst:20002"/>
+                </criteria>
+            </definition>
+        </definitions>
+        <tests>
+            <x-macos-def:softwareupdate_test comment="Check that the softwareupdate_test is implemented." state_operator="ONE" check="all" check_existence="at_least_one_exists" version="0" id="oval:org.joval.test:tst:20002">
+                <x-macos-def:object object_ref="oval:org.joval.test:obj:20002"/>
+                <x-macos-def:state state_ref="oval:org.joval.test:ste:20002"/>
+                <x-macos-def:state state_ref="oval:org.joval.test:ste:20003"/>
+            </x-macos-def:softwareupdate_test>
+        </tests>
+        <objects>
+            <x-macos-def:softwareupdate_object comment="Softwareupdate singleton object." version="1" id="oval:org.joval.test:obj:20002"/>
+        </objects>
+        <states>
+            <x-macos-def:softwareupdate_state comment="Automatic software updates are on." version="1" id="oval:org.joval.test:ste:20002">
+                <x-macos-def:schedule datatype="boolean">1</x-macos-def:schedule>
+            </x-macos-def:softwareupdate_state>
+            <x-macos-def:softwareupdate_state comment="Automatic software updates are off." version="1" id="oval:org.joval.test:ste:20003">
+                <x-macos-def:schedule datatype="boolean">0</x-macos-def:schedule>
+            </x-macos-def:softwareupdate_state>
+        </states>
+    </oval_definitions>
+    <oval-res:results>
+        <oval-res:system>
+            <oval-res:definitions>
+                <oval-res:definition result="true" class="compliance" version="0" definition_id="oval:org.joval.test:def:20002">
+                    <oval-res:criteria result="true" negate="false" operator="AND">
+                        <oval-res:criterion result="true" negate="false" test_ref="oval:org.joval.test:tst:20002"/>
+                    </oval-res:criteria>
+                </oval-res:definition>
+            </oval-res:definitions>
+            <oval-res:tests>
+                <oval-res:test result="true" state_operator="ONE" check="all" check_existence="at_least_one_exists" test_id="oval:org.joval.test:tst:20002">
+                    <oval-res:tested_item result="true" item_id="0"/>
+                </oval-res:test>
+            </oval-res:tests>
+            <oval-sc:oval_system_characteristics>
+                <oval-sc:generator>
+                    <oval:product_name>jOVAL Definition Interpreter</oval:product_name>
+                    <oval:product_version>5.10.1.2c</oval:product_version>
+                    <oval:schema_version>5.10.1</oval:schema_version>
+                    <oval:timestamp>2014-08-15T16:24:32.811-05:00</oval:timestamp>
+                </oval-sc:generator>
+                <oval-sc:system_info>
+                    <oval-sc:os_name>Darwin</oval-sc:os_name>
+                    <oval-sc:os_version>10.2.0</oval-sc:os_version>
+                    <oval-sc:architecture>i386</oval-sc:architecture>
+                    <oval-sc:primary_host_name>vmacos</oval-sc:primary_host_name>
+                    <oval-sc:interfaces>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>lo0</oval-sc:interface_name>
+                            <oval-sc:ip_address>::1</oval-sc:ip_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>lo0</oval-sc:interface_name>
+                            <oval-sc:ip_address>fe80::1</oval-sc:ip_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>lo0</oval-sc:interface_name>
+                            <oval-sc:ip_address>127.0.0.1</oval-sc:ip_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>en0</oval-sc:interface_name>
+                            <oval-sc:ip_address>fe80::a00:27ff:fef8:7856</oval-sc:ip_address>
+                            <oval-sc:mac_address>08:00:27:f8:78:56</oval-sc:mac_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>en0</oval-sc:interface_name>
+                            <oval-sc:ip_address>192.168.0.52</oval-sc:ip_address>
+                            <oval-sc:mac_address>08:00:27:f8:78:56</oval-sc:mac_address>
+                        </oval-sc:interface>
+                    </oval-sc:interfaces>
+                </oval-sc:system_info>
+                <oval-sc:collected_objects>
+                    <oval-sc:object flag="complete" comment="Softwareupdate singleton object." version="1" id="oval:org.joval.test:obj:20002">
+                        <oval-sc:reference item_ref="0"/>
+                    </oval-sc:object>
+                </oval-sc:collected_objects>
+                <oval-sc:system_data>
+                    <x-macos-sc:softwareupdate_item id="0">
+                        <x-macos-sc:schedule datatype="boolean">0</x-macos-sc:schedule>
+                        <x-macos-sc:software_title>iLifeSupport902-9.0.4</x-macos-sc:software_title>
+                        <x-macos-sc:software_title>MacOSXUpdCombo10.6.8-10.6.8 v1.1</x-macos-sc:software_title>
+                        <x-macos-sc:software_title>iTunesX-10.6.3</x-macos-sc:software_title>
+                        <x-macos-sc:software_title>RemoteDesktopClient-3.5.4</x-macos-sc:software_title>
+                        <x-macos-sc:software_title>AirPortClientUpdate2009002-1.0</x-macos-sc:software_title>
+                        <x-macos-sc:software_title>AirPortUtility-5.6.1</x-macos-sc:software_title>
+                    </x-macos-sc:softwareupdate_item>
+                </oval-sc:system_data>
+            </oval-sc:oval_system_characteristics>
+        </oval-res:system>
+    </oval-res:results>
+</oval-res:oval_results>

@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oval-res:oval_results xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:ind-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent" xmlns:sharepoint-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#sharepoint" xmlns:aix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#aix" xmlns:pixos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#pixos" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:esx-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#esx" xmlns:linux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux" xmlns:apache-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apache" xmlns:ios-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios" xmlns:catos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#catos" xmlns:macos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#macos" xmlns:unix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix" xmlns:hpux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#hpux" xmlns:freebsd-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#freebsd" xmlns:solaris-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris" xmlns:xmldsig="http://www.w3.org/2000/09/xmldsig#" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:freebsd-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#freebsd" xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:macos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xmlns:linux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:sharepoint-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint" xmlns:ios-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" xmlns:esx-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#esx" xmlns:apache-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#apache" xmlns:pixos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#pixos" xmlns:aix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#aix" xmlns:solaris-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris" xmlns:catos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#catos" xmlns:hpux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux" xmlns:oval-res="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:x-unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-unix" xmlns:x-windows-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-windows" xmlns:x-macos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-macos" xmlns:junos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#junos" xmlns:droid-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" xmlns:netconf-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#netconf" xmlns:ns42="http://oval.mitre.org/XMLSchema/oval-system-characteristics#x-windows" xmlns:x-unix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-unix" xmlns:droid-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android" xmlns:junos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#junos" xmlns:netconf-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#netconf" xmlns:x-macos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-macos" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/oval-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-windows-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/hpux-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-windows-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/apache-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/oval-results-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-unix-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-netconf-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/catos-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/esx-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/pixos-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/aix-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/xml/xmldsig-core-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/apache-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-macos-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-android-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/pixos-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/independent-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-junos-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/solaris-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/aix-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/independent-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/oval-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/linux-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-unix-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-macos-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/sharepoint-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/windows-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/catos-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/macos-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/windows-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-android-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/sharepoint-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-netconf-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/esx-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-junos-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/unix-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/ios-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/solaris-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/hpux-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/linux-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/freebsd-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/macos-definitions-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/freebsd-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/ios-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/unix-system-characteristics-schema.xsd jar:file:/C:/Users/solind/Development/repositories/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/oval-common-schema.xsd">
+    <oval-res:generator>
+        <oval:product_name>jOVAL Definition Interpreter</oval:product_name>
+        <oval:product_version>5.10.1.2c</oval:product_version>
+        <oval:schema_version>5.10.1</oval:schema_version>
+        <oval:timestamp>2014-08-20T15:19:36.503-05:00</oval:timestamp>
+    </oval-res:generator>
+    <oval-res:directives include_source_definitions="true">
+        <oval-res:definition_true reported="true" content="full"/>
+        <oval-res:definition_false reported="true" content="full"/>
+        <oval-res:definition_unknown reported="true" content="full"/>
+        <oval-res:definition_error reported="true" content="full"/>
+        <oval-res:definition_not_evaluated reported="true" content="full"/>
+        <oval-res:definition_not_applicable reported="true" content="full"/>
+    </oval-res:directives>
+    <oval-def:oval_definitions>
+        <oval-def:generator>
+            <oval:product_name>Testrepo</oval:product_name>
+            <oval:schema_version>5.10.1</oval:schema_version>
+            <oval:timestamp>2011-12-19T01:04:50</oval:timestamp>
+        </oval-def:generator>
+        <oval-def:definitions>
+            <oval-def:definition id="oval:org.joval.test:def:20002" version="0" class="compliance">
+                <oval-def:metadata>
+                    <oval-def:title>Sample definition</oval-def:title>
+                    <oval-def:affected family="unix">
+                        <oval-def:platform>Unix</oval-def:platform>
+                    </oval-def:affected>
+                    <oval-def:description>Check the implementation of unix:symlink_test.</oval-def:description>
+                    <oval-def:oval_repository xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                        <dates>
+                            <submitted date="2011-12-21T13:53:37">
+<contributor organization="jOVAL.org">jOVAL.org</contributor>
+                        </submitted>
+                    </dates>
+                        <status>INITIAL SUBMISSION</status>
+                </oval-def:oval_repository>
+                </oval-def:metadata>
+                <oval-def:criteria operator="OR">
+                    <oval-def:criterion test_ref="oval:org.joval.test:tst:20001" comment="Check that there is no jave runtime in the PATH."/>
+                    <oval-def:criterion test_ref="oval:org.joval.test:tst:20002" comment="Check that the Java runtime in the PATH has a version number &gt;= 1.7."/>
+                </oval-def:criteria>
+            </oval-def:definition>
+            <oval-def:definition id="oval:org.joval.test:def:20003" version="0" class="compliance">
+                <oval-def:metadata>
+                    <oval-def:title>Sample definition</oval-def:title>
+                    <oval-def:affected family="unix">
+                        <oval-def:platform>Unix</oval-def:platform>
+                    </oval-def:affected>
+                    <oval-def:description>Check that there is no Java browser plugin, or that it's not version 1.6.</oval-def:description>
+                    <oval-def:oval_repository xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                        <dates>
+                            <submitted date="2011-12-21T13:53:37">
+<contributor organization="jOVAL.org">jOVAL.org</contributor>
+                        </submitted>
+                    </dates>
+                        <status>INITIAL SUBMISSION</status>
+                </oval-def:oval_repository>
+                </oval-def:metadata>
+                <oval-def:criteria operator="OR">
+                    <oval-def:criterion test_ref="oval:org.joval.test:tst:20009" comment="Check that there is no Java browser plugin."/>
+                    <oval-def:criterion test_ref="oval:org.joval.test:tst:20010" comment="Check that the browser plug-in does not point to Apple Java 1.6."/>
+                </oval-def:criteria>
+            </oval-def:definition>
+        </oval-def:definitions>
+        <oval-def:tests>
+            <unix-def:file_test id="oval:org.joval.test:tst:20001" version="0" check_existence="none_exist" check="all" comment="There is no browser Java plugin.">
+                <unix-def:object object_ref="oval:org.joval.test:obj:20000"/>
+            </unix-def:file_test>
+            <macos-def:plist_test id="oval:org.joval.test:tst:20002" version="0" check_existence="any_exist" check="all" comment="Check that any Java runtime in the PATH is greater than or equal to version 1.7.">
+                <macos-def:object object_ref="oval:org.joval.test:obj:20004"/>
+                <macos-def:state state_ref="oval:org.joval.test:ste:20004"/>
+            </macos-def:plist_test>
+            <unix-def:file_test id="oval:org.joval.test:tst:20009" version="0" check_existence="none_exist" check="all" comment="There is no browser Java plugin.">
+                <unix-def:object object_ref="oval:org.joval.test:obj:20009"/>
+            </unix-def:file_test>
+            <macos-def:plist_test id="oval:org.joval.test:tst:20010" version="0" check_existence="any_exist" check="none satisfy" comment="Check that the browser plug-in does not point to Apple Java 1.6.">
+                <macos-def:object object_ref="oval:org.joval.test:obj:20010"/>
+                <macos-def:state state_ref="oval:org.joval.test:ste:20010"/>
+            </macos-def:plist_test>
+        </oval-def:tests>
+        <oval-def:objects>
+            <ind-def:environmentvariable_object id="oval:org.mitre.oval.test:obj:422" version="1" comment="This environmentvariable_object represents the environment variable with a name equal to 'PATH'.">
+                <ind-def:name>PATH</ind-def:name>
+            </ind-def:environmentvariable_object>
+            <unix-def:file_object id="oval:org.joval.test:obj:20000" version="1" comment="Java in the path.">
+                <unix-def:filepath var_ref="oval:org.mitre.oval.test:var:731" var_check="at least one"></unix-def:filepath>
+            </unix-def:file_object>
+            <x-unix-def:symlink_object id="oval:org.joval.test:obj:20002" version="1" comment="Java executable instance in the PATH.">
+                <x-unix-def:filepath var_ref="oval:org.mitre.oval.test:var:732"></x-unix-def:filepath>
+            </x-unix-def:symlink_object>
+            <unix-def:file_object id="oval:org.joval.test:obj:20003" version="1" comment="The java runtime executable (canonical path).">
+                <unix-def:filepath var_ref="oval:org.mitre.oval.test:var:733" var_check="at least one"></unix-def:filepath>
+            </unix-def:file_object>
+            <macos-def:plist_object id="oval:org.joval.test:obj:20004" version="1" comment="The java runtime executable (canonical path).">
+                <macos-def:key>JVMPlatformVersion</macos-def:key>
+                <macos-def:filepath var_ref="oval:org.mitre.oval.test:var:734" var_check="at least one"></macos-def:filepath>
+            </macos-def:plist_object>
+            <unix-def:file_object id="oval:org.joval.test:obj:20009" version="1" comment="Canonical directory.">
+                <unix-def:behaviors max_depth="-1" recurse="symlinks and directories" recurse_direction="down"/>
+                <unix-def:path>/Library/Internet Plug-Ins/JavaAppletPlugin.plugin</unix-def:path>
+                <unix-def:filename>version.plist</unix-def:filename>
+            </unix-def:file_object>
+            <macos-def:plist_object id="oval:org.joval.test:obj:20010" version="1" comment="Java browser plugin version PLIST.">
+                <macos-def:key>ProjectName</macos-def:key>
+                <macos-def:filepath var_ref="oval:org.mitre.oval.test:var:750" var_check="at least one"></macos-def:filepath>
+            </macos-def:plist_object>
+        </oval-def:objects>
+        <oval-def:states>
+            <macos-def:plist_state id="oval:org.joval.test:ste:20004" version="1" comment="Verify the JDK is greater than or equal to 1.7.">
+                <macos-def:key>JVMPlatformVersion</macos-def:key>
+                <macos-def:value datatype="version" operation="greater than or equal">1.7</macos-def:value>
+            </macos-def:plist_state>
+            <macos-def:plist_state id="oval:org.joval.test:ste:20010" version="1" comment="Java browser plug-in destination should not point to Apple Java 1.6.">
+                <macos-def:value operation="case insensitive equals">JavaJDK16</macos-def:value>
+            </macos-def:plist_state>
+        </oval-def:states>
+        <oval-def:variables>
+            <oval-def:local_variable id="oval:org.mitre.oval.test:var:730" version="1" datatype="string" comment="This variable represents the value of every directory in the path.">
+                <oval-def:split delimiter=":">
+                    <oval-def:object_component object_ref="oval:org.mitre.oval.test:obj:422" item_field="value"/>
+                </oval-def:split>
+            </oval-def:local_variable>
+            <oval-def:local_variable id="oval:org.mitre.oval.test:var:731" version="1" datatype="string" comment="This variable represents the value of 'java' anywhere in the path.">
+                <oval-def:concat>
+                    <oval-def:variable_component var_ref="oval:org.mitre.oval.test:var:730"/>
+                    <oval-def:literal_component>/java</oval-def:literal_component>
+                </oval-def:concat>
+            </oval-def:local_variable>
+            <oval-def:local_variable id="oval:org.mitre.oval.test:var:732" version="1" datatype="string" comment="This variable represents the value of every existing instance of a file named 'java' in the PATH.">
+                <oval-def:object_component object_ref="oval:org.joval.test:obj:20000" item_field="filepath"/>
+            </oval-def:local_variable>
+            <oval-def:local_variable id="oval:org.mitre.oval.test:var:733" version="1" datatype="string" comment="Canonical path of a java executable in the PATH.">
+                <oval-def:object_component object_ref="oval:org.joval.test:obj:20002" item_field="canonical_path"/>
+            </oval-def:local_variable>
+            <oval-def:local_variable id="oval:org.mitre.oval.test:var:734" version="1" datatype="string" comment="Java JDK Info.plist.">
+                <oval-def:concat>
+                    <oval-def:object_component object_ref="oval:org.joval.test:obj:20003" item_field="path"/>
+                    <oval-def:literal_component>/../../CurrentJDK/Info.plist</oval-def:literal_component>
+                </oval-def:concat>
+            </oval-def:local_variable>
+            <oval-def:local_variable id="oval:org.mitre.oval.test:var:750" version="1" datatype="string" comment="The Java browser plugin's version.plist file path.">
+                <oval-def:object_component object_ref="oval:org.joval.test:obj:20009" item_field="filepath"/>
+            </oval-def:local_variable>
+        </oval-def:variables>
+    </oval-def:oval_definitions>
+    <oval-res:results>
+        <oval-res:system>
+            <oval-res:definitions>
+                <oval-res:definition definition_id="oval:org.joval.test:def:20002" version="0" class="compliance" result="false">
+                    <oval-res:criteria operator="OR" negate="false" result="false">
+                        <oval-res:criterion test_ref="oval:org.joval.test:tst:20001" negate="false" result="false"/>
+                        <oval-res:criterion test_ref="oval:org.joval.test:tst:20002" negate="false" result="false"/>
+                    </oval-res:criteria>
+                </oval-res:definition>
+                <oval-res:definition definition_id="oval:org.joval.test:def:20003" version="0" class="compliance" result="true">
+                    <oval-res:criteria operator="OR" negate="false" result="true">
+                        <oval-res:criterion test_ref="oval:org.joval.test:tst:20009" negate="false" result="false"/>
+                        <oval-res:criterion test_ref="oval:org.joval.test:tst:20010" negate="false" result="true"/>
+                    </oval-res:criteria>
+                </oval-res:definition>
+            </oval-res:definitions>
+            <oval-res:tests>
+                <oval-res:test test_id="oval:org.joval.test:tst:20009" check_existence="none_exist" check="all" state_operator="AND" result="false">
+                    <oval-res:tested_item item_id="3" result="not evaluated"/>
+                </oval-res:test>
+                <oval-res:test test_id="oval:org.joval.test:tst:20010" check_existence="any_exist" check="none satisfy" state_operator="AND" result="true">
+                    <oval-res:tested_item item_id="5" result="false"/>
+                </oval-res:test>
+                <oval-res:test test_id="oval:org.joval.test:tst:20001" check_existence="none_exist" check="all" state_operator="AND" result="false">
+                    <oval-res:tested_item item_id="1" result="not evaluated"/>
+                </oval-res:test>
+                <oval-res:test test_id="oval:org.joval.test:tst:20002" check_existence="any_exist" check="all" state_operator="AND" result="false">
+                    <oval-res:tested_item item_id="6" result="false"/>
+                </oval-res:test>
+            </oval-res:tests>
+            <oval-sc:oval_system_characteristics>
+                <oval-sc:generator>
+                    <oval:product_name>jOVAL Definition Interpreter</oval:product_name>
+                    <oval:product_version>5.10.1.2c</oval:product_version>
+                    <oval:schema_version>5.10.1</oval:schema_version>
+                    <oval:timestamp>2014-08-20T15:19:14.554-05:00</oval:timestamp>
+                </oval-sc:generator>
+                <oval-sc:system_info>
+                    <oval-sc:os_name>Darwin</oval-sc:os_name>
+                    <oval-sc:os_version>13.3.0</oval-sc:os_version>
+                    <oval-sc:architecture>i386</oval-sc:architecture>
+                    <oval-sc:primary_host_name>Karyns-MacBook-Air.local</oval-sc:primary_host_name>
+                    <oval-sc:interfaces>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>lo0</oval-sc:interface_name>
+                            <oval-sc:ip_address>::1</oval-sc:ip_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>lo0</oval-sc:interface_name>
+                            <oval-sc:ip_address>127.0.0.1</oval-sc:ip_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>lo0</oval-sc:interface_name>
+                            <oval-sc:ip_address>fe80::1</oval-sc:ip_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>en0</oval-sc:interface_name>
+                            <oval-sc:ip_address>fe80::288:65ff:fe3d:f86c</oval-sc:ip_address>
+                            <oval-sc:mac_address>00:88:65:3d:f8:6c</oval-sc:mac_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>en0</oval-sc:interface_name>
+                            <oval-sc:ip_address>192.168.8.6</oval-sc:ip_address>
+                            <oval-sc:mac_address>00:88:65:3d:f8:6c</oval-sc:mac_address>
+                        </oval-sc:interface>
+                    </oval-sc:interfaces>
+                </oval-sc:system_info>
+                <oval-sc:collected_objects>
+                    <oval-sc:object id="oval:org.mitre.oval.test:obj:422" version="1" comment="This environmentvariable_object represents the environment variable with a name equal to 'PATH'." flag="complete">
+                        <oval-sc:reference item_ref="0"/>
+                    </oval-sc:object>
+                    <oval-sc:object id="oval:org.joval.test:obj:20010" version="1" comment="Java browser plugin version PLIST." flag="complete">
+                        <oval-sc:variable_value variable_id="oval:org.mitre.oval.test:var:750">/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/version.plist</oval-sc:variable_value>
+                        <oval-sc:reference item_ref="5"/>
+                    </oval-sc:object>
+                    <oval-sc:object id="oval:org.joval.test:obj:20009" version="1" comment="Canonical directory." flag="complete">
+                        <oval-sc:reference item_ref="3"/>
+                    </oval-sc:object>
+                    <oval-sc:object id="oval:org.joval.test:obj:20000" version="1" comment="Java in the path." flag="complete">
+                        <oval-sc:variable_value variable_id="oval:org.mitre.oval.test:var:731">/bin/java</oval-sc:variable_value>
+                        <oval-sc:variable_value variable_id="oval:org.mitre.oval.test:var:731">/sbin/java</oval-sc:variable_value>
+                        <oval-sc:variable_value variable_id="oval:org.mitre.oval.test:var:731">/usr/sbin/java</oval-sc:variable_value>
+                        <oval-sc:variable_value variable_id="oval:org.mitre.oval.test:var:731">/usr/bin/java</oval-sc:variable_value>
+                        <oval-sc:variable_value variable_id="oval:org.mitre.oval.test:var:730">/usr/sbin</oval-sc:variable_value>
+                        <oval-sc:variable_value variable_id="oval:org.mitre.oval.test:var:730">/bin</oval-sc:variable_value>
+                        <oval-sc:variable_value variable_id="oval:org.mitre.oval.test:var:730">/sbin</oval-sc:variable_value>
+                        <oval-sc:variable_value variable_id="oval:org.mitre.oval.test:var:730">/usr/bin</oval-sc:variable_value>
+                        <oval-sc:reference item_ref="1"/>
+                    </oval-sc:object>
+                    <oval-sc:object id="oval:org.joval.test:obj:20003" version="1" comment="The java runtime executable (canonical path)." flag="complete">
+                        <oval-sc:variable_value variable_id="oval:org.mitre.oval.test:var:733">/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java</oval-sc:variable_value>
+                        <oval-sc:reference item_ref="4"/>
+                    </oval-sc:object>
+                    <oval-sc:object id="oval:org.joval.test:obj:20004" version="1" comment="The java runtime executable (canonical path)." flag="complete">
+                        <oval-sc:variable_value variable_id="oval:org.mitre.oval.test:var:734">/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/../../CurrentJDK/Info.plist</oval-sc:variable_value>
+                        <oval-sc:reference item_ref="6"/>
+                    </oval-sc:object>
+                    <oval-sc:object id="oval:org.joval.test:obj:20002" version="1" comment="Java executable instance in the PATH." flag="complete">
+                        <oval-sc:variable_value variable_id="oval:org.mitre.oval.test:var:732">/usr/bin/java</oval-sc:variable_value>
+                        <oval-sc:reference item_ref="2"/>
+                    </oval-sc:object>
+                </oval-sc:collected_objects>
+                <oval-sc:system_data>
+                    <ind-sc:environmentvariable_item id="0">
+                        <ind-sc:name>PATH</ind-sc:name>
+                        <ind-sc:value>/usr/bin:/bin:/usr/sbin:/sbin</ind-sc:value>
+                    </ind-sc:environmentvariable_item>
+                    <unix-sc:file_item id="1">
+                        <unix-sc:filepath>/usr/bin/java</unix-sc:filepath>
+                        <unix-sc:path>/usr/bin</unix-sc:path>
+                        <unix-sc:filename>java</unix-sc:filename>
+                        <unix-sc:type>symbolic link</unix-sc:type>
+                        <unix-sc:group_id datatype="int">0</unix-sc:group_id>
+                        <unix-sc:user_id datatype="int">0</unix-sc:user_id>
+                        <unix-sc:a_time datatype="int">1389018654</unix-sc:a_time>
+                        <unix-sc:c_time datatype="int">1389018654</unix-sc:c_time>
+                        <unix-sc:m_time datatype="int">1389018654</unix-sc:m_time>
+                        <unix-sc:size datatype="int">74</unix-sc:size>
+                        <unix-sc:suid datatype="boolean">0</unix-sc:suid>
+                        <unix-sc:sgid datatype="boolean">0</unix-sc:sgid>
+                        <unix-sc:sticky datatype="boolean">0</unix-sc:sticky>
+                        <unix-sc:uread datatype="boolean">1</unix-sc:uread>
+                        <unix-sc:uwrite datatype="boolean">1</unix-sc:uwrite>
+                        <unix-sc:uexec datatype="boolean">1</unix-sc:uexec>
+                        <unix-sc:gread datatype="boolean">1</unix-sc:gread>
+                        <unix-sc:gwrite datatype="boolean">0</unix-sc:gwrite>
+                        <unix-sc:gexec datatype="boolean">1</unix-sc:gexec>
+                        <unix-sc:oread datatype="boolean">1</unix-sc:oread>
+                        <unix-sc:owrite datatype="boolean">0</unix-sc:owrite>
+                        <unix-sc:oexec datatype="boolean">1</unix-sc:oexec>
+                        <unix-sc:has_extended_acl datatype="boolean">1</unix-sc:has_extended_acl>
+                    </unix-sc:file_item>
+                    <x-unix-sc:symlink_item id="2">
+                        <x-unix-sc:filepath>/usr/bin/java</x-unix-sc:filepath>
+                        <x-unix-sc:canonical_path>/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java</x-unix-sc:canonical_path>
+                    </x-unix-sc:symlink_item>
+                    <unix-sc:file_item id="3">
+                        <unix-sc:filepath>/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/version.plist</unix-sc:filepath>
+                        <unix-sc:path>/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents</unix-sc:path>
+                        <unix-sc:filename>version.plist</unix-sc:filename>
+                        <unix-sc:type>regular</unix-sc:type>
+                        <unix-sc:group_id datatype="int">0</unix-sc:group_id>
+                        <unix-sc:user_id datatype="int">0</unix-sc:user_id>
+                        <unix-sc:a_time datatype="int">1381276114</unix-sc:a_time>
+                        <unix-sc:c_time datatype="int">1389018654</unix-sc:c_time>
+                        <unix-sc:m_time datatype="int">1389018654</unix-sc:m_time>
+                        <unix-sc:size datatype="int">471</unix-sc:size>
+                        <unix-sc:suid datatype="boolean">0</unix-sc:suid>
+                        <unix-sc:sgid datatype="boolean">0</unix-sc:sgid>
+                        <unix-sc:sticky datatype="boolean">0</unix-sc:sticky>
+                        <unix-sc:uread datatype="boolean">1</unix-sc:uread>
+                        <unix-sc:uwrite datatype="boolean">1</unix-sc:uwrite>
+                        <unix-sc:uexec datatype="boolean">0</unix-sc:uexec>
+                        <unix-sc:gread datatype="boolean">1</unix-sc:gread>
+                        <unix-sc:gwrite datatype="boolean">0</unix-sc:gwrite>
+                        <unix-sc:gexec datatype="boolean">0</unix-sc:gexec>
+                        <unix-sc:oread datatype="boolean">1</unix-sc:oread>
+                        <unix-sc:owrite datatype="boolean">0</unix-sc:owrite>
+                        <unix-sc:oexec datatype="boolean">0</unix-sc:oexec>
+                        <unix-sc:has_extended_acl datatype="boolean">1</unix-sc:has_extended_acl>
+                    </unix-sc:file_item>
+                    <unix-sc:file_item id="4">
+                        <unix-sc:filepath>/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java</unix-sc:filepath>
+                        <unix-sc:path>/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands</unix-sc:path>
+                        <unix-sc:filename>java</unix-sc:filename>
+                        <unix-sc:type>regular</unix-sc:type>
+                        <unix-sc:group_id datatype="int">0</unix-sc:group_id>
+                        <unix-sc:user_id datatype="int">0</unix-sc:user_id>
+                        <unix-sc:a_time datatype="int">1408565644</unix-sc:a_time>
+                        <unix-sc:c_time datatype="int">1389018654</unix-sc:c_time>
+                        <unix-sc:m_time datatype="int">1389018654</unix-sc:m_time>
+                        <unix-sc:size datatype="int">54624</unix-sc:size>
+                        <unix-sc:suid datatype="boolean">0</unix-sc:suid>
+                        <unix-sc:sgid datatype="boolean">0</unix-sc:sgid>
+                        <unix-sc:sticky datatype="boolean">0</unix-sc:sticky>
+                        <unix-sc:uread datatype="boolean">1</unix-sc:uread>
+                        <unix-sc:uwrite datatype="boolean">1</unix-sc:uwrite>
+                        <unix-sc:uexec datatype="boolean">1</unix-sc:uexec>
+                        <unix-sc:gread datatype="boolean">1</unix-sc:gread>
+                        <unix-sc:gwrite datatype="boolean">0</unix-sc:gwrite>
+                        <unix-sc:gexec datatype="boolean">1</unix-sc:gexec>
+                        <unix-sc:oread datatype="boolean">1</unix-sc:oread>
+                        <unix-sc:owrite datatype="boolean">0</unix-sc:owrite>
+                        <unix-sc:oexec datatype="boolean">1</unix-sc:oexec>
+                        <unix-sc:has_extended_acl datatype="boolean">1</unix-sc:has_extended_acl>
+                    </unix-sc:file_item>
+                    <macos-sc:plist_item id="5">
+                        <macos-sc:key datatype="string">ProjectName</macos-sc:key>
+                        <macos-sc:filepath>/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/version.plist</macos-sc:filepath>
+                        <macos-sc:instance datatype="int">1</macos-sc:instance>
+                        <macos-sc:type>CFString</macos-sc:type>
+                        <macos-sc:value datatype="string">JavaInstallOnDemand</macos-sc:value>
+                    </macos-sc:plist_item>
+                    <macos-sc:plist_item id="6">
+                        <macos-sc:key datatype="string">JVMPlatformVersion</macos-sc:key>
+                        <macos-sc:filepath>/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/../../CurrentJDK/Info.plist</macos-sc:filepath>
+                        <macos-sc:instance datatype="int">1</macos-sc:instance>
+                        <macos-sc:type>CFString</macos-sc:type>
+                        <macos-sc:value datatype="string">1.6</macos-sc:value>
+                    </macos-sc:plist_item>
+                </oval-sc:system_data>
+            </oval-sc:oval_system_characteristics>
+        </oval-res:system>
+    </oval-res:results>
+</oval-res:oval_results>
