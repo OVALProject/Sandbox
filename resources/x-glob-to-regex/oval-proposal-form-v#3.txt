@@ -1,0 +1,278 @@
+-------------------------------------------------------------------------------------
+OVAL Proposal Form
+-------------------------------------------------------------------------------------
+The OVAL Proposal Form is used by members of the community to prepare proposals for 
+migration into an official release of OVAL. The form will be critical in helping the 
+members of the community understand, review, and vet proposals.
+
+Once an OVAL Proposal Form is submitted to the oval-developer-list, the OVAL 
+Moderator will review and verify the proposal for completeness at which point it will 
+be ready for community review and discussion. 
+
+When a new proposal is introduced to the community, the OVAL Moderator will work with 
+the OVAL Board to determine the impact of the proposal. If the proposal is deemed a 
+high impact change, it must be developed in the OVAL Sandbox which will require the 
+completion of this form as well as an OVAL Board vote before it is migrated into an 
+official release. More information about the OVAL Board Voting Process can be found 
+at [1]. If the proposal is deemed a low impact change, the proposed change can be 
+made directly to an official OVAL release.
+
+Please direct any questions or concerns to MITRE at oval@mitre.org.
+
+-------------------------------------------------------------------------------------
+Steps to Take
+-------------------------------------------------------------------------------------
+1) Review the OVAL Language Sandbox page [2] and the Requesting Changes to the OVAL 
+   Language page [3].
+
+2) Complete the form provided below.
+
+3) Email the completed form to the oval-developer-list at 
+   oval-developer-list@lists.mitre.org with a subject of 
+   "FOR REVIEW: <Proposal Name> Proposal Form".
+
+4) Revise the proposal, as needed, based on community discussion and feedback.
+
+-------------------------------------------------------------------------------------
+Contact Information
+-------------------------------------------------------------------------------------
+1) Name:
+    Jan Lieskovsky
+	
+2) Email Address:
+    jlieskov@redhat.com
+
+3) Phone Number (optional):
+ 
+-------------------------------------------------------------------------------------
+Introduction to Proposal
+-------------------------------------------------------------------------------------
+1) What is the new capability?
+
+glob_to_regex() OVAL function.
+
+2) Why is the new capability needed?
+
+The configuration file format of many Linux [*] based services allows system
+administrators to specify additional (for that service specific) internal
+configuration files to be listed in the (configuration) file. During the
+process of scanning such configuration file the service daemon in question
+recursively traverses these included sub-configuration files to obtain the
+final form of the requested configuration.
+
+To mention some examples (more of them could be found):
+* include file_or_directory logrotate's option:
+    http://linuxcommand.org/man_pages/logrotate8.html
+
+* include conf.d/*.conf dovecot's capability:
+    http://wiki2.dovecot.org/BasicConfiguration
+
+* Include conf.d/*.conf httpd's possibility:
+    http://httpd.apache.org/docs/2.2/mod/core.html#include
+
+* $IncludeConfig /etc/rsyslog.d/*.conf rsyslog's directive:
+    http://www.rsyslog.com/doc/rsconf1_includeconfig.html
+
+The requirement to write OVAL check to also scan these (potentially included)
+configuration files assumes it is possible to obtain (store it into OVAL
+variable) the latter path/glob subexpression present after these directives,
+then subsequently apply the criteria for main configuration file also for these
+sub-configuration files.
+
+While currently the former part (obtain the path/glob subexpression into OVAL
+variable) is possible to perform, the latter (apply the same criteria for
+recursive files specified by previously extracted glob) is not - since it
+assumes (native OVAL language) presence of a mean how to convert shell glob
+expression into its corresponding OVAL language regular expression.
+
+We therefore propose introduction of new OVAL function glob_to_regex(),
+which would translate particular shell path/glob pattern to its
+counterpart Perl 5's regular expression pattern (e.g. string 'conf.d/*.conf'
+would be translated into '^conf\.d\/.*\.conf$').
+
+See e.g. 6.9 Matching Shell Globs as Regular Expressions (section 6.9.2 of
+it) from:
+    http://docstore.mik.ua/orelly/perl4/cook/ch06_10.htm
+
+for a reference implementation.
+
+[*] The above reasoning / description for this new capability is solely
+    restricted to speak about the case of its use on the Linux operating
+    system (since that's the case the author of this proposal has the most
+    experience with). But the concept of the necessity to translate / convert
+    shell glob patterns to corresponding Perl 5's OVAL regular expression
+    patterns isn't Linux operating system specific. See links in section 4)
+    (part "Provide URLs for products or tools that implement the proposed changes:")
+    of the "Resource Information" chapter to see how glob patterns concept
+    is supported in the Microsoft Windows and / or Mac OS X operating systems.
+
+3) What is the version of the targeted official OVAL release?
+
+5.11
+
+-------------------------------------------------------------------------------------
+Benefits of Proposal
+-------------------------------------------------------------------------------------
+1) How does the proposal relate to existing OVAL use cases [4]?
+
+This new function provides ability to recursively process text files (conf,
+log ones etc.) of particular service (see above examples for services that might
+need to make use of this).
+
+2) What does this proposal enable that cannot currently be accomplished in the OVAL 
+   Language?
+
+Recursive processing of text files (e.g. configuration or log ones) by
+specifying file paths in the form of a glob expression (previously extracted
+from OVAL variable or any other way).
+
+3) What alternative approaches for supporting these use cases were considered and 
+   why is this one the best?
+
+To our knowledge there currently does not exist a way how to "emulate" this
+behaviour via nowadays (in OVAL language already implemented) concepts.
+Hopefully it would be possible first to escape the whole glob expression
+via the existing escape_regex() function. Later use the regex_capture()
+function to retrieve its subparts (that would be equivalent with case
+glob to pattern translation would be performed), and finally concatenate
+these retrieved subpatterns with custom substrings (those where escape_regex()
+routine would escape "too much") to achieve the goal to have escaped glob
+pattern.
+
+The problems with the aforementioned approach being though:
+* each use case (logrotate one, dovecot, httpd, rsyslog) would need to have
+its own implementation,
+* that implementation might not be universal / common enough (e.g. suppose
+cases like 'conf.d/*.conf', 'conf.d/*.config', 'conf.d/*.cfg' -- each case
+would need to have its own local glob to pattern implementation due to
+different files' suffix being present in the original glob pattern),
+* high time / resources complexity of such an implementation.
+
+Having one universal glob_to_regex() function, that would escape the provided
+glob argument each time identically according to the commonly known principles
+for escaping of glob pattern's '*', '?', '[', ']' characters would overcome
+these drawbacks.
+ 
+-------------------------------------------------------------------------------------
+Impacts of Proposal
+-------------------------------------------------------------------------------------
+1) Which existing OVAL schemas are affected by this proposal?
+
+oval-definitions-schema.xsd
+
+2) Does the proposal break backward compatibility with previous versions?  Please
+   see OVAL Versioning Policy [5] for more information.
+
+No.
+
+2) How will the proposed changes impact OVAL content authors?
+
+It will provide new functionality - ability in a recursive way to process text
+(conf, log, etc.) files.
+
+3) How will the proposed changes impact OVAL content consumers?
+
+Support for the new glob_to_regex() function should be added / implemented
+if the tool supports OVAL 5.11.
+
+4) How will the proposed changes impact existing OVAL content?
+
+No impact.
+
+5) How will the proposed changes impact existing OVAL implementations?
+
+Existing OVAL implementations that want to upgrade to OVAL 5.11 will have to
+implement the aforementioned function.
+
+6) Are there any concerns regarding this proposal (e.g., undocumented APIs, etc.)? 
+   If so, are there any mitigating factors?
+
+Open Group Base Specifications Issue 6 IEEE Std 1003.1, 2004:
+  http://pubs.opengroup.org/onlinepubs/007904875/utilities/xcu_chap02.html#tag_02_13_01
+
+specifies the form of (allowed) patterns used for matching a single character,
+matching multiple characters, and patterns used for filename expansion.
+
+Documentation for expected behaviour of these glob patterns for Microsoft Windows
+and Mac OS X systems:
+* Microsoft Windows:
+  http://msdn.microsoft.com/en-us/library/aa717088%28v=vs.85%29.aspx
+
+* Mac OS X:
+  https://developer.apple.com/library/ios/documentation/System/Conceptual/ManPages_iPhoneOS/man3/glob.3.html
+  http://www.opensource.apple.com/source/Libc/Libc-997.90.3/gen/FreeBSD/glob.c
+
+There are couple of border / corner case / error conditions that specify the
+expected function behaviour in such cases. Please have a look at section
+"Boundary and error conditions (if applicable)" of the attached
+"oval-function-proposal-form.txt" file for further details.
+
+-------------------------------------------------------------------------------------
+Technical Review
+-------------------------------------------------------------------------------------
+1) Do the schema changes follow the accepted naming and design conventions?
+
+Yes.
+
+2) Do the schema changes satisfy the requirements specified in the Requesting Changes 
+   to the OVAL Language page [3]?
+
+Yes.
+
+3) Do the schema changes align with the targeted official release (e.g., changes that 
+   break backward compatibility should not target a minor release)? Please see the 
+   OVAL Versioning Policy [5] for more information.
+
+Yes.
+
+4) Have the new capabilities been successfully implemented and tested with sample 
+   content?
+
+No (not yet wrt to our current knowledge).
+
+-------------------------------------------------------------------------------------
+Resource Information
+-------------------------------------------------------------------------------------
+1) Provide URLs for relevant OVAL Sandbox Issues:
+
+   None OVAL Sandbox issues associated to this proposal currently (AFAICT).
+
+2) Provide URLs for OVAL Sandbox schemas that exemplify the proposed changes:
+
+   See the attached 0001-Add-initial-glob_to_regex-new-OVAL-function-specific.patch file.
+
+3) Provide URLs for the location of sample OVAL Definitions, OVAL System
+   Characteristics, and OVAL Results that exemplify the proposed changes:
+
+   Will provide them shortly in the form of an OVAL Sandbox patch (as soon
+   as I get familiar with the expected output format of such examples).
+
+4) Provide URLs for products or tools that implement the proposed changes:
+
+http://en.wikipedia.org/wiki/Glob_%28programming%29
+http://mywiki.wooledge.org/glob
+http://man7.org/linux/man-pages/man7/glob.7.html
+http://tiswww.case.edu/php/chet/bash/bashref.html#SEC38
+http://man7.org/linux/man-pages/man7/glob.7.html
+http://msdn.microsoft.com/en-us/library/aa717088%28v=vs.85%29.aspx
+http://unix-jun72.googlecode.com/svn/trunk/src/cmd/glob.c
+http://www.gnu.org/software/bash/manual/html_node/Pattern-Matching.html#Pattern-Matching
+https://github.com/cloudfoundry/gofileutils/blob/master/glob/glob.go
+https://developer.apple.com/library/ios/documentation/System/Conceptual/ManPages_iPhoneOS/man3/glob.3.html
+http://www.opensource.apple.com/source/Libc/Libc-997.90.3/gen/FreeBSD/glob.c
+
+5) Provide URLs to any other resources that may be relevant to reviewing and verifying 
+   the proposal:
+
+Referential / reference implementation in the Perl language:
+
+http://docstore.mik.ua/orelly/perl4/cook/ch06_10.htm
+
+-------------------------------------------------------------------------------------
+References
+-------------------------------------------------------------------------------------
+[1] http://oval.mitre.org/community/board/voting.html
+[2] http://oval.mitre.org/language/sandbox.html
+[3] http://oval.mitre.org/language/about/change_requests.html
+[4] http://oval.mitre.org/adoption/usecasesguide.html
+[5] http://oval.mitre.org/language/about/versioning.html
