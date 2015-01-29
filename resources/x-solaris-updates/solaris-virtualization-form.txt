@@ -1,0 +1,193 @@
+-------------------------------------------------------------------------------------
+OVAL Proposal Form
+-------------------------------------------------------------------------------------
+The OVAL Proposal Form is used by members of the community to prepare proposals for 
+migration into an official release of OVAL. The form will be critical in helping the 
+members of the community understand, review, and vet proposals.
+
+Once an OVAL Proposal Form is submitted to the oval-developer-list, the OVAL 
+Moderator will review and verify the proposal for completeness at which point it will 
+be ready for community review and discussion. 
+
+When a new proposal is introduced to the community, the OVAL Moderator will work with 
+the OVAL Board to determine the impact of the proposal. If the proposal is deemed a 
+high impact change, it must be developed in the OVAL Sandbox which will require the 
+completion of this form as well as an OVAL Board vote before it is migrated into an 
+official release. More information about the OVAL Board Voting Process can be found 
+at [1]. If the proposal is deemed a low impact change, the proposed change can be 
+made directly to an official OVAL release.
+
+Please direct any questions or concerns to MITRE at oval@mitre.org.
+
+-------------------------------------------------------------------------------------
+Steps to Take
+-------------------------------------------------------------------------------------
+1) Review the OVAL Language Sandbox page [2] and the Requesting Changes to the OVAL 
+   Language page [3].
+
+2) Complete the form provided below.
+
+3) Email the completed form to the oval-developer-list at 
+   oval-developer-list@lists.mitre.org with a subject of 
+   "FOR REVIEW: <Proposal Name> Proposal Form".
+
+4) Revise the proposal, as needed, based on community discussion and feedback.
+
+-------------------------------------------------------------------------------------
+Contact Information
+-------------------------------------------------------------------------------------
+1) Name:  Darren J Moffat
+	
+2) Email Address: Darren.Moffat@Oracle.COM
+
+3) Phone Number (optional):
+ 
+-------------------------------------------------------------------------------------
+Introduction to Proposal
+-------------------------------------------------------------------------------------
+1) What is the new capability?
+
+Solaris Virtualisation Environment Information 
+
+2) Why is the new capability needed?
+
+To be able to control the applicabilty or outcome of an OVAL test based on which
+virtualisation environment the OVAL is being interpreted in.  It is also required
+for recording the virtualisation environment in compliance reports.
+
+3) What is the version of the targeted official OVAL release? 
+
+5.11
+
+-------------------------------------------------------------------------------------
+Benefits of Proposal
+-------------------------------------------------------------------------------------
+1) How does the proposal relate to existing OVAL use cases [4]?
+
+All of the following could apply:
+
+System Inventory
+Configuration Management
+Vulnerability Assesment
+
+2) What does this proposal enable that cannot currently be accomplished in the OVAL 
+   Language?
+
+It isn't currently possible to determine what the virtualisation environment
+for the Solaris instance is and if it is a guest or capable of being a host.
+
+3) What alternative approaches for supporting these use cases were considered and 
+   why is this one the best?
+
+The OVAL content that is delivered with Solaris uses a workaround of placing
+the output of the Solaris virtinfo(1M) command into a file and using the existing OVAL
+file schema to parse that. It isn't generally applicable because it requires the
+file be created by the tool running the OVAL interpreter first.
+ 
+-------------------------------------------------------------------------------------
+Impacts of Proposal
+-------------------------------------------------------------------------------------
+1) Which existing OVAL schemas are affected by this proposal?  If a new platform 
+   schema is being proposed, is it expected to inherit tests from another schema (e.g.
+   UNIX-based platform schemas typically inherit tests from the UNIX schema)? 
+
+None, and it doesn't need to inherit anything from the UNIX schema.
+
+2) Does the proposal break backward compatibility with previous versions?  Please 
+   see OVAL Versioning Policy [5] for more information.
+
+No.
+
+2) How will the proposed changes impact OVAL content authors?
+
+It will allow them to create checks specific to Solaris host and guest virtualisation
+environments.  For example some SMF services are only applicable in a global zone or
+LDOM and shouldn't be run at all in a non-global zone.
+
+3) How will the proposed changes impact OVAL content consumers?
+
+They will be able to consume content that indicates whether or not a particular check applies
+to virtualisation enviornment as well as be able to consume content that checks various 
+information about a particular virtualisation environment.
+
+4) How will the proposed changes impact existing OVAL content?
+
+Existing content may be updated to include this test so it better represents its 
+applicability on a particular system.
+
+5) How will the proposed changes impact existing OVAL implementations?
+
+None unless they wish to add support for the schema by calling the Solaris libv12n
+library.
+
+6) Are there any concerns regarding this proposal (e.g., undocumented APIs, etc.)? 
+   If so, are there any mitigating factors?
+
+No. The Solaris libv12n API is a stable and documented API.
+
+-------------------------------------------------------------------------------------
+Technical Review
+-------------------------------------------------------------------------------------
+1) Do the schema changes follow the accepted naming and design conventions?
+
+Yes.
+
+2) Do the schema changes satisfy the requirements specified in the Requesting Changes 
+   to the OVAL Language page [3]?
+
+Yes.
+
+3) Do the schema changes align with the targeted official release (e.g., changes that 
+   break backward compatibility should not target a minor release)? Please see the 
+   OVAL Versioning Policy [5] for more information.
+
+Yes.
+
+4) Have the new capabilities been successfully implemented and tested with sample 
+   content?
+
+Not yet but an implementation for OpenSCAP is in progress.
+
+-------------------------------------------------------------------------------------
+Resource Information
+-------------------------------------------------------------------------------------
+1) Provide URLs for relevant OVAL Sandbox Issues:
+
+2) Provide URLs for OVAL Sandbox schemas that exemplify the proposed changes:
+
+https://github.com/OVALProject/Sandbox/blob/master/x-solaris-virtualizationinfo.xsd
+
+3) Provide URLs for the location of sample OVAL Definitions, OVAL System 
+   Characteristics, and OVAL Results that exemplify the proposed changes:
+
+4) Provide URLs for products or tools that implement the proposed changes:
+
+5) Provide URLs to any other resources that may be relevant to reviewing and verifying 
+   the proposal:
+
+http://docs.oracle.com/cd/E36784_01/html/E36871/virtinfo-1m.html
+http://docs.oracle.com/cd/E36784_01/html/E36873/libv12n-3lib.html
+http://docs.oracle.com/cd/E36784_01/html/E36876/v12n-3ext.html
+
+
+-------------------------------------------------------------------------------------
+References
+-------------------------------------------------------------------------------------
+[1] http://oval.mitre.org/community/board/voting.html
+[2] http://oval.mitre.org/language/sandbox.html
+[3] http://oval.mitre.org/language/about/change_requests.html
+[4] http://oval.mitre.org/adoption/usecasesguide.html
+[5] http://oval.mitre.org/language/about/versioning.html
+
+
+
+
+
+
+
+
+
+
+
+
+

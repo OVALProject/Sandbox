@@ -1,0 +1,187 @@
+Requesting Changes to the OVAL Language
+=======================================
+
+Adding a New OVAL Function
+--------------------------
+
+An OVAL Function is an OVAL Construct that is used to manipulate or perform
+some operation on a specified set of values at run-time. The following
+describes the guidelines for proposing a new OVAL Function to the OVAL
+Language.
+
+    What does the function do? Why is it needed?
+    --------------------------------------------
+
+      Provides ability to translate shell glob patterns into corresponding
+    OVAL language Perl 5's regular expression patterns. To be able to in a
+    recursive way process text files (configuration, log) ones.
+
+    Are there any requirements on the number of arguments or datatypes of those arguments?
+    --------------------------------------------------------------------------------------
+
+      At least one argument of string data type required (representing
+    the shell glob pattern in raw form that is expected to be converted
+    to its corresponding Perl 5's regular expression pattern form).
+
+    The provided string argument (glob pattern) would be translated
+    according to the schema at:
+
+      http://docstore.mik.ua/orelly/perl4/cook/ch06_10.htm
+
+    Arguments of datatype different than 'string' are not allowed.
+
+    Any there any attributes necessary to drive the function?
+    ---------------------------------------------------------
+
+      Yes. One 'glob_noescape' attribute of xsd:boolean datatype to specify
+      if a backslash ('\') character is used to escape the following
+      character in the pattern, avoiding any special interpretation
+      of the character. The default value of that attribute would be
+      'false', meaning any special glob pattern character would be
+      escaped with backslash ('\') character (backslash would be
+      interpreted as an escape character).
+
+      If the value of 'glob_noescape' attribute would be set to 'true',
+      no escaping with backslash ('\') would be performed (backslash
+      would be interpreted as a literal).
+
+      Example:
+      - with 'glob_noescape=false' (the default, instructs glob_to_regex
+                                    to read backslash as an escape character)
+
+        glob pattern:               Perl 5's regular expression pattern:
+        -------------               ------------------------------------
+        '\*'                        '^\\.*$'
+        '\?'                        '^\\.$'
+
+      - with 'glob_noescape=true' (instructs glob_to_regex to read
+                                   backslash as a literal, rather than
+                                   an escape)
+
+        glob pattern:              Perl 5's regular expression pattern:
+        -------------              ------------------------------------
+        '\*'                       '^\.*$'
+        '\?'                       '^\.$'
+
+    Provide documentation for the proposed OVAL Function
+    ----------------------------------------------------
+        What does the function do?
+        --------------------------
+
+          Translate shell glob pattern (string) to a Perl 5's regular
+        expression pattern.
+
+        How should the function process the arguments?
+        ----------------------------------------------
+
+          Reference implementation (for Linux):
+            http://docstore.mik.ua/orelly/perl4/cook/ch06_10.htm
+
+        Functionality of attributes (if applicable)
+        -------------------------------------------
+
+          'glob_noescape' of datatype xsd:boolean, defaulting to 'false'
+           meaning backslash ('\') escaping of characters having special
+           meaning for glob patterns would be enabled (backslash should
+           be interpreted as an escape character).
+
+          If 'glob_noescape' would have value of 'true', no backslash
+          escaping would be performed (backslash should be interpreted
+          as a literal).
+
+        Boundary and error conditions (if applicable)
+        ---------------------------------------------
+
+          Border / corner conditions details:
+          -----------------------------------
+          * the glob_to_regex() function will respect the expansion rules
+          for input glob pattern and output Perl 5's regular expression
+          pattern spaces (unless stated otherwise). This specification namely
+          means:
+          - the glob_to_regex() function will rule out matches having special
+          meaning, such as:
+          '.'		as a representation of the current working directory,
+          '..'		as a representation of the parent directory of the
+			current working directory
+          similarly like the glob pattern input space would do.
+
+          - the glob_to_regex() function will rule out matches starting with
+          '.' (e.g. dotfiles) unless the provided glob pattern itself starts
+          with the '.' character
+
+          - the glob_to_regex() function will not perform case-sensitivity
+          transformation. In other words the provided alphabetical glob pattern
+          characters (other than '*', '?', '[', ']', or characters having
+          special meaning for glob patterns) would be copied into resulting
+          Perl 5's regular expression pattern *in the same case* as they have
+          been provided in the original glob pattern.
+
+          Example:
+          - 'conf.d/*.conf' would be translated to '^conf\.d\/.*\.conf$'
+          - 'CONF.D/*.conf' would be translated to '^CONF\.D\/.*\.conf$'
+
+          It will be a responsibility of the OVAL content author to provide
+          the glob pattern in that case (wrt to case of alphabetical characters),
+          so the resulting Perl 5's regular expression will match the expected
+          entries without the need to alter string's case during the
+          transformation.
+
+          - the glob_to_regex() function will not perform any possible brace
+          expansion / preprocessing (for example to convert glob patterns like
+          '{pat,pat,pat}' to their expanded form). Such patterns when provided
+          will be converted to Perl 5's regex form unexpanded (the Perl regular
+          expression engine will be responsible for their potential subsequent
+          expansion when applying such a pattern against text field for match).
+
+          - the glob_to_regex() function will not perform tilde ('~') character
+          substitution to user name home directories. The tilde ('~') character
+          will be passed to Perl 5's regular expression intact left for its
+          potential subsequent expansion according to Perl regex rules.
+
+          - the glob_to_regex() function will not change order (perform any
+          additional sorting of set of pathnames represented by the glob
+          pattern).
+
+          Error conditions details:
+          -------------------------
+          * the glob_to_regex() function will fail to perform the conversion
+          and return error when the provided string argument (glob pattern)
+          does not represent a syntactically correct glob pattern.
+
+          For example, given the 'a*b?[' as the argument to be converted,
+          glob_to_regex() would return error, since there's missing the
+          corresponding closing bracket in the above glob pattern argument.
+          
+
+        Restrictions on the number of arguments or their datatypes (if applicable)
+        --------------------------------------------------------------------------
+
+          Single argument of datatype string (xsd:string) required. That string
+          might be provided in the form of a literal component, object component or
+          variable component, but in that case the datatype 'xsd:string' should be
+          specified to instruct the processing engine to expect the particular
+          OVAL component object to have 'xsd:string' type. Error to be returned
+          for any other input.
+
+        Other useful documentation
+        --------------------------
+
+          http://docstore.mik.ua/orelly/perl4/cook/ch06_10.htm
+
+    Sample content that demonstrates its use cases.
+    OPTIONAL: Implementing the proposal in the schema is recommended, but, not required.
+    ------------------------------------------------------------------------------------
+
+      Example of existing queries that would make use of this functionality:
+      * check if log files for every service managed by logrotate are rotated
+        'daily' (IOW check all the logfiles of the logrotate service, possibly
+        including the recursive ones for presence of 'daily' keyword),
+
+      * check if all log files defined within rsyslog configuration have safe
+        permissions / belong to requested user (IOW concatenate the content of
+        all rsyslog's configuration files, including the possibly recursive ones.
+        From the retrieved content filter out log file paths. For each entry
+        from this set verify if the file in question has safe permissions /
+        belongs to required user)
+
+      etc.
