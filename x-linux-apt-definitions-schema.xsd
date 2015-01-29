@@ -55,11 +55,11 @@
     <xsd:element name="apt_object" substitutionGroup="oval-def:object">
         <xsd:annotation>
             <xsd:documentation>The apt_object element is used by a apt_test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
-            <xsd:documentation>An apt_object defines one or more packages that can be checked for updates using Advanced Packaging Tool (APT), as configured on the target system.  A number of behaviors may be provided to guide the collection of objects. Please refer to the FAptBehaviors complex type for more information about specific behaviors.</xsd:documentation>
+            <xsd:documentation>An apt_object defines one or more packages that can be checked for updates using Advanced Packaging Tool (APT), as configured on the target system.  A number of behaviors may be provided to guide the collection of objects. Please refer to the AptBehaviors complex type for more information about specific behaviors.</xsd:documentation>
             <xsd:documentation>The resulting items identify packages that must be installed to bring the system up-to-date with respect to its configured repositories.</xsd:documentation>
             <xsd:appinfo>
-                <sch:pattern id="x-linux-def_linux_object_verify_filter_state">
-                    <sch:rule context="x-linux-def:linux_object//oval-def:filter">
+                <sch:pattern id="x-linux-def_apt_object_verify_filter_state">
+                    <sch:rule context="x-linux-def:apt_object//oval-def:filter">
                         <sch:let name="parent_object" value="ancestor::x-linux-def:apt_object"/>
                         <sch:let name="parent_object_id" value="$parent_object/@id"/>
                         <sch:let name="state_ref" value="."/>

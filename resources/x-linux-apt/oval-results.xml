@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oval-res:oval_results xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:ind-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent" xmlns:hpux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#hpux" xmlns:unix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix" xmlns:macos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#macos" xmlns:ios-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios" xmlns:pixos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#pixos" xmlns:linux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux" xmlns:catos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#catos" xmlns:freebsd-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#freebsd" xmlns:aix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#aix" xmlns:sharepoint-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#sharepoint" xmlns:solaris-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:esx-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#esx" xmlns:apache-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apache" xmlns:xmldsig="http://www.w3.org/2000/09/xmldsig#" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:freebsd-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#freebsd" xmlns:pixos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#pixos" xmlns:sharepoint-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint" xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:macos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" xmlns:apache-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#apache" xmlns:catos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#catos" xmlns:solaris-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris" xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:aix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#aix" xmlns:ios-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" xmlns:esx-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#esx" xmlns:hpux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux" xmlns:linux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xmlns:oval-res="http://oval.mitre.org/XMLSchema/oval-results-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:x-unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-unix" xmlns:x-windows-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-windows" xmlns:x-linux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-linux" xmlns:x-macos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-macos" xmlns:junos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#junos" xmlns:droid-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#android" xmlns:netconf-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#netconf" xmlns:x-linux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-linux" xmlns:ns44="http://oval.mitre.org/XMLSchema/oval-system-characteristics#x-windows" xmlns:x-unix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-unix" xmlns:droid-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android" xmlns:junos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#junos" xmlns:netconf-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#netconf" xmlns:x-macos-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-macos" xmlns:arf="http://scap.nist.gov/schema/asset-reporting-format/1.1" xmlns:rc="http://scap.nist.gov/schema/reporting-core/1.1" xmlns:ai="http://scap.nist.gov/schema/asset-identification/1.1" xmlns:xal2="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:xnl2="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" xmlns:con="http://scap.nist.gov/schema/scap/constructs/1.2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#apache jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/apache-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-windows jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-windows-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#netconf jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-netconf-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#esx jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/esx-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#pixos jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/pixos-definitions-schema.xsd http://www.w3.org/2000/09/xmldsig# jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/xml/xmldsig-core-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#pixos jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/pixos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#junos jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-junos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#aix jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/aix-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#linux jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/linux-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-unix jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-unix-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/sharepoint-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/windows-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#catos jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/catos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-android-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#esx jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/esx-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#netconf jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-netconf-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/hpux-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/linux-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#freebsd jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/freebsd-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#freebsd jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/freebsd-system-characteristics-schema.xsd http://scap.nist.gov/schema/scap/constructs/1.2 jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/constructs-1.2/scap-constructs_1.2.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/ios-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/unix-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#x-windows jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#hpux jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/hpux-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-results-5 jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/oval-results-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#catos jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/catos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#x-unix jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#aix jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/aix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apache jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/apache-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-macos jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-macos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#android jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-android-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/solaris-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/independent-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-linux jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-linux-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#x-macos jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-macos-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#windows jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#macos jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/macos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#x-linux jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-linux-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#sharepoint jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/sharepoint-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#junos jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-extensions.jar!/scapx/schemas/x-junos-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/solaris-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#ios jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/ios-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#macos jar:file:/Users/solind/Development/jOVAL-Commercial/components/jovaldi/dist/64/lib/scap-schema-1.2.jar!/scap/schemas/oval-5.10.1/macos-definitions-schema.xsd">
+    <oval-res:generator>
+        <oval:product_name>jOVAL Definition Interpreter</oval:product_name>
+        <oval:product_version>5.10.1.2c</oval:product_version>
+        <oval:schema_version>5.10.1</oval:schema_version>
+        <oval:timestamp>2015-01-29T08:52:55.525-06:00</oval:timestamp>
+    </oval-res:generator>
+    <oval-res:directives include_source_definitions="true">
+        <oval-res:definition_true reported="true" content="full"/>
+        <oval-res:definition_false reported="true" content="full"/>
+        <oval-res:definition_unknown reported="true" content="full"/>
+        <oval-res:definition_error reported="true" content="full"/>
+        <oval-res:definition_not_evaluated reported="true" content="full"/>
+        <oval-res:definition_not_applicable reported="true" content="full"/>
+    </oval-res:directives>
+    <oval-def:oval_definitions>
+        <oval-def:generator>
+            <oval:schema_version>5.10.1</oval:schema_version>
+            <oval:timestamp>2009-01-12T10:41:00-05:00</oval:timestamp>
+        </oval-def:generator>
+        <oval-def:definitions>
+            <oval-def:definition id="oval:org.joval.test:def:683" version="1" class="miscellaneous" deprecated="false">
+                <oval-def:metadata>
+                    <oval-def:title>Evaluate to true if the x-linux-def:apt_test is properly supported</oval-def:title>
+                    <oval-def:description>This definition is intended to evalutate to true if the interpreter properly supports the x-linux-def:apt_test.</oval-def:description>
+                </oval-def:metadata>
+                <oval-def:notes>
+                    <oval-def:note>It is important to note that the values used in this test definition are specific to a particular machine, and may not necessarily apply to your system. As a result, in order to have the definition return a result of 'true', you must either change these values to the ones found on your particular system, or you must configure your system to use these values.</oval-def:note>
+                </oval-def:notes>
+                <oval-def:criteria operator="AND" negate="false">
+                    <oval-def:criterion test_ref="oval:org.joval.test:tst:709" negate="false" comment="Test that the apt_object is supported with the name entity starting with linux."/>
+                    <oval-def:criterion test_ref="oval:org.joval.test:tst:710" negate="false" comment="Test that the apt_object is supported with the name entity starting with linux, using the 'upgrade' behavior."/>
+                </oval-def:criteria>
+            </oval-def:definition>
+        </oval-def:definitions>
+        <oval-def:tests>
+            <x-linux-def:apt_test id="oval:org.joval.test:tst:709" version="1" check_existence="at_least_one_exists" check="all" state_operator="AND" comment="Test that the apt_object is supported." deprecated="false">
+                <x-linux-def:object object_ref="oval:org.joval.test:obj:709"/>
+            </x-linux-def:apt_test>
+            <x-linux-def:apt_test id="oval:org.joval.test:tst:710" version="1" check_existence="at_least_one_exists" check="all" state_operator="AND" comment="Test that the apt_object is supported." deprecated="false">
+                <x-linux-def:object object_ref="oval:org.joval.test:obj:710"/>
+            </x-linux-def:apt_test>
+        </oval-def:tests>
+        <oval-def:objects>
+            <x-linux-def:apt_object id="oval:org.joval.test:obj:709" version="1" comment="Retrieve apt_items with names that match the regular expression '^linux.+$'." deprecated="false">
+                <x-linux-def:name datatype="string" operation="pattern match" mask="false">^linux.+$</x-linux-def:name>
+            </x-linux-def:apt_object>
+            <x-linux-def:apt_object id="oval:org.joval.test:obj:710" version="1" comment="Retrieve apt_items with names that match the regular expression '^linux.+$'." deprecated="false">
+                <x-linux-def:behaviors mode="upgrade"/>
+                <x-linux-def:name datatype="string" operation="pattern match" mask="false">^linux.+$</x-linux-def:name>
+            </x-linux-def:apt_object>
+        </oval-def:objects>
+    </oval-def:oval_definitions>
+    <oval-res:results>
+        <oval-res:system>
+            <oval-res:definitions>
+                <oval-res:definition definition_id="oval:org.joval.test:def:683" version="1" class="miscellaneous" result="true">
+                    <oval-res:criteria operator="AND" negate="false" result="true">
+                        <oval-res:criterion test_ref="oval:org.joval.test:tst:709" version="1" negate="false" result="true"/>
+                        <oval-res:criterion test_ref="oval:org.joval.test:tst:710" version="1" negate="false" result="true"/>
+                    </oval-res:criteria>
+                </oval-res:definition>
+            </oval-res:definitions>
+            <oval-res:tests>
+                <oval-res:test test_id="oval:org.joval.test:tst:710" version="1" check_existence="at_least_one_exists" check="all" state_operator="AND" result="true">
+                    <oval-res:tested_item item_id="3" result="not evaluated"/>
+                    <oval-res:tested_item item_id="4" result="not evaluated"/>
+                </oval-res:test>
+                <oval-res:test test_id="oval:org.joval.test:tst:709" version="1" check_existence="at_least_one_exists" check="all" state_operator="AND" result="true">
+                    <oval-res:tested_item item_id="0" result="not evaluated"/>
+                    <oval-res:tested_item item_id="1" result="not evaluated"/>
+                    <oval-res:tested_item item_id="2" result="not evaluated"/>
+                    <oval-res:tested_item item_id="3" result="not evaluated"/>
+                    <oval-res:tested_item item_id="4" result="not evaluated"/>
+                    <oval-res:tested_item item_id="5" result="not evaluated"/>
+                    <oval-res:tested_item item_id="6" result="not evaluated"/>
+                    <oval-res:tested_item item_id="7" result="not evaluated"/>
+                    <oval-res:tested_item item_id="8" result="not evaluated"/>
+                </oval-res:test>
+            </oval-res:tests>
+            <oval-sc:oval_system_characteristics>
+                <oval-sc:generator>
+                    <oval:product_name>jOVAL Definition Interpreter</oval:product_name>
+                    <oval:product_version>5.10.1.2c</oval:product_version>
+                    <oval:schema_version>5.10.1</oval:schema_version>
+                    <oval:timestamp>2015-01-29T08:52:21.518-06:00</oval:timestamp>
+                </oval-sc:generator>
+                <oval-sc:system_info>
+                    <oval-sc:os_name></oval-sc:os_name>
+                    <oval-sc:os_version>3.13.0-32-generic</oval-sc:os_version>
+                    <oval-sc:architecture>x86_64</oval-sc:architecture>
+                    <oval-sc:primary_host_name>vubuntu</oval-sc:primary_host_name>
+                    <oval-sc:interfaces>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>eth0</oval-sc:interface_name>
+                            <oval-sc:ip_address>192.168.0.57</oval-sc:ip_address>
+                            <oval-sc:mac_address>08:00:27:9b:b1:2b</oval-sc:mac_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>eth0</oval-sc:interface_name>
+                            <oval-sc:ip_address>fe80:0:0:0:a00:27ff:fe9b:b12b</oval-sc:ip_address>
+                            <oval-sc:mac_address>08:00:27:9b:b1:2b</oval-sc:mac_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>lo</oval-sc:interface_name>
+                            <oval-sc:ip_address>127.0.0.1</oval-sc:ip_address>
+                            <oval-sc:mac_address></oval-sc:mac_address>
+                        </oval-sc:interface>
+                        <oval-sc:interface>
+                            <oval-sc:interface_name>lo</oval-sc:interface_name>
+                            <oval-sc:ip_address>0:0:0:0:0:0:0:1</oval-sc:ip_address>
+                            <oval-sc:mac_address></oval-sc:mac_address>
+                        </oval-sc:interface>
+                    </oval-sc:interfaces>
+                </oval-sc:system_info>
+                <oval-sc:collected_objects>
+                    <oval-sc:object id="oval:org.joval.test:obj:709" version="1" comment="Retrieve apt_items with names that match the regular expression '^linux.+$'." flag="complete">
+                        <oval-sc:reference item_ref="0"/>
+                        <oval-sc:reference item_ref="1"/>
+                        <oval-sc:reference item_ref="2"/>
+                        <oval-sc:reference item_ref="3"/>
+                        <oval-sc:reference item_ref="4"/>
+                        <oval-sc:reference item_ref="5"/>
+                        <oval-sc:reference item_ref="6"/>
+                        <oval-sc:reference item_ref="7"/>
+                        <oval-sc:reference item_ref="8"/>
+                    </oval-sc:object>
+                    <oval-sc:object id="oval:org.joval.test:obj:710" version="1" comment="Retrieve apt_items with names that match the regular expression '^linux.+$'." flag="complete">
+                        <oval-sc:reference item_ref="3"/>
+                        <oval-sc:reference item_ref="4"/>
+                    </oval-sc:object>
+                </oval-sc:collected_objects>
+                <oval-sc:system_data>
+                    <x-linux-sc:apt_item id="0">
+                        <x-linux-sc:name>linux-headers-3.13.0-44</x-linux-sc:name>
+                        <x-linux-sc:operation>Inst</x-linux-sc:operation>
+                        <x-linux-sc:operation>Conf</x-linux-sc:operation>
+                        <x-linux-sc:current_version datatype="evr_string" status="does not exist"></x-linux-sc:current_version>
+                        <x-linux-sc:available_version datatype="evr_string" status="exists">3.13.0-44.73</x-linux-sc:available_version>
+                    </x-linux-sc:apt_item>
+                    <x-linux-sc:apt_item id="1">
+                        <x-linux-sc:name>linux-image-generic</x-linux-sc:name>
+                        <x-linux-sc:operation>Inst</x-linux-sc:operation>
+                        <x-linux-sc:operation>Conf</x-linux-sc:operation>
+                        <x-linux-sc:current_version datatype="evr_string" status="exists">3.13.0.32.38</x-linux-sc:current_version>
+                        <x-linux-sc:available_version datatype="evr_string" status="exists">3.13.0.44.51</x-linux-sc:available_version>
+                    </x-linux-sc:apt_item>
+                    <x-linux-sc:apt_item id="2">
+                        <x-linux-sc:name>linux-generic</x-linux-sc:name>
+                        <x-linux-sc:operation>Inst</x-linux-sc:operation>
+                        <x-linux-sc:operation>Conf</x-linux-sc:operation>
+                        <x-linux-sc:current_version datatype="evr_string" status="exists">3.13.0.32.38</x-linux-sc:current_version>
+                        <x-linux-sc:available_version datatype="evr_string" status="exists">3.13.0.44.51</x-linux-sc:available_version>
+                    </x-linux-sc:apt_item>
+                    <x-linux-sc:apt_item id="3">
+                        <x-linux-sc:name>linux-libc-dev</x-linux-sc:name>
+                        <x-linux-sc:operation>Inst</x-linux-sc:operation>
+                        <x-linux-sc:operation>Conf</x-linux-sc:operation>
+                        <x-linux-sc:current_version datatype="evr_string" status="exists">3.13.0-32.57</x-linux-sc:current_version>
+                        <x-linux-sc:available_version datatype="evr_string" status="exists">3.13.0-44.73</x-linux-sc:available_version>
+                    </x-linux-sc:apt_item>
+                    <x-linux-sc:apt_item id="4">
+                        <x-linux-sc:name>linux-firmware</x-linux-sc:name>
+                        <x-linux-sc:operation>Inst</x-linux-sc:operation>
+                        <x-linux-sc:operation>Conf</x-linux-sc:operation>
+                        <x-linux-sc:current_version datatype="evr_string" status="exists">1.127.5</x-linux-sc:current_version>
+                        <x-linux-sc:available_version datatype="evr_string" status="exists">1.127.11</x-linux-sc:available_version>
+                    </x-linux-sc:apt_item>
+                    <x-linux-sc:apt_item id="5">
+                        <x-linux-sc:name>linux-image-extra-3.13.0-44-generic</x-linux-sc:name>
+                        <x-linux-sc:operation>Inst</x-linux-sc:operation>
+                        <x-linux-sc:operation>Conf</x-linux-sc:operation>
+                        <x-linux-sc:current_version datatype="evr_string" status="does not exist"></x-linux-sc:current_version>
+                        <x-linux-sc:available_version datatype="evr_string" status="exists">3.13.0-44.73</x-linux-sc:available_version>
+                    </x-linux-sc:apt_item>
+                    <x-linux-sc:apt_item id="6">
+                        <x-linux-sc:name>linux-headers-3.13.0-44-generic</x-linux-sc:name>
+                        <x-linux-sc:operation>Inst</x-linux-sc:operation>
+                        <x-linux-sc:operation>Conf</x-linux-sc:operation>
+                        <x-linux-sc:current_version datatype="evr_string" status="does not exist"></x-linux-sc:current_version>
+                        <x-linux-sc:available_version datatype="evr_string" status="exists">3.13.0-44.73</x-linux-sc:available_version>
+                    </x-linux-sc:apt_item>
+                    <x-linux-sc:apt_item id="7">
+                        <x-linux-sc:name>linux-headers-generic</x-linux-sc:name>
+                        <x-linux-sc:operation>Inst</x-linux-sc:operation>
+                        <x-linux-sc:operation>Conf</x-linux-sc:operation>
+                        <x-linux-sc:current_version datatype="evr_string" status="exists">3.13.0.32.38</x-linux-sc:current_version>
+                        <x-linux-sc:available_version datatype="evr_string" status="exists">3.13.0.44.51</x-linux-sc:available_version>
+                    </x-linux-sc:apt_item>
+                    <x-linux-sc:apt_item id="8">
+                        <x-linux-sc:name>linux-image-3.13.0-44-generic</x-linux-sc:name>
+                        <x-linux-sc:operation>Inst</x-linux-sc:operation>
+                        <x-linux-sc:operation>Conf</x-linux-sc:operation>
+                        <x-linux-sc:current_version datatype="evr_string" status="does not exist"></x-linux-sc:current_version>
+                        <x-linux-sc:available_version datatype="evr_string" status="exists">3.13.0-44.73</x-linux-sc:available_version>
+                    </x-linux-sc:apt_item>
+                </oval-sc:system_data>
+            </oval-sc:oval_system_characteristics>
+        </oval-res:system>
+    </oval-res:results>
+</oval-res:oval_results>
