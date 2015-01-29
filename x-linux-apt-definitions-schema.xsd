@@ -35,7 +35,7 @@
                     <sch:rule context="x-linux-def:apt_test/x-linux-def:object">
                         <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/x-linux-def:apt_object/@id"><sch:value-of select="../@id"/> - the object child element of a apt_test must reference a apt_object</sch:assert>
                     </sch:rule>
-                    <sch:rule context="x-linux-def:authorizationdb_test/x-linux-def:state">
+                    <sch:rule context="x-linux-def:apt_test/x-linux-def:state">
                         <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/x-linux-def:apt_state/@id"><sch:value-of select="../@id"/> - the state child element of a apt_test must reference a apt_state</sch:assert>
                     </sch:rule>
                 </sch:pattern>
