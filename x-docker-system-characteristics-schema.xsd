@@ -269,6 +269,23 @@
                                 <xsd:documentation>The formatted output value(s) based on the "docker inspect" format string</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
+                        <xsd:element name="inspect_property_values" type="oval-sc:EntityItemRecordType" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The formatted output value(s) based on the "docker inspect" format string. 
+                                    For each field, the @name attribute represents the sub-key name, and the element value represents the sub-key's value</xsd:documentation>
+                                <xsd:appinfo>
+                                    <sch:pattern id="x-docker-def_keyedinfosteresult">
+                                        <sch:rule context="x-docker-def:keyedinfo_state/x-docker-def:subvalues">
+                                            <sch:assert test="@datatype='record'"><sch:value-of select="../@id"/> - datatype attribute for the result entity of a docker keyedinfo_state must be 'record'</sch:assert>
+                                        </sch:rule>
+                                    </sch:pattern>
+                                </xsd:appinfo>
+                            </xsd:annotation>
+                            <xsd:unique name="UniqueDockerInfoResultFieldName">
+                                <xsd:selector xpath="./oval-sc:field"/>
+                                <xsd:field xpath="@name"/>
+                            </xsd:unique>
+                        </xsd:element>
                     </xsd:sequence>
                 </xsd:extension>
             </xsd:complexContent>
@@ -300,19 +317,18 @@
                                 <xsd:documentation>The value associated with the key for the docker version element</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="subvalues" type="oval-sc:EntityItemRecordType" minOccurs="0">
+                        <xsd:element name="inspect_property_values" type="oval-sc:EntityItemRecordType" minOccurs="0">
                             <xsd:annotation>
-                                <xsd:documentation>The subvalues element specifies how to test items in the result set of the specified docker info output. 
-                                    For each field, the @name attribute represents the sub-key name, and the element value represents the sub-key's value</xsd:documentation>
+                                <xsd:documentation>The inspect_property_values element specifies how to test items in the result set of the specified docker inspect output.</xsd:documentation>
                                 <xsd:appinfo>
-                                    <sch:pattern id="x-docker-def_keyedinfosteresult">
-                                        <sch:rule context="x-docker-def:keyedinfo_state/x-docker-def:subvalues">
-                                            <sch:assert test="@datatype='record'"><sch:value-of select="../@id"/> - datatype attribute for the result entity of a docker keyedinfo_state must be 'record'</sch:assert>
+                                    <sch:pattern id="x-docker-sc_infoitemresult">
+                                        <sch:rule context="x-docker-sc:inspect_item/x-docker-sc:subvalues">
+                                            <sch:assert test="@datatype='record'"><sch:value-of select="../@id"/> - datatype attribute for the result entity of a docker inspect_state must be 'record'</sch:assert>
                                         </sch:rule>
                                     </sch:pattern>
                                 </xsd:appinfo>
                             </xsd:annotation>
-                            <xsd:unique name="UniqueDockerInfoResultFieldName">
+                            <xsd:unique name="UniqueDockerInspectResultFieldName">
                                 <xsd:selector xpath="./oval-sc:field"/>
                                 <xsd:field xpath="@name"/>
                             </xsd:unique>

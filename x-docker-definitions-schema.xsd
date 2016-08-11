@@ -464,10 +464,21 @@
                                 <xsd:documentation>Enumeration defining how to format the output of the "docker inspect" command.  See the enumeration values for their respective "--format" strings.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="inspect_property_value" type="oval-def:EntityStateAnySimpleType" minOccurs="0" maxOccurs="1">
+                        <xsd:element name="inspect_property_values" type="oval-def:EntityStateRecordType" minOccurs="0">
                             <xsd:annotation>
-                                <xsd:documentation>The formatted output value based on the "docker inspect" format string</xsd:documentation>
+                                <xsd:documentation>The inspect_property_values element specifies how to test items in the result set of the specified docker inspect output.</xsd:documentation>
+                                <xsd:appinfo>
+                                    <sch:pattern id="x-docker-def_inspectsteresult">
+                                        <sch:rule context="x-docker-def:inspect_state/x-docker-def:subvalues">
+                                            <sch:assert test="@datatype='record'"><sch:value-of select="../@id"/> - datatype attribute for the result entity of a docker inspect_state must be 'record'</sch:assert>
+                                        </sch:rule>
+                                    </sch:pattern>
+                                </xsd:appinfo>
                             </xsd:annotation>
+                            <xsd:unique name="UniqueDockerInspectResultFieldName">
+                                <xsd:selector xpath="./oval-def:field"/>
+                                <xsd:field xpath="@name"/>
+                            </xsd:unique>
                         </xsd:element>
                     </xsd:sequence>
                 </xsd:extension>
