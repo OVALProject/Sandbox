@@ -1,0 +1,199 @@
+--------------------------------------------------------------------------------
+OVAL Proposal Form
+--------------------------------------------------------------------------------
+The OVAL Proposal Form is used by members of the community to prepare proposals 
+for migration into an official release of OVAL. The form will be critical in 
+helping the members of the community understand, review, and vet proposals.
+
+Once an OVAL Proposal Form is submitted to the oval-developer-list, the OVAL 
+Moderator will review and verify the proposal for completeness at which point 
+it will be ready for community review and discussion. 
+
+When a new proposal is introduced to the community, the OVAL Moderator will 
+work with the OVAL Board to determine the impact of the proposal. If the 
+proposal is deemed a high impact change, it must be developed in the OVAL 
+Sandbox which will require the completion of this form as well as an OVAL 
+Board vote before it is migrated into an official release. More information 
+about the OVAL Board Voting Process can be found at [1]. If the proposal is 
+deemed a low impact change, the proposed change can be made directly to an 
+official OVAL release.
+
+Please direct any questions or concerns to MITRE at oval@mitre.org.
+
+--------------------------------------------------------------------------------
+Steps to Take
+--------------------------------------------------------------------------------
+1) Review the OVAL Language Sandbox page [2] and the Requesting Changes to the 
+OVAL Language page [3].
+
+2) Complete the form provided below.
+
+3) Email the completed form to the oval-developer-list at 
+oval-developer-list@lists.mitre.org with a subject of 
+"FOR REVIEW: <Proposal Name> Proposal Form".
+
+4) Revise the proposal, as needed, based on community discussion and feedback.
+
+--------------------------------------------------------------------------------
+Contact Information
+--------------------------------------------------------------------------------
+1) Name: William Munyan (Bill)
+2) Email Address: william.munyan@cisecurity.org
+3) Phone Number (optional):
+ 
+--------------------------------------------------------------------------------
+Introduction to Proposal
+--------------------------------------------------------------------------------
+1) What is the new capability?
+
+The OVAL schemas for Docker provide a standards-based capability to check configurations
+related to a Docker installation and/or containers and images installed in a Docker 
+infrastructure.
+
+2) Why is the new capability needed?
+
+The Docker OVAL schemas are needed to provide a standards-based capability 
+to check Docker installation configuration as well as configuration of installed 
+containers or images.  
+
+3) What is the version of the targeted official OVAL release?
+
+The targeted OVAL version for this proposal is OVAL 5.12.
+
+--------------------------------------------------------------------------------
+Benefits of Proposal
+--------------------------------------------------------------------------------
+1) How does the proposal relate to existing OVAL use cases [4]?
+The tests provide capabilities to express and assess Docker configuration for the 
+following OVAL use cases: 
+
+* Configuration Management
+
+2) What does this proposal enable that cannot currently be accomplished in the 
+OVAL Language?
+
+The OVAL Language does not currently include any Docker-specific schemas.  
+
+The proposed Docker schema provides the ability to check:
+* Installed version information
+* Currently executing process information for those processes executing within 
+  a Docker container/image (similar to the Unix schema's process58_test)
+* Information regarding a Docker installation, such as numbers of running containers, 
+  total number of containers, backing filesystems and backing architectures
+* Inspection information for any installed container or image
+* Container process information, such as time when a container was created, container 
+  up-time, status and size
+
+3) What alternative approaches for supporting these use cases were considered 
+and why is this one the best?
+
+We do not believe there are other alternative methods for interrogating or assessing 
+Docker.  Most output from Docker commands is rendered as JSON, for which no OVAL 
+constructs currently exist.
+
+--------------------------------------------------------------------------------
+Impacts of Proposal
+--------------------------------------------------------------------------------
+1) Which existing OVAL schemas are affected by this proposal?  
+
+None.
+
+2) Does the proposal break backward compatibility with previous versions?  
+Please see OVAL Versioning Policy [5] for more information.
+
+This proposal does not break backward compatibility.  
+
+2) How will the proposed changes impact OVAL content authors?
+
+This will provide OVAL content authors with the ability to create new 
+content based on the new tests.  We have created proof-of-concept OVAL 
+definitions demonstrating the ability to automate useful compliance checks.  
+
+3) How will the proposed changes impact OVAL content consumers?
+
+No impact to current OVAL content consumers.  These changes will provide 
+an opportunity to use OVAL to create configuration management/assessment 
+content for Docker.
+
+4) How will the proposed changes impact existing OVAL content?
+
+No impact.
+
+5) How will the proposed changes impact existing OVAL implementations?
+
+The impact will depend on whether the existing OVAL implementations need to 
+implement Docker-specific schema features.  In many cases it will not be 
+necessary.
+
+6) Are there any concerns regarding this proposal (e.g., undocumented APIs, 
+etc.)? If so, are there any mitigating factors?  
+
+As Docker is a rapidly evolving technology, the only concerns are that when 
+updated versions of Docker are released, commands, command options, and/or 
+APIs may change.  These changes could have an impact on implementations of 
+the Docker schema.
+ 
+--------------------------------------------------------------------------------
+Technical Review
+--------------------------------------------------------------------------------
+1) Do the schema changes follow the accepted naming and design conventions?
+
+Yes.
+
+2) Do the schema changes satisfy the requirements specified in the Requesting 
+Changes to the OVAL Language page [3]?
+
+Yes.
+
+3) Do the schema changes align with the targeted official release (e.g., changes 
+that break backward compatibility should not target a minor release)? Please 
+see the OVAL Versioning Policy [5] for more information.
+
+Yes.
+
+4) Have the new capabilities been successfully implemented and tested with sample 
+content?
+
+Yes.
+
+--------------------------------------------------------------------------------
+Resource Information
+--------------------------------------------------------------------------------
+1) Provide URLs for relevant OVAL Sandbox Issues:
+
+N/A
+
+2) Provide URLs for OVAL Sandbox schemas that exemplify the proposed changes:
+
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/x-docker-system-characteristics-schema.xsd
+
+https://raw.githubusercontent.com/OVALProject/Sandbox/master/x-docker-definitions-schema.xsd
+
+3) Provide URLs for the location of sample OVAL Definitions, 
+OVAL System Characteristics, and OVAL Results that exemplify the proposed 
+changes:
+
+Sample OVAL Definitions:
+https://github.com/OVALProject/Sandbox/blob/master/resources/x-docker-schema/sample-docker-oval-definitions.xml
+
+Sample OVAL Results including System Characteristics:
+https://github.com/OVALProject/Sandbox/blob/master/resources/x-docker-schema/sample-docker-oval-results.xml
+
+4) Provide URLs for products or tools that implement the proposed changes:
+
+N/A
+
+5) Provide URLs to any other resources that may be relevant to reviewing and 
+verifying the proposal:
+
+N/A
+
+--------------------------------------------------------------------------------
+References
+--------------------------------------------------------------------------------
+[1] http://oval.mitre.org/community/board/voting.html
+[2] http://oval.mitre.org/language/sandbox.html
+[3] http://oval.mitre.org/language/about/change_requests.html
+[4] http://oval.mitre.org/adoption/usecasesguide.html
+[5] http://oval.mitre.org/language/about/versioning.html
+

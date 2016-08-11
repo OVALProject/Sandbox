@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval-res:oval_results xmlns:oval-res="http://oval.mitre.org/XMLSchema/oval-results-5">
+  <oval-res:generator>
+    <oval:product_name xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">cpe:/a:cisecurity.org:CIS-CAT</oval:product_name>
+    <oval:product_version xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">3.0.28</oval:product_version>
+    <oval:schema_version xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">5.11</oval:schema_version>
+    <oval:timestamp xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">2016-08-11T10:02:38.502-07:00</oval:timestamp>
+  </oval-res:generator>
+  <oval-res:directives include_source_definitions="true">
+    <oval-res:definition_true reported="true" content="full"/>
+    <oval-res:definition_false reported="true" content="full"/>
+    <oval-res:definition_unknown reported="true" content="full"/>
+    <oval-res:definition_error reported="true" content="full"/>
+    <oval-res:definition_not_evaluated reported="true" content="full"/>
+    <oval-res:definition_not_applicable reported="true" content="full"/>
+  </oval-res:directives>
+  <oval-res:class_directives class="compliance">
+    <oval-res:definition_true reported="true" content="full"/>
+    <oval-res:definition_false reported="true" content="full"/>
+    <oval-res:definition_unknown reported="true" content="full"/>
+    <oval-res:definition_error reported="true" content="full"/>
+    <oval-res:definition_not_evaluated reported="true" content="full"/>
+    <oval-res:definition_not_applicable reported="true" content="full"/>
+  </oval-res:class_directives>
+  <oval-def:oval_definitions xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+    <oval-def:generator xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:cmd="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <oval:schema_version>5.11</oval:schema_version>
+      <oval:timestamp>2009-01-12T10:41:00-05:00</oval:timestamp>
+      <oval-def:terms_of_use>Copyright (c) 2002-2012, The MITRE Corporation. All rights reserved. The contents of this file are subject to the license described in terms.txt.</oval-def:terms_of_use>
+    </oval-def:generator>
+    <oval-def:definitions>
+      <oval-def:definition class="compliance" id="oval:org.cisecurity.docker:def:4" version="1" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:cmd="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <oval-def:metadata>
+          <oval-def:title>Docker Keyed Info</oval-def:title>
+          <oval-def:description>Docker Keyed Info</oval-def:description>
+        </oval-def:metadata>
+        <oval-def:criteria>
+          <oval-def:criterion comment="Docker Keyed Info test" test_ref="oval:org.cisecurity.docker:tst:4"/>
+        </oval-def:criteria>
+      </oval-def:definition>
+      <oval-def:definition class="compliance" id="oval:org.cisecurity.docker:def:3" version="1" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:cmd="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <oval-def:metadata>
+          <oval-def:title>Docker Info</oval-def:title>
+          <oval-def:description>Docker Info</oval-def:description>
+        </oval-def:metadata>
+        <oval-def:criteria>
+          <oval-def:criterion comment="Docker Info test" test_ref="oval:org.cisecurity.docker:tst:3"/>
+        </oval-def:criteria>
+      </oval-def:definition>
+      <oval-def:definition class="compliance" id="oval:org.cisecurity.docker:def:2" version="1" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:cmd="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <oval-def:metadata>
+          <oval-def:title>Docker Inspect</oval-def:title>
+          <oval-def:description>Docker Inspect</oval-def:description>
+        </oval-def:metadata>
+        <oval-def:criteria>
+          <oval-def:criterion comment="Docker inspect test" test_ref="oval:org.cisecurity.docker:tst:2"/>
+        </oval-def:criteria>
+      </oval-def:definition>
+      <oval-def:definition class="compliance" id="oval:org.cisecurity.docker:def:1" version="1" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:cmd="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <oval-def:metadata>
+          <oval-def:title>Docker Version</oval-def:title>
+          <oval-def:description>Docker Version</oval-def:description>
+        </oval-def:metadata>
+        <oval-def:criteria>
+          <oval-def:criterion comment="Test if a docker version with a hive is supported." test_ref="oval:org.cisecurity.docker:tst:1"/>
+        </oval-def:criteria>
+      </oval-def:definition>
+      <oval-def:definition class="compliance" id="oval:org.cisecurity.docker:def:6" version="1" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:cmd="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <oval-def:metadata>
+          <oval-def:title>Docker Process</oval-def:title>
+          <oval-def:description>Docker Process</oval-def:description>
+        </oval-def:metadata>
+        <oval-def:criteria>
+          <oval-def:criterion comment="Docker Process test" test_ref="oval:org.cisecurity.docker:tst:6"/>
+        </oval-def:criteria>
+      </oval-def:definition>
+      <oval-def:definition class="compliance" id="oval:org.cisecurity.docker:def:5" version="1" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:cmd="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <oval-def:metadata>
+          <oval-def:title>Docker Process</oval-def:title>
+          <oval-def:description>Docker Process</oval-def:description>
+        </oval-def:metadata>
+        <oval-def:criteria>
+          <oval-def:criterion comment="Docker Process test" test_ref="oval:org.cisecurity.docker:tst:5"/>
+        </oval-def:criteria>
+      </oval-def:definition>
+      <oval-def:definition class="compliance" id="oval:org.cisecurity.docker:def:10" version="1" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:cmd="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <oval-def:metadata>
+          <oval-def:title>Docker Exec PS</oval-def:title>
+          <oval-def:description>Docker Exec PS</oval-def:description>
+        </oval-def:metadata>
+        <oval-def:criteria>
+          <oval-def:criterion comment="Docker Exec PS" test_ref="oval:org.cisecurity.docker:tst:10"/>
+        </oval-def:criteria>
+      </oval-def:definition>
+    </oval-def:definitions>
+    <oval-def:tests>
+      <docker:execps_test check="at least one" check_existence="at_least_one_exists" comment="Docker Exec PS Test" id="oval:org.cisecurity.docker:tst:10" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:object object_ref="oval:org.cisecurity.docker:obj:10"/>
+        <docker:state state_ref="oval:org.cisecurity.docker:ste:10"/>
+      </docker:execps_test>
+      <docker:keyedinfo_test check="all" check_existence="at_least_one_exists" comment="Docker Keyed Info Test" id="oval:org.cisecurity.docker:tst:4" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:object object_ref="oval:org.cisecurity.docker:obj:4"/>
+        <docker:state state_ref="oval:org.cisecurity.docker:ste:4"/>
+      </docker:keyedinfo_test>
+      <docker:info_test check="all" check_existence="at_least_one_exists" comment="Docker Info Test" id="oval:org.cisecurity.docker:tst:3" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:object object_ref="oval:org.cisecurity.docker:obj:3"/>
+        <docker:state state_ref="oval:org.cisecurity.docker:ste:3"/>
+      </docker:info_test>
+      <docker:inspect_test check="all" check_existence="at_least_one_exists" comment="Docker Inspect Test" id="oval:org.cisecurity.docker:tst:2" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:object object_ref="oval:org.cisecurity.docker:obj:2"/>
+        <docker:state state_ref="oval:org.cisecurity.docker:ste:2"/>
+      </docker:inspect_test>
+      <docker:version_test check="all" check_existence="at_least_one_exists" comment="Docker Version Test" id="oval:org.cisecurity.docker:tst:1" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:object object_ref="oval:org.cisecurity.docker:obj:1"/>
+        <docker:state state_ref="oval:org.cisecurity.docker:ste:1"/>
+      </docker:version_test>
+      <docker:process_test check="at least one" check_existence="none_exist" comment="Docker Process Test" id="oval:org.cisecurity.docker:tst:6" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:object object_ref="oval:org.cisecurity.docker:obj:6"/>
+      </docker:process_test>
+      <docker:process_test check="at least one" check_existence="at_least_one_exists" comment="Docker Process Test" id="oval:org.cisecurity.docker:tst:5" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:object object_ref="oval:org.cisecurity.docker:obj:5"/>
+        <docker:state state_ref="oval:org.cisecurity.docker:ste:5"/>
+      </docker:process_test>
+    </oval-def:tests>
+    <oval-def:objects>
+      <docker:keyedinfo_object comment="..." id="oval:org.cisecurity.docker:obj:4" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:key>STORAGE_DRIVER</docker:key>
+      </docker:keyedinfo_object>
+      <docker:info_object comment="..." id="oval:org.cisecurity.docker:obj:3" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker"/>
+      <docker:process_object comment="..." id="oval:org.cisecurity.docker:obj:6" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:container_id>NO CONTAINER</docker:container_id>
+      </docker:process_object>
+      <docker:execps_object comment="..." id="oval:org.cisecurity.docker:obj:10" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:container_or_image>4cd4e0cccf3a</docker:container_or_image>
+        <docker:command_line operation="pattern match">^nginx.*$</docker:command_line>
+        <docker:pid datatype="int" operation="greater than">0</docker:pid>
+      </docker:execps_object>
+      <docker:process_object comment="..." id="oval:org.cisecurity.docker:obj:5" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:container_id operation="pattern match">.*</docker:container_id>
+      </docker:process_object>
+      <docker:process_object comment="..." id="oval:org.cisecurity.docker:obj:999" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:container_id operation="pattern match">.*</docker:container_id>
+        <oval-def:filter action="include">oval:org.cisecurity.docker:ste:999</oval-def:filter>
+      </docker:process_object>
+      <docker:inspect_object comment="..." id="oval:org.cisecurity.docker:obj:2" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:container_or_image var_ref="oval:org.cisecurity.docker:var:1"/>
+        <docker:inspect_property>MOUNTS</docker:inspect_property>
+      </docker:inspect_object>
+      <ind:textfilecontent54_object comment="..." id="oval:org.cisecurity.docker:obj:998" version="1" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+        <ind:filepath>/etc/audit/auditd.conf</ind:filepath>
+        <ind:pattern operation="pattern match">^log_file\s*=\s*([/a-zA-Z\s]+\.log)</ind:pattern>
+        <ind:instance datatype="int">1</ind:instance>
+      </ind:textfilecontent54_object>
+      <docker:version_object comment="..." id="oval:org.cisecurity.docker:obj:1" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker"/>
+    </oval-def:objects>
+    <oval-def:states>
+      <docker:version_state comment="..." id="oval:org.cisecurity.docker:ste:1" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:client_version datatype="version">1.11.0</docker:client_version>
+        <docker:server_version datatype="version">1.11.0</docker:server_version>
+      </docker:version_state>
+      <docker:execps_state comment="..." id="oval:org.cisecurity.docker:ste:10" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:container_or_image>4cd4e0cccf3a</docker:container_or_image>
+        <docker:ppid datatype="int">1</docker:ppid>
+      </docker:execps_state>
+      <docker:process_state comment="..." id="oval:org.cisecurity.docker:ste:999" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:status>running</docker:status>
+      </docker:process_state>
+      <docker:info_state comment="..." id="oval:org.cisecurity.docker:ste:3" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:container_count datatype="int">2</docker:container_count>
+        <docker:storage_driver>aufs</docker:storage_driver>
+        <docker:operating_system>Ubuntu 15.10</docker:operating_system>
+        <docker:docker_root_dir>/var/lib/docker</docker:docker_root_dir>
+      </docker:info_state>
+      <docker:inspect_state comment="..." id="oval:org.cisecurity.docker:ste:2" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:inspect_property_values datatype="record">
+          <oval-def:field entity_check="at least one" name="source">/some/content</oval-def:field>
+        </docker:inspect_property_values>
+      </docker:inspect_state>
+      <docker:process_state comment="..." id="oval:org.cisecurity.docker:ste:5" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:container_id>4cd4e0cccf3a</docker:container_id>
+        <docker:port entity_check="at least one">80/tcp</docker:port>
+      </docker:process_state>
+      <docker:keyedinfo_state comment="..." id="oval:org.cisecurity.docker:ste:4" version="1" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker">
+        <docker:key>STORAGE_DRIVER</docker:key>
+        <docker:value datatype="string">aufs</docker:value>
+        <docker:subvalues datatype="record">
+          <oval-def:field name="backing filesystem">extfs</oval-def:field>
+        </docker:subvalues>
+      </docker:keyedinfo_state>
+    </oval-def:states>
+    <oval-def:variables>
+      <oval-def:local_variable comment="Path to auditd logs" datatype="string" id="oval:org.cisecurity.docker:var:3" version="1">
+        <oval-def:object_component item_field="subexpression" object_ref="oval:org.cisecurity.docker:obj:998"/>
+      </oval-def:local_variable>
+      <oval-def:local_variable comment="Currently running containers" datatype="string" id="oval:org.cisecurity.docker:var:1" version="1">
+        <oval-def:object_component item_field="container_id" object_ref="oval:org.cisecurity.docker:obj:999"/>
+      </oval-def:local_variable>
+    </oval-def:variables>
+  </oval-def:oval_definitions>
+  <oval-res:results>
+    <oval-res:system>
+      <oval-res:definitions>
+        <oval-res:definition definition_id="oval:org.cisecurity.docker:def:4" class="compliance" result="true" version="1">
+          <oval-res:criteria operator="AND" negate="false" result="true">
+            <oval-res:criterion test_ref="oval:org.cisecurity.docker:tst:4" version="1" negate="false" result="true"/>
+          </oval-res:criteria>
+        </oval-res:definition>
+        <oval-res:definition definition_id="oval:org.cisecurity.docker:def:3" class="compliance" result="true" version="1">
+          <oval-res:criteria operator="AND" negate="false" result="true">
+            <oval-res:criterion test_ref="oval:org.cisecurity.docker:tst:3" version="1" negate="false" result="true"/>
+          </oval-res:criteria>
+        </oval-res:definition>
+        <oval-res:definition definition_id="oval:org.cisecurity.docker:def:2" class="compliance" result="true" version="1">
+          <oval-res:criteria operator="AND" negate="false" result="true">
+            <oval-res:criterion test_ref="oval:org.cisecurity.docker:tst:2" version="1" negate="false" result="true"/>
+          </oval-res:criteria>
+        </oval-res:definition>
+        <oval-res:definition definition_id="oval:org.cisecurity.docker:def:1" class="compliance" result="false" version="1">
+          <oval-res:criteria operator="AND" negate="false" result="false">
+            <oval-res:criterion test_ref="oval:org.cisecurity.docker:tst:1" version="1" negate="false" result="false"/>
+          </oval-res:criteria>
+        </oval-res:definition>
+        <oval-res:definition definition_id="oval:org.cisecurity.docker:def:6" class="compliance" result="true" version="1">
+          <oval-res:criteria operator="AND" negate="false" result="true">
+            <oval-res:criterion test_ref="oval:org.cisecurity.docker:tst:6" version="1" negate="false" result="true"/>
+          </oval-res:criteria>
+        </oval-res:definition>
+        <oval-res:definition definition_id="oval:org.cisecurity.docker:def:5" class="compliance" result="true" version="1">
+          <oval-res:criteria operator="AND" negate="false" result="true">
+            <oval-res:criterion test_ref="oval:org.cisecurity.docker:tst:5" version="1" negate="false" result="true"/>
+          </oval-res:criteria>
+        </oval-res:definition>
+        <oval-res:definition definition_id="oval:org.cisecurity.docker:def:10" class="compliance" result="true" version="1">
+          <oval-res:criteria operator="AND" negate="false" result="true">
+            <oval-res:criterion test_ref="oval:org.cisecurity.docker:tst:10" version="1" negate="false" result="true"/>
+          </oval-res:criteria>
+        </oval-res:definition>
+      </oval-res:definitions>
+      <oval-res:tests>
+        <oval-res:test test_id="oval:org.cisecurity.docker:tst:10" version="1" check_existence="at_least_one_exists" check="at least one" state_operator="AND" result="true">
+          <oval-res:tested_item item_id="1563241035" result="true"/>
+          <oval-res:tested_item item_id="1749376495" result="false"/>
+        </oval-res:test>
+        <oval-res:test test_id="oval:org.cisecurity.docker:tst:4" version="1" check_existence="at_least_one_exists" check="all" state_operator="AND" result="true">
+          <oval-res:tested_item item_id="1586248818" result="true"/>
+        </oval-res:test>
+        <oval-res:test test_id="oval:org.cisecurity.docker:tst:3" version="1" check_existence="at_least_one_exists" check="all" state_operator="AND" result="true">
+          <oval-res:tested_item item_id="2053489354" result="true"/>
+        </oval-res:test>
+        <oval-res:test test_id="oval:org.cisecurity.docker:tst:2" version="1" check_existence="at_least_one_exists" check="all" state_operator="AND" result="true">
+          <oval-res:tested_item item_id="204911579" result="true"/>
+          <oval-res:tested_variable variable_id="oval:org.cisecurity.docker:var:1">4cd4e0cccf3a</oval-res:tested_variable>
+        </oval-res:test>
+        <oval-res:test test_id="oval:org.cisecurity.docker:tst:1" version="1" check_existence="at_least_one_exists" check="all" state_operator="AND" result="false">
+          <oval-res:tested_item item_id="474479770" result="false"/>
+        </oval-res:test>
+        <oval-res:test test_id="oval:org.cisecurity.docker:tst:6" version="1" check_existence="none_exist" check="at least one" state_operator="AND" result="true"/>
+        <oval-res:test test_id="oval:org.cisecurity.docker:tst:5" version="1" check_existence="at_least_one_exists" check="at least one" state_operator="AND" result="true">
+          <oval-res:tested_item item_id="1731822156" result="true"/>
+          <oval-res:tested_item item_id="1128985879" result="false"/>
+        </oval-res:test>
+      </oval-res:tests>
+      <oval-sc:oval_system_characteristics xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">
+        <oval-sc:generator>
+          <oval:product_name xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">cpe:/a:cisecurity.org:CIS-CAT</oval:product_name>
+          <oval:product_version xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">3.0.28</oval:product_version>
+          <oval:schema_version xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">5.11</oval:schema_version>
+          <oval:timestamp xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5">2016-08-11T10:02:38.541-07:00</oval:timestamp>
+        </oval-sc:generator>
+        <oval-sc:system_info>
+          <oval-sc:os_name>Ubuntu</oval-sc:os_name>
+          <oval-sc:os_version>4.2.0-36-generic</oval-sc:os_version>
+          <oval-sc:architecture>amd64</oval-sc:architecture>
+          <oval-sc:primary_host_name>ubuntu</oval-sc:primary_host_name>
+          <oval-sc:interfaces>
+            <oval-sc:interface>
+              <oval-sc:interface_name>vethb7b7a7c</oval-sc:interface_name>
+              <oval-sc:ip_address xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+              <oval-sc:mac_address>?��>?k</oval-sc:mac_address>
+            </oval-sc:interface>
+            <oval-sc:interface>
+              <oval-sc:interface_name>docker0</oval-sc:interface_name>
+              <oval-sc:ip_address>172.17.0.1</oval-sc:ip_address>
+              <oval-sc:mac_address>?B&amp;?+�</oval-sc:mac_address>
+            </oval-sc:interface>
+            <oval-sc:interface>
+              <oval-sc:interface_name>eno16777736</oval-sc:interface_name>
+              <oval-sc:ip_address>192.168.132.151</oval-sc:ip_address>
+              <oval-sc:mac_address>??)#*�</oval-sc:mac_address>
+            </oval-sc:interface>
+          </oval-sc:interfaces>
+        </oval-sc:system_info>
+        <oval-sc:collected_objects>
+          <oval-sc:object id="oval:org.cisecurity.docker:obj:4" version="1" comment="..." flag="complete">
+            <oval-sc:reference item_ref="1586248818"/>
+          </oval-sc:object>
+          <oval-sc:object id="oval:org.cisecurity.docker:obj:3" version="1" comment="..." flag="complete">
+            <oval-sc:reference item_ref="2053489354"/>
+          </oval-sc:object>
+          <oval-sc:object id="oval:org.cisecurity.docker:obj:6" version="1" comment="..." flag="does not exist">
+            <oval-sc:reference item_ref="538271298"/>
+          </oval-sc:object>
+          <oval-sc:object id="oval:org.cisecurity.docker:obj:10" version="1" comment="..." flag="complete">
+            <oval-sc:reference item_ref="1749376495"/>
+            <oval-sc:reference item_ref="1563241035"/>
+          </oval-sc:object>
+          <oval-sc:object id="oval:org.cisecurity.docker:obj:5" version="1" comment="..." flag="complete">
+            <oval-sc:reference item_ref="1731822156"/>
+            <oval-sc:reference item_ref="1128985879"/>
+          </oval-sc:object>
+          <oval-sc:object id="oval:org.cisecurity.docker:obj:999" version="1" comment="..." flag="complete">
+            <oval-sc:reference item_ref="1731822156"/>
+          </oval-sc:object>
+          <oval-sc:object id="oval:org.cisecurity.docker:obj:2" version="1" comment="..." flag="complete">
+            <oval-sc:variable_value variable_id="oval:org.cisecurity.docker:var:1">4cd4e0cccf3a</oval-sc:variable_value>
+            <oval-sc:reference item_ref="204911579"/>
+          </oval-sc:object>
+          <oval-sc:object id="oval:org.cisecurity.docker:obj:1" version="1" comment="..." flag="complete">
+            <oval-sc:reference item_ref="474479770"/>
+          </oval-sc:object>
+        </oval-sc:collected_objects>
+        <oval-sc:system_data>
+          <keyedinfo_item id="1586248818" status="exists" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-docker">
+            <key>STORAGE_DRIVER</key>
+            <value>aufs</value>
+            <subvalues datatype="record">
+              <oval-sc:field name="root dir">/var/lib/docker/aufs</oval-sc:field>
+              <oval-sc:field name="backing filesystem">extfs</oval-sc:field>
+              <oval-sc:field name="dirs">14</oval-sc:field>
+              <oval-sc:field name="dirperm1 supported">true</oval-sc:field>
+            </subvalues>
+          </keyedinfo_item>
+          <info_item id="2053489354" status="exists" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-docker">
+            <container_count>2</container_count>
+            <running_containers>1</running_containers>
+            <paused_containers>0</paused_containers>
+            <stopped_containers>1</stopped_containers>
+            <image_count>2</image_count>
+            <storage_driver>aufs</storage_driver>
+            <storage_driver_root_dir>/var/lib/docker/aufs</storage_driver_root_dir>
+            <storage_driver_backing_filesystem>extfs</storage_driver_backing_filesystem>
+            <storage_driver_directory_count>14</storage_driver_directory_count>
+            <storage_driver_dirperm1_supported>true</storage_driver_dirperm1_supported>
+            <logging_driver>json-file</logging_driver>
+            <cgroup_driver>cgroupfs</cgroup_driver>
+            <kernel_version>4.2.0-36-generic</kernel_version>
+            <operating_system>Ubuntu 15.10</operating_system>
+            <os_type>linux</os_type>
+            <architecture>x86_64</architecture>
+            <info_name>ubuntu</info_name>
+            <info_id>JAOR:4K4O:DNS2:U4QH:YCMS:YQJP:6YP7:UY73:ZPP3:WAT3:BCEG:N43V</info_id>
+            <docker_root_dir>/var/lib/docker</docker_root_dir>
+            <debug_mode_client>false</debug_mode_client>
+            <debug_mode_server>false</debug_mode_server>
+          </info_item>
+          <process_item id="538271298" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-docker">
+            <container_id>NO CONTAINER</container_id>
+          </process_item>
+          <execps_item status="exists" id="1749376495" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-docker">
+            <container_or_image datatype="string">4cd4e0cccf3a</container_or_image>
+            <command_line datatype="string">nginx: master process nginx -g daemon off;</command_line>
+            <exec_time datatype="string">00:00:00</exec_time>
+            <pid datatype="int">1</pid>
+            <ppid datatype="int">0</ppid>
+            <priority datatype="int">20</priority>
+            <ruid datatype="int">0</ruid>
+            <scheduling_class datatype="string">TS</scheduling_class>
+            <start_time datatype="string">17:02:22</start_time>
+            <tty datatype="string">?</tty>
+            <user_id datatype="int">0</user_id>
+            <exec_shield datatype="boolean" status="not collected"/>
+            <loginuid datatype="int">4294967295</loginuid>
+            <posix_capability datatype="string">CAP_CHOWN</posix_capability>
+            <posix_capability datatype="string">CAP_DAC_OVERRIDE</posix_capability>
+            <posix_capability datatype="string">CAP_DAC_READ_SEARCH</posix_capability>
+            <posix_capability datatype="string">CAP_FOWNER</posix_capability>
+            <posix_capability datatype="string">CAP_FSETID</posix_capability>
+            <posix_capability datatype="string">CAP_KILL</posix_capability>
+            <posix_capability datatype="string">CAP_SETGID</posix_capability>
+            <posix_capability datatype="string">CAP_SETUID</posix_capability>
+            <posix_capability datatype="string">CAP_SETPCAP</posix_capability>
+            <posix_capability datatype="string">CAP_LINUX_IMMUTABLE</posix_capability>
+            <posix_capability datatype="string">CAP_NET_BIND_SERVICE</posix_capability>
+            <posix_capability datatype="string">CAP_NET_BROADCAST</posix_capability>
+            <posix_capability datatype="string">CAP_NET_ADMIN</posix_capability>
+            <posix_capability datatype="string">CAP_NET_RAW</posix_capability>
+            <posix_capability datatype="string">CAP_IPC_LOCK</posix_capability>
+            <posix_capability datatype="string">CAP_IPC_OWNER</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_MODULE</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_RAWIO</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_CHROOT</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_PTRACE</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_ADMIN</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_BOOT</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_NICE</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_RESOURCE</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_TIME</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_TTY_CONFIG</posix_capability>
+            <posix_capability datatype="string">CAP_MKNOD</posix_capability>
+            <posix_capability datatype="string">CAP_LEASE</posix_capability>
+            <posix_capability datatype="string">CAP_AUDIT_WRITE</posix_capability>
+            <posix_capability datatype="string">CAP_AUDIT_CONTROL</posix_capability>
+            <posix_capability datatype="string">CAP_SETFCAP</posix_capability>
+            <posix_capability datatype="string">CAP_MAC_OVERRIDE</posix_capability>
+            <posix_capability datatype="string">CAP_MAC_ADMIN</posix_capability>
+            <selinux_domain_label status="does not exist"/>
+            <session_id datatype="int">1</session_id>
+          </execps_item>
+          <execps_item status="exists" id="1563241035" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-docker">
+            <container_or_image datatype="string">4cd4e0cccf3a</container_or_image>
+            <command_line datatype="string">nginx: worker process</command_line>
+            <exec_time datatype="string">00:00:00</exec_time>
+            <pid datatype="int">5</pid>
+            <ppid datatype="int">1</ppid>
+            <priority datatype="int">20</priority>
+            <ruid datatype="int">104</ruid>
+            <scheduling_class datatype="string">TS</scheduling_class>
+            <start_time datatype="string">17:02:22</start_time>
+            <tty datatype="string">?</tty>
+            <user_id datatype="int">104</user_id>
+            <exec_shield datatype="boolean" status="not collected"/>
+            <loginuid datatype="int">4294967295</loginuid>
+            <posix_capability datatype="string">CAP_CHOWN</posix_capability>
+            <posix_capability datatype="string">CAP_DAC_OVERRIDE</posix_capability>
+            <posix_capability datatype="string">CAP_DAC_READ_SEARCH</posix_capability>
+            <posix_capability datatype="string">CAP_FOWNER</posix_capability>
+            <posix_capability datatype="string">CAP_FSETID</posix_capability>
+            <posix_capability datatype="string">CAP_KILL</posix_capability>
+            <posix_capability datatype="string">CAP_SETGID</posix_capability>
+            <posix_capability datatype="string">CAP_SETUID</posix_capability>
+            <posix_capability datatype="string">CAP_SETPCAP</posix_capability>
+            <posix_capability datatype="string">CAP_LINUX_IMMUTABLE</posix_capability>
+            <posix_capability datatype="string">CAP_NET_BIND_SERVICE</posix_capability>
+            <posix_capability datatype="string">CAP_NET_BROADCAST</posix_capability>
+            <posix_capability datatype="string">CAP_NET_ADMIN</posix_capability>
+            <posix_capability datatype="string">CAP_NET_RAW</posix_capability>
+            <posix_capability datatype="string">CAP_IPC_LOCK</posix_capability>
+            <posix_capability datatype="string">CAP_IPC_OWNER</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_MODULE</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_RAWIO</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_CHROOT</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_PTRACE</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_ADMIN</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_BOOT</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_NICE</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_RESOURCE</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_TIME</posix_capability>
+            <posix_capability datatype="string">CAP_SYS_TTY_CONFIG</posix_capability>
+            <posix_capability datatype="string">CAP_MKNOD</posix_capability>
+            <posix_capability datatype="string">CAP_LEASE</posix_capability>
+            <posix_capability datatype="string">CAP_AUDIT_WRITE</posix_capability>
+            <posix_capability datatype="string">CAP_AUDIT_CONTROL</posix_capability>
+            <posix_capability datatype="string">CAP_SETFCAP</posix_capability>
+            <posix_capability datatype="string">CAP_MAC_OVERRIDE</posix_capability>
+            <posix_capability datatype="string">CAP_MAC_ADMIN</posix_capability>
+            <selinux_domain_label status="does not exist"/>
+            <session_id datatype="int">1</session_id>
+          </execps_item>
+          <process_item id="1731822156" status="exists" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-docker">
+            <container_id>4cd4e0cccf3a</container_id>
+            <image_id>nginx</image_id>
+            <command>"nginx -g 'daemon off"</command>
+            <created_at>2016-04-15 12:24:41 -0700 PDT</created_at>
+            <running_for>3 months</running_for>
+            <port>80/tcp</port>
+            <port>443/tcp</port>
+            <status>running</status>
+            <size>0 B</size>
+            <name>some-nginx</name>
+            <label status="does not exist"/>
+            <mount>/some/content</mount>
+          </process_item>
+          <process_item id="1128985879" status="exists" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-docker">
+            <container_id>e456c8aafc1f</container_id>
+            <image_id>hello-world</image_id>
+            <command>"/hello"</command>
+            <created_at>2016-04-15 06:45:33 -0700 PDT</created_at>
+            <running_for>3 months</running_for>
+            <port status="does not exist"/>
+            <status>exited</status>
+            <size>0 B</size>
+            <name>gigantic_yonath</name>
+            <label status="does not exist"/>
+            <mount status="does not exist"/>
+          </process_item>
+          <inspect_item id="204911579" status="exists" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-docker">
+            <container_or_image>4cd4e0cccf3a</container_or_image>
+            <inspect_property>MOUNTS</inspect_property>
+            <inspect_property_values>
+              <oval-sc:field name="destination">/usr/share/nginx/html</oval-sc:field>
+              <oval-sc:field name="mode">ro</oval-sc:field>
+              <oval-sc:field name="propagation">rprivate</oval-sc:field>
+              <oval-sc:field name="rw">false</oval-sc:field>
+              <oval-sc:field name="source">/some/content</oval-sc:field>
+            </inspect_property_values>
+          </inspect_item>
+          <version_item id="474479770" status="exists" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-docker">
+            <client_version datatype="version">1.11.1</client_version>
+            <client_api_version datatype="version">1.23</client_api_version>
+            <client_go_version datatype="version">go1.5.4</client_go_version>
+            <client_git_commit>5604cbe</client_git_commit>
+            <client_built>Tue Apr 26 23</client_built>
+            <client_os_arch>linux/amd64</client_os_arch>
+            <server_version datatype="version">1.11.1</server_version>
+            <server_api_version datatype="version">1.23</server_api_version>
+            <server_go_version datatype="version">go1.5.4</server_go_version>
+            <server_git_commit>5604cbe</server_git_commit>
+            <server_built>Tue Apr 26 23</server_built>
+            <server_os_arch>linux/amd64</server_os_arch>
+          </version_item>
+        </oval-sc:system_data>
+      </oval-sc:oval_system_characteristics>
+    </oval-res:system>
+  </oval-res:results>
+</oval-res:oval_results>
