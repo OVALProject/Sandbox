@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:unix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:x-docker-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-docker" targetNamespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-docker" elementFormDefault="qualified" version="5.11">
+    <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
+    <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix" schemaLocation="unix-system-characteristics-schema.xsd"/>
+    <xsd:annotation>
+        <xsd:documentation>The following is a proposal for the experimental system characteristics that will support assessment of Docker implementations.  Each item is an extension of the standard item element defined in the Core System Characteristics Schema. Through extension, each item inherits a set of elements and attributes that are shared amongst all OVAL items. Each item is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different items and their relationship to the Core System Characteristics Schema is not outlined here.</xsd:documentation>
+        <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+        <xsd:appinfo>
+            <schema>Experimental Schema for Docker System Characteristics</schema>
+            <version>5.11</version>
+            <date>5/28/2015 8:00:00 AM</date>
+            <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+            <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
+            <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
+            <sch:ns prefix="unix-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix"/>
+            <sch:ns prefix="x-docker" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#x-docker"/>
+            <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
+        </xsd:appinfo>
+    </xsd:annotation>
+    
+    <!-- =============================================================================== -->
+    <!-- Docker Exec (ps) Item -->
+    <!-- =============================================================================== -->
+    <xsd:element name="execps_item" substitutionGroup="oval-sc:item">
+        <xsd:annotation>
+            <xsd:documentation>Mirror the Unix process58_item, but inside a docker container/image.  Within a docker container/image, parse the Output of /usr/bin/ps. See ps(1).</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="oval-sc:ItemType">
+                    <xsd:sequence>
+                        <xsd:element name="container_or_image" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>This is the id of the container or image from which we're gathering running process information, usually funneled from a docker process_object component.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="command_line" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>This is the string used to start the process. This includes any parameters that are part of the command line.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="exec_time" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>This is the cumulative CPU time, formatted in [DD-]HH:MM:SS where DD is the number of days when execution time is 24 hours or more.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="pid" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>This is the process ID of the process.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="ppid" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>This is the process ID of the process's parent process.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="priority" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>This is the scheduling priority with which the process runs. This can be adjusted with the nice command or nice() system call.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="ruid" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>This is the real user id which represents the user who has created the process.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="scheduling_class" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>A platform specific characteristic maintained by the scheduler: RT (real-time), TS (timeshare), FF (fifo), SYS (system), etc.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="start_time" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>This is the time of day the process started formatted in HH:MM:SS if the same day the process started or formatted as MMM_DD (Ex.: Feb_5) if process started the previous day or further in the past.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="tty" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>This is the TTY on which the process was started, if applicable.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="user_id" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>This is the effective user id which represents the actual privileges of the process.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="exec_shield" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>A boolean that when true would indicates that ExecShield is enabled for the process.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="loginuid" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The loginuid shows which account a user gained access to the system with. The /proc/XXXX/loginuid shows this value.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="posix_capability" type="unix-sc:EntityItemCapabilityType" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>An effective capability associated with the process. See linux/include/linux/capability.h for more information.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="selinux_domain_label" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>An selinux domain label associated with the process.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="session_id" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The session ID of the process.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <!-- =============================================================================== -->
+    <!-- Info Item (Flattened) -->
+    <!-- =============================================================================== -->
+    <xsd:element name="info_item" substitutionGroup="oval-sc:item">
+        <xsd:annotation>
+            <xsd:documentation>
+                The info_item represents a "flattened" output from the "docker info" command, selecting only a relevant subset of information from the output.
+                Each item extends the standard ItemType as defined in the oval-system-characteristics-schema and one should refer to the ItemType description for more information.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="oval-sc:ItemType">
+                    <xsd:sequence>
+                        <xsd:element name="container_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The total number of containers</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="running_containers" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The number of currently running containers</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="paused_containers" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The number of currently paused containers</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="stopped_containers" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The number of currently stopped containers</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="image_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The total number of images</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="storage_driver" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Storage Driver</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="storage_driver_root_dir" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Storage Driver Root Directory</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="storage_driver_backing_filesystem" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Storage Driver Backing Filesystem</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="storage_driver_directory_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Storage Driver Directory Count</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="storage_driver_dirperm1_supported" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Indicates if "dirperm1" is supported for the Storage Driver</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="logging_driver" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Logging driver</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="cgroup_driver" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Cgroup driver</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="kernel_version" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Docker kernel version</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="operating_system" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Operating System</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="os_type" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>OSType</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="architecture" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Architecture</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="info_name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Name</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="info_id" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>ID</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="docker_root_dir" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Docker root directory</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="debug_mode_client" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Debug mode (client)</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="debug_mode_server" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Debug mode (server)</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <!-- =============================================================================== -->
+    <!-- Docker Inspect Item -->
+    <!-- =============================================================================== -->
+    <xsd:element name="inspect_item" substitutionGroup="oval-sc:item">
+        <xsd:annotation>
+            <xsd:documentation>
+                Each inspect_item formats the output of the "docker inspect" command.  See the enumeration values for their respective "--format" strings.
+                Each item extends the standard ItemType as defined in the oval-system-characteristics-schema and one should refer to the ItemType description for more information.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="oval-sc:ItemType">
+                    <xsd:sequence>
+                        <xsd:element name="container_or_image" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The name of the container or image for which information is to be collected.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="inspect_property" type="x-docker-sc:EntityItemInspectPropertyType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Enumeration defining how to format the output of the "docker inspect" command.  See the enumeration values for their respective "--format" strings.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="inspect_property_value" type="oval-sc:EntityItemAnySimpleType" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>The formatted output value(s) based on the "docker inspect" format string</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <!-- =============================================================================== -->
+    <!-- Keyed Info Item -->
+    <!-- =============================================================================== -->
+    <xsd:element name="keyedinfo_item" substitutionGroup="oval-sc:item">
+        <xsd:annotation>
+            <xsd:documentation>
+                The keyedinfo_item indicates a more relational representation of the output from the "docker info" command.  Certain keyed elements contain values which are then 
+                further broken down into sub-key/value pairs, here using record types.  Each item extends the standard ItemType as defined in the oval-system-characteristics-schema 
+                and one should refer to the ItemType description for more information.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="oval-sc:ItemType">
+                    <xsd:sequence>
+                        <xsd:element name="key" type="x-docker-sc:EntityItemDockerInfoKeyType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The name of the key for the docker version element</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="value" type="oval-sc:EntityItemAnySimpleType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The value associated with the key for the docker version element</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="subvalues" type="oval-sc:EntityItemRecordType" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The subvalues element specifies how to test items in the result set of the specified docker info output. 
+                                    For each field, the @name attribute represents the sub-key name, and the element value represents the sub-key's value</xsd:documentation>
+                                <xsd:appinfo>
+                                    <sch:pattern id="x-docker-def_keyedinfosteresult">
+                                        <sch:rule context="x-docker-def:keyedinfo_state/x-docker-def:subvalues">
+                                            <sch:assert test="@datatype='record'"><sch:value-of select="../@id"/> - datatype attribute for the result entity of a docker keyedinfo_state must be 'record'</sch:assert>
+                                        </sch:rule>
+                                    </sch:pattern>
+                                </xsd:appinfo>
+                            </xsd:annotation>
+                            <xsd:unique name="UniqueDockerInfoResultFieldName">
+                                <xsd:selector xpath="./oval-sc:field"/>
+                                <xsd:field xpath="@name"/>
+                            </xsd:unique>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <!-- =============================================================================== -->
+    <!-- Docker Process Item -->
+    <!-- =============================================================================== -->
+    <xsd:element name="process_item" substitutionGroup="oval-sc:item">
+        <xsd:annotation>
+            <xsd:documentation>
+                The process_item element is collected using a process_object and defines the different information about the containers/instances being utilized in a Docker installation.
+                The process_object specifies the name of a container or instance for which to collect information.  The container or instance name is to be utilized as the argument 
+                to the "docker ps [container_or_instance] --format=[]" command.  When pattern matching, implementations should utilize the "docker ps -a" switch to query all containers 
+                and parse for matching items.  Each item extends the standard ItemType as defined in the oval-system-characteristics-schema and one should refer to the ItemType description for more information.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="oval-sc:ItemType">
+                    <xsd:sequence>
+                        <xsd:element name="container_id" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Container ID</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="image_id" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Image ID</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="command" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Quoted Command</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="created_at" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Time when the container was created</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="running_for" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Elapsed time since the container was started</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="port" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>Exposed Ports</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="status" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Container Status</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="size" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Container disk size</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>Container names</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="label" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>All labels assigned to the container</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="mount" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>Names of the volumes mounted in this container</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <!-- =============================================================================== -->
+    <!-- Version Item -->
+    <!-- =============================================================================== -->
+    <xsd:element name="version_item" substitutionGroup="oval-sc:item">
+        <xsd:annotation>
+            <xsd:documentation>
+                The version_item will render all version information resulting from the "docker version" command.  The output of the "docker version" command contains two sections 
+                of information; Docker Client information, and Docker Server information.  Each item extends the standard ItemType as defined in the oval-system-characteristics-schema 
+                and one should refer to the ItemType description for more information.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="oval-sc:ItemType">
+                    <xsd:sequence>
+                        <xsd:element name="client_version" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Docker client version string</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="client_api_version" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Docker client API version</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="client_go_version" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Docker client GO version</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="client_git_commit" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Docker client Git commit hash</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="client_built" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The date this Docker client was built</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="client_os_arch" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Docker client Operating System architecture</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="server_version" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Docker server version</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="server_api_version" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Docker server API version</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="server_go_version" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Docker server GO version</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="server_git_commit" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Docker server Git commit hash</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="server_built" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The date this Docker server was built</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="server_os_arch" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Docker server Operating System architecture</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <!-- =============================================================================== -->
+    <!-- Complex Types -->
+    <!-- =============================================================================== -->
+    <xsd:complexType name="EntityItemDockerInfoKeyType">
+        <xsd:annotation>
+            <xsd:documentation>The EntityItemDockerInfoKeyType complex type restricts a string value to a specific set of values: </xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:restriction base="oval-sc:EntityItemStringType">
+                <xsd:enumeration value="CONTAINERS">
+                    <xsd:annotation>
+                        <xsd:documentation>The total number of containers.  This key should result in the collection of sub-values for counts of running, paused, and stopped containers</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="IMAGES">
+                    <xsd:annotation>
+                        <xsd:documentation>The total number of images.  No sub-values collected</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="SERVER_VERSION">
+                    <xsd:annotation>
+                        <xsd:documentation>The docker server version.  No sub-values collected</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="STORAGE_DRIVER">
+                    <xsd:annotation>
+                        <xsd:documentation>Docker storage driver.  Sub-values include Root Dir, Backing Filesystem, Number of Dirs, Dirpirm1 Supported</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="LOGGING_DRIVER">
+                    <xsd:annotation>
+                        <xsd:documentation>Logging driver; No sub-values collected</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="CGROUP_DRIVER">
+                    <xsd:annotation>
+                        <xsd:documentation>Cgroup driver; No sub-values collected</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="PLUGINS">
+                    <xsd:annotation>
+                        <xsd:documentation>Installed plugins; Will have sub-values</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="KERNEL_VERSION">
+                    <xsd:annotation>
+                        <xsd:documentation>Docker kernel version; No sub-values</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="OPERATING_SYSTEM">
+                    <xsd:annotation>
+                        <xsd:documentation>Underlying operating system; No sub-values</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="OS_TYPE">
+                    <xsd:annotation>
+                        <xsd:documentation>Operating System type; No sub-values</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="ARCHITECTURE">
+                    <xsd:annotation>
+                        <xsd:documentation>Underlying OS architecture; No sub-values</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="NAME">
+                    <xsd:annotation>
+                        <xsd:documentation>Installation name; no sub-values</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="ID">
+                    <xsd:annotation>
+                        <xsd:documentation>Docker installation ID; No sub-values</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="DOCKER_ROOT_DIR">
+                    <xsd:annotation>
+                        <xsd:documentation>Docker root directory; No sub-values</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="">
+                    <xsd:annotation>
+                        <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+            </xsd:restriction>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityItemInspectPropertyType">
+        <xsd:annotation>
+            <xsd:documentation>The EntityItemInspectPropertyType complex type restricts a string value to a specific set of values: </xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:restriction base="oval-sc:EntityItemStringType">
+                <xsd:enumeration value="CONFIG_USER">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.Config.User}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="APPARMOR_PROFILE">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.AppArmorProfile}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="NETWORK_SETTINGS_PORTS">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.NetworkSettings.Ports}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_SECURITY_OPT">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.SecurityOpt}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_CAP_ADD">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.CapAdd}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_CAP_DROP">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.CapDrop}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_PRIVILEGED">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.Privileged}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_NETWORK_MODE">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.NetworkMode}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_MEMORY">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.Memory}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_CPU_SHARES">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.CpuShares}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_READONLY_ROOTFS">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.ReadonlyRootfs}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_RESTART_POLICY_NAME">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.RestartPolicy.Name}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_RESTART_POLICY_MAXIMUM_RETRY_COUNT">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.RestartPolicy.MaximumRetryCount}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_PID_MODE">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.PidMode}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_IPC_MODE">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.IpcMode}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_DEVICES">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.Devices}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_ULIMITS">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.Ulimits}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_UTS_MODE">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.UTSMode}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="HOST_CONFIG_CGROUP_PARENT">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.HostConfig.CgroupParent}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="MOUNTS">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{.Mounts}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="MOUNTS_PROPAGATION">
+                    <xsd:annotation>
+                        <xsd:documentation>Equates to execution of "docker inspect --format='{{range $mnt := .Mounts}} {{json $mnt.Propagation}} {{end}}'"</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="">
+                    <xsd:annotation>
+                        <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+            </xsd:restriction>
+        </xsd:simpleContent>
+    </xsd:complexType>
+</xsd:schema>
