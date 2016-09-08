@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xsi:schemaLocation="
+    http://oval.mitre.org/XMLSchema/oval-definitions-5 http://oval.mitre.org/language/version5.11/ovaldefinition/complete/oval-definitions-schema.xsd     
+    http://oval.mitre.org/XMLSchema/oval-definitions-5#unix http://oval.mitre.org/language/version5.11/ovaldefinition/complete/unix-definitions-schema.xsd    
+    http://oval.mitre.org/XMLSchema/oval-definitions-5#independent http://oval.mitre.org/language/version5.11/ovaldefinition/complete/independent-definitions-schema.xsd
+    http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker x-docker-definitions-schema.xsd     
+    http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd x-shellcommand-schema.xsd     " xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:docker="http://oval.mitre.org/XMLSchema/oval-definitions-5#x-docker" xmlns:cmd="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd">
+    <generator>
+        <oval:schema_version>5.11</oval:schema_version>
+        <oval:timestamp>2009-01-12T10:41:00-05:00</oval:timestamp>
+        <terms_of_use>Copyright (c) 2002-2012, The MITRE Corporation. All rights reserved. The contents of this file are subject to the license described in terms.txt.</terms_of_use>
+    </generator>
+
+    <definitions>
+        <definition id="oval:org.cisecurity.docker:def:1" version="1" class="compliance">
+            <metadata>
+                <title>Docker Version</title>
+                <description>Docker Version</description>
+            </metadata>
+            <criteria>
+                <criterion comment="Test if a docker version with a hive is supported." test_ref="oval:org.cisecurity.docker:tst:1"/>
+            </criteria>
+        </definition>
+        <definition id="oval:org.cisecurity.docker:def:2" version="1" class="compliance">
+            <metadata>
+                <title>Docker Inspect</title>
+                <description>Docker Inspect</description>
+            </metadata>
+            <criteria>
+                <criterion comment="Docker inspect test" test_ref="oval:org.cisecurity.docker:tst:2"/>
+            </criteria>
+        </definition>
+        <definition id="oval:org.cisecurity.docker:def:3" version="1" class="compliance">
+            <metadata>
+                <title>Docker Info</title>
+                <description>Docker Info</description>
+            </metadata>
+            <criteria>
+                <criterion comment="Docker Info test" test_ref="oval:org.cisecurity.docker:tst:3"/>
+            </criteria>
+        </definition>
+        <definition id="oval:org.cisecurity.docker:def:4" version="1" class="compliance">
+            <metadata>
+                <title>Docker Keyed Info</title>
+                <description>Docker Keyed Info</description>
+            </metadata>
+            <criteria>
+                <criterion comment="Docker Keyed Info test" test_ref="oval:org.cisecurity.docker:tst:4"/>
+            </criteria>
+        </definition>
+        <definition id="oval:org.cisecurity.docker:def:5" version="1" class="compliance">
+            <metadata>
+                <title>Docker Process</title>
+                <description>Docker Process</description>
+            </metadata>
+            <criteria>
+                <criterion comment="Docker Process test" test_ref="oval:org.cisecurity.docker:tst:5"/>
+            </criteria>
+        </definition>
+        <definition id="oval:org.cisecurity.docker:def:6" version="1" class="compliance">
+            <metadata>
+                <title>Docker Process</title>
+                <description>Docker Process</description>
+            </metadata>
+            <criteria>
+                <criterion comment="Docker Process test" test_ref="oval:org.cisecurity.docker:tst:6"/>
+            </criteria>
+        </definition>
+        <definition id="oval:org.cisecurity.docker:def:10" version="1" class="compliance">
+            <metadata>
+                <title>Docker Exec PS</title>
+                <description>Docker Exec PS</description>
+            </metadata>
+            <criteria>
+                <criterion comment="Docker Exec PS" test_ref="oval:org.cisecurity.docker:tst:10"/>
+            </criteria>
+        </definition>
+    </definitions>
+
+    <tests>
+        <docker:version_test id="oval:org.cisecurity.docker:tst:1" version="1" comment="Docker Version Test" check_existence="at_least_one_exists" check="all">
+            <docker:object object_ref="oval:org.cisecurity.docker:obj:1"/>
+            <docker:state state_ref="oval:org.cisecurity.docker:ste:1"/>
+        </docker:version_test>
+        <docker:inspect_test id="oval:org.cisecurity.docker:tst:2" version="1" comment="Docker Inspect Test" check_existence="at_least_one_exists" check="all">
+            <docker:object object_ref="oval:org.cisecurity.docker:obj:2"/>
+            <docker:state state_ref="oval:org.cisecurity.docker:ste:2"/>
+        </docker:inspect_test>
+        <docker:info_test id="oval:org.cisecurity.docker:tst:3" version="1" comment="Docker Info Test" check_existence="at_least_one_exists" check="all">
+            <docker:object object_ref="oval:org.cisecurity.docker:obj:3"/>
+            <docker:state state_ref="oval:org.cisecurity.docker:ste:3"/>
+        </docker:info_test>
+        <docker:keyedinfo_test id="oval:org.cisecurity.docker:tst:4" version="1" comment="Docker Keyed Info Test" check_existence="at_least_one_exists" check="all">
+            <docker:object object_ref="oval:org.cisecurity.docker:obj:4"/>
+            <docker:state state_ref="oval:org.cisecurity.docker:ste:4"/>
+        </docker:keyedinfo_test>
+        <docker:process_test id="oval:org.cisecurity.docker:tst:5" version="1" comment="Docker Process Test" check_existence="at_least_one_exists" check="at least one">
+            <docker:object object_ref="oval:org.cisecurity.docker:obj:5"/>
+            <docker:state state_ref="oval:org.cisecurity.docker:ste:5"/>
+        </docker:process_test>
+        <docker:process_test id="oval:org.cisecurity.docker:tst:6" version="1" comment="Docker Process Test" check_existence="none_exist" check="at least one">
+            <docker:object object_ref="oval:org.cisecurity.docker:obj:6"/>
+        </docker:process_test>
+        <docker:execps_test id="oval:org.cisecurity.docker:tst:10" version="1" comment="Docker Exec PS Test" check_existence="at_least_one_exists" check="at least one">
+            <docker:object object_ref="oval:org.cisecurity.docker:obj:10"/>
+            <docker:state state_ref="oval:org.cisecurity.docker:ste:10"/>
+        </docker:execps_test>
+    </tests>
+    <objects>
+        <docker:version_object id="oval:org.cisecurity.docker:obj:1" version="1" comment="..."/>
+        <docker:inspect_object id="oval:org.cisecurity.docker:obj:2" version="1" comment="...">
+            <docker:container_or_image var_ref="oval:org.cisecurity.docker:var:1"/>
+            <docker:inspect_property>MOUNTS</docker:inspect_property>
+        </docker:inspect_object>
+        <docker:info_object id="oval:org.cisecurity.docker:obj:3" version="1" comment="..."/>
+        <docker:keyedinfo_object id="oval:org.cisecurity.docker:obj:4" version="1" comment="...">
+            <docker:key>STORAGE_DRIVER</docker:key>
+        </docker:keyedinfo_object>
+        <docker:process_object id="oval:org.cisecurity.docker:obj:5" version="1" comment="...">
+            <docker:container_id operation="pattern match">.*</docker:container_id>
+        </docker:process_object>
+        <docker:process_object id="oval:org.cisecurity.docker:obj:6" version="1" comment="...">
+            <docker:container_id>NO CONTAINER</docker:container_id>
+        </docker:process_object>
+        <docker:execps_object id="oval:org.cisecurity.docker:obj:10" version="1" comment="...">
+            <docker:container_or_image>4cd4e0cccf3a</docker:container_or_image>
+            <docker:command_line operation="pattern match">^nginx.*$</docker:command_line>
+            <docker:pid datatype="int" operation="greater than">0</docker:pid>
+        </docker:execps_object>
+        <docker:process_object id="oval:org.cisecurity.docker:obj:999" version="1" comment="...">
+            <docker:container_id operation="pattern match">.*</docker:container_id>
+            <filter action="include">oval:org.cisecurity.docker:ste:999</filter>
+        </docker:process_object>
+        <ind:textfilecontent54_object id="oval:org.cisecurity.docker:obj:998" version="1" comment="...">
+            <ind:filepath>/etc/audit/auditd.conf</ind:filepath>
+            <ind:pattern operation="pattern match">^log_file\s*=\s*([/a-zA-Z\s]+\.log)</ind:pattern>
+            <ind:instance datatype="int">1</ind:instance>
+        </ind:textfilecontent54_object>
+    </objects>
+    <states>
+        <docker:version_state id="oval:org.cisecurity.docker:ste:1" version="1" comment="...">
+            <docker:client_version datatype="version">1.11.0</docker:client_version>
+            <docker:server_version datatype="version">1.11.0</docker:server_version>
+        </docker:version_state>
+        <docker:inspect_state id="oval:org.cisecurity.docker:ste:2" version="1" comment="...">
+            <docker:inspect_property_values datatype="record">
+                <field entity_check="at least one" name="source">/some/content</field>
+            </docker:inspect_property_values>
+        </docker:inspect_state>
+        <docker:info_state id="oval:org.cisecurity.docker:ste:3" version="1" comment="...">
+            <docker:container_count datatype="int">2</docker:container_count>
+            <docker:storage_driver>aufs</docker:storage_driver>
+            <docker:operating_system>Ubuntu 15.10</docker:operating_system>
+            <docker:docker_root_dir>/var/lib/docker</docker:docker_root_dir>
+        </docker:info_state>
+        <docker:keyedinfo_state id="oval:org.cisecurity.docker:ste:4" version="1" comment="...">
+            <docker:key>STORAGE_DRIVER</docker:key>
+            <docker:value datatype="string">aufs</docker:value>
+            <docker:subvalues datatype="record">
+                <field name="backing filesystem">extfs</field>
+            </docker:subvalues>
+        </docker:keyedinfo_state>
+        <docker:process_state id="oval:org.cisecurity.docker:ste:5" version="1" comment="...">
+            <docker:container_id>4cd4e0cccf3a</docker:container_id>
+            <docker:port entity_check="at least one">80/tcp</docker:port>
+        </docker:process_state>
+        <docker:execps_state id="oval:org.cisecurity.docker:ste:10" version="1" comment="...">
+            <docker:container_or_image>4cd4e0cccf3a</docker:container_or_image>
+            <docker:ppid datatype="int">1</docker:ppid>
+        </docker:execps_state>
+        <docker:process_state id="oval:org.cisecurity.docker:ste:999" version="1" comment="...">
+            <docker:status>running</docker:status>
+        </docker:process_state>
+    </states>
+    
+    <variables>
+        <local_variable id="oval:org.cisecurity.docker:var:1" version="1" datatype="string" comment="Currently running containers">
+            <object_component object_ref="oval:org.cisecurity.docker:obj:999" item_field="container_id"/>
+        </local_variable>
+        <local_variable id="oval:org.cisecurity.docker:var:3" version="1" datatype="string" comment="Path to auditd logs">
+            <object_component object_ref="oval:org.cisecurity.docker:obj:998" item_field="subexpression"/>
+        </local_variable>
+    </variables>
+</oval_definitions>
